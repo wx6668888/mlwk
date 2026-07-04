@@ -2,9 +2,9 @@ name = "mlwk-global-site"
 compatibility_date = "2026-07-01"
 pages_build_output_dir = "dist"
 
-[[r2_buckets]]
-binding = "INQUIRY_FILES"
-bucket_name = "mlwk-inquiry-files"
+# [[r2_buckets]]   TODO: uncomment after creating mlwk-inquiry-files bucket
+# binding = "INQUIRY_FILES"
+# bucket_name = "mlwk-inquiry-files"
 
 [[d1_databases]]
 binding = "DB"
