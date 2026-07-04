@@ -36,28 +36,12 @@ export default function HomePage({ locale }: { locale: Locale }) {
         <MediaFilm
           sources={[
             {
-              src: "/media/hero-film-graded-mobile.webm",
-              type: "video/webm",
-              media: "(max-width: 620px)",
-            },
-            {
-              src: "/media/hero-film-graded-mobile.mp4",
+              src: "/media/hero-lifestyle-film.mp4",
               type: "video/mp4",
-              media: "(max-width: 620px)",
-            },
-            {
-              src: "/media/hero-film-graded-1080.webm",
-              type: "video/webm",
-              media: "(min-width: 621px)",
-            },
-            {
-              src: "/media/hero-film-graded-1080.mp4",
-              type: "video/mp4",
-              media: "(min-width: 621px)",
             },
           ]}
           poster="/media/hero-barefoot-poster.webp"
-          label="MLWK architectural millwork interior — graded film"
+          label="MLWK architectural millwork interior — lifestyle film"
           className="hero-film"
           eager
         />
