@@ -1,0 +1,9 @@
+[
+  {
+    "AllowedOrigins": ["https://mlwk.space", "https://www.mlwk.space"],
+    "AllowedMethods": ["PUT"],
+    "AllowedHeaders": ["Content-Type"],
+    "ExposeHeaders": ["ETag"],
+    "MaxAgeSeconds": 3600
+  }
+]

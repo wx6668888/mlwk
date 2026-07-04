@@ -1,0 +1,7 @@
+/ /en/ 302
+/en/order/*/confirmation /en/order/preview/confirmation/index.html 200
+/ar/order/*/confirmation /ar/order/preview/confirmation/index.html 200
+/zh/order/*/confirmation /zh/order/preview/confirmation/index.html 200
+/de/order/*/confirmation /de/order/preview/confirmation/index.html 200
+/fr/order/*/confirmation /fr/order/preview/confirmation/index.html 200
+/* /index.html 200

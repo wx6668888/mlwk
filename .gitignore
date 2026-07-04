@@ -1,0 +1,15 @@
+node_modules/
+dist/
+dist-server/
+.dev.vars
+.wrangler/
+*.log
+*.local.md
+*.local.json
+*.local.txt
+modern-animated-sign-up-sign-in-page-with-split-screen-design/
+modern-animated-sign-up-sign-in-page-with-split-screen-design.zip
+logo.png
+logo*.jpg
+.env
+.video-generation.pid

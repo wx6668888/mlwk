@@ -1,0 +1,12 @@
+name = "mlwk-global-site"
+compatibility_date = "2026-07-01"
+pages_build_output_dir = "dist"
+
+[[r2_buckets]]
+binding = "INQUIRY_FILES"
+bucket_name = "mlwk-inquiry-files"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "mlwk-inquiries"
+database_id = "replace-with-cloudflare-database-id"

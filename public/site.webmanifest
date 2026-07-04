@@ -1,0 +1,8 @@
+{
+  "name": "MLWK",
+  "short_name": "MLWK",
+  "start_url": "/en/",
+  "display": "standalone",
+  "background_color": "#f1f2ed",
+  "theme_color": "#171813"
+}
