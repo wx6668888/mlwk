@@ -84,12 +84,11 @@ ${knowledge}`;
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: context.env.DEEPSEEK_MODEL || "deepseek-v4-flash",
+        model: context.env.DEEPSEEK_MODEL || "deepseek-chat",
         messages: [
           { role: "system", content: systemPrompt },
           ...request.messages.slice(-12),
         ],
-        thinking: { type: "disabled" },
         max_tokens: 700,
         temperature: 0.45,
         stream: false,
