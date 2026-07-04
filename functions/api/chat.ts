@@ -84,7 +84,7 @@ ${knowledge}`;
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: context.env.DEEPSEEK_MODEL || "deepseek-chat",
+        model: context.env.DEEPSEEK_MODEL || "deepseek-v4-flash",
         messages: [
           { role: "system", content: systemPrompt },
           ...request.messages.slice(-12),
