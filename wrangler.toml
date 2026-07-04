@@ -9,4 +9,4 @@ bucket_name = "mlwk-inquiry-files"
 [[d1_databases]]
 binding = "DB"
 database_name = "mlwk-inquiries"
-database_id = "replace-with-cloudflare-database-id"
+database_id = "04808c9a-46d9-4a38-9c7d-962349d5efdf"
