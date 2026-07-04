@@ -8,7 +8,8 @@
     "build:client": "vite build",
     "build:ssr": "vite build --ssr src/entry-server.tsx --outDir dist-server",
     "prerender": "node scripts/prerender.mjs",
-    "build": "npm run build:client && npm run build:ssr && npm run prerender",
+    "build": "npm run build:client && npm run build:ssr && npm run prerender && npm run postbuild",
+    "postbuild": "node -e \"const fs=require('fs');const f='dist/media/hero-film-graded.mp4';if(fs.existsSync(f)){const mb=(fs.statSync(f).size/1e6).toFixed(1);fs.unlinkSync(f);console.log('Removed '+f+' ('+mb+'MB) to stay under 25MB Cloudflare Pages limit')}else{console.log('postbuild: no oversized files to remove')}\"",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
   },
