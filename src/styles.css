@@ -2698,14 +2698,17 @@ p {
 
 .login-visual-copy {
   position: absolute;
-  inset-inline-start: 24px;
-  bottom: 24px;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: 1.2;
-  max-width: 240px;
+  text-align: center;
+  padding: 24px;
   transition: opacity 400ms ease, transform 400ms ease;
 }
 
@@ -4776,9 +4779,7 @@ html[dir="rtl"] .faq-list details p {
 
   .login-visual-copy {
     font-size: 17px;
-    max-width: 200px;
-    inset-inline-start: 20px;
-    bottom: 20px;
+    padding: 16px;
   }
 
   .login-visual-logo {

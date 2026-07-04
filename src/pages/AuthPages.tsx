@@ -54,19 +54,10 @@ function CheckIcon() {
   );
 }
 
-const SLIDES = [
-  {
-    image: "/media/kitchens.png",
-    copy: "Precision, from drawing to finish.",
-  },
-  {
-    image: "/media/wall-panels.png",
-    copy: "Surfaces that define a room.",
-  },
-  {
-    image: "/media/bespoke-built-ins.png",
-    copy: "Every detail, made to belong.",
-  },
+const SLIDE_IMAGES = [
+  "/media/kitchens.png",
+  "/media/wall-panels.png",
+  "/media/bespoke-built-ins.png",
 ];
 
 export function LoginPage({ locale }: { locale: Locale }) {
@@ -105,7 +96,7 @@ export function LoginPage({ locale }: { locale: Locale }) {
     const timer = setInterval(() => {
       setFading(true);
       setTimeout(() => {
-        setSlide((prev) => (prev + 1) % SLIDES.length);
+        setSlide((prev) => (prev + 1) % SLIDE_IMAGES.length);
         setFading(false);
       }, 500);
     }, 5000);
@@ -172,18 +163,18 @@ export function LoginPage({ locale }: { locale: Locale }) {
 
           <div className="login-visual-media">
             <img
-              src={SLIDES[slide].image}
+              src={SLIDE_IMAGES[slide]}
               alt=""
               className={fading ? "fading" : ""}
             />
             <div className="login-visual-gradient" />
             <div className="login-visual-copy">
-              {SLIDES[slide].copy}
+              {copy.loginSlides[slide]}
             </div>
           </div>
 
           <div className="login-visual-dots">
-            {SLIDES.map((_s, i) => (
+            {SLIDE_IMAGES.map((_s, i) => (
               <button
                 key={i}
                 type="button"
