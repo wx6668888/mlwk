@@ -67,9 +67,9 @@ export function LoginPage({ locale }: { locale: Locale }) {
   const navigate = useNavigate();
   const returnTo = params.get("returnTo") || `/${locale}/account/projects`;
 
-  const [isSignUp, setIsSignUp] = useState(true);
+  const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [agreedToTerms, setAgreedToTerms] = useState(true);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [slide, setSlide] = useState(0);
@@ -256,14 +256,14 @@ export function LoginPage({ locale }: { locale: Locale }) {
                 autoComplete={isSignUp ? "new-password" : "current-password"}
                 required
               />
-              <span
+              <button
+                type="button"
                 className="login-field-icon"
                 onClick={() => setShowPassword((v) => !v)}
-                role="button"
-                tabIndex={-1}
+                aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-              </span>
+              </button>
             </div>
 
             <div className={`login-collapsible${isSignUp ? " open" : ""}`}>

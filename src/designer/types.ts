@@ -26,6 +26,24 @@ export type RoomDimensions = {
 export type DesignerView = "3d" | "plan";
 export type DesignerTransformMode = "translate" | "rotate";
 
+export type CameraState = {
+  position: [number, number, number];
+  target: [number, number, number];
+  view: DesignerView;
+};
+
+export type DesignerDraft = {
+  version: 2;
+  id: string;
+  room: RoomDimensions;
+  modules: DesignerModule[];
+  finish: string;
+  camera: CameraState;
+  updatedAt: string;
+};
+
+export const DESIGNER_STORAGE_KEY = "mlwk-designer-v2";
+
 export const moduleCatalog: Array<{
   type: DesignerModuleType;
   label: string;

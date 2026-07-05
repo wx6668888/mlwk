@@ -5,6 +5,20 @@ import Reveal from "../components/Reveal";
 import CinematicMedia from "../components/CinematicMedia";
 import { getCopy, solutions, type Locale } from "../content";
 
+const priorityLabel: Record<Locale, string> = {
+  en: "Project priorities",
+  zh: "项目重点",
+  ar: "أولويات المشروع",
+  de: "Projektprioritäten",
+  fr: "Priorités du projet",
+};
+
+const sectorSteps: Record<string, number[]> = {
+  residential: [1, 2, 3, 5],
+  hospitality: [0, 2, 3, 4],
+  commercial: [0, 1, 3, 4],
+};
+
 export function SolutionsPage({ locale }: { locale: Locale }) {
   const copy = getCopy(locale);
   const [eyebrow, title, text] = copy.pages.solutions;
@@ -56,17 +70,20 @@ export function SolutionDetailPage({
       </section>
       <section className="solution-detail section">
         <Reveal>
-          <p className="eyebrow">Project priorities</p>
+          <p className="eyebrow">{priorityLabel[locale]}</p>
           <h2>{copy.pages.solutions[1]}</h2>
         </Reveal>
         <div className="priority-grid">
-          {copy.capabilitySteps.slice(0, 4).map(([number, title, text]) => (
+          {(sectorSteps[item.slug] ?? sectorSteps.residential).map((index) => {
+            const [number, title, text] = copy.capabilitySteps[index];
+            return (
             <Reveal className="priority-item" key={number}>
               <span>{number}</span>
               <h3>{title}</h3>
               <p>{text}</p>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
         <Link className="primary-button" to={`/${locale}/quote`}>
           <ArrowUpRight size={18} />

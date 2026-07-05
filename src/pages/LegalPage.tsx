@@ -8,6 +8,37 @@ type StoreLegalContent = {
   items: string[];
 };
 
+const legalMeta: Record<
+  Locale,
+  { contents: string; section: string; updated: string }
+> = {
+  en: {
+    contents: "On this page",
+    section: "Section",
+    updated: "Launch preview | Last updated 4 July 2026",
+  },
+  zh: {
+    contents: "本页内容",
+    section: "条款",
+    updated: "上线预览版本 | 更新于 2026 年 7 月 4 日",
+  },
+  ar: {
+    contents: "في هذه الصفحة",
+    section: "القسم",
+    updated: "نسخة الإطلاق التجريبية | آخر تحديث 4 يوليو 2026",
+  },
+  de: {
+    contents: "Auf dieser Seite",
+    section: "Abschnitt",
+    updated: "Startvorschau | Aktualisiert am 4. Juli 2026",
+  },
+  fr: {
+    contents: "Sur cette page",
+    section: "Section",
+    updated: "Aperçu de lancement | Mis à jour le 4 juillet 2026",
+  },
+};
+
 const legalAdditions: Record<Locale, Record<StoreLegalType, StoreLegalContent>> = {
   en: {
     shipping: {
@@ -133,13 +164,23 @@ export default function LegalPage({
     <>
       <PageIntro eyebrow={eyebrow} title={title} text={text} />
       <section className="legal-copy section">
+        <nav className="legal-toc" aria-label={legalMeta[locale].contents}>
+          <strong>{legalMeta[locale].contents}</strong>
+          <div>
+            {items.map((_, index) => (
+              <a href={`#legal-section-${index + 1}`} key={index}>
+                {legalMeta[locale].section} {String(index + 1).padStart(2, "0")}
+              </a>
+            ))}
+          </div>
+        </nav>
         {items.map((item, index) => (
-          <Reveal key={item}>
+          <Reveal key={item} id={`legal-section-${index + 1}`}>
             <span>0{index + 1}</span>
             <p>{item}</p>
           </Reveal>
         ))}
-        <p className="legal-note">Launch preview | Last updated 4 July 2026</p>
+        <p className="legal-note">{legalMeta[locale].updated}</p>
       </section>
     </>
   );

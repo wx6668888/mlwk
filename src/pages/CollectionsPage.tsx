@@ -5,6 +5,34 @@ import Reveal from "../components/Reveal";
 import CinematicMedia from "../components/CinematicMedia";
 import { collections, getCopy, type Locale } from "../content";
 
+const collectionSpecs: Record<Locale, Array<[string, string]>> = {
+  en: [
+    ["Structure", "Project-specific"],
+    ["Finish", "Sample approved"],
+    ["Hardware", "Coordinated to brief"],
+  ],
+  zh: [
+    ["结构", "按项目深化"],
+    ["饰面", "以确认样为准"],
+    ["五金", "按项目要求协调"],
+  ],
+  ar: [
+    ["الهيكل", "مخصص للمشروع"],
+    ["التشطيب", "وفق العينة المعتمدة"],
+    ["التجهيزات", "منسقة حسب المتطلبات"],
+  ],
+  de: [
+    ["Konstruktion", "Projektspezifisch"],
+    ["Oberfläche", "Nach Freigabemuster"],
+    ["Beschläge", "Auf Anforderungen abgestimmt"],
+  ],
+  fr: [
+    ["Construction", "Spécifique au projet"],
+    ["Finition", "Selon échantillon approuvé"],
+    ["Quincaillerie", "Coordonnée au cahier des charges"],
+  ],
+};
+
 export function CollectionsPage({ locale }: { locale: Locale }) {
   const copy = getCopy(locale);
   const [eyebrow, title, text] = copy.pages.collections;
@@ -22,7 +50,6 @@ export function CollectionsPage({ locale }: { locale: Locale }) {
                   label={item.name[locale]}
                   eager={index < 2}
                 />
-                <span className="concept-label">{copy.common.concept}</span>
               </div>
               <div className="catalog-item__copy">
                 <span>0{index + 1}</span>
@@ -77,18 +104,12 @@ export function CollectionDetailPage({
           ))}
         </div>
         <Reveal className="spec-panel">
-          <div>
-            <small>Structure</small>
-            <strong>Project-specific</strong>
-          </div>
-          <div>
-            <small>Finish</small>
-            <strong>Sample approved</strong>
-          </div>
-          <div>
-            <small>Hardware</small>
-            <strong>Coordinated to brief</strong>
-          </div>
+          {collectionSpecs[locale].map(([label, value]) => (
+            <div key={label}>
+              <small>{label}</small>
+              <strong>{value}</strong>
+            </div>
+          ))}
           <Link className="primary-button" to={`/${locale}/quote`}>
             <ArrowUpRight size={18} />
             {copy.nav.quote}

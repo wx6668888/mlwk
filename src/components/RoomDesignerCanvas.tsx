@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { TransformControls } from "three/examples/jsm/controls/TransformControls.js";
 import type {
+  CameraState,
   DesignerModule,
   DesignerModuleType,
   DesignerTransformMode,
@@ -18,7 +19,12 @@ type Props = {
   finishColor: string;
   view: DesignerView;
   selectedModuleId: string | null;
+  collisionIds: ReadonlySet<string>;
   transformMode: DesignerTransformMode;
+  snapEnabled: boolean;
+  cameraState: CameraState;
+  cameraResetKey: number;
+  onCameraChange: (camera: CameraState) => void;
   onSelect: (moduleId: string | null) => void;
   onTransform: (moduleId: string, transform: ModuleTransform) => void;
 };
@@ -48,10 +54,51 @@ function disposeObject(object: THREE.Object3D) {
   });
 }
 
+function makeWoodTexture(color: string) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 192;
+  canvas.height = 192;
+  const context = canvas.getContext("2d");
+  if (!context) return null;
+
+  context.fillStyle = color;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  const base = new THREE.Color(color);
+  for (let index = 0; index < 70; index += 1) {
+    const grain = base
+      .clone()
+      .offsetHSL(0, 0, index % 3 === 0 ? 0.12 : -0.1);
+    context.strokeStyle = `rgba(${Math.round(grain.r * 255)}, ${Math.round(
+      grain.g * 255,
+    )}, ${Math.round(grain.b * 255)}, ${0.035 + (index % 5) * 0.012})`;
+    context.lineWidth = index % 9 === 0 ? 1.4 : 0.55;
+    const x = (index / 70) * canvas.width + Math.sin(index * 2.7) * 5;
+    context.beginPath();
+    context.moveTo(x, 0);
+    context.bezierCurveTo(
+      x + Math.sin(index) * 7,
+      56,
+      x - Math.cos(index * 1.7) * 8,
+      132,
+      x + Math.sin(index * 0.8) * 5,
+      canvas.height,
+    );
+    context.stroke();
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(1.6, 2.2);
+  return texture;
+}
+
 function makeCabinet(
   module: DesignerModule,
   finishColor: string,
   selected: boolean,
+  colliding: boolean,
 ) {
   const width = meters(module.width);
   const depth = meters(module.depth);
@@ -60,23 +107,25 @@ function makeCabinet(
   group.userData.moduleId = module.id;
   group.position.set(meters(module.x), 0, meters(module.z));
   group.rotation.y = THREE.MathUtils.degToRad(module.rotation);
+  const woodTexture = makeWoodTexture(finishColor);
 
   const bodyMaterial = new THREE.MeshStandardMaterial({
-    color: finishColor,
-    roughness: 0.66,
+    color: "#ffffff",
+    map: woodTexture,
+    roughness: 0.59,
     metalness: 0.02,
-    emissive: selected ? "#b49367" : "#000000",
-    emissiveIntensity: selected ? 0.18 : 0,
+    emissive: colliding ? "#8f3025" : selected ? "#b49367" : "#000000",
+    emissiveIntensity: colliding ? 0.34 : selected ? 0.18 : 0,
   });
   const edgeMaterial = new THREE.MeshStandardMaterial({
     color: new THREE.Color(finishColor).multiplyScalar(0.68),
     roughness: 0.58,
-    emissive: selected ? "#8c6a43" : "#000000",
-    emissiveIntensity: selected ? 0.2 : 0,
+    emissive: colliding ? "#8f3025" : selected ? "#8c6a43" : "#000000",
+    emissiveIntensity: colliding ? 0.34 : selected ? 0.2 : 0,
   });
 
   const body = new THREE.Mesh(
-    new THREE.BoxGeometry(width, height, depth),
+    new THREE.BoxGeometry(width * 0.985, height * 0.992, depth * 0.98),
     bodyMaterial,
   );
   body.position.y = moduleVerticalPosition(module.type, height);
@@ -84,13 +133,43 @@ function makeCabinet(
   body.receiveShadow = true;
   group.add(body);
 
-  if (module.type !== "panel" && module.type !== "door") {
+  if (module.type !== "panel") {
+    const front = new THREE.Mesh(
+      new THREE.BoxGeometry(width * 0.955, height * 0.965, 0.018),
+      bodyMaterial.clone(),
+    );
+    front.position.set(0, body.position.y, depth / 2 + 0.006);
+    front.castShadow = true;
+    group.add(front);
+  }
+
+  if (
+    module.type !== "panel" &&
+    module.type !== "door" &&
+    module.type !== "wall"
+  ) {
     const seam = new THREE.Mesh(
-      new THREE.BoxGeometry(0.008, height * 0.94, depth + 0.012),
+      new THREE.BoxGeometry(0.009, height * 0.925, 0.023),
       edgeMaterial,
     );
-    seam.position.set(0, body.position.y, 0);
+    seam.position.set(0, body.position.y, depth / 2 + 0.017);
     group.add(seam);
+
+    const handle = new THREE.Mesh(
+      new THREE.BoxGeometry(Math.min(0.18, width * 0.28), 0.018, 0.018),
+      new THREE.MeshStandardMaterial({
+        color: "#8e7659",
+        roughness: 0.28,
+        metalness: 0.72,
+      }),
+    );
+    handle.position.set(
+      width * 0.27,
+      Math.min(body.position.y + height * 0.25, height - 0.15),
+      depth / 2 + 0.035,
+    );
+    handle.castShadow = true;
+    group.add(handle);
   }
 
   if (module.type === "base") {
@@ -108,7 +187,101 @@ function makeCabinet(
     group.add(top);
   }
 
+  if (["base", "tall", "wardrobe"].includes(module.type)) {
+    const toeKick = new THREE.Mesh(
+      new THREE.BoxGeometry(width * 0.9, 0.085, depth * 0.88),
+      edgeMaterial,
+    );
+    toeKick.position.set(0, 0.043, 0.025);
+    group.add(toeKick);
+  }
+
   return group;
+}
+
+function makeDimensionLabel(text: string) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 320;
+  canvas.height = 72;
+  const context = canvas.getContext("2d");
+  if (!context) return null;
+
+  context.fillStyle = "rgba(35, 36, 32, 0.84)";
+  context.beginPath();
+  context.roundRect(2, 2, 316, 68, 20);
+  context.fill();
+  context.fillStyle = "#f5f4ed";
+  context.font = "600 27px Arial";
+  context.textAlign = "center";
+  context.textBaseline = "middle";
+  context.fillText(text, 160, 37);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  const sprite = new THREE.Sprite(
+    new THREE.SpriteMaterial({
+      map: texture,
+      transparent: true,
+      depthTest: false,
+    }),
+  );
+  sprite.scale.set(1.35, 0.3, 1);
+  sprite.renderOrder = 20;
+  return sprite;
+}
+
+function addRoomDimensions(
+  group: THREE.Group,
+  roomWidth: number,
+  roomDepth: number,
+  roomHeight: number,
+) {
+  const lineMaterial = new THREE.LineBasicMaterial({
+    color: "#656861",
+    transparent: true,
+    opacity: 0.62,
+    depthTest: false,
+  });
+  const widthLine = new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(-roomWidth / 2, 0.045, -roomDepth / 2 + 0.08),
+      new THREE.Vector3(roomWidth / 2, 0.045, -roomDepth / 2 + 0.08),
+    ]),
+    lineMaterial,
+  );
+  widthLine.renderOrder = 18;
+  group.add(widthLine);
+  const widthLabel = makeDimensionLabel(`${Math.round(roomWidth * 1000)} mm`);
+  if (widthLabel) {
+    widthLabel.position.set(0, 0.18, -roomDepth / 2 + 0.1);
+    group.add(widthLabel);
+  }
+
+  const depthLine = new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(-roomWidth / 2 + 0.08, 0.045, -roomDepth / 2),
+      new THREE.Vector3(-roomWidth / 2 + 0.08, 0.045, roomDepth / 2),
+    ]),
+    lineMaterial.clone(),
+  );
+  depthLine.renderOrder = 18;
+  group.add(depthLine);
+  const depthLabel = makeDimensionLabel(`${Math.round(roomDepth * 1000)} mm`);
+  if (depthLabel) {
+    depthLabel.position.set(-roomWidth / 2 + 0.14, 0.18, 0);
+    group.add(depthLabel);
+  }
+
+  const heightLabel = makeDimensionLabel(`${Math.round(roomHeight * 1000)} mm`);
+  if (heightLabel) {
+    heightLabel.position.set(
+      -roomWidth / 2 + 0.12,
+      roomHeight - 0.22,
+      -roomDepth / 2 + 0.12,
+    );
+    heightLabel.scale.set(1.05, 0.24, 1);
+    group.add(heightLabel);
+  }
 }
 
 function makeRoom(
@@ -117,6 +290,7 @@ function makeRoom(
   finishColor: string,
   view: DesignerView,
   selectedModuleId: string | null,
+  collisionIds: ReadonlySet<string>,
 ) {
   const roomGroup = new THREE.Group();
   const roomWidth = meters(room.width);
@@ -170,10 +344,16 @@ function makeRoom(
   grid.material.transparent = true;
   grid.material.opacity = view === "plan" ? 0.42 : 0.12;
   roomGroup.add(grid);
+  addRoomDimensions(roomGroup, roomWidth, roomDepth, roomHeight);
 
   modules.forEach((module) => {
     roomGroup.add(
-      makeCabinet(module, finishColor, module.id === selectedModuleId),
+      makeCabinet(
+        module,
+        finishColor,
+        module.id === selectedModuleId,
+        collisionIds.has(module.id),
+      ),
     );
   });
 
@@ -184,6 +364,7 @@ function clampModuleToRoom(
   module: DesignerModule,
   room: RoomDimensions,
   object: THREE.Object3D,
+  snapEnabled: boolean,
 ): ModuleTransform {
   const rotation = THREE.MathUtils.radToDeg(object.rotation.y);
   const radians = THREE.MathUtils.degToRad(rotation);
@@ -195,16 +376,29 @@ function clampModuleToRoom(
     (Math.abs(Math.sin(radians)) * module.width +
       Math.abs(Math.cos(radians)) * module.depth) /
     2;
-  const x = THREE.MathUtils.clamp(
+  const minX = -room.width / 2 + halfWidth;
+  const maxX = room.width / 2 - halfWidth;
+  const minZ = -room.depth / 2 + halfDepth;
+  const maxZ = room.depth / 2 - halfDepth;
+  let x = THREE.MathUtils.clamp(
     object.position.x * 1000,
-    -room.width / 2 + halfWidth,
-    room.width / 2 - halfWidth,
+    minX,
+    maxX,
   );
-  const z = THREE.MathUtils.clamp(
+  let z = THREE.MathUtils.clamp(
     object.position.z * 1000,
-    -room.depth / 2 + halfDepth,
-    room.depth / 2 - halfDepth,
+    minZ,
+    maxZ,
   );
+
+  if (snapEnabled) {
+    x = Math.round(x / 50) * 50;
+    z = Math.round(z / 50) * 50;
+    if (Math.abs(x - minX) < 140) x = minX;
+    if (Math.abs(x - maxX) < 140) x = maxX;
+    if (Math.abs(z - minZ) < 140) z = minZ;
+    if (Math.abs(z - maxZ) < 140) z = maxZ;
+  }
 
   return {
     x: Math.round(x / 10) * 10,
@@ -219,7 +413,12 @@ export default function RoomDesignerCanvas({
   finishColor,
   view,
   selectedModuleId,
+  collisionIds,
   transformMode,
+  snapEnabled,
+  cameraState,
+  cameraResetKey,
+  onCameraChange,
   onSelect,
   onTransform,
 }: Props) {
@@ -233,11 +432,17 @@ export default function RoomDesignerCanvas({
   const roomRef = useRef(room);
   const onSelectRef = useRef(onSelect);
   const onTransformRef = useRef(onTransform);
+  const onCameraChangeRef = useRef(onCameraChange);
+  const viewRef = useRef(view);
+  const snapEnabledRef = useRef(snapEnabled);
 
   modulesRef.current = modules;
   roomRef.current = room;
   onSelectRef.current = onSelect;
   onTransformRef.current = onTransform;
+  onCameraChangeRef.current = onCameraChange;
+  viewRef.current = view;
+  snapEnabledRef.current = snapEnabled;
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -267,9 +472,16 @@ export default function RoomDesignerCanvas({
     controls.maxDistance = 16;
     controls.maxPolarAngle = Math.PI / 2.03;
     controls.target.set(0, 1.15, 0);
+    controls.addEventListener("end", () => {
+      onCameraChangeRef.current({
+        position: camera.position.toArray() as [number, number, number],
+        target: controls.target.toArray() as [number, number, number],
+        view: viewRef.current,
+      });
+    });
 
     const transform = new TransformControls(camera, renderer.domElement);
-    transform.setTranslationSnap(0.05);
+    transform.setTranslationSnap(snapEnabled ? 0.05 : null);
     transform.setRotationSnap(THREE.MathUtils.degToRad(15));
     transform.setSize(0.75);
     scene.add(transform.getHelper());
@@ -282,7 +494,12 @@ export default function RoomDesignerCanvas({
         if (moduleId && module) {
           onTransformRef.current(
             moduleId,
-            clampModuleToRoom(module, roomRef.current, transform.object),
+            clampModuleToRoom(
+              module,
+              roomRef.current,
+              transform.object,
+              snapEnabledRef.current,
+            ),
           );
         }
       }
@@ -385,6 +602,7 @@ export default function RoomDesignerCanvas({
       finishColor,
       view,
       selectedModuleId,
+      collisionIds,
     );
     scene.add(nextRoom);
     roomGroupRef.current = nextRoom;
@@ -395,7 +613,7 @@ export default function RoomDesignerCanvas({
       );
       if (selected) transform.attach(selected);
     }
-  }, [finishColor, modules, room, selectedModuleId, view]);
+  }, [collisionIds, finishColor, modules, room, selectedModuleId, view]);
 
   useEffect(() => {
     const transform = transformRef.current;
@@ -407,28 +625,19 @@ export default function RoomDesignerCanvas({
   }, [transformMode]);
 
   useEffect(() => {
+    transformRef.current?.setTranslationSnap(snapEnabled ? 0.05 : null);
+  }, [snapEnabled]);
+
+  useEffect(() => {
     const camera = cameraRef.current;
     const controls = controlsRef.current;
     if (!camera || !controls) return;
 
-    const roomWidth = meters(room.width);
-    const roomDepth = meters(room.depth);
-    const roomHeight = meters(room.height);
-    if (view === "plan") {
-      camera.position.set(0, 10.5, 0.01);
-      controls.target.set(0, 0, 0);
-      controls.enableRotate = false;
-    } else {
-      camera.position.set(
-        roomWidth * 0.82,
-        Math.max(3.3, roomHeight * 1.22),
-        roomDepth * 1.15,
-      );
-      controls.target.set(0, 1.15, 0);
-      controls.enableRotate = true;
-    }
+    camera.position.fromArray(cameraState.position);
+    controls.target.fromArray(cameraState.target);
+    controls.enableRotate = view !== "plan";
     controls.update();
-  }, [room, view]);
+  }, [cameraResetKey, room, view]);
 
   return <div className="designer-canvas" ref={mountRef} />;
 }

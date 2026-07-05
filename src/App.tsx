@@ -5,9 +5,11 @@ import Header from "./components/Header";
 import Concierge from "./components/Concierge";
 import { AuthProvider } from "./auth/AuthContext";
 import {
+  collections,
   getCopy,
   isLocale,
   localeMeta,
+  solutions,
   type Locale,
 } from "./content";
 import CapabilitiesPage from "./pages/CapabilitiesPage";
@@ -45,6 +47,48 @@ import {
 } from "./pages/AuthPages";
 import { StoreProvider } from "./store/StoreContext";
 import { getStoreCopy } from "./store/storeCopy";
+import { findProduct } from "../shared/storeCatalog";
+
+const utilityTitles: Record<
+  Locale,
+  { designer: string; shipping: string; returns: string; confirmation: string; admin: string }
+> = {
+  en: {
+    designer: "3D Design Studio",
+    shipping: "Shipping and duties",
+    returns: "Returns and refunds",
+    confirmation: "Order confirmation",
+    admin: "Project updates",
+  },
+  zh: {
+    designer: "3D 空间设计",
+    shipping: "运输与税费",
+    returns: "退换与退款",
+    confirmation: "订单确认",
+    admin: "项目更新",
+  },
+  ar: {
+    designer: "استوديو التصميم ثلاثي الأبعاد",
+    shipping: "الشحن والرسوم",
+    returns: "الإرجاع والاسترداد",
+    confirmation: "تأكيد الطلب",
+    admin: "تحديثات المشروع",
+  },
+  de: {
+    designer: "3D Design Studio",
+    shipping: "Versand und Abgaben",
+    returns: "Rückgabe und Erstattung",
+    confirmation: "Bestellbestätigung",
+    admin: "Projektaktualisierungen",
+  },
+  fr: {
+    designer: "Studio de conception 3D",
+    shipping: "Livraison et droits",
+    returns: "Retours et remboursements",
+    confirmation: "Confirmation de commande",
+    admin: "Mises à jour du projet",
+  },
+};
 
 function LocaleLayout() {
   const params = useParams();
@@ -52,7 +96,9 @@ function LocaleLayout() {
   const locale: Locale = isLocale(params.locale) ? params.locale : "en";
   const copy = getCopy(locale);
   const store = getStoreCopy(locale);
-  const routeName = location.pathname.split("/")[2] || "home";
+  const pathParts = location.pathname.split("/").filter(Boolean);
+  const routeName = pathParts[1] || "home";
+  const routeDetail = pathParts[2] || "";
   const isHome = routeName === "home";
   const isDesigner = routeName === "designer";
   const isAuth = routeName === "login" || routeName === "auth";
@@ -63,14 +109,48 @@ function LocaleLayout() {
     const page = routeName in copy.pages
       ? copy.pages[routeName as keyof typeof copy.pages]
       : undefined;
-    document.title = page
-      ? `${page[1]} — MLWK`
-      : routeName === "designer"
-        ? "3D Design Studio — MLWK"
-      : routeName === "shop"
-        ? `${store.shopTitle} — MLWK`
-        : `${copy.home.title} — MLWK`;
-  }, [copy, locale, location.pathname, routeName, store.shopTitle]);
+    const collection = collections.find((item) => item.slug === routeDetail);
+    const solution = solutions.find((item) => item.slug === routeDetail);
+    const product = routeName === "shop" ? findProduct(routeDetail) : undefined;
+    const title =
+      collection?.name[locale] ??
+      solution?.name[locale] ??
+      product?.name[locale] ??
+      (routeName === "quote"
+        ? copy.quote.title
+        : routeName === "designer"
+          ? utilityTitles[locale].designer
+          : routeName === "shop"
+            ? store.shopTitle
+            : routeName === "cart"
+              ? store.cart
+              : routeName === "checkout"
+                ? store.checkoutTitle
+                : routeName === "login"
+                  ? store.signIn
+                  : routeName === "account"
+                    ? store.account
+                    : routeName === "shipping"
+                      ? utilityTitles[locale].shipping
+                      : routeName === "returns"
+                        ? utilityTitles[locale].returns
+                        : routeName === "order"
+                          ? utilityTitles[locale].confirmation
+                          : routeName === "admin"
+                            ? utilityTitles[locale].admin
+                            : page?.[1] ?? copy.home.title);
+    document.title = `${title} — MLWK`;
+  }, [
+    copy,
+    locale,
+    routeDetail,
+    routeName,
+    store.account,
+    store.cart,
+    store.checkoutTitle,
+    store.shopTitle,
+    store.signIn,
+  ]);
 
   if (!isLocale(params.locale)) return <Navigate replace to="/en/" />;
 
