@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   color: #20211e;
   background: #f1f2ed;
   font-family:
@@ -5027,10 +5027,10 @@ html[dir="rtl"] .faq-list details p {
   }
 
   .login-card {
-    width: calc(100% - 28px);
-    min-height: 0;
-    margin: 14px;
-    border-radius: 30px;
+    width: 100%;
+    min-height: 100svh;
+    margin: 0;
+    border-radius: 0;
   }
 
   .login-visual {
