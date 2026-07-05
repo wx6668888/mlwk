@@ -520,11 +520,11 @@ p {
 .hero {
   position: relative;
   height: calc(100dvh - 28px);
-  min-height: 100svh;
+  min-height: 0;
   max-height: calc(100dvh - 28px);
   margin: 14px;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 30px;
   color: white;
   background: var(--ink);
 }
@@ -1067,11 +1067,11 @@ p {
 .detail-hero {
   position: relative;
   height: calc(100dvh - 28px);
-  min-height: 100svh;
+  min-height: 0;
   max-height: calc(100dvh - 28px);
   margin: 14px;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 30px;
   color: white;
   background: var(--ink);
 }
@@ -3021,7 +3021,7 @@ p {
 }
 
 .login-collapsible > div {
-  min-height: 100svh;
+  min-height: 0;
 }
 
 /* inputs */
@@ -3986,7 +3986,7 @@ html[dir="rtl"] .faq-list details p {
   }
 
   .hero {
-    min-height: 100svh;
+    min-height: 0;
   }
 
   .hero-content {
@@ -4203,7 +4203,7 @@ html[dir="rtl"] .faq-list details p {
 
   .hero {
     height: calc(100dvh - 18px);
-    min-height: 100svh;
+    min-height: 0;
     max-height: calc(100dvh - 18px);
     margin: 9px;
     border-radius: 22px;
@@ -4378,7 +4378,7 @@ html[dir="rtl"] .faq-list details p {
 
   .detail-hero {
     height: calc(100dvh - 18px);
-    min-height: 100svh;
+    min-height: 0;
     max-height: calc(100dvh - 18px);
     margin: 9px;
     border-radius: 22px;
@@ -4410,7 +4410,7 @@ html[dir="rtl"] .faq-list details p {
   }
 
   .solution-row > a {
-    min-height: 100svh;
+    min-height: 0;
     grid-template-columns: 30px 1fr auto;
     padding-block: 25px;
   }
@@ -4484,7 +4484,7 @@ html[dir="rtl"] .faq-list details p {
   }
 
   .quote-page {
-    width: 100%;
+    width: calc(100% - 28px);
     padding: 145px 0 90px;
   }
 
@@ -4634,7 +4634,7 @@ html[dir="rtl"] .faq-list details p {
 
   .footer-lead,
   .footer-grid {
-    width: 100%;
+    width: calc(100% - 28px);
   }
 
   .footer-lead {
@@ -4737,7 +4737,7 @@ html[dir="rtl"] .faq-list details p {
   }
 
   .product-detail__image {
-    min-height: 100svh;
+    min-height: 0;
     aspect-ratio: 1.2;
   }
 
@@ -4865,7 +4865,7 @@ html[dir="rtl"] .faq-list details p {
   .checkout-page,
   .confirmation-page,
   .account-page {
-    width: 100%;
+    width: calc(100% - 28px);
     padding: 126px 0 75px;
   }
 
@@ -4965,7 +4965,7 @@ html[dir="rtl"] .faq-list details p {
   }
 
   .cart-item {
-    min-height: 100svh;
+    min-height: 0;
     grid-template-columns: 84px 1fr 38px;
     gap: 11px;
   }
@@ -5027,10 +5027,10 @@ html[dir="rtl"] .faq-list details p {
   }
 
   .login-card {
-    width: 100%;
-    min-height: 100svh;
-    margin: 0;
-    border-radius: 0;
+    width: calc(100% - 28px);
+    min-height: 0;
+    margin: 14px;
+    border-radius: 30px;
   }
 
   .login-visual {
@@ -5067,7 +5067,6 @@ html[dir="rtl"] .faq-list details p {
 
   .login-visual-corner::before,
   .login-visual-corner::after {
-    display: none;
     width: 20px;
     height: 20px;
   }
@@ -5923,7 +5922,7 @@ html[dir="rtl"] .faq-list details p {
 
 .designer-workspace {
   min-width: 0;
-  min-height: 100svh;
+  min-height: 0;
   display: grid;
   grid-template-columns: 250px minmax(0, 1fr) 290px;
   transition: grid-template-columns var(--motion-medium) ease;
@@ -5946,7 +5945,7 @@ html[dir="rtl"] .faq-list details p {
   position: relative;
   z-index: 5;
   min-width: 0;
-  min-height: 100svh;
+  min-height: 0;
   overflow-y: auto;
   padding: 18px 14px;
   background: rgba(245, 245, 241, 0.96);
@@ -6100,7 +6099,7 @@ html[dir="rtl"] .faq-list details p {
 .designer-stage {
   position: relative;
   min-width: 0;
-  min-height: 100svh;
+  min-height: 0;
   overflow: hidden;
   background: #d5d3cc;
 }
