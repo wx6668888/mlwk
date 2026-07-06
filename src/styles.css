@@ -7217,3 +7217,575 @@ html[dir="rtl"] .faq-list details p {
 .shop-toolbar {
   grid-template-columns: 220px minmax(0, 1fr) 168px;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   Shop sidebar layout
+   ══════════════════════════════════════════════════════════════ */
+
+.shop-page-wrap {
+  width: min(var(--content), calc(100% - 48px));
+  margin-inline: auto;
+  padding-top: 138px;
+}
+
+.shop-heading--full {
+  min-height: 180px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 40px;
+  padding-bottom: 32px;
+}
+
+.shop-layout {
+  display: grid;
+  grid-template-columns: 248px 1fr;
+  gap: 0 48px;
+  align-items: start;
+  border-top: 1px solid var(--line);
+  padding-top: 32px;
+}
+
+/* ── Sidebar ────────────────────────────────────────────────── */
+.shop-sidebar {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-bottom: 40px;
+}
+
+.shop-sidebar nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: start;
+  color: var(--ink-soft);
+  transition: background 180ms ease, color 180ms ease;
+  margin-bottom: 8px;
+}
+
+.sidebar-all:hover {
+  background: #eaece5;
+}
+
+.sidebar-all.is-active {
+  background: var(--ink);
+  color: #f7f7f2;
+}
+
+.sidebar-count {
+  font-size: 10px;
+  font-weight: 400;
+  color: #9ca09a;
+  min-width: 20px;
+  text-align: end;
+}
+
+.sidebar-all.is-active .sidebar-count {
+  color: rgba(247, 247, 242, 0.55);
+}
+
+.sidebar-group {
+  margin-bottom: 4px;
+}
+
+.sidebar-group__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 38px;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sage);
+  cursor: pointer;
+  text-align: start;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.sidebar-group__header:hover {
+  color: var(--ink);
+  background: #eaece5;
+}
+
+.sidebar-group__header svg {
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
+}
+
+.sidebar-group__header.is-open svg {
+  transform: rotate(180deg);
+}
+
+.sidebar-group__items {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 8px;
+}
+
+.sidebar-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 38px;
+  padding: 6px 12px 6px 20px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 13px;
+  color: #4d5048;
+  cursor: pointer;
+  text-align: start;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.sidebar-item:hover {
+  background: #eaece5;
+  color: var(--ink);
+}
+
+.sidebar-item.is-active {
+  background: var(--ink);
+  color: #f7f7f2;
+}
+
+.sidebar-item.is-active .sidebar-count {
+  color: rgba(247, 247, 242, 0.55);
+}
+
+.sidebar-new-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--wine);
+  flex-shrink: 0;
+  margin-inline-start: 4px;
+}
+
+.sidebar-item.is-active .sidebar-new-dot {
+  background: #f7a0a0;
+}
+
+.sidebar-currency {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+/* ── Shop main (right panel) ────────────────────────────────── */
+.shop-main {
+  min-width: 0;
+}
+
+.shop-main .shop-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding-block: 8px;
+  border-top: 0;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+}
+
+.shop-main .shop-toolbar .shop-search {
+  flex: 1;
+  max-width: 300px;
+}
+
+.shop-main .shop-toolbar .shop-sort {
+  margin-inline-start: auto;
+  width: 165px;
+}
+
+.active-category-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 6px 0 12px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #f7f7f2;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.active-category-label button {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  color: #f7f7f2;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.shop-main .product-grid {
+  grid-template-columns: repeat(3, 1fr);
+  padding-top: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Welcome popup
+   ══════════════════════════════════════════════════════════════ */
+.welcome-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 380ms ease;
+}
+
+.welcome-overlay.is-visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.welcome-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 17, 14, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+.welcome-card {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  width: min(840px, calc(100vw - 40px));
+  max-height: calc(100vh - 80px);
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--paper-bright);
+  box-shadow: 0 32px 80px rgba(16, 17, 14, 0.32);
+  transform: translateY(20px) scale(0.98);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.welcome-overlay.is-visible .welcome-card {
+  transform: translateY(0) scale(1);
+}
+
+/* ── Visual panel (left) ── */
+.welcome-visual {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.welcome-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.72;
+}
+
+.welcome-visual-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(16, 17, 14, 0.68));
+}
+
+.welcome-visual-label {
+  position: absolute;
+  bottom: 24px;
+  inset-inline-start: 24px;
+  color: #f7f7f2;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+/* ── Copy panel (right) ── */
+.welcome-copy {
+  padding: 44px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.welcome-headline {
+  margin: 12px 0 20px;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.welcome-body {
+  margin: 0 0 36px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #65685f;
+  flex: 1;
+}
+
+.welcome-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.welcome-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #f7f7f2;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 220ms ease, transform 220ms ease;
+}
+
+.welcome-cta:hover {
+  background: #2e302a;
+  transform: translateY(-1px);
+}
+
+.welcome-dismiss {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: #65685f;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.welcome-dismiss:hover {
+  background: #eaece5;
+  border-color: rgba(23, 24, 19, 0.28);
+}
+
+.welcome-close {
+  position: absolute;
+  top: 14px;
+  inset-inline-end: 14px;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper-bright);
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.welcome-close:hover {
+  background: #e2e4dc;
+  transform: scale(1.08);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Login page — hero-card sizing
+   ══════════════════════════════════════════════════════════════ */
+
+/* Full-viewport dark container, no padding */
+.login-page {
+  min-height: unset;
+  height: 100svh;
+  display: block;
+  padding: 0;
+  background: var(--ink);
+  overflow: hidden;
+}
+
+/* Card fills viewport like the hero section */
+.login-card {
+  width: auto;
+  height: calc(100dvh - 28px);
+  margin: 14px;
+  border-radius: 30px;
+  flex-direction: row; /* side-by-side on desktop */
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+/* ── Left visual panel — fixed width ── */
+.login-visual {
+  flex: 0 0 42%;
+  min-height: 0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.login-visual-media {
+  flex: 1;
+  min-height: 0;
+  border-radius: 12px;
+}
+
+/* ── Right form panel — fills remaining width ── */
+.login-panel {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 52px clamp(28px, 5vw, 68px);
+  justify-content: center;
+  background: var(--paper);
+  border-radius: 0 20px 20px 0;
+}
+
+.login-panel h1 {
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 400;
+  color: var(--ink);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Responsive — shop sidebar + welcome popup + login card
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  /* Shop: stack sidebar above grid */
+  .shop-layout {
+    grid-template-columns: 1fr;
+    gap: 24px 0;
+  }
+
+  .shop-sidebar {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 0;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 16px;
+  }
+
+  .shop-sidebar nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .sidebar-all {
+    margin-bottom: 0;
+  }
+
+  .sidebar-group {
+    margin-bottom: 0;
+  }
+
+  .sidebar-group__header {
+    min-height: 34px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 10px;
+  }
+
+  .sidebar-group__items {
+    position: absolute;
+    z-index: 50;
+    padding: 6px;
+    background: var(--paper-bright);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(23, 24, 19, 0.12);
+    min-width: 160px;
+  }
+
+  .sidebar-currency {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .shop-main .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Welcome popup: single column */
+  .welcome-card {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-visual {
+    display: none;
+  }
+
+  /* Login card: stack vertically */
+  .login-card {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100dvh - 28px);
+  }
+
+  .login-visual {
+    flex: 0 0 240px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .login-panel {
+    border-radius: 0 0 16px 16px;
+    padding: 36px 28px;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .shop-page-wrap {
+    width: calc(100% - 32px);
+  }
+
+  .shop-main .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-card {
+    border-radius: 14px;
+  }
+
+  .welcome-copy {
+    padding: 28px 24px;
+  }
+
+  .login-card {
+    margin: 10px;
+    border-radius: 20px;
+    height: calc(100dvh - 20px);
+  }
+}

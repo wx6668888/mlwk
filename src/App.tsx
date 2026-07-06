@@ -46,6 +46,7 @@ import {
   LoginPage,
 } from "./pages/AuthPages";
 import { StoreProvider } from "./store/StoreContext";
+import WelcomePopup from "./components/WelcomePopup";
 import { getStoreCopy } from "./store/storeCopy";
 import { findProduct } from "../shared/storeCatalog";
 
@@ -159,7 +160,7 @@ function LocaleLayout() {
       {!isDesigner && !isAuth && <Header locale={locale} />}
       <main>
         <Routes>
-          <Route index element={<HomePage locale={locale} />} />
+          <Route index element={<><WelcomePopup locale={locale} /><HomePage locale={locale} /></>} />
           <Route path="collections" element={<CollectionsPage locale={locale} />} />
           <Route
             path="collections/:slug"

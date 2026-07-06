@@ -54,6 +54,30 @@ const categories: ProductCategory[] = [
   "samples",
 ];
 
+type CategoryGroup = {
+  key: string;
+  label: Record<string, string>;
+  items: ProductCategory[];
+};
+
+const categoryGroups: CategoryGroup[] = [
+  {
+    key: "home",
+    label: { en: "Home Goods", zh: "成品家居", ar: "السلع المنزلية", de: "Wohnwaren", fr: "Décoration" },
+    items: ["furniture", "textiles", "decor"],
+  },
+  {
+    key: "millwork",
+    label: { en: "Millwork Hardware", zh: "木作五金", ar: "أجهزة النجارة", de: "Beschläge", fr: "Quincaillerie" },
+    items: ["pulls", "hardware", "wardrobe", "lighting"],
+  },
+  {
+    key: "interior",
+    label: { en: "Interior", zh: "室内配件", ar: "الداخلية", de: "Interieur", fr: "Intérieur" },
+    items: ["interiors", "samples"],
+  },
+];
+
 const categoryMeta: Record<ProductCategory, { icon: string; description: Record<string, string> }> = {
   furniture: {
     icon: "🪑",
@@ -278,10 +302,21 @@ export function ShopPage({ locale }: { locale: Locale }) {
     window.setTimeout(() => setAdded(""), 1300);
   };
 
+  const [expandedGroup, setExpandedGroup] = useState<string | null>("home");
+
+  const toggleGroup = (key: string) => {
+    setExpandedGroup((prev) => (prev === key ? null : key));
+  };
+
+  const productCount = (cat: ProductCategory | "all") =>
+    cat === "all"
+      ? storeProducts.length
+      : storeProducts.filter((p) => p.category === cat).length;
+
   return (
-    <section className="shop-page">
-      {/* ── Shop header ── */}
-      <div className="shop-heading">
+    <div className="shop-page-wrap">
+      {/* ── Page header ── */}
+      <div className="shop-heading shop-heading--full">
         <div>
           <PreviewLabel>{copy.preview}</PreviewLabel>
           <h1>{copy.shopTitle}</h1>
@@ -290,108 +325,140 @@ export function ShopPage({ locale }: { locale: Locale }) {
         <CurrencyControl />
       </div>
 
-      {/* ── Category grid ── */}
-      <div className="category-grid">
-        {categories.map((cat) => {
-          const meta = categoryMeta[cat];
-          return (
-            <button
-              key={cat}
-              type="button"
-              className={`category-card${category === cat ? " is-active" : ""}${newCategories.has(cat) ? " is-new" : ""}`}
-              onClick={() => setCategory(cat === category ? "all" : cat)}
-            >
-              <span className="category-card__icon" aria-hidden="true">{meta.icon}</span>
-              <span className="category-card__name">{copy.category[cat]}</span>
-              <span className="category-card__desc">{meta.description[locale] ?? meta.description.en}</span>
-              {newCategories.has(cat) && <span className="category-card__badge">New</span>}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* ── Toolbar ── */}
-      <div className="shop-toolbar">
-        <label className="shop-search">
-          <Search size={17} />
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder={copy.search}
-          />
-        </label>
-        <div className="shop-toolbar__right">
-          <button
-            type="button"
-            className={`tab-pill${category === "all" ? " is-active" : ""}`}
-            onClick={() => setCategory("all")}
-          >
-            {copy.all}
-          </button>
-          {categories.map((item) => (
+      <div className="shop-layout">
+        {/* ── Left sidebar ── */}
+        <aside className="shop-sidebar">
+          <nav>
+            {/* All products */}
             <button
               type="button"
-              key={item}
-              className={`tab-pill${category === item ? " is-active" : ""}`}
-              onClick={() => setCategory(item)}
+              className={`sidebar-all${category === "all" ? " is-active" : ""}`}
+              onClick={() => setCategory("all")}
             >
-              {copy.category[item]}
+              <span>{copy.all}</span>
+              <span className="sidebar-count">{productCount("all")}</span>
             </button>
-          ))}
-        </div>
-        <ShopDropdown
-          className="shop-sort"
-          value={sort}
-          onChange={setSort}
-          label={copy.sort}
-          options={[
-            { value: "featured", label: copy.featured },
-            { value: "low", label: copy.priceLow },
-            { value: "high", label: copy.priceHigh },
-          ]}
-        />
-      </div>
 
-      {/* ── Product grid ── */}
-      <div className="product-grid">
-        {products.length === 0 && (
-          <p className="shop-empty">{copy.search}…</p>
-        )}
-        {products.map((item, index) => (
-          <Reveal className={`product-card${index === 0 && category !== "all" ? " product-card--featured" : ""}`} key={item.sku} delay={Math.min(index * 0.03, 0.18)}>
-            <Link
-              className="product-card__image"
-              to={`/${locale}/shop/${item.slug}`}
-              onClick={() => track("product_view", { sku: item.sku })}
-            >
-              <img src={item.image} alt={item.name[locale]} loading="lazy" />
-              {newCategories.has(item.category) && (
-                <span className="product-badge product-badge--new">New</span>
-              )}
-              <span className="product-card__sku">{item.sku}</span>
-            </Link>
-            <div className="product-card__copy">
-              <Link to={`/${locale}/shop/${item.slug}`}>
-                <small>{copy.category[item.category]}</small>
-                <h2>{item.name[locale]}</h2>
-              </Link>
-              <div className="product-card__footer">
-                <strong>{formatPrice(productPrice(item, currency), currency, locale)}</strong>
+            {/* Category groups */}
+            {categoryGroups.map((group) => (
+              <div key={group.key} className="sidebar-group">
                 <button
                   type="button"
-                  className="icon-button"
-                  onClick={() => quickAdd(item.sku, item.finishes[0])}
-                  aria-label={`${copy.add}: ${item.name[locale]}`}
-                  title={copy.add}
+                  className={`sidebar-group__header${expandedGroup === group.key ? " is-open" : ""}`}
+                  onClick={() => toggleGroup(group.key)}
                 >
-                  {added === item.sku ? <Check size={18} /> : <Plus size={18} />}
+                  <span>{group.label[locale] ?? group.label.en}</span>
+                  <ChevronDown size={13} />
                 </button>
+                {expandedGroup === group.key && (
+                  <div className="sidebar-group__items">
+                    {group.items.map((cat) => (
+                      <button
+                        key={cat}
+                        type="button"
+                        className={`sidebar-item${category === cat ? " is-active" : ""}${newCategories.has(cat) ? " is-new" : ""}`}
+                        onClick={() => setCategory(category === cat ? "all" : cat)}
+                      >
+                        <span>{copy.category[cat]}</span>
+                        <span className="sidebar-count">{productCount(cat)}</span>
+                        {newCategories.has(cat) && (
+                          <span className="sidebar-new-dot" aria-hidden="true" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
-          </Reveal>
-        ))}
+            ))}
+          </nav>
+
+          {/* Currency at bottom of sidebar */}
+          <div className="sidebar-currency">
+            <CurrencyControl />
+          </div>
+        </aside>
+
+        {/* ── Main content ── */}
+        <section className="shop-main">
+          {/* Toolbar: search + sort */}
+          <div className="shop-toolbar">
+            <label className="shop-search">
+              <Search size={16} />
+              <input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder={copy.search}
+              />
+            </label>
+            {category !== "all" && (
+              <span className="active-category-label">
+                {copy.category[category]}
+                <button
+                  type="button"
+                  onClick={() => setCategory("all")}
+                  aria-label="Clear filter"
+                >×</button>
+              </span>
+            )}
+            <ShopDropdown
+              className="shop-sort"
+              value={sort}
+              onChange={setSort}
+              label={copy.sort}
+              options={[
+                { value: "featured", label: copy.featured },
+                { value: "low", label: copy.priceLow },
+                { value: "high", label: copy.priceHigh },
+              ]}
+            />
+          </div>
+
+          {/* Product grid */}
+          <div className="product-grid">
+            {products.length === 0 && (
+              <p className="shop-empty">{copy.search}…</p>
+            )}
+            {products.map((item, index) => (
+              <Reveal
+                className={`product-card${index === 0 && category !== "all" ? " product-card--featured" : ""}`}
+                key={item.sku}
+                delay={Math.min(index * 0.03, 0.18)}
+              >
+                <Link
+                  className="product-card__image"
+                  to={`/${locale}/shop/${item.slug}`}
+                  onClick={() => track("product_view", { sku: item.sku })}
+                >
+                  <img src={item.image} alt={item.name[locale]} loading="lazy" />
+                  {newCategories.has(item.category) && (
+                    <span className="product-badge product-badge--new">New</span>
+                  )}
+                  <span className="product-card__sku">{item.sku}</span>
+                </Link>
+                <div className="product-card__copy">
+                  <Link to={`/${locale}/shop/${item.slug}`}>
+                    <small>{copy.category[item.category]}</small>
+                    <h2>{item.name[locale]}</h2>
+                  </Link>
+                  <div className="product-card__footer">
+                    <strong>{formatPrice(productPrice(item, currency), currency, locale)}</strong>
+                    <button
+                      type="button"
+                      className="icon-button"
+                      onClick={() => quickAdd(item.sku, item.finishes[0])}
+                      aria-label={`${copy.add}: ${item.name[locale]}`}
+                      title={copy.add}
+                    >
+                      {added === item.sku ? <Check size={18} /> : <Plus size={18} />}
+                    </button>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   );
 }
 
