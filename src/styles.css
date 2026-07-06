@@ -7687,14 +7687,14 @@ html[dir="rtl"] .faq-list details p {
   flex-direction: column;
   padding: 52px clamp(28px, 5vw, 68px);
   justify-content: center;
-  background: var(--paper);
+  background: #1c1d18;
   border-radius: 0 20px 20px 0;
 }
 
 .login-panel h1 {
   font-size: clamp(26px, 3vw, 38px);
   font-weight: 400;
-  color: var(--ink);
+  color: #f1f2ed;
 }
 
 /* ══════════════════════════════════════════════════════════════
