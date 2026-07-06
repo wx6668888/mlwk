@@ -3075,6 +3075,58 @@ p {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+/* ── OTP sign-up steps ── */
+
+.login-otp-steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-otp-step {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* verification code — large, centered, monospaced feel */
+.login-otp-code {
+  text-align: center;
+  font-size: 24px !important;
+  font-weight: 600;
+  letter-spacing: 10px;
+  padding-inline-end: 14px !important;
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+}
+
+/* resend link */
+.login-resend {
+  align-self: center;
+  margin-top: 4px;
+  border: 0;
+  padding: 6px 12px;
+  background: transparent;
+  color: rgba(241, 242, 237, 0.5);
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 300ms;
+}
+
+.login-resend:hover {
+  color: rgba(241, 242, 237, 0.8);
+}
+
+.login-resend:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* success message (green tint) */
+.login-success {
+  color: #86b888 !important;
+  background: rgba(120, 180, 130, 0.1) !important;
+  border-color: rgba(120, 180, 130, 0.2) !important;
+}
+
 .login-field-icon {
   position: absolute;
   inset-inline-end: 14px;

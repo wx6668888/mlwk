@@ -62,12 +62,13 @@ const SLIDE_IMAGES = [
 
 export function LoginPage({ locale }: { locale: Locale }) {
   const copy = getStoreCopy(locale);
-  const { configured, user, signInWithGoogle, signInWithX, signUpWithEmail, signInWithEmail } = useAuth();
+  const { configured, user, signInWithGoogle, signInWithX, sendOtp, verifyOtp, completeOtpSignUp, signInWithEmail } = useAuth();
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const returnTo = params.get("returnTo") || `/${locale}/account/projects`;
 
   const [isSignUp, setIsSignUp] = useState(false);
+  const [otpStep, setOtpStep] = useState<"email" | "code" | "password">("email");
   const [showPassword, setShowPassword] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -79,6 +80,7 @@ export function LoginPage({ locale }: { locale: Locale }) {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [otpToken, setOtpToken] = useState("");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -116,9 +118,11 @@ export function LoginPage({ locale }: { locale: Locale }) {
     setIsTransitioning(true);
     setTimeout(() => {
       setIsSignUp((prev) => !prev);
+      setOtpStep("email");
+      setOtpToken("");
+      setMessage("");
       setTimeout(() => setIsTransitioning(false), 50);
     }, 150);
-    setMessage("");
   };
 
   const google = async () => {
@@ -133,19 +137,59 @@ export function LoginPage({ locale }: { locale: Locale }) {
     setBusy(false);
   };
 
-  const handleSubmit = async (event: FormEvent) => {
+  /* ── OTP sign-up steps ── */
+
+  const handleSendCode = async () => {
+    if (!email) { setMessage("Please enter your email address."); return; }
+    setBusy(true);
+    setMessage("");
+    const error = await sendOtp(email);
+    setBusy(false);
+    if (error) { setMessage(error); return; }
+    setOtpStep("code");
+    setMessage(copy.codeSent);
+  };
+
+  const handleVerifyCode = async () => {
+    if (!otpToken) { setMessage("Please enter the verification code."); return; }
+    setBusy(true);
+    setMessage("");
+    const error = await verifyOtp(email, otpToken);
+    setBusy(false);
+    if (error) { setMessage(error); return; }
+    setOtpStep("password");
+    setMessage("");
+  };
+
+  const handleCompleteSignUp = async (event: FormEvent) => {
     event.preventDefault();
-    if (isSignUp && !agreedToTerms) {
-      setMessage("Please agree to the Terms of Service and Privacy Policy.");
+    if (!agreedToTerms) {
+      setMessage(copy.agreeTerms);
       return;
     }
     setBusy(true);
-    const error = isSignUp
-      ? await signUpWithEmail(email, password, firstName, lastName, locale)
-      : await signInWithEmail(email, password);
+    const error = await completeOtpSignUp(password, firstName, lastName);
+    setBusy(false);
+    if (error) { setMessage(error); return; }
+    navigate(returnTo, { replace: true });
+  };
+
+  const handleLoginSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    setBusy(true);
+    const error = await signInWithEmail(email, password);
     setMessage(error ?? "");
     setBusy(false);
-    if (!error && !isSignUp) navigate(returnTo, { replace: true });
+    if (!error) navigate(returnTo, { replace: true });
+  };
+
+  const handleResendCode = async () => {
+    setBusy(true);
+    setMessage("");
+    const error = await sendOtp(email);
+    setBusy(false);
+    if (error) { setMessage(error); return; }
+    setMessage(copy.codeSent);
   };
 
   return (
@@ -210,122 +254,238 @@ export function LoginPage({ locale }: { locale: Locale }) {
             </button>
           </div>
 
-          <form onSubmit={handleSubmit}>
-            <div className={`login-collapsible${isSignUp ? " open" : ""}`}>
-              <div>
-                <div className="login-name-row">
-                  <div className="login-field">
-                    <input
-                      type="text"
-                      placeholder={copy.firstName}
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                      required={isSignUp}
-                    />
-                  </div>
-                  <div className="login-field">
-                    <input
-                      type="text"
-                      placeholder={copy.lastName}
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                      required={isSignUp}
-                    />
-                  </div>
-                </div>
+          {/* ── Sign-in form (unchanged) ── */}
+          {!isSignUp && (
+            <form onSubmit={handleLoginSubmit}>
+              <div className="login-field">
+                <input
+                  type="email"
+                  placeholder={copy.email}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                  required
+                />
               </div>
-            </div>
 
-            <div className="login-field">
-              <input
-                type="email"
-                placeholder={copy.email}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="email"
-                required
-              />
-            </div>
+              <div className="login-field">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder={copy.password}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password"
+                  required
+                />
+                <button
+                  type="button"
+                  className="login-field-icon"
+                  onClick={() => setShowPassword((v) => !v)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              </div>
 
-            <div className="login-field">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder={copy.password}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete={isSignUp ? "new-password" : "current-password"}
-                required
-              />
               <button
-                type="button"
-                className="login-field-icon"
-                onClick={() => setShowPassword((v) => !v)}
-                aria-label={showPassword ? "Hide password" : "Show password"}
+                type="submit"
+                className="login-submit"
+                disabled={!configured || busy}
               >
-                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                {busy ? (
+                  <LoaderCircle className="spin" size={16} />
+                ) : (
+                  <ArrowRight size={16} />
+                )}
+                {copy.signInButton}
               </button>
-            </div>
+            </form>
+          )}
 
-            <div className={`login-collapsible${isSignUp ? " open" : ""}`}>
-              <div>
-                <label className="login-terms">
-                  <input
-                    type="checkbox"
-                    checked={agreedToTerms}
-                    onChange={(e) => setAgreedToTerms(e.target.checked)}
-                  />
-                  <span className="login-check"><CheckIcon /></span>
-                  <span className="login-terms-text">
-                    {copy.agreeTerms}{" "}
-                    <Link to={`/${locale}/terms`}>{copy.termsOfService}</Link>{" "}
-                    {copy.and}{" "}
-                    <Link to={`/${locale}/privacy`}>{copy.privacyPolicy}</Link>
-                  </span>
-                </label>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              className="login-submit"
-              disabled={!configured || busy}
-            >
-              {busy ? (
-                <LoaderCircle className="spin" size={16} />
-              ) : (
-                <ArrowRight size={16} />
+          {/* ── Sign-up form (3-step OTP) ── */}
+          {isSignUp && (
+            <div className="login-otp-steps">
+              {/* Step 1: email → send code */}
+              {otpStep === "email" && (
+                <form
+                  onSubmit={(e) => { e.preventDefault(); handleSendCode(); }}
+                  className="login-otp-step"
+                >
+                  <div className="login-field">
+                    <input
+                      type="email"
+                      placeholder={copy.email}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      autoComplete="email"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="login-submit"
+                    disabled={!configured || busy}
+                  >
+                    {busy ? (
+                      <LoaderCircle className="spin" size={16} />
+                    ) : (
+                      <ArrowRight size={16} />
+                    )}
+                    {copy.sendCode}
+                  </button>
+                </form>
               )}
-              {isSignUp ? copy.signUpButton : copy.signInButton}
-            </button>
-          </form>
 
-          <div className="login-divider">
-            <i /><span>{copy.orContinue}</span><i />
-          </div>
+              {/* Step 2: enter code → verify */}
+              {otpStep === "code" && (
+                <form
+                  onSubmit={(e) => { e.preventDefault(); handleVerifyCode(); }}
+                  className="login-otp-step"
+                >
+                  <div className="login-field">
+                    <input
+                      type="text"
+                      className="login-otp-code"
+                      placeholder={copy.code}
+                      value={otpToken}
+                      onChange={(e) => setOtpToken(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                      inputMode="numeric"
+                      autoComplete="one-time-code"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="login-submit"
+                    disabled={!configured || busy}
+                  >
+                    {busy ? (
+                      <LoaderCircle className="spin" size={16} />
+                    ) : (
+                      <ArrowRight size={16} />
+                    )}
+                    {copy.verify}
+                  </button>
+                  <button
+                    type="button"
+                    className="login-resend"
+                    onClick={handleResendCode}
+                    disabled={busy}
+                  >
+                    {copy.resendCode}
+                  </button>
+                </form>
+              )}
 
-          <div className="login-social">
-            <button
-              type="button"
-              className="login-social-btn"
-              onClick={() => void google()}
-              disabled={!configured || busy}
-            >
-              <Chrome size={16} />
-              <span>Google</span>
-            </button>
-            <button
-              type="button"
-              className="login-social-btn"
-              onClick={() => void xLogin()}
-              disabled={!configured || busy}
-            >
-              <XIcon />
-              <span>X</span>
-            </button>
-          </div>
+              {/* Step 3: set password + name → complete */}
+              {otpStep === "password" && (
+                <form onSubmit={handleCompleteSignUp} className="login-otp-step">
+                  <div className="login-name-row">
+                    <div className="login-field">
+                      <input
+                        type="text"
+                        placeholder={copy.firstName}
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                      />
+                    </div>
+                    <div className="login-field">
+                      <input
+                        type="text"
+                        placeholder={copy.lastName}
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="login-field">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder={copy.setPassword}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      autoComplete="new-password"
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="login-field-icon"
+                      onClick={() => setShowPassword((v) => !v)}
+                      aria-label={showPassword ? "Hide password" : "Show password"}
+                    >
+                      {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+
+                  <label className="login-terms">
+                    <input
+                      type="checkbox"
+                      checked={agreedToTerms}
+                      onChange={(e) => setAgreedToTerms(e.target.checked)}
+                    />
+                    <span className="login-check"><CheckIcon /></span>
+                    <span className="login-terms-text">
+                      {copy.agreeTerms}{" "}
+                      <Link to={`/${locale}/terms`}>{copy.termsOfService}</Link>{" "}
+                      {copy.and}{" "}
+                      <Link to={`/${locale}/privacy`}>{copy.privacyPolicy}</Link>
+                    </span>
+                  </label>
+
+                  <button
+                    type="submit"
+                    className="login-submit"
+                    disabled={!configured || busy}
+                  >
+                    {busy ? (
+                      <LoaderCircle className="spin" size={16} />
+                    ) : (
+                      <ArrowRight size={16} />
+                    )}
+                    {copy.completeSignUp}
+                  </button>
+                </form>
+              )}
+            </div>
+          )}
+
+          {/* ── OAuth (only in sign-in mode) ── */}
+          {!isSignUp && (
+            <>
+              <div className="login-divider">
+                <i /><span>{copy.orContinue}</span><i />
+              </div>
+
+              <div className="login-social">
+                <button
+                  type="button"
+                  className="login-social-btn"
+                  onClick={() => void google()}
+                  disabled={!configured || busy}
+                >
+                  <Chrome size={16} />
+                  <span>Google</span>
+                </button>
+                <button
+                  type="button"
+                  className="login-social-btn"
+                  onClick={() => void xLogin()}
+                  disabled={!configured || busy}
+                >
+                  <XIcon />
+                  <span>X</span>
+                </button>
+              </div>
+            </>
+          )}
 
           {!configured && <p className="login-config-note">{copy.authPreview}</p>}
-          {message && <p className="login-error">{message}</p>}
+          {message && (
+            <p className={`login-error${otpStep === "code" && message === copy.codeSent ? " login-success" : ""}`}>
+              {message}
+            </p>
+          )}
         </div>
       </div>
     </section>

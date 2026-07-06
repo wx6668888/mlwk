@@ -29,6 +29,7 @@ type AuthContextValue = {
   signInWithEmail: (email: string, password: string) => Promise<string | null>;
   sendOtp: (email: string) => Promise<string | null>;
   verifyOtp: (email: string, token: string) => Promise<string | null>;
+  completeOtpSignUp: (password: string, firstName: string, lastName: string) => Promise<string | null>;
   signOut: () => Promise<void>;
 };
 
@@ -125,6 +126,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           type: "email",
         });
         if (!error) track("login_completed", { method: "email_otp" });
+        return error?.message ?? null;
+      },
+      completeOtpSignUp: async (password, firstName, lastName) => {
+        if (!supabase) return "Authentication is not configured.";
+        const { error } = await supabase.auth.updateUser({
+          password,
+          data: { full_name: `${firstName} ${lastName}`.trim() },
+        });
         return error?.message ?? null;
       },
       signOut: async () => {
