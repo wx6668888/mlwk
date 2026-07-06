@@ -223,15 +223,16 @@ export const copy = {
       proofValue: "500+",
       proofLabel: "Custom interiors shaped by our manufacturing team",
       collectionsEyebrow: "One material language, carried through the room",
-      collectionsTitle: "Where architecture becomes personal",
-      collectionsText: "Kitchens, wardrobes, doors and paneled rooms are developed as one continuous interior, not a collection of separate objects.",
+      collectionsTitle: "Every room, one continuous voice",
+      collectionsText: "Kitchens, wardrobes, doors and panelled walls developed as a single interior — so the grain, tone and proportion carry unbroken through every surface.",
       processEyebrow: "From first line to final room",
       processTitle: "Complex work, resolved with quiet precision",
-      processText: "Every drawing, sample and label carries the project forward, turning a singular design into a clear path to manufacture and install.",
+      processText: "Every drawing, sample and label moves the project forward. Together they turn a singular design into a clear, auditable path from workshop to installed room.",
       directionEyebrow: "Material stories",
-      directionTitle: "Not a catalogue of styles. A language for your project.",
-      directionText: "These concept studies explore atmosphere, proportion and material continuity. They are invitations to begin, never substitutes for verified completed work.",
+      directionTitle: "Not a style catalogue. A language built for your project.",
+      directionText: "These concept studies explore atmosphere, proportion and material continuity across a room. They begin a conversation — never a substitute for verified, completed work.",
       finalTitle: "Let the drawings begin the conversation.",
+      finalSubtext: "Share what you have today. We'll take it from there.",
     },
     pages: {
       collections: ["Collections", "Made-to-order systems for complete interiors", "Every collection is a starting point. Dimensions, construction, material, hardware and finish are developed around the project."],
@@ -281,6 +282,7 @@ export const copy = {
       directionTitle: "不是风格目录，而是属于项目的空间语言",
       directionText: "这些概念影像探索氛围、比例与材质的连续性。它们是对话的起点，不会被包装成已经完成的项目。",
       finalTitle: "让图纸，成为我们的第一次对话。",
+      finalSubtext: "分享你目前已有的资料，我们来接手后续。",
     },
     pages: {
       collections: ["产品系统", "面向完整空间的定制木作", "每个产品系列都是起点，尺寸、结构、材料、五金与饰面都围绕项目深化。"],
@@ -330,6 +332,7 @@ export const copy = {
       directionTitle: "ليست قائمة أنماط، بل لغة خاصة بمشروعك",
       directionText: "تستكشف هذه الصور التصورية الجو والنسب واستمرارية المواد. إنها بداية للحوار وليست بديلاً عن مشروع منفذ وموثق.",
       finalTitle: "دع المخططات تبدأ الحوار.",
+      finalSubtext: "شارك ما لديك اليوم، نحن نتولى الباقي.",
     },
     pages: {
       collections: ["المجموعات", "أنظمة حسب الطلب لمساحات متكاملة", "كل مجموعة نقطة بداية، ونطور الأبعاد والبناء والمواد والحديد والتشطيب حسب المشروع."],
@@ -379,6 +382,7 @@ export const copy = {
       directionTitle: "Kein Stilkatalog. Eine Sprache für Ihr Projekt.",
       directionText: "Diese Konzeptstudien erkunden Atmosphäre, Proportion und Materialkontinuität. Sie eröffnen den Dialog und ersetzen nie belegte Referenzen.",
       finalTitle: "Lassen Sie die Pläne das Gespräch beginnen.",
+      finalSubtext: "Teilen Sie den aktuellen Stand. Wir übernehmen das Weitere.",
     },
     pages: {
       collections: ["Kollektionen", "Maßgefertigte Systeme für komplette Innenräume", "Abmessungen, Konstruktion, Materialien, Beschläge und Oberflächen werden projektbezogen entwickelt."],
@@ -428,6 +432,7 @@ export const copy = {
       directionTitle: "Pas un catalogue de styles. Un langage pour votre projet.",
       directionText: "Ces études conceptuelles explorent l'atmosphère, les proportions et la continuité des matières. Elles ouvrent le dialogue sans remplacer les réalisations vérifiées.",
       finalTitle: "Que les plans ouvrent la conversation.",
+      finalSubtext: "Partagez ce que vous avez aujourd'hui. Nous prenons le relais.",
     },
     pages: {
       collections: ["Collections", "Des systèmes sur mesure pour des intérieurs complets", "Dimensions, construction, matériaux, quincaillerie et finitions sont développés autour du projet."],

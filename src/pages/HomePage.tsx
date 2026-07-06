@@ -98,6 +98,24 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      {/* Material ticker */}
+      <div className="material-ticker" aria-hidden="true">
+        <div className="material-ticker__track">
+          {[
+            "White Oak","Lacquered MDF","American Walnut","Brushed Brass",
+            "Fluted Panel","Bleached Ash","Smoked Glass","Wenge Veneer",
+            "Satin Steel","Quarter-sawn Oak","Fumed Larch","Ebonised Ash",
+            "White Oak","Lacquered MDF","American Walnut","Brushed Brass",
+            "Fluted Panel","Bleached Ash","Smoked Glass","Wenge Veneer",
+            "Satin Steel","Quarter-sawn Oak","Fumed Larch","Ebonised Ash",
+          ].map((m, i) => (
+            <span key={i} className="material-ticker__item">
+              {m}<span className="material-ticker__dot" aria-hidden="true">&#xB7;</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
       <section className="collections-preview section">
         <Reveal className="section-heading">
           <div>
@@ -181,16 +199,28 @@ export default function HomePage({ locale }: { locale: Locale }) {
       <section className="regional-band">
         <div>
           <span>Europe</span>
-          <p>Drawing control · material consistency · precise fit</p>
+          <p>Drawing control and material coordination for architects and contractors. Veneer matching, tolerance specs and compliant packaging handled as standard.</p>
         </div>
         <div>
           <span>North America</span>
-          <p>Shop drawings · coordinated packages · clear communication</p>
+          <p>Shop drawing packages aligned to US and Canadian site conditions. Phased delivery and installer support from first submittal to punch list.</p>
         </div>
         <div>
           <span>Middle East</span>
-          <p>Villa & hospitality · bespoke detail · Arabic support</p>
+          <p>Villa, palace and hospitality interiors where bespoke detail defines the project. Arabic-speaking coordination and luxury-grade finish experience.</p>
         </div>
+      </section>
+      {/* Final CTA */}
+      <section className="final-cta section">
+        <Reveal className="final-cta__inner">
+          <p className="eyebrow">{copy.home.processEyebrow}</p>
+          <h2 className="final-cta__title">{copy.home.finalTitle}</h2>
+          <p className="final-cta__sub">{copy.home.finalSubtext}</p>
+          <Link className="final-cta__btn" to={`/${locale}/quote`}>
+            {copy.nav.quote}
+            <ArrowUpRight size={20} />
+          </Link>
+        </Reveal>
       </section>
     </>
   );
