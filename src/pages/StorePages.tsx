@@ -43,6 +43,9 @@ import { getStoreCopy } from "../store/storeCopy";
 import type { Locale } from "../content";
 
 const categories: ProductCategory[] = [
+  "furniture",
+  "textiles",
+  "decor",
   "pulls",
   "hardware",
   "wardrobe",
@@ -50,6 +53,101 @@ const categories: ProductCategory[] = [
   "lighting",
   "samples",
 ];
+
+const categoryMeta: Record<ProductCategory, { icon: string; description: Record<string, string> }> = {
+  furniture: {
+    icon: "🪑",
+    description: {
+      en: "Ready-to-ship pieces in oak, ash and walnut",
+      zh: "实木橡木、白蜡与胡桃，直接发货",
+      ar: "قطع جاهزة للشحن من خشب البلوط والدردار",
+      de: "Versandfertige Stücke in Eiche, Esche und Nuss",
+      fr: "Pièces prêtes à expédier en chêne, frêne et noyer",
+    },
+  },
+  textiles: {
+    icon: "🧵",
+    description: {
+      en: "Linen, merino and natural fibres for every room",
+      zh: "亚麻、美利奴与天然纤维",
+      ar: "كتان وميرينو وألياف طبيعية",
+      de: "Leinen, Merino und Naturfasern",
+      fr: "Lin, mérinos et fibres naturelles",
+    },
+  },
+  decor: {
+    icon: "○",
+    description: {
+      en: "Ceramic, marble and considered objects",
+      zh: "陶瓷、大理石与精选摆件",
+      ar: "سيراميك ورخام وقطع مختارة",
+      de: "Keramik, Marmor und ausgewählte Objekte",
+      fr: "Céramique, marbre et objets sélectionnés",
+    },
+  },
+  pulls: {
+    icon: "⊢",
+    description: {
+      en: "Solid brass, leather and aluminium pulls",
+      zh: "实心黄铜、皮革与铝合金拉手",
+      ar: "مقابض نحاسية وجلدية وألومنيوم",
+      de: "Griffe aus Messing, Leder und Aluminium",
+      fr: "Poignées en laiton, cuir et aluminium",
+    },
+  },
+  hardware: {
+    icon: "⊙",
+    description: {
+      en: "Hinges, runners, door levers and shelf kits",
+      zh: "铰链、滑轨、门执手与层板套装",
+      ar: "مفصلات وسكك وتجهيزات",
+      de: "Scharniere, Auszüge und Türbeschläge",
+      fr: "Charnières, coulisses et quincaillerie",
+    },
+  },
+  wardrobe: {
+    icon: "▭",
+    description: {
+      en: "Rails, rods and internal wardrobe fittings",
+      zh: "挂衣杆与衣柜内部配件",
+      ar: "قضبان ومقاطع خزائن",
+      de: "Kleiderstangen und Ankleidebeschläge",
+      fr: "Tringles et quincaillerie de dressing",
+    },
+  },
+  interiors: {
+    icon: "◫",
+    description: {
+      en: "Valet trays, drawer inserts and fitted accessories",
+      zh: "随身物托盘、抽屉内衬与收纳配件",
+      ar: "صواني وإدخالات أدراج وإكسسوارات",
+      de: "Tabletts, Schubladeneinsätze und Zubehör",
+      fr: "Plateaux, inserts et accessoires intégrés",
+    },
+  },
+  lighting: {
+    icon: "◌",
+    description: {
+      en: "LED profiles and shelf lighting",
+      zh: "LED型材与层板灯",
+      ar: "مقاطع LED وإضاءة رفوف",
+      de: "LED-Profile und Regalbeleuchtung",
+      fr: "Profilés LED et éclairage d'étagère",
+    },
+  },
+  samples: {
+    icon: "◱",
+    description: {
+      en: "Finish and material sample boxes",
+      zh: "饰面与材质样品盒",
+      ar: "صناديق عينات المواد والتشطيب",
+      de: "Oberflächen- und Materialmusterboxen",
+      fr: "Boîtes d'échantillons de finitions",
+    },
+  },
+};
+
+const newCategories = new Set<ProductCategory>(["furniture", "textiles", "decor"]);
 const countries = [
   ["US", "United States"],
   ["CA", "Canada"],
@@ -182,6 +280,7 @@ export function ShopPage({ locale }: { locale: Locale }) {
 
   return (
     <section className="shop-page">
+      {/* ── Shop header ── */}
       <div className="shop-heading">
         <div>
           <PreviewLabel>{copy.preview}</PreviewLabel>
@@ -191,6 +290,27 @@ export function ShopPage({ locale }: { locale: Locale }) {
         <CurrencyControl />
       </div>
 
+      {/* ── Category grid ── */}
+      <div className="category-grid">
+        {categories.map((cat) => {
+          const meta = categoryMeta[cat];
+          return (
+            <button
+              key={cat}
+              type="button"
+              className={`category-card${category === cat ? " is-active" : ""}${newCategories.has(cat) ? " is-new" : ""}`}
+              onClick={() => setCategory(cat === category ? "all" : cat)}
+            >
+              <span className="category-card__icon" aria-hidden="true">{meta.icon}</span>
+              <span className="category-card__name">{copy.category[cat]}</span>
+              <span className="category-card__desc">{meta.description[locale] ?? meta.description.en}</span>
+              {newCategories.has(cat) && <span className="category-card__badge">New</span>}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* ── Toolbar ── */}
       <div className="shop-toolbar">
         <label className="shop-search">
           <Search size={17} />
@@ -200,10 +320,10 @@ export function ShopPage({ locale }: { locale: Locale }) {
             placeholder={copy.search}
           />
         </label>
-        <div className="category-tabs" role="tablist">
+        <div className="shop-toolbar__right">
           <button
             type="button"
-            className={category === "all" ? "is-active" : ""}
+            className={`tab-pill${category === "all" ? " is-active" : ""}`}
             onClick={() => setCategory("all")}
           >
             {copy.all}
@@ -212,7 +332,7 @@ export function ShopPage({ locale }: { locale: Locale }) {
             <button
               type="button"
               key={item}
-              className={category === item ? "is-active" : ""}
+              className={`tab-pill${category === item ? " is-active" : ""}`}
               onClick={() => setCategory(item)}
             >
               {copy.category[item]}
@@ -232,23 +352,30 @@ export function ShopPage({ locale }: { locale: Locale }) {
         />
       </div>
 
+      {/* ── Product grid ── */}
       <div className="product-grid">
+        {products.length === 0 && (
+          <p className="shop-empty">{copy.search}…</p>
+        )}
         {products.map((item, index) => (
-          <Reveal className="product-card" key={item.sku} delay={index * 0.025}>
+          <Reveal className={`product-card${index === 0 && category !== "all" ? " product-card--featured" : ""}`} key={item.sku} delay={Math.min(index * 0.03, 0.18)}>
             <Link
               className="product-card__image"
               to={`/${locale}/shop/${item.slug}`}
               onClick={() => track("product_view", { sku: item.sku })}
             >
               <img src={item.image} alt={item.name[locale]} loading="lazy" />
-              <span>{item.sku}</span>
+              {newCategories.has(item.category) && (
+                <span className="product-badge product-badge--new">New</span>
+              )}
+              <span className="product-card__sku">{item.sku}</span>
             </Link>
             <div className="product-card__copy">
               <Link to={`/${locale}/shop/${item.slug}`}>
                 <small>{copy.category[item.category]}</small>
                 <h2>{item.name[locale]}</h2>
               </Link>
-              <div>
+              <div className="product-card__footer">
                 <strong>{formatPrice(productPrice(item, currency), currency, locale)}</strong>
                 <button
                   type="button"

@@ -7,7 +7,10 @@ export type ProductCategory =
   | "wardrobe"
   | "interiors"
   | "lighting"
-  | "samples";
+  | "samples"
+  | "furniture"
+  | "textiles"
+  | "decor";
 
 type LocalizedText = Record<StoreLocale, string>;
 
@@ -308,6 +311,166 @@ export const storeProducts: StoreProduct[] = [
     },
     ["Aged brass", "Dark bronze", "Satin nickel"],
     [["Door", "35–55 mm"], ["Spindle", "8 mm"], ["Set", "Pair / roses"]],
+  ),
+
+  /* ── Furniture ──────────────────────────────────────────────── */
+  product(
+    "MLWK-F01",
+    "solid-oak-side-table",
+    "furniture",
+    580,
+    {
+      en: "Solid Oak Side Table",
+      ar: "طاولة جانبية من خشب البلوط",
+      zh: "实木橡木边几",
+      de: "Massiver Eiche-Beistelltisch",
+      fr: "Table d'appoint en chêne massif",
+    },
+    {
+      en: "A compact side table in solid white oak with tapered legs and concealed joinery.",
+      ar: "طاولة جانبية من بلوط أبيض صلب بأرجل مخروطية وتوصيلات مخفية.",
+      zh: "实心白橡木，锥形腿，隐藏榫接，适合床头或沙发侧。",
+      de: "Kompakter Beistelltisch aus Massiv-Weißeiche mit Konusbeinen.",
+      fr: "Table compacte en chêne blanc massif aux pieds effilés.",
+    },
+    ["Natural oak", "Smoked oak", "Oiled walnut"],
+    [["Top", "400 × 400 mm"], ["Height", "520 mm"], ["Material", "Solid white oak"]],
+  ),
+  product(
+    "MLWK-F02",
+    "upholstered-bench",
+    "furniture",
+    890,
+    {
+      en: "Upholstered Bedroom Bench",
+      ar: "مقعد غرفة نوم مبطن",
+      zh: "软包床尾凳",
+      de: "Gepolsterte Schlafzimmerbank",
+      fr: "Banc de chambre rembourré",
+    },
+    {
+      en: "A low bedroom bench with foam-and-feather seat, solid oak base and tapered leg detail.",
+      ar: "مقعد منخفض بحشوة ريش وإسفنج مع قاعدة بلوط صلب.",
+      zh: "低矮床尾凳，泡沫与羽绒坐感，实心橡木底座。",
+      de: "Niedriges Schlafzimmerbank mit Schaum-Daunen-Sitz und Eichenbasis.",
+      fr: "Banc bas avec assise mousse et duvet, base en chêne massif.",
+    },
+    ["Stone linen", "Dusty sage", "Charcoal bouclé"],
+    [["Size", "1200 × 380 mm"], ["Height", "420 mm"], ["Base", "Solid oak"]],
+  ),
+  product(
+    "MLWK-F03",
+    "wall-shelf-system",
+    "furniture",
+    420,
+    {
+      en: "Wall-Mounted Shelf System",
+      ar: "نظام رفوف جدارية",
+      zh: "壁挂层架系统",
+      de: "Wandregal-System",
+      fr: "Système d'étagères murales",
+    },
+    {
+      en: "Three ash shelves with concealed steel wall plates and a precisely machined shadow gap.",
+      ar: "ثلاثة رفوف خشب الدردار مع لوحات فولاذية مخفية وفجوة ظل دقيقة.",
+      zh: "三块白蜡木层板，隐藏钢板壁挂，精加工阴影缝。",
+      de: "Drei Eschenholz-Regale mit versteckten Stahlwandplatten.",
+      fr: "Trois étagères en frêne avec platines murales dissimulées.",
+    },
+    ["Bleached ash", "Natural ash", "Oiled walnut"],
+    [["Shelves", "3 × 900 mm"], ["Depth", "220 mm"], ["Load", "15 kg each"]],
+  ),
+
+  /* ── Textiles ────────────────────────────────────────────────── */
+  product(
+    "MLWK-T01",
+    "linen-cushion-pair",
+    "textiles",
+    148,
+    {
+      en: "Washed Linen Cushion Pair",
+      ar: "زوج وسائد كتان مغسول",
+      zh: "水洗亚麻靠垫套装",
+      de: "Gewaschene Leinen-Kissenbezüge",
+      fr: "Paire de coussins en lin lavé",
+    },
+    {
+      en: "Stonewashed linen covers with feather insert. Relaxed texture that settles into any room.",
+      ar: "غطاء كتان مغسول بالحجارة مع حشوة ريش. ملمس مريح يندمج مع أي غرفة.",
+      zh: "石洗亚麻面料配羽毛内芯，慵懒质感自然融入空间。",
+      de: "Steingewaschene Leinenbezüge mit Federeinsatz.",
+      fr: "Housses en lin stonewash avec insert plumes. Texture décontractée.",
+    },
+    ["Warm ivory", "Pebble grey", "Dusty cedar"],
+    [["Size", "50 × 50 cm"], ["Fill", "Duck feather"], ["Set", "2 covers + inserts"]],
+  ),
+  product(
+    "MLWK-T02",
+    "wool-throw",
+    "textiles",
+    280,
+    {
+      en: "Merino Wool Throw",
+      ar: "غطاء صوف ميرينو",
+      zh: "美利奴羊毛毯",
+      de: "Merino-Wolldecke",
+      fr: "Plaid en laine mérinos",
+    },
+    {
+      en: "A substantial merino throw with a tight herringbone weave and hand-knotted fringe.",
+      ar: "غطاء ميرينو فاخر بنسيج هيرينغبون محكم وهامش معقود يدوياً.",
+      zh: "厚实美利奴羊毛毯，人字纹编织，手工流苏收边。",
+      de: "Merino-Decke im Fischgrätmuster mit handgeknüpfter Franse.",
+      fr: "Plaid mérinos en sergé chevrons avec franges nouées main.",
+    },
+    ["Oat", "Warm grey", "Camel"],
+    [["Size", "140 × 200 cm"], ["Weight", "450 g/m²"], ["Material", "100% merino"]],
+  ),
+
+  /* ── Decor ───────────────────────────────────────────────────── */
+  product(
+    "MLWK-DC01",
+    "ceramic-bud-vase-set",
+    "decor",
+    96,
+    {
+      en: "Ceramic Bud Vase Set",
+      ar: "طقم مزهريات خزفية",
+      zh: "陶瓷细口花瓶套装",
+      de: "Keramik-Vasen-Set",
+      fr: "Set de vases en céramique",
+    },
+    {
+      en: "Three wheel-thrown stoneware vases with a matte reactive glaze. Group them or separate.",
+      ar: "ثلاثة مزهريات خزفية بجلازور متفاعل غير لامع.",
+      zh: "三件手工拉坯炻器花瓶，哑光活性釉，单独或组合摆放均可。",
+      de: "Drei gedrehte Steinzeugvasen mit matter Reaktionsglasur.",
+      fr: "Trois vases en grès tourné avec glaçure réactive mate.",
+    },
+    ["Sand / bone", "Slate / rust", "Sage / cream"],
+    [["Sizes", "S · M · L"], ["Material", "Stoneware"], ["Glaze", "Matte reactive"]],
+  ),
+  product(
+    "MLWK-DC02",
+    "marble-object",
+    "decor",
+    145,
+    {
+      en: "Honed Marble Object",
+      ar: "منحوتة رخامية",
+      zh: "光面大理石摆件",
+      de: "Geschliffenes Marmor-Objekt",
+      fr: "Objet en marbre adouci",
+    },
+    {
+      en: "A hand-carved architectural form in honed Carrara marble. Quiet weight for shelf or surface.",
+      ar: "شكل معماري منحوت يدوياً من رخام كارارا الأملس.",
+      zh: "手工雕刻卡拉拉大理石几何形体，哑光，适合任何台面或层板。",
+      de: "Handgeschliffene Form in Carrara-Marmor.",
+      fr: "Forme architecturale taillée main en marbre de Carrare adouci.",
+    },
+    ["Carrara white", "Nero marquina"],
+    [["Size", "180 × 80 × 120 mm"], ["Material", "Solid marble"], ["Finish", "Honed"]],
   ),
 ];
 
