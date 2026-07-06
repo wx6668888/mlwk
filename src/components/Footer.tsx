@@ -12,7 +12,6 @@ export default function Footer({ locale }: { locale: Locale }) {
     <footer className="footer">
       <div className="footer-lead">
         <p>MLWK</p>
-        <h2>{copy.home.finalTitle}</h2>
         <Link className="light-button" to={`/${locale}/quote`}>
           <ArrowUpRight size={18} />
           {copy.nav.quote}

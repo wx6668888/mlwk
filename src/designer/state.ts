@@ -4,14 +4,14 @@ import {
   type CameraState,
   type DesignerDraft,
   type DesignerModule,
+  type DesignerRoom,
   type DesignerView,
   type RoomDimensions,
 } from "./types";
 
 export type DesignerSceneState = {
-  room: RoomDimensions;
-  modules: DesignerModule[];
-  finishId: string;
+  rooms: DesignerRoom[];
+  activeRoomId: string;
 };
 
 const defaultCamera: Record<DesignerView, CameraState> = {
@@ -39,25 +39,104 @@ export function createDraftId() {
   return `design-${Date.now().toString(36)}-${crypto.randomUUID().slice(0, 8)}`;
 }
 
+export function createDesignerRoom(
+  name: string,
+  room: RoomDimensions,
+  modules: DesignerModule[],
+  finishId: string,
+): DesignerRoom {
+  return {
+    id: `room-${Date.now().toString(36)}-${crypto.randomUUID().slice(0, 8)}`,
+    name,
+    room,
+    modules,
+    finishId: finishOptions.some((item) => item.id === finishId)
+      ? finishId
+      : finishOptions[0].id,
+  };
+}
+
+export function getActiveDesignerRoom(scene: DesignerSceneState): DesignerRoom {
+  return (
+    scene.rooms.find((room) => room.id === scene.activeRoomId) ??
+    scene.rooms[0] ??
+    createDesignerRoom(
+      "Room 1",
+      { width: 4800, depth: 3800, height: 2800 },
+      [],
+      finishOptions[0].id,
+    )
+  );
+}
+
+export function updateActiveDesignerRoom(
+  scene: DesignerSceneState,
+  update: (room: DesignerRoom) => DesignerRoom,
+): DesignerSceneState {
+  const active = getActiveDesignerRoom(scene);
+  const activeRoomId = active?.id ?? scene.activeRoomId;
+
+  return {
+    ...scene,
+    activeRoomId,
+    rooms: scene.rooms.map((room) =>
+      room.id === activeRoomId ? update(room) : room,
+    ),
+  };
+}
+
 export function readDesignerDraft(): DesignerDraft | null {
   if (typeof window === "undefined") return null;
 
   try {
     const value = JSON.parse(
       window.localStorage.getItem(DESIGNER_STORAGE_KEY) ?? "null",
-    ) as Partial<DesignerDraft> | null;
-    if (
-      value?.version !== 2 ||
-      typeof value.id !== "string" ||
-      !value.room ||
-      !Array.isArray(value.modules) ||
-      typeof value.finish !== "string" ||
-      !value.camera ||
-      typeof value.updatedAt !== "string"
-    ) {
-      return null;
+    ) as (Partial<DesignerDraft> & {
+      version?: number;
+      room?: RoomDimensions;
+      modules?: DesignerModule[];
+      finish?: string;
+    }) | null;
+    if (value?.version === 3) {
+      if (
+        typeof value.id !== "string" ||
+        !Array.isArray(value.rooms) ||
+        value.rooms.length === 0 ||
+        typeof value.activeRoomId !== "string" ||
+        !value.camera ||
+        typeof value.updatedAt !== "string"
+      ) {
+        return null;
+      }
+      return value as DesignerDraft;
     }
-    return value as DesignerDraft;
+
+    if (
+      value?.version === 2 &&
+      typeof value.id === "string" &&
+      value.room &&
+      Array.isArray(value.modules) &&
+      typeof value.finish === "string" &&
+      value.camera &&
+      typeof value.updatedAt === "string"
+    ) {
+      const legacyRoom = createDesignerRoom(
+        "Room 1",
+        value.room,
+        value.modules,
+        value.finish,
+      );
+      return {
+        version: 3,
+        id: value.id,
+        rooms: [legacyRoom],
+        activeRoomId: legacyRoom.id,
+        camera: value.camera,
+        updatedAt: value.updatedAt,
+      };
+    }
+
+    return null;
   } catch {
     return null;
   }
@@ -72,14 +151,31 @@ export function makeDesignerDraft(
   scene: DesignerSceneState,
   camera: CameraState,
 ): DesignerDraft {
+  const rooms =
+    scene.rooms.length > 0
+      ? scene.rooms.map((room) => ({
+          ...room,
+          finishId: finishOptions.some((item) => item.id === room.finishId)
+            ? room.finishId
+            : finishOptions[0].id,
+        }))
+      : [
+          createDesignerRoom(
+            "Room 1",
+            { width: 4800, depth: 3800, height: 2800 },
+            [],
+            finishOptions[0].id,
+          ),
+        ];
+  const activeRoomId = rooms.some((room) => room.id === scene.activeRoomId)
+    ? scene.activeRoomId
+    : rooms[0].id;
+
   return {
-    version: 2,
+    version: 3,
     id,
-    room: scene.room,
-    modules: scene.modules,
-    finish: finishOptions.some((item) => item.id === scene.finishId)
-      ? scene.finishId
-      : finishOptions[0].id,
+    rooms,
+    activeRoomId,
     camera,
     updatedAt: new Date().toISOString(),
   };
@@ -135,4 +231,3 @@ export function findCollidingModuleIds(modules: DesignerModule[]) {
 
   return collisions;
 }
-

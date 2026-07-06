@@ -1,4 +1,4 @@
-import {
+﻿import {
   AlertTriangle,
   AlignEndHorizontal,
   Box,
@@ -41,10 +41,13 @@ import { Link } from "react-router-dom";
 import type { Locale } from "../content";
 import {
   createDraftId,
+  createDesignerRoom,
   findCollidingModuleIds,
+  getActiveDesignerRoom,
   getDefaultCamera,
   makeDesignerDraft,
   readDesignerDraft,
+  updateActiveDesignerRoom,
   writeDesignerDraft,
   type DesignerSceneState,
 } from "../designer/state";
@@ -95,6 +98,10 @@ const labels: Record<
     configured: string;
     modules: string;
     roomSettings: string;
+    rooms: string;
+    addRoom: string;
+    duplicateRoom: string;
+    deleteRoom: string;
   }
 > = {
   en: {
@@ -123,114 +130,134 @@ const labels: Record<
     configured: "configured",
     modules: "modules",
     roomSettings: "Room settings",
+    rooms: "Rooms",
+    addRoom: "Add room",
+    duplicateRoom: "Duplicate room",
+    deleteRoom: "Delete room",
   },
   zh: {
-    title: "3D 空间设计",
-    project: "未命名空间",
-    room: "空间",
-    systems: "MLWK 系统",
-    finishes: "饰面",
-    width: "宽度",
-    depth: "进深",
-    height: "层高",
-    quote: "提交此方案",
-    save: "保存到本地",
-    saved: "已保存",
-    saving: "正在保存",
-    unsaved: "有未保存修改",
-    empty: "添加一个产品系统开始设计",
-    cabinetry: "柜体",
-    architecture: "建筑构件",
-    selected: "已选系统",
-    selectHint: "选择空间中的模块进行移动或旋转。",
-    addBase: "添加地柜",
-    duplicate: "复制",
-    align: "靠墙对齐",
-    collision: "个模块发生重叠",
-    configured: "已配置",
-    modules: "个模块",
-    roomSettings: "空间设置",
+    title: "3D 绌洪棿璁捐",
+    project: "鏈懡鍚嶇┖闂",
+    room: "绌洪棿",
+    systems: "MLWK 绯荤粺",
+    finishes: "楗伴潰",
+    width: "瀹藉害",
+    depth: "杩涙繁",
+    height: "灞傞珮",
+    quote: "鎻愪氦姝ゆ柟妗",
+    save: "淇濆瓨鍒版湰鍦",
+    saved: "宸蹭繚瀛",
+    saving: "姝ｅ湪淇濆瓨",
+    unsaved: "鏈夋湭淇濆瓨淇敼",
+    empty: "娣诲姞涓€涓骇鍝佺郴缁熷紑濮嬭璁",
+    cabinetry: "鏌滀綋",
+    architecture: "寤虹瓚鏋勪欢",
+    selected: "宸查€夌郴缁",
+    selectHint: "閫夋嫨绌洪棿涓殑妯″潡杩涜绉诲姩鎴栨棆杞€",
+    addBase: "娣诲姞鍦版煖",
+    duplicate: "澶嶅埗",
+    align: "闈犲瀵归綈",
+    collision: "涓ā鍧楀彂鐢熼噸鍙",
+    configured: "宸查厤缃",
+    modules: "涓ā鍧",
+    roomSettings: "绌洪棿璁剧疆",
+    rooms: "Rooms",
+    addRoom: "Add room",
+    duplicateRoom: "Duplicate room",
+    deleteRoom: "Delete room",
   },
   ar: {
-    title: "استوديو التصميم ثلاثي الأبعاد",
-    project: "غرفة بلا اسم",
-    room: "المساحة",
-    systems: "أنظمة MLWK",
-    finishes: "التشطيب",
-    width: "العرض",
-    depth: "العمق",
-    height: "الارتفاع",
-    quote: "إرسال هذا التصميم",
-    save: "حفظ محلي",
-    saved: "تم الحفظ",
-    saving: "جارٍ الحفظ",
-    unsaved: "تغييرات غير محفوظة",
-    empty: "أضف نظاماً للبدء",
-    cabinetry: "الخزائن",
-    architecture: "العناصر المعمارية",
-    selected: "النظام المحدد",
-    selectHint: "حدد وحدة في الغرفة لتحريكها أو تدويرها.",
-    addBase: "إضافة خزانة",
-    duplicate: "تكرار",
-    align: "محاذاة للجدار",
-    collision: "وحدات متداخلة",
-    configured: "مجهز",
-    modules: "وحدات",
-    roomSettings: "إعدادات الغرفة",
+    title: "丕爻鬲賵丿賷賵 丕賱鬲氐賲賷賲 孬賱丕孬賷 丕賱兀亘毓丕丿",
+    project: "睾乇賮丞 亘賱丕 丕爻賲",
+    room: "丕賱賲爻丕丨丞",
+    systems: "兀賳馗賲丞 MLWK",
+    finishes: "丕賱鬲卮胤賷亘",
+    width: "丕賱毓乇囟",
+    depth: "丕賱毓賲賯",
+    height: "丕賱丕乇鬲賮丕毓",
+    quote: "廿乇爻丕賱 賴匕丕 丕賱鬲氐賲賷賲",
+    save: "丨賮馗 賲丨賱賷",
+    saved: "鬲賲 丕賱丨賮馗",
+    saving: "噩丕乇賺 丕賱丨賮馗",
+    unsaved: "鬲睾賷賷乇丕鬲 睾賷乇 賲丨賮賵馗丞",
+    empty: "兀囟賮 賳馗丕賲丕賸 賱賱亘丿亍",
+    cabinetry: "丕賱禺夭丕卅賳",
+    architecture: "丕賱毓賳丕氐乇 丕賱賲毓賲丕乇賷丞",
+    selected: "丕賱賳馗丕賲 丕賱賲丨丿丿",
+    selectHint: "丨丿丿 賵丨丿丞 賮賷 丕賱睾乇賮丞 賱鬲丨乇賷賰賴丕 兀賵 鬲丿賵賷乇賴丕.",
+    addBase: "廿囟丕賮丞 禺夭丕賳丞",
+    duplicate: "鬲賰乇丕乇",
+    align: "賲丨丕匕丕丞 賱賱噩丿丕乇",
+    collision: "賵丨丿丕鬲 賲鬲丿丕禺賱丞",
+    configured: "賲噩賴夭",
+    modules: "賵丨丿丕鬲",
+    roomSettings: "廿毓丿丕丿丕鬲 丕賱睾乇賮丞",
+    rooms: "Rooms",
+    addRoom: "Add room",
+    duplicateRoom: "Duplicate room",
+    deleteRoom: "Delete room",
   },
   de: {
     title: "3D Design Studio",
     project: "Unbenannter Raum",
     room: "Raum",
     systems: "MLWK Systeme",
-    finishes: "Oberfläche",
+    finishes: "Oberfl盲che",
     width: "Breite",
     depth: "Tiefe",
-    height: "Höhe",
+    height: "H枚he",
     quote: "Entwurf senden",
     save: "Lokal speichern",
     saved: "Gespeichert",
     saving: "Speichern",
     unsaved: "Nicht gespeichert",
-    empty: "System hinzufügen",
-    cabinetry: "Schränke",
+    empty: "System hinzuf眉gen",
+    cabinetry: "Schr盲nke",
     architecture: "Architektur",
-    selected: "Ausgewähltes System",
-    selectHint: "Wählen Sie ein Modul zum Verschieben oder Drehen.",
+    selected: "Ausgew盲hltes System",
+    selectHint: "W盲hlen Sie ein Modul zum Verschieben oder Drehen.",
     addBase: "Unterschrank",
     duplicate: "Duplizieren",
     align: "An Wand ausrichten",
-    collision: "überlappende Module",
+    collision: "眉berlappende Module",
     configured: "konfiguriert",
     modules: "Module",
     roomSettings: "Raumeinstellungen",
+    rooms: "Rooms",
+    addRoom: "Add room",
+    duplicateRoom: "Duplicate room",
+    deleteRoom: "Delete room",
   },
   fr: {
     title: "Studio de conception 3D",
-    project: "Pièce sans titre",
-    room: "Pièce",
-    systems: "Systèmes MLWK",
+    project: "Pi猫ce sans titre",
+    room: "Pi猫ce",
+    systems: "Syst猫mes MLWK",
     finishes: "Finition",
     width: "Largeur",
     depth: "Profondeur",
     height: "Hauteur",
     quote: "Envoyer ce projet",
     save: "Enregistrer",
-    saved: "Enregistré",
+    saved: "Enregistr茅",
     saving: "Enregistrement",
-    unsaved: "Modifications non enregistrées",
-    empty: "Ajoutez un système",
+    unsaved: "Modifications non enregistr茅es",
+    empty: "Ajoutez un syst猫me",
     cabinetry: "Agencements",
     architecture: "Architecture",
-    selected: "Système sélectionné",
-    selectHint: "Sélectionnez un module pour le déplacer ou le faire pivoter.",
+    selected: "Syst猫me s茅lectionn茅",
+    selectHint: "S茅lectionnez un module pour le d茅placer ou le faire pivoter.",
     addBase: "Ajouter un meuble",
     duplicate: "Dupliquer",
     align: "Aligner au mur",
-    collision: "modules superposés",
-    configured: "configuré",
+    collision: "modules superpos茅s",
+    configured: "configur茅",
     modules: "modules",
-    roomSettings: "Réglages de la pièce",
+    roomSettings: "R茅glages de la pi猫ce",
+    rooms: "Rooms",
+    addRoom: "Add room",
+    duplicateRoom: "Duplicate room",
+    deleteRoom: "Delete room",
   },
 };
 
@@ -244,10 +271,10 @@ const templates: Array<{
     id: "kitchen-wall",
     label: {
       en: "Single wall",
-      zh: "一字型厨房",
-      ar: "جدار واحد",
-      de: "Einzeilige Küche",
-      fr: "Cuisine linéaire",
+      zh: "涓€瀛楀瀷鍘ㄦ埧",
+      ar: "噩丿丕乇 賵丕丨丿",
+      de: "Einzeilige K眉che",
+      fr: "Cuisine lin茅aire",
     },
     room: { width: 4800, depth: 3800, height: 2800 },
     modules: ["tall", "base", "base", "base", "wall", "wall"],
@@ -256,8 +283,8 @@ const templates: Array<{
     id: "wardrobe-suite",
     label: {
       en: "Wardrobe suite",
-      zh: "衣帽间",
-      ar: "غرفة ملابس",
+      zh: "琛ｅ附闂",
+      ar: "睾乇賮丞 賲賱丕亘爻",
       de: "Ankleide",
       fr: "Dressing",
     },
@@ -268,10 +295,10 @@ const templates: Array<{
     id: "open-living",
     label: {
       en: "Open living",
-      zh: "开放客厅",
-      ar: "معيشة مفتوحة",
+      zh: "寮€鏀惧鍘",
+      ar: "賲毓賷卮丞 賲賮鬲賵丨丞",
       de: "Offener Wohnraum",
-      fr: "Séjour ouvert",
+      fr: "S茅jour ouvert",
     },
     room: { width: 6200, depth: 4800, height: 3000 },
     modules: ["panel", "panel", "panel", "door"],
@@ -311,12 +338,29 @@ function layoutModules(
   });
 }
 
+function makeTemplateRoom(
+  template: (typeof templates)[number],
+  finishId: string,
+  name = template.label.en,
+) {
+  return createDesignerRoom(
+    name,
+    template.room,
+    layoutModules(template.modules, template.room),
+    finishId,
+  );
+}
+
+function nextRoomName(count: number) {
+  return `Room ${count + 1}`;
+}
+
 function defaultScene(): DesignerSceneState {
   const initial = templates[0];
+  const room = makeTemplateRoom(initial, finishOptions[0].id, "Kitchen");
   return {
-    room: initial.room,
-    modules: layoutModules(initial.modules, initial.room),
-    finishId: finishOptions[0].id,
+    rooms: [room],
+    activeRoomId: room.id,
   };
 }
 
@@ -342,7 +386,8 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
   const draftIdRef = useRef("");
   const restoredRef = useRef(false);
 
-  const { room, modules, finishId } = scene;
+  const activeDesignerRoom = getActiveDesignerRoom(scene);
+  const { room, modules, finishId } = activeDesignerRoom;
   const finish =
     finishOptions.find((item) => item.id === finishId) ?? finishOptions[0];
   const totalWidth = useMemo(
@@ -378,9 +423,8 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
     const restored = readDesignerDraft();
     if (restored) {
       const restoredScene = {
-        room: restored.room,
-        modules: restored.modules,
-        finishId: restored.finish,
+        rooms: restored.rooms,
+        activeRoomId: restored.activeRoomId,
       };
       sceneRef.current = restoredScene;
       cameraRef.current = restored.camera;
@@ -426,7 +470,11 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
     setSaveStatus("saved");
     if (trackSave) {
       track("design_saved", {
-        moduleCount: sceneRef.current.modules.length,
+        moduleCount: sceneRef.current.rooms.reduce(
+          (total, room) => total + room.modules.length,
+          0,
+        ),
+        roomCount: sceneRef.current.rooms.length,
       });
     }
   }, []);
@@ -467,20 +515,75 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
   }, []);
 
   const selectTemplate = (template: (typeof templates)[number]) => {
-    commitScene({
-      room: template.room,
-      modules: layoutModules(template.modules, template.room),
-      finishId,
-    });
+    commitScene((current) =>
+      updateActiveDesignerRoom(current, (activeRoom) => ({
+        ...makeTemplateRoom(template, activeRoom.finishId, activeRoom.name),
+        id: activeRoom.id,
+      })),
+    );
     setSelectedModuleId(null);
     track("template_selected", { template: template.id });
   };
 
-  const updateDimension = (key: keyof RoomDimensions, value: number) => {
+  const selectRoom = (roomId: string) => {
+    const next = { ...sceneRef.current, activeRoomId: roomId };
+    sceneRef.current = next;
+    setScene(next);
+    setSaveStatus("dirty");
+    setSelectedModuleId(null);
+    resetCamera();
+  };
+
+  const addRoom = () => {
+    const next = makeTemplateRoom(
+      templates[0],
+      finishOptions[0].id,
+      nextRoomName(sceneRef.current.rooms.length),
+    );
     commitScene((current) => ({
-      ...current,
-      room: { ...current.room, [key]: value },
+      rooms: [...current.rooms, next],
+      activeRoomId: next.id,
     }));
+    setSelectedModuleId(null);
+    resetCamera();
+    track("designer_room_added", { roomCount: sceneRef.current.rooms.length });
+  };
+
+  const duplicateRoom = () => {
+    const active = getActiveDesignerRoom(sceneRef.current);
+    const duplicate = createDesignerRoom(
+      `${active.name} copy`,
+      { ...active.room },
+      active.modules.map((module) => ({ ...module, id: crypto.randomUUID() })),
+      active.finishId,
+    );
+    commitScene((current) => ({
+      rooms: [...current.rooms, duplicate],
+      activeRoomId: duplicate.id,
+    }));
+    setSelectedModuleId(null);
+    resetCamera();
+  };
+
+  const deleteRoom = () => {
+    const current = sceneRef.current;
+    if (current.rooms.length <= 1) return;
+    const nextRooms = current.rooms.filter((item) => item.id !== current.activeRoomId);
+    commitScene({
+      rooms: nextRooms,
+      activeRoomId: nextRooms[0].id,
+    });
+    setSelectedModuleId(null);
+    resetCamera();
+  };
+
+  const updateDimension = (key: keyof RoomDimensions, value: number) => {
+    commitScene((current) =>
+      updateActiveDesignerRoom(current, (activeRoom) => ({
+        ...activeRoom,
+        room: { ...activeRoom.room, [key]: value },
+      })),
+    );
   };
 
   const addModule = (type: DesignerModuleType) => {
@@ -490,10 +593,12 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
       x: Math.min(room.width / 2 - source.width / 2, offset),
       z: Math.min(room.depth / 2 - source.depth / 2, offset),
     });
-    commitScene((current) => ({
-      ...current,
-      modules: [...current.modules, item],
-    }));
+    commitScene((current) =>
+      updateActiveDesignerRoom(current, (activeRoom) => ({
+        ...activeRoom,
+        modules: [...activeRoom.modules, item],
+      })),
+    );
     setSelectedModuleId(item.id);
     setTransformMode("translate");
     setInspectorOpen(true);
@@ -504,12 +609,14 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
     moduleId: string,
     transform: Pick<DesignerModule, "x" | "z" | "rotation">,
   ) => {
-    commitScene((current) => ({
-      ...current,
-      modules: current.modules.map((item) =>
-        item.id === moduleId ? { ...item, ...transform } : item,
-      ),
-    }));
+    commitScene((current) =>
+      updateActiveDesignerRoom(current, (activeRoom) => ({
+        ...activeRoom,
+        modules: activeRoom.modules.map((item) =>
+          item.id === moduleId ? { ...item, ...transform } : item,
+        ),
+      })),
+    );
   };
 
   const updateSelectedValue = (
@@ -517,27 +624,30 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
     value: number,
   ) => {
     if (!selectedModule || !Number.isFinite(value)) return;
-    commitScene((current) => ({
-      ...current,
-      modules: current.modules.map((item) =>
-        item.id === selectedModule.id ? { ...item, [key]: value } : item,
-      ),
-    }));
+    commitScene((current) =>
+      updateActiveDesignerRoom(current, (activeRoom) => ({
+        ...activeRoom,
+        modules: activeRoom.modules.map((item) =>
+          item.id === selectedModule.id ? { ...item, [key]: value } : item,
+        ),
+      })),
+    );
   };
 
   const removeSelected = useCallback(() => {
     if (!selectedModuleId) return;
-    commitScene((current) => ({
-      ...current,
-      modules: current.modules.filter((item) => item.id !== selectedModuleId),
-    }));
+    commitScene((current) =>
+      updateActiveDesignerRoom(current, (activeRoom) => ({
+        ...activeRoom,
+        modules: activeRoom.modules.filter((item) => item.id !== selectedModuleId),
+      })),
+    );
     setSelectedModuleId(null);
   }, [commitScene, selectedModuleId]);
 
   const duplicateSelected = useCallback(() => {
-    const selected = sceneRef.current.modules.find(
-      (item) => item.id === selectedModuleId,
-    );
+    const activeRoom = getActiveDesignerRoom(sceneRef.current);
+    const selected = activeRoom.modules.find((item) => item.id === selectedModuleId);
     if (!selected) return;
     const duplicate = {
       ...selected,
@@ -545,10 +655,12 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
       x: selected.x + 120,
       z: selected.z + 120,
     };
-    commitScene((current) => ({
-      ...current,
-      modules: [...current.modules, duplicate],
-    }));
+    commitScene((current) =>
+      updateActiveDesignerRoom(current, (room) => ({
+        ...room,
+        modules: [...room.modules, duplicate],
+      })),
+    );
     setSelectedModuleId(duplicate.id);
   }, [commitScene, selectedModuleId]);
 
@@ -637,7 +749,7 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
         </Link>
         <div>
           <small>{copy.title}</small>
-          <strong>{copy.project}</strong>
+          <strong>{activeDesignerRoom.name || copy.project}</strong>
         </div>
         <div className="designer-toolbar__actions">
           <button
@@ -729,6 +841,48 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
         </div>
       </header>
 
+      <div className="designer-room-tabs" aria-label={copy.rooms}>
+        <span>{copy.rooms}</span>
+        <div>
+          {scene.rooms.map((designerRoom, index) => (
+            <button
+              type="button"
+              key={designerRoom.id}
+              className={
+                designerRoom.id === scene.activeRoomId ? "is-active" : ""
+              }
+              onClick={() => selectRoom(designerRoom.id)}
+              title={designerRoom.name}
+            >
+              <strong>{designerRoom.name}</strong>
+              <small>
+                {designerRoom.modules.length} {copy.modules}
+              </small>
+              <i>{String(index + 1).padStart(2, "0")}</i>
+            </button>
+          ))}
+        </div>
+        <menu>
+          <button type="button" onClick={addRoom} title={copy.addRoom}>
+            <Plus size={15} />
+            <span>{copy.addRoom}</span>
+          </button>
+          <button type="button" onClick={duplicateRoom} title={copy.duplicateRoom}>
+            <Copy size={15} />
+            <span>{copy.duplicateRoom}</span>
+          </button>
+          <button
+            type="button"
+            onClick={deleteRoom}
+            title={copy.deleteRoom}
+            disabled={scene.rooms.length <= 1}
+          >
+            <Trash2 size={15} />
+            <span>{copy.deleteRoom}</span>
+          </button>
+        </menu>
+      </div>
+
       <div
         className={`designer-workspace ${
           libraryCollapsed ? "library-collapsed" : ""
@@ -788,7 +942,7 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
                 <span>
                   <strong>{item.label}</strong>
                   <small>
-                    {item.width} × {item.height} mm
+                    {item.width} 脳 {item.height} mm
                   </small>
                 </span>
                 <Plus size={16} />
@@ -945,10 +1099,12 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
                   className={finish.id === item.id ? "is-active" : ""}
                   style={{ "--swatch": item.color } as CSSProperties}
                   onClick={() => {
-                    commitScene((current) => ({
-                      ...current,
-                      finishId: item.id,
-                    }));
+                    commitScene((current) =>
+                      updateActiveDesignerRoom(current, (activeRoom) => ({
+                        ...activeRoom,
+                        finishId: item.id,
+                      })),
+                    );
                     track("finish_changed", { finish: item.id });
                   }}
                   title={item.label}
@@ -967,7 +1123,7 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
                   <span>
                     <strong>{selectedCatalogItem?.label}</strong>
                     <small>
-                      {selectedModule.width} × {selectedModule.height} mm
+                      {selectedModule.width} 脳 {selectedModule.height} mm
                     </small>
                   </span>
                   <button
@@ -1017,7 +1173,7 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
                         )
                       }
                     />
-                    <small>°</small>
+                    <small>掳</small>
                   </label>
                 </div>
                 <div className="designer-selection-actions">
@@ -1031,7 +1187,7 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
                   </button>
                   <button type="button" onClick={rotateSelected}>
                     <RotateCw size={15} />
-                    Rotate 90°
+                    Rotate 90掳
                   </button>
                   <button type="button" onClick={duplicateSelected}>
                     <Copy size={15} />
@@ -1058,3 +1214,5 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
     </section>
   );
 }
+
+

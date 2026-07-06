@@ -23,6 +23,14 @@ export type RoomDimensions = {
   height: number;
 };
 
+export type DesignerRoom = {
+  id: string;
+  name: string;
+  room: RoomDimensions;
+  modules: DesignerModule[];
+  finishId: string;
+};
+
 export type DesignerView = "3d" | "plan";
 export type DesignerTransformMode = "translate" | "rotate";
 
@@ -33,11 +41,10 @@ export type CameraState = {
 };
 
 export type DesignerDraft = {
-  version: 2;
+  version: 3;
   id: string;
-  room: RoomDimensions;
-  modules: DesignerModule[];
-  finish: string;
+  rooms: DesignerRoom[];
+  activeRoomId: string;
   camera: CameraState;
   updatedAt: string;
 };

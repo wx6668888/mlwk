@@ -2595,14 +2595,25 @@ p {
 
 .checkout-fields input,
 .checkout-fields select,
-.address-form input,
-.login-panel input {
+.address-form input {
   width: 100%;
   height: 46px;
   padding-inline: 12px;
   border: 1px solid var(--line);
   border-radius: 4px;
   background: var(--paper-bright);
+  outline: 0;
+  font-size: 12px;
+}
+
+/* login-panel inputs — dark theme, no white background */
+.login-panel input {
+  width: 100%;
+  height: 46px;
+  padding-inline: 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: transparent;
   outline: 0;
   font-size: 12px;
 }
@@ -3051,6 +3062,17 @@ p {
 .login-field input:focus {
   border-color: rgba(111, 38, 59, 0.4);
   box-shadow: 0 0 0 3px rgba(111, 38, 59, 0.1);
+}
+
+/* prevent browser autofill from forcing a white/yellow background */
+.login-field input:-webkit-autofill,
+.login-field input:-webkit-autofill:hover,
+.login-field input:-webkit-autofill:focus {
+  background: #23241e !important;
+  -webkit-box-shadow: 0 0 0 30px #23241e inset !important;
+  -webkit-text-fill-color: #f1f2ed !important;
+  caret-color: #f1f2ed;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .login-field-icon {
