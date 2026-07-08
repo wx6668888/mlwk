@@ -3349,6 +3349,7 @@ p {
 @media (min-width: 1024px) {
   .login-card {
     flex-direction: row;
+    max-width: 860px;
   }
 
   .login-visual {

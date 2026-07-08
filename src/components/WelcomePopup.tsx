@@ -80,7 +80,7 @@ export default function WelcomePopup({ locale }: { locale: Locale }) {
 
         {/* Left: image panel */}
         <div className="welcome-visual">
-          <img src="/media/hero-barefoot-poster.webp" alt="" />
+          <img src="/media/bespoke-built-ins.png" alt="" />
           <div className="welcome-visual-shade" />
           <span className="welcome-visual-label">MLWK</span>
         </div>
