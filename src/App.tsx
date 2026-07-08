@@ -18,7 +18,7 @@ import {
   CollectionDetailPage,
 } from "./pages/CollectionsPage";
 import CompanyPage from "./pages/CompanyPage";
-import AdminProjectsPage from "./pages/AdminProjectsPage";
+import AdminDashboardPage from "./pages/AdminDashboardPage";
 import DesignerPage from "./pages/DesignerPage";
 import HomePage from "./pages/HomePage";
 import LegalPage from "./pages/LegalPage";
@@ -230,10 +230,10 @@ function LocaleLayout() {
             }
           />
           <Route
-            path="admin/projects"
+            path="admin"
             element={
               <AccountGuard locale={locale}>
-                <AdminProjectsPage locale={locale} />
+                <AdminDashboardPage locale={locale} />
               </AccountGuard>
             }
           />

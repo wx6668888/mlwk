@@ -480,14 +480,45 @@ export const currencySymbols: Record<Currency, string> = {
   GBP: "£",
 };
 
-const currencyMultipliers: Record<Currency, number> = {
+// Hardcoded fallback rates — refreshed every 4 hours from frankfurter.app
+const FALLBACK_MULTIPLIERS: Record<Currency, number> = {
   USD: 1,
   EUR: 0.92,
   GBP: 0.8,
 };
 
-export function productPrice(product: StoreProduct, currency: Currency) {
-  return Math.round(product.basePriceUsd * currencyMultipliers[currency]);
+// Runtime cache with TTL
+let _currencyCache: { rates: Record<Currency, number>; ts: number } | null = null;
+const CACHE_TTL_MS = 4 * 60 * 60 * 1000; // 4 hours
+
+export async function fetchCurrencyRates(): Promise<Record<Currency, number>> {
+  // Return cached if fresh
+  if (_currencyCache && Date.now() - _currencyCache.ts < CACHE_TTL_MS) {
+    return _currencyCache.rates;
+  }
+  try {
+    const resp = await fetch("/api/currency-rates?from=USD");
+    if (!resp.ok) throw new Error("API unavailable");
+    const data = (await resp.json()) as { rates: Record<string, number> };
+    const rates: Record<Currency, number> = {
+      USD: 1,
+      EUR: data.rates.EUR || FALLBACK_MULTIPLIERS.EUR,
+      GBP: data.rates.GBP || FALLBACK_MULTIPLIERS.GBP,
+    };
+    _currencyCache = { rates, ts: Date.now() };
+    return rates;
+  } catch {
+    return { ...FALLBACK_MULTIPLIERS };
+  }
+}
+
+export function productPrice(
+  product: StoreProduct,
+  currency: Currency,
+  liveRates?: Record<Currency, number>,
+) {
+  const rates = liveRates || FALLBACK_MULTIPLIERS;
+  return Math.round(product.basePriceUsd * rates[currency]);
 }
 
 export function formatPrice(amount: number, currency: Currency, locale = "en") {
@@ -504,19 +535,100 @@ export function findProduct(slugOrSku: string) {
   );
 }
 
-export const eurozoneCountries = new Set([
+// Static fallback sets (updated: Croatia HR in eurozone since 2023-01-01)
+const FALLBACK_EUROZONE = new Set([
   "AT", "BE", "HR", "CY", "EE", "FI", "FR", "DE", "GR", "IE", "IT",
   "LV", "LT", "LU", "MT", "NL", "PT", "SK", "SI", "ES",
 ]);
 
-export const northAmericaCountries = new Set(["US", "CA", "MX"]);
-export const middleEastCountries = new Set([
+const FALLBACK_NORTH_AMERICA = new Set(["US", "CA", "MX"]);
+const FALLBACK_MIDDLE_EAST = new Set([
   "AE", "SA", "QA", "KW", "BH", "OM", "JO", "IL", "LB",
 ]);
 
+// Dynamic country data cache
+let _countryCache: {
+  eurozone: Set<string>;
+  northAmerica: Set<string>;
+  middleEast: Set<string>;
+  currencyMap: Record<string, string>;
+  ts: number;
+} | null = null;
+const COUNTRY_CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
+
+type ZoneData = {
+  eurozone: Set<string>;
+  northAmerica: Set<string>;
+  middleEast: Set<string>;
+  currencyMap: Record<string, string>;
+};
+
+async function fetchCountryData(): Promise<ZoneData> {
+  if (_countryCache && Date.now() - _countryCache.ts < COUNTRY_CACHE_TTL) {
+    return _countryCache;
+  }
+  try {
+    const resp = await fetch("/api/country-data");
+    if (!resp.ok) throw new Error("API unavailable");
+    const data = (await resp.json()) as {
+      eurozone: string[];
+      middleEast: string[];
+      northAmerica: string[];
+      currencyMap: Record<string, string>;
+    };
+    _countryCache = {
+      eurozone: new Set(data.eurozone),
+      northAmerica: new Set(data.northAmerica),
+      middleEast: new Set(data.middleEast),
+      currencyMap: data.currencyMap,
+      ts: Date.now(),
+    };
+  } catch {
+    // Use fallback on first failure
+    if (!_countryCache) {
+      _countryCache = {
+        eurozone: FALLBACK_EUROZONE,
+        northAmerica: FALLBACK_NORTH_AMERICA,
+        middleEast: FALLBACK_MIDDLE_EAST,
+        currencyMap: {},
+        ts: Date.now(),
+      };
+    }
+  }
+  return _countryCache;
+}
+
+function getZoneSets(): ZoneData {
+  // Synchronous fallback access — used when async fetch hasn't completed
+  if (_countryCache && Date.now() - _countryCache.ts < COUNTRY_CACHE_TTL) {
+    return _countryCache;
+  }
+  return {
+    eurozone: FALLBACK_EUROZONE,
+    northAmerica: FALLBACK_NORTH_AMERICA,
+    middleEast: FALLBACK_MIDDLE_EAST,
+    currencyMap: {},
+  };
+}
+
+// Preload on module import
+fetchCountryData();
+
+export { FALLBACK_EUROZONE as eurozoneCountries };
+export { FALLBACK_NORTH_AMERICA as northAmericaCountries };
+export { FALLBACK_MIDDLE_EAST as middleEastCountries };
+
 export function currencyForCountry(countryCode?: string | null): Currency {
   const country = countryCode?.toUpperCase();
-  if (country && eurozoneCountries.has(country)) return "EUR";
+  if (!country) return "USD";
+  const { currencyMap, eurozone } = getZoneSets();
+  // Prefer dynamic currency map, then fall back to zone logic
+  if (currencyMap[country]) {
+    const cur = currencyMap[country];
+    if (cur === "EUR") return "EUR";
+    if (cur === "GBP") return "GBP";
+  }
+  if (eurozone.has(country)) return "EUR";
   if (country === "GB") return "GBP";
   return "USD";
 }
@@ -526,16 +638,17 @@ export function shippingForCountry(
   currency: Currency,
 ): { zone: string; amount: number } {
   const country = countryCode.toUpperCase();
-  if (eurozoneCountries.has(country)) {
+  const { eurozone, northAmerica, middleEast } = getZoneSets();
+  if (eurozone.has(country)) {
     return { zone: "eurozone", amount: currency === "EUR" ? 18 : 20 };
   }
   if (country === "GB") {
     return { zone: "united-kingdom", amount: currency === "GBP" ? 16 : 20 };
   }
-  if (northAmericaCountries.has(country)) {
+  if (northAmerica.has(country)) {
     return { zone: "north-america", amount: currency === "USD" ? 22 : 20 };
   }
-  if (middleEastCountries.has(country)) {
+  if (middleEast.has(country)) {
     return { zone: "middle-east", amount: currency === "USD" ? 28 : 26 };
   }
   return { zone: "rest-of-world", amount: currency === "USD" ? 32 : 30 };

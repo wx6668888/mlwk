@@ -26,6 +26,7 @@ import { getCopy, type Locale } from "../content";
 import { readDesignerDraft } from "../designer/state";
 import { finishOptions, type DesignerDraft } from "../designer/types";
 import { track } from "../lib/analytics";
+import { verifyEmail } from "../lib/validateEmail";
 
 const allowedExtensions = ["pdf", "dwg", "dxf", "zip", "jpg", "jpeg", "png"];
 const maxFiles = 5;
@@ -56,6 +57,8 @@ export default function QuotePage({ locale }: { locale: Locale }) {
   const [projectCode, setProjectCode] = useState("");
   const [designDraft, setDesignDraft] = useState<DesignerDraft | null>(null);
   const [quoteStep, setQuoteStep] = useState(1);
+  const [emailError, setEmailError] = useState("");
+  const [emailChecking, setEmailChecking] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER as string | undefined;
   const isLocalPreview =
@@ -75,15 +78,18 @@ export default function QuotePage({ locale }: { locale: Locale }) {
 
   const designNote = useMemo(() => {
     if (!designDraft) return "";
-    const finish =
-      finishOptions.find((item) => item.id === designDraft.finish)?.label ??
-      designDraft.finish;
-    return [
-      `3D design reference: ${designDraft.id}`,
-      `Room: ${designDraft.room.width} × ${designDraft.room.depth} × ${designDraft.room.height} mm`,
-      `Modules: ${designDraft.modules.length}`,
-      `Finish: ${finish}`,
-    ].join("\n");
+    const lines = [`3D design reference: ${designDraft.id}`];
+    designDraft.rooms.forEach((room, index) => {
+      const finish =
+        finishOptions.find((item) => item.id === room.finishId)?.label ??
+        room.finishId;
+      lines.push(
+        `Room ${index + 1} (${room.name}): ${room.room.width} × ${room.room.depth} × ${room.room.height} mm`,
+      );
+      lines.push(`Modules: ${room.modules.length}`);
+      lines.push(`Finish: ${finish}`);
+    });
+    return lines.join("\n");
   }, [designDraft]);
 
   const onFiles = (event: ChangeEvent<HTMLInputElement>) => {
@@ -117,9 +123,25 @@ export default function QuotePage({ locale }: { locale: Locale }) {
     setFiles((current) => current.filter((_, itemIndex) => itemIndex !== index));
   };
 
+  const handleEmailBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
+    const email = e.target.value.trim();
+    if (!email) { setEmailError(""); return; }
+    setEmailChecking(true);
+    setEmailError("");
+    const result = await verifyEmail(email);
+    if (!result.valid) {
+      setEmailError(result.reason || "Invalid email");
+      if (result.suggestedEmail) {
+        setEmailError(`${result.reason} Click to use suggested email.`);
+      }
+    }
+    setEmailChecking(false);
+  };
+
   const advanceQuoteStep = () => {
     const form = formRef.current;
     if (!form) return;
+    if (emailError) return; // Block if email is invalid
     const requiredNames =
       quoteStep === 1
         ? ["name", "company", "email", "country"]
@@ -299,12 +321,23 @@ export default function QuotePage({ locale }: { locale: Locale }) {
             <div>
               <span>
                 <Ruler size={15} />
-                {designDraft.room.width} × {designDraft.room.depth} ×{" "}
-                {designDraft.room.height} mm
+                {(() => {
+                  const room =
+                    designDraft.rooms.find(
+                      (r) => r.id === designDraft.activeRoomId,
+                    ) ?? designDraft.rooms[0];
+                  return room
+                    ? `${room.room.width} × ${room.room.depth} × ${room.room.height} mm`
+                    : "—";
+                })()}
               </span>
               <span>
                 <Layers3 size={15} />
-                {designDraft.modules.length} modules
+                {designDraft.rooms.reduce(
+                  (sum, r) => sum + r.modules.length,
+                  0,
+                )}{" "}
+                modules
               </span>
             </div>
             <small>{designDraft.id}</small>
@@ -344,7 +377,19 @@ export default function QuotePage({ locale }: { locale: Locale }) {
             </label>
             <label>
               <span>{fields.email} *</span>
-              <input name="email" required type="email" autoComplete="email" />
+              <input
+                name="email"
+                required
+                type="email"
+                autoComplete="email"
+                onBlur={(e) => { void handleEmailBlur(e); }}
+              />
+              {emailChecking && (
+                <small className="field-hint"><LoaderCircle className="spin" size={12} /> Verifying...</small>
+              )}
+              {emailError && (
+                <small className="field-error">{emailError}</small>
+              )}
             </label>
             <label>
               <span>{fields.whatsapp}</span>

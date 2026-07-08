@@ -5662,14 +5662,16 @@ html[dir="rtl"] .faq-list details p {
   font-size: 12px;
 }
 
-.admin-projects-page {
+/* ── Admin Dashboard ──────────────────────────────────────────────── */
+
+.admin-dashboard {
   width: min(100% - 40px, 1440px);
   min-height: 100dvh;
   margin: 0 auto;
   padding: 125px 0 60px;
 }
 
-.admin-projects-page > header {
+.admin-dashboard__header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -5677,18 +5679,19 @@ html[dir="rtl"] .faq-list details p {
   border-bottom: 1px solid var(--line);
 }
 
-.admin-projects-page > header small {
+.admin-dashboard__header small {
   color: #84867e;
   font-size: 10px;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
-.admin-projects-page > header h1 {
+.admin-dashboard__header h1 {
   margin: 8px 0 0;
-  font-size: 48px;
+  font-size: 42px;
 }
 
-.admin-projects-page > header button {
+.admin-refresh-btn {
   width: 42px;
   height: 42px;
   display: grid;
@@ -5696,7 +5699,202 @@ html[dir="rtl"] .faq-list details p {
   border: 1px solid var(--line);
   border-radius: 50%;
   background: #fff;
+  cursor: pointer;
 }
+
+/* ── Admin tabs ──────────────────────────────────────────────────── */
+
+.admin-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 20px 0 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-tabs button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 18px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #777971;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.admin-tabs button.is-active {
+  color: #20211e;
+  border-bottom-color: #20211e;
+}
+
+.admin-tabs button:hover:not(.is-active) {
+  color: #4f504a;
+}
+
+/* ── KPI grid ────────────────────────────────────────────────────── */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 28px 0;
+}
+
+.kpi-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.kpi-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #f4f4ef;
+  color: #5f615b;
+  flex-shrink: 0;
+}
+
+.kpi-icon--active { background: #fef3c7; color: #92400e; }
+.kpi-icon--success { background: #dcfce7; color: #166534; }
+.kpi-icon--accent { background: #ede9fe; color: #5b21b6; }
+
+.kpi-card strong {
+  display: block;
+  font-size: 26px;
+  line-height: 1.2;
+}
+
+.kpi-card small {
+  color: #84867e;
+  font-size: 11px;
+}
+
+/* ── Status badges ────────────────────────────────────────────────── */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.status-submitted { background: #f1f5f9; color: #475569; }
+.status-under_review { background: #fef3c7; color: #92400e; }
+.status-in_progress,
+.status-scope_clarification,
+.status-design_development { background: #dbeafe; color: #1e40af; }
+.status-sampling,
+.status-production,
+.status-quality_check,
+.status-packed,
+.status-shipped { background: #e0e7ff; color: #3730a3; }
+.status-completed { background: #dcfce7; color: #166534; }
+.status-on_hold { background: #fee2e2; color: #991b1b; }
+.status-paid { background: #dcfce7; color: #166534; }
+.status-pending_payment { background: #fef3c7; color: #92400e; }
+.status-cancelled { background: #fee2e2; color: #991b1b; }
+
+/* ── Data table ───────────────────────────────────────────────────── */
+
+.admin-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.admin-table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.admin-table-wrap th {
+  padding: 12px 16px;
+  text-align: start;
+  color: #84867e;
+  font-size: 10px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+  background: #fafaf7;
+}
+
+.admin-table-wrap td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0eb;
+}
+
+.admin-table-wrap tr:last-child td { border-bottom: 0; }
+
+.mono { font-family: "SF Mono", "Fira Code", monospace; font-size: 11px; }
+.empty-cell { text-align: center; color: #999; padding: 40px 16px !important; }
+
+/* ── Admin recent section ─────────────────────────────────────────── */
+
+.admin-recent { padding-top: 28px; }
+
+.admin-recent h2 {
+  margin: 0 0 14px;
+  font-size: 18px;
+}
+
+/* ── Order summary bar ────────────────────────────────────────────── */
+
+.order-summary-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 16px 18px;
+  margin: 20px 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 12px;
+  color: #71736c;
+}
+
+.order-summary-bar strong {
+  color: #20211e;
+}
+
+/* ── Admin state (loading / forbidden / empty) ────────────────────── */
+
+.admin-state {
+  min-height: 50dvh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  padding: 30px;
+  text-align: center;
+}
+
+.admin-state h1 {
+  margin: 0;
+  font-size: 34px;
+}
+
+.admin-state p {
+  max-width: 540px;
+  margin: 0;
+  color: #70726b;
+}
+
+/* ── Admin projects layout (reused from old AdminProjectsPage) ────── */
+/* These are kept for backward compatibility in the Projects tab */
 
 .admin-projects-layout {
   min-height: 620px;
@@ -5722,6 +5920,7 @@ html[dir="rtl"] .faq-list details p {
   border: 1px solid transparent;
   border-radius: 7px;
   background: transparent;
+  cursor: pointer;
 }
 
 .admin-projects-layout > aside button.is-active {
@@ -5736,9 +5935,7 @@ html[dir="rtl"] .faq-list details p {
   gap: 3px;
 }
 
-.admin-projects-layout > aside strong {
-  font-size: 12px;
-}
+.admin-projects-layout > aside strong { font-size: 12px; }
 
 .admin-projects-layout > aside small {
   max-width: 170px;
@@ -5765,15 +5962,8 @@ html[dir="rtl"] .faq-list details p {
   text-transform: uppercase;
 }
 
-.admin-project-summary h2 {
-  margin: 8px 0;
-  font-size: 35px;
-}
-
-.admin-project-summary > p {
-  color: #71736c;
-  font-size: 12px;
-}
+.admin-project-summary h2 { margin: 8px 0; font-size: 35px; }
+.admin-project-summary > p { color: #71736c; font-size: 12px; }
 
 .admin-project-summary dl {
   display: grid;
@@ -5782,9 +5972,7 @@ html[dir="rtl"] .faq-list details p {
   border-block: 1px solid var(--line);
 }
 
-.admin-project-summary dl > div {
-  padding: 18px 0;
-}
+.admin-project-summary dl > div { padding: 18px 0; }
 
 .admin-project-summary dt {
   margin-bottom: 6px;
@@ -5793,10 +5981,7 @@ html[dir="rtl"] .faq-list details p {
   text-transform: uppercase;
 }
 
-.admin-project-summary dd {
-  margin: 0;
-  font-size: 12px;
-}
+.admin-project-summary dd { margin: 0; font-size: 12px; }
 
 .admin-project-summary blockquote {
   margin: 0 0 28px;
@@ -5813,19 +5998,9 @@ html[dir="rtl"] .faq-list details p {
   gap: 16px;
 }
 
-.admin-projects-layout form label {
-  display: grid;
-  gap: 7px;
-}
-
-.admin-projects-layout form label > span {
-  color: #757770;
-  font-size: 10px;
-}
-
-.admin-projects-layout form .wide {
-  grid-column: 1 / -1;
-}
+.admin-projects-layout form label { display: grid; gap: 7px; }
+.admin-projects-layout form label > span { color: #757770; font-size: 10px; }
+.admin-projects-layout form .wide { grid-column: 1 / -1; }
 
 .admin-projects-layout form select,
 .admin-projects-layout form input,
@@ -5836,53 +6011,39 @@ html[dir="rtl"] .faq-list details p {
   background: #fff;
 }
 
-.admin-projects-layout form button {
-  justify-self: start;
+.admin-projects-layout form button { justify-self: start; }
+
+/* ── Field error (reused) ──────────────────────────────────────────── */
+
+.field-error {
+  color: #dc2626;
+  font-size: 11px;
+  margin: 3px 0 0;
 }
 
-.admin-projects-state {
-  min-height: 100dvh;
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 12px;
-  padding: 30px;
-  text-align: center;
-}
-
-.admin-projects-state h1 {
-  margin: 0;
-  font-size: 34px;
-}
-
-.admin-projects-state p {
-  max-width: 540px;
-  margin: 0;
-  color: #70726b;
-}
+/* ── Mobile responsive ────────────────────────────────────────────── */
 
 @media (max-width: 760px) {
-  .project-progress-card {
-    padding: 18px 14px;
-  }
-
-  .project-progress-card > header {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .admin-projects-page {
+  .admin-dashboard {
     width: min(100% - 24px, 1440px);
     padding-top: 105px;
   }
 
-  .admin-projects-page > header h1 {
-    font-size: 38px;
+  .admin-dashboard__header h1 { font-size: 34px; }
+
+  .admin-tabs { gap: 0; }
+  .admin-tabs button { padding: 10px 13px; font-size: 11px; }
+
+  .kpi-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
   }
 
-  .admin-projects-layout {
-    display: block;
-  }
+  .kpi-card { padding: 14px 12px; }
+  .kpi-card strong { font-size: 22px; }
+  .kpi-icon { width: 36px; height: 36px; }
+
+  .admin-projects-layout { display: block; }
 
   .admin-projects-layout > aside {
     display: flex;
@@ -5893,22 +6054,16 @@ html[dir="rtl"] .faq-list details p {
     border-bottom: 1px solid var(--line);
   }
 
-  .admin-projects-layout > aside button {
-    min-width: 230px;
-  }
-
-  .admin-projects-layout > main {
-    padding: 26px 0;
-  }
+  .admin-projects-layout > aside button { min-width: 230px; }
+  .admin-projects-layout > main { padding: 26px 0; }
 
   .admin-project-summary dl,
-  .admin-projects-layout form {
-    grid-template-columns: 1fr;
-  }
+  .admin-projects-layout form { grid-template-columns: 1fr; }
 
-  .admin-projects-layout form .wide {
-    grid-column: auto;
-  }
+  .admin-projects-layout form .wide { grid-column: auto; }
+
+  .project-progress-card { padding: 18px 14px; }
+  .project-progress-card > header { flex-direction: column; gap: 12px; }
 }
 
 .designer-page {
