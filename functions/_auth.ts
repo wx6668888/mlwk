@@ -1,6 +1,8 @@
 export interface AuthEnv {
   SUPABASE_URL?: string;
   SUPABASE_ANON_KEY?: string;
+  VITE_SUPABASE_URL?: string;
+  VITE_SUPABASE_ANON_KEY?: string;
   ADMIN_USER_IDS?: string;
 }
 
@@ -16,13 +18,15 @@ export async function requireUser(
 ): Promise<AuthUser | null> {
   const authorization = request.headers.get("Authorization");
   if (!authorization?.startsWith("Bearer ")) return null;
-  if (!env.SUPABASE_URL || !env.SUPABASE_ANON_KEY) return null;
+  const supabaseUrl = env.SUPABASE_URL || env.VITE_SUPABASE_URL;
+  const supabaseKey = env.SUPABASE_ANON_KEY || env.VITE_SUPABASE_ANON_KEY;
+  if (!supabaseUrl || !supabaseKey) return null;
 
   const response = await fetch(
-    `${env.SUPABASE_URL.replace(/\/+$/, "")}/auth/v1/user`,
+    `${supabaseUrl.replace(/\/+$/, "")}/auth/v1/user`,
     {
       headers: {
-        apikey: env.SUPABASE_ANON_KEY,
+        apikey: supabaseKey,
         Authorization: authorization,
       },
     },
