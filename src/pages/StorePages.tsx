@@ -41,6 +41,7 @@ import { track } from "../lib/analytics";
 import { useStore } from "../store/StoreContext";
 import { getStoreCopy } from "../store/storeCopy";
 import type { Locale } from "../content";
+import ProductViewer3D, { shapeFromSlug } from "../components/ProductViewer3D";
 
 const categories: ProductCategory[] = [
   "furniture",
@@ -503,7 +504,11 @@ export function ProductPage({ locale }: { locale: Locale }) {
       </Link>
       <div className="product-detail">
         <div className="product-detail__image">
-          <img src={product.image} alt={product.name[locale]} />
+          {product.category === "furniture" ? (
+            <ProductViewer3D shape={shapeFromSlug(product.slug)} finish={finish} />
+          ) : (
+            <img src={product.image} alt={product.name[locale]} />
+          )}
           <PreviewLabel>{copy.preview}</PreviewLabel>
         </div>
         <div className="product-detail__copy">

@@ -22,6 +22,7 @@
   RotateCw,
   Save,
   Send,
+  ShoppingBag,
   SlidersHorizontal,
   SquareDashedMousePointer,
   Trash2,
@@ -837,6 +838,14 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
           >
             <Send size={17} />
             <span>{copy.quote}</span>
+          </Link>
+          <Link
+            to={`/${locale}/shop?category=furniture`}
+            className="designer-shop-btn"
+            title="Browse furniture"
+          >
+            <ShoppingBag size={17} />
+            <span className="designer-desktop-action">Shop Furniture</span>
           </Link>
         </div>
       </header>
