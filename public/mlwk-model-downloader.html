@@ -1,0 +1,37 @@
+javascript:(function(){
+/* MLWK 3D Model Downloader — drag this to your bookmarks bar
+   Usage: browse any model page on Open3dmodel/3dzip/All3DFree, click bookmark, it copies the download URL */
+const d=document;
+let links=[];
+
+// Open3dmodel: find download.php links
+d.querySelectorAll('a[href*="download.php"]').forEach(a=>links.push({site:'open3dmodel',url:a.href,name:a.closest('article')?.querySelector('h2')?.textContent?.trim()||a.href.split('id=')[1]}));
+
+// 3dzip: find download buttons
+d.querySelectorAll('a[href*="dl="], a.download-btn, .download-link a').forEach(a=>links.push({site:'3dzip',url:a.href,name:a.textContent.trim().slice(0,40)}));
+
+// All3DFree: find zip/rar links
+d.querySelectorAll('a[href$=".zip"],a[href$=".rar"],a[href*="download"]').forEach(a=>links.push({site:'all3dfree',url:a.href,name:a.textContent.trim().slice(0,40)}));
+
+if(links.length===0){
+  // Try finding any download-looking link
+  d.querySelectorAll('a').forEach(a=>{if(/download|\.zip|\.rar|\.max|\.obj|\.fbx/i.test(a.href))links.push({site:'?',url:a.href,name:a.textContent.trim().slice(0,40)})});
+}
+
+if(links.length===0){alert('No download links found on this page.\nTry navigating to a specific model page first.');return;}
+
+let txt='';
+links.forEach((l,i)=>{txt+=(i+1)+'. ['+l.site+'] '+l.name+'\n   '+l.url+'\n\n'});
+
+// Copy to clipboard
+navigator.clipboard.writeText(txt).then(()=>{
+  alert('Copied '+links.length+' download link(s)!\n\nPaste into the project README or send to your developer.');
+}).catch(()=>{
+  // Fallback: show in a textarea
+  const ta=d.createElement('textarea');
+  ta.value=txt;ta.style.cssText='position:fixed;top:10%;left:10%;width:80%;height:80%;z-index:99999;background:#fff;border:2px solid #333;padding:20px;font:12px monospace';
+  const btn=d.createElement('button');btn.textContent='Close';btn.style.cssText='position:fixed;top:5%;right:11%;z-index:100000';
+  btn.onclick=()=>{ta.remove();btn.remove()};
+  d.body.append(ta,btn);
+});
+})();
