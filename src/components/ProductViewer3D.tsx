@@ -36,10 +36,10 @@ export default function ProductViewer3D({ shape, finish, className = "" }: Props
     const w = el.clientWidth || 400, h = el.clientHeight || 360;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf2efe8);
+    scene.background = new THREE.Color(0xe8e2d8);
 
     const camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 20);
-    camera.position.set(2.4, 1.8, 2.8);
+    camera.position.set(2.0, 1.5, 2.2);
     camera.lookAt(0, 0.65, 0);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -81,7 +81,7 @@ export default function ProductViewer3D({ shape, finish, className = "" }: Props
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 1.5 / maxDim;
+        const scale = 1.8 / maxDim;
         model.scale.setScalar(scale);
         model.position.set(-center.x * scale, -center.y * scale + 0.4, -center.z * scale);
         model.traverse((child: any) => {
@@ -102,7 +102,7 @@ export default function ProductViewer3D({ shape, finish, className = "" }: Props
     ctrl.target.set(0, 0.65, 0);
     ctrl.minPolarAngle = 0.2; ctrl.maxPolarAngle = Math.PI / 2 + 0.3;
     ctrl.minDistance = 1.2; ctrl.maxDistance = 6;
-    ctrl.autoRotate = true; ctrl.autoRotateSpeed = 0.5;
+    ctrl.autoRotate = true; ctrl.autoRotateSpeed = 0.8;
     ctrl.update();
 
     let id: number;
