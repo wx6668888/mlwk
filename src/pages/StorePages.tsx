@@ -544,8 +544,16 @@ export function ProductPage({ locale }: { locale: Locale }) {
   const [quantity, setQuantity] = useState(1);
   const [saved, setSaved] = useState(false);
   const [added, setAdded] = useState(false);
+  const [activeAngle, setActiveAngle] = useState(0);
 
   if (!product) return <Navigate replace to={`/${locale}/shop`} />;
+
+  // Multi-angle gallery
+  const ANGLES = ['', '_three-quarter', '_side-profile', '_top-down', '_detail'];
+  const galleryImages = ANGLES.map((suffix) => ({
+    src: `/media/store/${product.slug}${suffix}.webp`,
+    label: suffix ? suffix.replace('_',' ').replace('-',' ') : 'front',
+  }));
 
   const toggleFavorite = async () => {
     if (!user) {
@@ -573,7 +581,25 @@ export function ProductPage({ locale }: { locale: Locale }) {
       </Link>
       <div className="product-detail">
         <div className="product-detail__image">
-          <img src={product.image} alt={product.name[locale]} />
+          <div className="product-gallery">
+            <img
+              src={galleryImages[activeAngle].src}
+              alt={product.name[locale]}
+              loading="eager"
+            />
+            <nav className="product-gallery__thumbs">
+              {galleryImages.map((img, i) => (
+                <button
+                  key={img.label}
+                  className={activeAngle === i ? 'is-active' : ''}
+                  onClick={() => setActiveAngle(i)}
+                  aria-label={img.label}
+                >
+                  <img src={img.src} alt={img.label} loading="lazy" />
+                </button>
+              ))}
+            </nav>
+          </div>
           <PreviewLabel>{copy.preview}</PreviewLabel>
         </div>
         <div className="product-detail__copy">
