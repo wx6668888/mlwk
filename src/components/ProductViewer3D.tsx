@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 export type ProductShape = "table" | "chair" | "shelf" | "mirror" | "stand" | "desk" | "bench";
 
@@ -53,8 +54,12 @@ export default function ProductViewer3D({ shape, finish, className = "" }: Props
     key.position.set(5, 8, 6); key.castShadow = true;
     key.shadow.mapSize.set(1024, 1024); key.shadow.camera.near = 0.5; key.shadow.camera.far = 25;
     scene.add(key);
-    scene.add(new THREE.DirectionalLight(0xd8d0e8, 1.0).translateX(-3).translateY(2).translateZ(-2));
-    scene.add(new THREE.DirectionalLight(0xffffff, 0.6).translateZ(-4));
+    const fillLight = new THREE.DirectionalLight(0xd8d0e8, 1.0);
+    fillLight.position.set(-3, 2, -2);
+    scene.add(fillLight);
+    const rimLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    rimLight.position.set(0, 1, -4);
+    scene.add(rimLight);
 
     // Ground
     const ground = new THREE.Mesh(
@@ -92,7 +97,6 @@ export default function ProductViewer3D({ shape, finish, className = "" }: Props
     );
 
     // Controls
-    const { OrbitControls } = require("three/examples/jsm/controls/OrbitControls.js");
     const ctrl = new OrbitControls(camera, renderer.domElement);
     ctrl.enableDamping = true; ctrl.dampingFactor = 0.08;
     ctrl.target.set(0, 0.65, 0);

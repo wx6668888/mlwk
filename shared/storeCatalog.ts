@@ -44,7 +44,7 @@ const product = (
   description,
   finishes,
   specs,
-  image: `/media/store/${slug}.svg`,
+  image: `/media/store/${slug}.webp`,
 });
 
 export const storeProducts: StoreProduct[] = [
