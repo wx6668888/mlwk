@@ -8,7 +8,18 @@ export type ProductCategory =
   | "interiors"
   | "lighting"
   | "samples"
-  | "furniture"
+  | "dining-table"
+  | "coffee-table"
+  | "console-table"
+  | "desk"
+  | "chair"
+  | "stool"
+  | "lounge-chair"
+  | "bookshelf"
+  | "media-console"
+  | "mirror"
+  | "coat-stand"
+  | "bench"
   | "textiles"
   | "decor";
 
@@ -317,7 +328,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F01",
     "solid-oak-side-table",
-    "furniture",
+    "coffee-table",
     580,
     {
       en: "Solid Oak Side Table",
@@ -339,7 +350,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F02",
     "upholstered-bench",
-    "furniture",
+    "bench",
     890,
     {
       en: "Upholstered Bedroom Bench",
@@ -361,7 +372,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F03",
     "wall-shelf-system",
-    "furniture",
+    "bookshelf",
     420,
     {
       en: "Wall-Mounted Shelf System",
@@ -385,7 +396,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F04",
     "live-edge-dining-table",
-    "furniture",
+    "dining-table",
     2850,
     { en: "Live-Edge Walnut Dining Table", ar: "طاولة طعام من خشب الجوز", zh: "自然边胡桃木餐桌", de: "Baumkanten-Walnuss-Esstisch", fr: "Table en noyer à bord vif" },
     { en: "Six-seater in solid black walnut with hand-finished live edge and powder-coated steel legs.", ar: "طاولة بستة مقاعد من خشب الجوز الأسود.", zh: "六人位实心黑胡桃木，手工打磨自然边，粉末喷涂钢腿。", de: "6-sitziger Esstisch aus massivem Schwarznussbaum.", fr: "Table 6 places en noyer noir massif." },
@@ -395,7 +406,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F05",
     "round-coffee-table",
-    "furniture",
+    "coffee-table",
     1680,
     { en: "Sculptural Round Coffee Table", ar: "طاولة قهوة دائرية", zh: "雕塑感圆形茶几", de: "Skulpturaler Couchtisch", fr: "Table basse ronde" },
     { en: "1100mm round table in solid ash with radiused edge and three intersecting legs.", ar: "طاولة قهوة قطر 1100 مم من خشب الدردار.", zh: "直径1100mm白蜡木圆几，柔弧边缘，三足交错。", de: "Runder Tisch Ø1100mm aus Eschen-Massivholz.", fr: "Table ronde Ø1100mm en frêne massif." },
@@ -405,7 +416,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F06",
     "console-entry-table",
-    "furniture",
+    "console-table",
     1240,
     { en: "Floating Console Table", ar: "طاولة كونسول", zh: "悬浮玄关桌", de: "Schwebende Konsole", fr: "Console flottante" },
     { en: "Wall-mounted solid oak console with shadow gap and cable management.", ar: "كونسول جداري من خشب البلوط.", zh: "壁挂实心橡木玄关桌，阴影缝，内置走线。", de: "Wandmontierte Konsole aus Massiv-Eiche.", fr: "Console murale en chêne massif." },
@@ -415,7 +426,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F07",
     "executive-desk",
-    "furniture",
+    "desk",
     3200,
     { en: "Executive Writing Desk", ar: "مكتب تنفيذي", zh: "行政写字台", de: "Schreibtisch Executive", fr: "Bureau de direction" },
     { en: "Generous walnut desk with full-grain leather inlay, soft-close drawer and brass details.", ar: "مكتب من خشب الجوز مع ترصيع جلد طبيعي.", zh: "宽绰胡桃木写字台，头层牛皮镶嵌，黄铜细节。", de: "Großzügiger Schreibtisch aus Walnuss.", fr: "Bureau spacieux en noyer avec incrustation cuir." },
@@ -425,7 +436,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F08",
     "dining-chair-set",
-    "furniture",
+    "chair",
     1560,
     { en: "Curved Back Dining Chair (Set of 2)", ar: "كرسي طعام (زوج)", zh: "弧背餐椅（2件套）", de: "Esszimmerstuhl (2er-Set)", fr: "Chaise salle à manger (lot de 2)" },
     { en: "Two solid-ash chairs with steam-bent backrest and upholstered seat pad.", ar: "كرسيان من خشب الدردار بظهر منحنٍ.", zh: "两件白蜡木餐椅，蒸汽弯曲靠背，软包坐垫。", de: "Zwei Eschen-Stühle mit dampfgebogener Lehne.", fr: "Deux chaises en frêne au dossier cintré vapeur." },
@@ -435,7 +446,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F09",
     "lounge-armchair",
-    "furniture",
+    "lounge-chair",
     1950,
     { en: "Lounge Armchair", ar: "كرسي استرخاء", zh: "休闲扶手椅", de: "Loungesessel", fr: "Fauteuil de lounge" },
     { en: "Low-slung armchair with solid oak frame, feather-wrapped foam seat and wide armrests.", ar: "كرسي منخفض بهيكل بلوط صلب.", zh: "低座深扶手椅，橡木框架，羽绒包裹坐垫。", de: "Tiefer Sessel mit Eichengestell.", fr: "Fauteuil bas à structure chêne massif." },
@@ -445,7 +456,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F10",
     "counter-stool-pair",
-    "furniture",
+    "stool",
     890,
     { en: "Counter Stool Pair", ar: "زوج كراسي بار", zh: "吧台凳套装", de: "Tresenhocker-Paar", fr: "Tabourets de comptoir" },
     { en: "Two counter-height stools in solid beech with sculpted seat and brass footrest.", ar: "كرسيان بارتفاع الطاولة من خشب الزان.", zh: "两件吧台高凳，实心榉木雕刻座面，黄铜脚踏。", de: "Zwei Tresenhocker aus massiver Buche.", fr: "Deux tabourets en hêtre massif." },
@@ -455,7 +466,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F11",
     "modular-bookshelf",
-    "furniture",
+    "bookshelf",
     2200,
     { en: "Modular Bookshelf System", ar: "نظام رفوف كتب", zh: "模块化书架系统", de: "Modulares Regalsystem", fr: "Système d'étagères modulaires" },
     { en: "Floor-to-ceiling shelving in solid oak with adjustable shelves and soft-close cabinet base.", ar: "نظام رفوف من الأرض إلى السقف من خشب البلوط.", zh: "落地橡木书架，层板可调，底部缓冲柜门。", de: "Bodenhohes Regalsystem aus Massiv-Eiche.", fr: "Étagères modulaires en chêne massif." },
@@ -465,7 +476,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F12",
     "media-console",
-    "furniture",
+    "media-console",
     2450,
     { en: "Media Console", ar: "وحدة تلفزيون", zh: "影音中柜", de: "TV-Lowboard", fr: "Meuble TV" },
     { en: "Wide low console in solid walnut with fluted sliding doors and ventilated shelves.", ar: "كونسول منخفض من خشب الجوز بأبواب منزلقة.", zh: "宽幅胡桃木中柜，条槽推拉门，通风层板。", de: "Breites Lowboard aus Walnuss.", fr: "Meuble TV bas en noyer massif." },
@@ -475,7 +486,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F13",
     "full-length-mirror",
-    "furniture",
+    "mirror",
     780,
     { en: "Architectural Floor Mirror", ar: "مرآة أرضية", zh: "建筑感落地镜", de: "Standspiegel", fr: "Miroir de sol" },
     { en: "Full-length mirror with solid oak frame, hidden tilt mechanism and weighted base.", ar: "مرآة بطول كامل بإطار بلوط صلب.", zh: "全身落地镜，实心橡木边框，隐藏倾角，加重底座。", de: "Ganzkörperspiegel mit Eichenrahmen.", fr: "Miroir en pied cadre chêne massif." },
@@ -485,7 +496,7 @@ export const storeProducts: StoreProduct[] = [
   product(
     "MLWK-F14",
     "coat-rack-stand",
-    "furniture",
+    "coat-stand",
     540,
     { en: "Valet Coat Stand", ar: "حامل معاطف", zh: "衣帽架", de: "Garderobenständer", fr: "Porte-manteaux" },
     { en: "Sculptural stand in solid ash with six rotating brass hooks and marble base.", ar: "حامل معاطف نحتي من خشب الدردار.", zh: "雕塑感白蜡木衣帽架，六旋转黄铜钩，大理石底座。", de: "Skulpturaler Ständer aus Eschenholz.", fr: "Porte-manteaux sculptural en frêne." },

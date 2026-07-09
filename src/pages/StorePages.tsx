@@ -45,7 +45,18 @@ import ProductViewer3D, { shapeFromSlug } from "../components/ProductViewer3D";
 
 
 const categories: ProductCategory[] = [
-  "furniture",
+  "dining-table",
+  "coffee-table",
+  "console-table",
+  "desk",
+  "chair",
+  "stool",
+  "lounge-chair",
+  "bookshelf",
+  "media-console",
+  "mirror",
+  "coat-stand",
+  "bench",
   "textiles",
   "decor",
   "pulls",
@@ -64,9 +75,29 @@ type CategoryGroup = {
 
 const categoryGroups: CategoryGroup[] = [
   {
-    key: "home",
-    label: { en: "Home Goods", zh: "成品家居", ar: "السلع المنزلية", de: "Wohnwaren", fr: "Décoration" },
-    items: ["furniture", "textiles", "decor"],
+    key: "tables",
+    label: { en: "Tables", zh: "桌几", ar: "طاولات", de: "Tische", fr: "Tables" },
+    items: ["dining-table", "coffee-table", "console-table"],
+  },
+  {
+    key: "seating",
+    label: { en: "Seating", zh: "座椅", ar: "مقاعد", de: "Sitzmöbel", fr: "Sièges" },
+    items: ["chair", "stool", "lounge-chair", "bench"],
+  },
+  {
+    key: "storage",
+    label: { en: "Storage & Surfaces", zh: "储物与台面", ar: "تخزين وأسطح", de: "Aufbewahrung", fr: "Rangement" },
+    items: ["bookshelf", "media-console", "desk"],
+  },
+  {
+    key: "accents",
+    label: { en: "Mirrors & Accents", zh: "镜子与配饰", ar: "مرايا وإكسسوارات", de: "Spiegel & Akzente", fr: "Miroirs & accents" },
+    items: ["mirror", "coat-stand"],
+  },
+  {
+    key: "soft",
+    label: { en: "Soft Furnishings", zh: "软装", ar: "مفروشات ناعمة", de: "Textilien", fr: "Textiles" },
+    items: ["textiles", "decor"],
   },
   {
     key: "millwork",
@@ -75,21 +106,59 @@ const categoryGroups: CategoryGroup[] = [
   },
   {
     key: "interior",
-    label: { en: "Interior", zh: "室内配件", ar: "الداخلية", de: "Interieur", fr: "Intérieur" },
+    label: { en: "Interior Fittings", zh: "室内配件", ar: "تجهيزات داخلية", de: "Innenausbau", fr: "Aménagement" },
     items: ["interiors", "samples"],
   },
 ];
 
 const categoryMeta: Record<ProductCategory, { icon: string; description: Record<string, string> }> = {
-  furniture: {
+  "dining-table": {
+    icon: "🍽",
+    description: { en: "Solid-wood dining tables", zh: "实木餐桌", ar: "طاولات طعام", de: "Massivholz-Esstische", fr: "Tables à manger" },
+  },
+  "coffee-table": {
+    icon: "☕",
+    description: { en: "Coffee and side tables", zh: "茶几与边几", ar: "طاولات قهوة", de: "Couchtische", fr: "Tables basses" },
+  },
+  "console-table": {
+    icon: "🏠",
+    description: { en: "Entryway console tables", zh: "玄关桌", ar: "طاولات كونسول", de: "Konsolentische", fr: "Consoles" },
+  },
+  "desk": {
+    icon: "✏",
+    description: { en: "Writing desks and workstations", zh: "写字台", ar: "مكاتب", de: "Schreibtische", fr: "Bureaux" },
+  },
+  "chair": {
     icon: "🪑",
-    description: {
-      en: "Ready-to-ship pieces in oak, ash and walnut",
-      zh: "实木橡木、白蜡与胡桃，直接发货",
-      ar: "قطع جاهزة للشحن من خشب البلوط والدردار",
-      de: "Versandfertige Stücke in Eiche, Esche und Nuss",
-      fr: "Pièces prêtes à expédier en chêne, frêne et noyer",
-    },
+    description: { en: "Dining and accent chairs", zh: "餐椅", ar: "كراسي", de: "Stühle", fr: "Chaises" },
+  },
+  "stool": {
+    icon: "🍸",
+    description: { en: "Counter and bar stools", zh: "吧台凳", ar: "كراسي بار", de: "Hocker", fr: "Tabourets" },
+  },
+  "lounge-chair": {
+    icon: "🛋",
+    description: { en: "Lounge and armchairs", zh: "休闲椅", ar: "كراسي استرخاء", de: "Sessel", fr: "Fauteuils" },
+  },
+  "bookshelf": {
+    icon: "📚",
+    description: { en: "Bookshelves and wall systems", zh: "书架", ar: "رفوف كتب", de: "Bücherregale", fr: "Bibliothèques" },
+  },
+  "media-console": {
+    icon: "📺",
+    description: { en: "TV units and media consoles", zh: "影音柜", ar: "وحدات تلفزيون", de: "TV-Möbel", fr: "Meubles TV" },
+  },
+  "mirror": {
+    icon: "🪞",
+    description: { en: "Floor and wall mirrors", zh: "落地镜", ar: "مرايا", de: "Spiegel", fr: "Miroirs" },
+  },
+  "coat-stand": {
+    icon: "🧥",
+    description: { en: "Coat stands and valets", zh: "衣帽架", ar: "حاملات معاطف", de: "Garderoben", fr: "Porte-manteaux" },
+  },
+  "bench": {
+    icon: "🪑",
+    description: { en: "Bedroom and entry benches", zh: "长凳", ar: "مقاعد", de: "Bänke", fr: "Bancs" },
   },
   textiles: {
     icon: "🧵",
@@ -173,7 +242,7 @@ const categoryMeta: Record<ProductCategory, { icon: string; description: Record<
   },
 };
 
-const newCategories = new Set<ProductCategory>(["furniture", "textiles", "decor"]);
+const newCategories = new Set<ProductCategory>(["dining-table","coffee-table","console-table","desk","chair","stool","lounge-chair","bookshelf","media-console","mirror","coat-stand","bench","textiles","decor"]);
 const countries = [
   ["US", "United States"],
   ["CA", "Canada"],
@@ -505,7 +574,7 @@ export function ProductPage({ locale }: { locale: Locale }) {
       </Link>
       <div className="product-detail">
         <div className="product-detail__image">
-          {product.category === "furniture" ? (
+          {product.category.startsWith("dining-") || product.category === "coffee-table" || product.category === "console-table" || product.category === "desk" || product.category === "chair" || product.category === "stool" || product.category === "lounge-chair" || product.category === "bookshelf" || product.category === "media-console" || product.category === "mirror" || product.category === "coat-stand" || product.category === "bench" ? (
             <ProductViewer3D shape={shapeFromSlug(product.slug)} finish={finish} />
           ) : (
             <img src={product.image} alt={product.name[locale]} />
