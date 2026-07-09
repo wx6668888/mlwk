@@ -44,7 +44,7 @@ const product = (
   description,
   finishes,
   specs,
-  image: `/media/store/${slug}.webp`,
+  image: `/media/store/${slug}.svg`,
 });
 
 export const storeProducts: StoreProduct[] = [
@@ -334,7 +334,7 @@ export const storeProducts: StoreProduct[] = [
       fr: "Table compacte en chêne blanc massif aux pieds effilés.",
     },
     ["Natural oak", "Smoked oak", "Oiled walnut"],
-    [["Top", "400 × 400 mm"], ["Height", "520 mm"], ["Material", "Solid white oak"]],
+    [["Top", "400 × 400 mm"], ["Height", "520 mm"], ["Material", "Solid white oak"], ["Finish", "Hand-sanded, oiled"], ["Joinery", "Blind mortise & tenon"], ["Lead time", "4–6 weeks"], ["Origin", "Made in China"], ["Assembly", "Fully assembled"]],
   ),
   product(
     "MLWK-F02",
@@ -356,7 +356,7 @@ export const storeProducts: StoreProduct[] = [
       fr: "Banc bas avec assise mousse et duvet, base en chêne massif.",
     },
     ["Stone linen", "Dusty sage", "Charcoal bouclé"],
-    [["Size", "1200 × 380 mm"], ["Height", "420 mm"], ["Base", "Solid oak"]],
+    [["Size", "1200 × 380 mm"], ["Height", "420 mm"], ["Base", "Solid oak"], ["Upholstery", "Foam + duck feather"], ["Fabric", "Belgian linen / wool boucle"], ["Leg finish", "Tapered, hand-oiled"], ["Lead time", "6–8 weeks"], ["Origin", "Made in China"]],
   ),
   product(
     "MLWK-F03",
@@ -378,7 +378,7 @@ export const storeProducts: StoreProduct[] = [
       fr: "Trois étagères en frêne avec platines murales dissimulées.",
     },
     ["Bleached ash", "Natural ash", "Oiled walnut"],
-    [["Shelves", "3 × 900 mm"], ["Depth", "220 mm"], ["Load", "15 kg each"]],
+    [["Shelves", "3 × 900 mm"], ["Depth", "220 mm"], ["Load", "15 kg each"], ["Bracket", "Concealed steel"], ["Edge", "2mm shadow gap"], ["Finish", "Hand-sanded, oiled"], ["Lead time", "4–6 weeks"], ["Origin", "Made in China"]],
   ),
 
   /* ── Furniture — dining ──────────────────────────────────── */
@@ -390,7 +390,7 @@ export const storeProducts: StoreProduct[] = [
     { en: "Live-Edge Walnut Dining Table", ar: "طاولة طعام من خشب الجوز", zh: "自然边胡桃木餐桌", de: "Baumkanten-Walnuss-Esstisch", fr: "Table en noyer à bord vif" },
     { en: "Six-seater in solid black walnut with hand-finished live edge and powder-coated steel legs.", ar: "طاولة بستة مقاعد من خشب الجوز الأسود.", zh: "六人位实心黑胡桃木，手工打磨自然边，粉末喷涂钢腿。", de: "6-sitziger Esstisch aus massivem Schwarznussbaum.", fr: "Table 6 places en noyer noir massif." },
     ["Natural walnut", "Smoked walnut", "Oiled walnut"],
-    [["Size", "2000 × 950 mm"], ["Height", "760 mm"], ["Seats", "6"], ["Material", "Solid black walnut"]],
+    [["Size", "2000 × 950 mm"], ["Height", "760 mm"], ["Seats", "6"], ["Material", "Solid black walnut"], ["Edge", "Live-edge, hand-finished"], ["Legs", "Powder-coated steel"], ["Weight", "68 kg"], ["Lead time", "8–10 weeks"], ["Origin", "Made in China"]],
   ),
   product(
     "MLWK-F05",
@@ -400,7 +400,7 @@ export const storeProducts: StoreProduct[] = [
     { en: "Sculptural Round Coffee Table", ar: "طاولة قهوة دائرية", zh: "雕塑感圆形茶几", de: "Skulpturaler Couchtisch", fr: "Table basse ronde" },
     { en: "1100mm round table in solid ash with radiused edge and three intersecting legs.", ar: "طاولة قهوة قطر 1100 مم من خشب الدردار.", zh: "直径1100mm白蜡木圆几，柔弧边缘，三足交错。", de: "Runder Tisch Ø1100mm aus Eschen-Massivholz.", fr: "Table ronde Ø1100mm en frêne massif." },
     ["Natural ash", "Bleached ash", "Oiled walnut"],
-    [["Diameter", "1100 mm"], ["Height", "380 mm"], ["Material", "Solid ash"]],
+    [["Diameter", "1100 mm"], ["Height", "380 mm"], ["Material", "Solid ash"], ["Top thickness", "35 mm"], ["Edge", "Soft radius"], ["Legs", "3 intersecting solid wood"], ["Lead time", "6–8 weeks"], ["Origin", "Made in China"]],
   ),
   product(
     "MLWK-F06",
@@ -410,7 +410,7 @@ export const storeProducts: StoreProduct[] = [
     { en: "Floating Console Table", ar: "طاولة كونسول", zh: "悬浮玄关桌", de: "Schwebende Konsole", fr: "Console flottante" },
     { en: "Wall-mounted solid oak console with shadow gap and cable management.", ar: "كونسول جداري من خشب البلوط.", zh: "壁挂实心橡木玄关桌，阴影缝，内置走线。", de: "Wandmontierte Konsole aus Massiv-Eiche.", fr: "Console murale en chêne massif." },
     ["Natural oak", "Smoked oak", "Charcoal"],
-    [["Size", "1400 × 350 mm"], ["Height", "820 mm"], ["Material", "Solid oak"]],
+    [["Size", "1400 × 350 mm"], ["Height", "820 mm"], ["Material", "Solid oak"], ["Mount", "Wall-mounted, steel bracket"], ["Detail", "10mm shadow gap"], ["Management", "Integrated cable port"], ["Lead time", "4–6 weeks"], ["Origin", "Made in China"]],
   ),
   product(
     "MLWK-F07",
@@ -420,7 +420,7 @@ export const storeProducts: StoreProduct[] = [
     { en: "Executive Writing Desk", ar: "مكتب تنفيذي", zh: "行政写字台", de: "Schreibtisch Executive", fr: "Bureau de direction" },
     { en: "Generous walnut desk with full-grain leather inlay, soft-close drawer and brass details.", ar: "مكتب من خشب الجوز مع ترصيع جلد طبيعي.", zh: "宽绰胡桃木写字台，头层牛皮镶嵌，黄铜细节。", de: "Großzügiger Schreibtisch aus Walnuss.", fr: "Bureau spacieux en noyer avec incrustation cuir." },
     ["Natural walnut", "Smoked walnut"],
-    [["Size", "1800 × 800 mm"], ["Height", "750 mm"], ["Inlay", "Full-grain leather"]],
+    [["Size", "1800 × 800 mm"], ["Height", "750 mm"], ["Inlay", "Full-grain leather"], ["Drawer", "Soft-close, dovetailed"], ["Legs", "Solid walnut, tapered"], ["Details", "Solid brass pulls"], ["Lead time", "8–10 weeks"], ["Origin", "Made in China"]],
   ),
   product(
     "MLWK-F08",
@@ -430,7 +430,7 @@ export const storeProducts: StoreProduct[] = [
     { en: "Curved Back Dining Chair (Set of 2)", ar: "كرسي طعام (زوج)", zh: "弧背餐椅（2件套）", de: "Esszimmerstuhl (2er-Set)", fr: "Chaise salle à manger (lot de 2)" },
     { en: "Two solid-ash chairs with steam-bent backrest and upholstered seat pad.", ar: "كرسيان من خشب الدردار بظهر منحنٍ.", zh: "两件白蜡木餐椅，蒸汽弯曲靠背，软包坐垫。", de: "Zwei Eschen-Stühle mit dampfgebogener Lehne.", fr: "Deux chaises en frêne au dossier cintré vapeur." },
     ["Natural ash / linen", "Smoked ash / charcoal", "Walnut / camel"],
-    [["Height", "820 mm"], ["Seat height", "460 mm"], ["Material", "Solid ash"]],
+    [["Height", "820 mm"], ["Seat height", "460 mm"], ["Width", "480 mm"], ["Material", "Solid ash"], ["Backrest", "Steam-bent curved"], ["Seat", "Upholstered pad"], ["Set", "2 chairs"], ["Lead time", "6–8 weeks"], ["Origin", "Made in China"]],
   ),
   product(
     "MLWK-F09",
@@ -440,7 +440,7 @@ export const storeProducts: StoreProduct[] = [
     { en: "Lounge Armchair", ar: "كرسي استرخاء", zh: "休闲扶手椅", de: "Loungesessel", fr: "Fauteuil de lounge" },
     { en: "Low-slung armchair with solid oak frame, feather-wrapped foam seat and wide armrests.", ar: "كرسي منخفض بهيكل بلوط صلب.", zh: "低座深扶手椅，橡木框架，羽绒包裹坐垫。", de: "Tiefer Sessel mit Eichengestell.", fr: "Fauteuil bas à structure chêne massif." },
     ["Bouclé cream", "Dusty olive", "Charcoal wool"],
-    [["Width", "780 mm"], ["Depth", "820 mm"], ["Seat height", "400 mm"], ["Frame", "Solid oak"]],
+    [["Width", "780 mm"], ["Depth", "820 mm"], ["Seat height", "400 mm"], ["Frame", "Solid oak"], ["Seat", "Feather-wrapped foam"], ["Armrests", "Wide, contoured"], ["Fabric", "Boucle / wool / linen"], ["Lead time", "8–10 weeks"], ["Origin", "Made in China"]],
   ),
   product(
     "MLWK-F10",
@@ -450,7 +450,7 @@ export const storeProducts: StoreProduct[] = [
     { en: "Counter Stool Pair", ar: "زوج كراسي بار", zh: "吧台凳套装", de: "Tresenhocker-Paar", fr: "Tabourets de comptoir" },
     { en: "Two counter-height stools in solid beech with sculpted seat and brass footrest.", ar: "كرسيان بارتفاع الطاولة من خشب الزان.", zh: "两件吧台高凳，实心榉木雕刻座面，黄铜脚踏。", de: "Zwei Tresenhocker aus massiver Buche.", fr: "Deux tabourets en hêtre massif." },
     ["Natural beech", "Ebonised beech"],
-    [["Height", "660 mm"], ["Seat", "380 × 350 mm"], ["Material", "Solid beech"]],
+    [["Height", "660 mm"], ["Seat", "380 × 350 mm"], ["Material", "Solid beech"], ["Seat shape", "Sculpted, ergonomic"], ["Footrest", "Solid brass"], ["Feet", "Hidden floor protectors"], ["Set", "2 stools"], ["Lead time", "4–6 weeks"], ["Origin", "Made in China"]],
   ),
   product(
     "MLWK-F11",
@@ -460,7 +460,7 @@ export const storeProducts: StoreProduct[] = [
     { en: "Modular Bookshelf System", ar: "نظام رفوف كتب", zh: "模块化书架系统", de: "Modulares Regalsystem", fr: "Système d'étagères modulaires" },
     { en: "Floor-to-ceiling shelving in solid oak with adjustable shelves and soft-close cabinet base.", ar: "نظام رفوف من الأرض إلى السقف من خشب البلوط.", zh: "落地橡木书架，层板可调，底部缓冲柜门。", de: "Bodenhohes Regalsystem aus Massiv-Eiche.", fr: "Étagères modulaires en chêne massif." },
     ["Natural oak", "Smoked oak"],
-    [["Width", "2400 mm"], ["Height", "2600 mm"], ["Shelves", "6 adjustable"], ["Material", "Solid oak"]],
+    [["Width", "2400 mm"], ["Height", "2600 mm"], ["Depth", "380 mm"], ["Shelves", "6 adjustable"], ["Material", "Solid oak"], ["Base", "Soft-close cabinet"], ["Finish", "Hand-sanded, oiled"], ["Lead time", "8–10 weeks"], ["Origin", "Made in China"]],
   ),
   product(
     "MLWK-F12",
@@ -470,7 +470,7 @@ export const storeProducts: StoreProduct[] = [
     { en: "Media Console", ar: "وحدة تلفزيون", zh: "影音中柜", de: "TV-Lowboard", fr: "Meuble TV" },
     { en: "Wide low console in solid walnut with fluted sliding doors and ventilated shelves.", ar: "كونسول منخفض من خشب الجوز بأبواب منزلقة.", zh: "宽幅胡桃木中柜，条槽推拉门，通风层板。", de: "Breites Lowboard aus Walnuss.", fr: "Meuble TV bas en noyer massif." },
     ["Natural walnut", "Charcoal stained"],
-    [["Width", "2200 mm"], ["Depth", "450 mm"], ["Height", "520 mm"], ["Material", "Solid walnut"]],
+    [["Width", "2200 mm"], ["Depth", "450 mm"], ["Height", "520 mm"], ["Material", "Solid walnut"], ["Doors", "Fluted sliding"], ["Shelves", "Ventilated, adjustable"], ["Hardware", "Soft-close"], ["Lead time", "6–8 weeks"], ["Origin", "Made in China"]],
   ),
   product(
     "MLWK-F13",
@@ -480,7 +480,7 @@ export const storeProducts: StoreProduct[] = [
     { en: "Architectural Floor Mirror", ar: "مرآة أرضية", zh: "建筑感落地镜", de: "Standspiegel", fr: "Miroir de sol" },
     { en: "Full-length mirror with solid oak frame, hidden tilt mechanism and weighted base.", ar: "مرآة بطول كامل بإطار بلوط صلب.", zh: "全身落地镜，实心橡木边框，隐藏倾角，加重底座。", de: "Ganzkörperspiegel mit Eichenrahmen.", fr: "Miroir en pied cadre chêne massif." },
     ["Natural oak", "Smoked oak", "Ebonised"],
-    [["Height", "1850 mm"], ["Width", "650 mm"], ["Material", "Solid oak / glass"]],
+    [["Height", "1850 mm"], ["Width", "650 mm"], ["Frame", "Solid oak, 45mm deep"], ["Glass", "5mm silvered"], ["Tilt", "Hidden mechanism"], ["Base", "Weighted anti-tip"], ["Lead time", "4–6 weeks"], ["Origin", "Made in China"]],
   ),
   product(
     "MLWK-F14",
@@ -490,7 +490,7 @@ export const storeProducts: StoreProduct[] = [
     { en: "Valet Coat Stand", ar: "حامل معاطف", zh: "衣帽架", de: "Garderobenständer", fr: "Porte-manteaux" },
     { en: "Sculptural stand in solid ash with six rotating brass hooks and marble base.", ar: "حامل معاطف نحتي من خشب الدردار.", zh: "雕塑感白蜡木衣帽架，六旋转黄铜钩，大理石底座。", de: "Skulpturaler Ständer aus Eschenholz.", fr: "Porte-manteaux sculptural en frêne." },
     ["Natural ash / brass", "Ebonised / brass"],
-    [["Height", "1780 mm"], ["Base", "Marble Ø380 mm"], ["Hooks", "6 rotating brass"], ["Material", "Solid ash"]],
+    [["Height", "1780 mm"], ["Base", "Marble Ø380 mm"], ["Hooks", "6 rotating brass"], ["Material", "Solid ash"], ["Tray", "Leather drip tray"], ["Weight", "12 kg"], ["Lead time", "4–6 weeks"], ["Origin", "Made in China"]],
   ),
 
   /* ── Textiles ────────────────────────────────────────────────── */

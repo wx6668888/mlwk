@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#e8e4dc"/>
+  <rect x="100" y="100" width="600" height="600" rx="20" fill="#d5d0c7" stroke="#bbb" stroke-width="2"/>
+  <text x="400" y="420" text-anchor="middle" font-family="system-ui,sans-serif" font-size="48" fill="#999">Interiors</text>
+  <text x="400" y="480" text-anchor="middle" font-family="system-ui,sans-serif" font-size="24" fill="#bbb">Product preview</text>
+</svg>

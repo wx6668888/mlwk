@@ -41,7 +41,7 @@ import { track } from "../lib/analytics";
 import { useStore } from "../store/StoreContext";
 import { getStoreCopy } from "../store/storeCopy";
 import type { Locale } from "../content";
-import ProductViewer3D, { shapeFromSlug } from "../components/ProductViewer3D";
+
 
 const categories: ProductCategory[] = [
   "furniture",
@@ -504,11 +504,7 @@ export function ProductPage({ locale }: { locale: Locale }) {
       </Link>
       <div className="product-detail">
         <div className="product-detail__image">
-          {product.category === "furniture" ? (
-            <ProductViewer3D shape={shapeFromSlug(product.slug)} finish={finish} />
-          ) : (
-            <img src={product.image} alt={product.name[locale]} />
-          )}
+          <img src={product.image} alt={product.name[locale]} />
           <PreviewLabel>{copy.preview}</PreviewLabel>
         </div>
         <div className="product-detail__copy">
@@ -570,6 +566,36 @@ export function ProductPage({ locale }: { locale: Locale }) {
               </div>
             ))}
           </div>
+          {/* Product Story */}
+          <div className="product-story">
+            <h2>About this piece</h2>
+            <p>{product.description[locale]} Every MLWK furniture piece is made to order in our manufacturing facility. Solid timber is selected, machined, hand-sanded and finished by craftspeople who work on architectural millwork projects — the same precision, brought to a smaller scale.</p>
+            <p>Each order includes a digital production update at key stages: timber selection, machining, finishing, quality check, and dispatch.</p>
+          </div>
+
+          {/* Materials & Care */}
+          <div className="product-care">
+            <h2>Materials &amp; care</h2>
+            <div className="care-grid">
+              <div>
+                <strong>Solid timber</strong>
+                <p>All wood components are solid, not veneered MDF. Natural grain variation, knots and colour shifts are part of the material language — not defects.</p>
+              </div>
+              <div>
+                <strong>Finish</strong>
+                <p>Hand-applied hardwax oil or water-based lacquer. Resistant to water marks and light stains. Re-oil every 12–18 months for best results.</p>
+              </div>
+              <div>
+                <strong>Upholstery</strong>
+                <p>Fabrics are rated 40,000+ Martindale for residential use. Vacuum weekly. Professional dry-clean for stains.</p>
+              </div>
+              <div>
+                <strong>Metalwork</strong>
+                <p>Brass and steel components are unlacquered and will develop a natural patina. Wipe with a dry cloth — avoid chemical cleaners.</p>
+              </div>
+            </div>
+          </div>
+
           <p className="store-duty-note">{copy.duties}</p>
         </div>
       </div>
