@@ -552,7 +552,7 @@ export function ProductPage({ locale }: { locale: Locale }) {
   const ANGLES = ['', '_three-quarter', '_side-profile', '_top-down', '_detail'];
   const galleryImages = ANGLES.map((suffix) => ({
     src: `/media/store/${product.slug}${suffix}.webp`,
-    label: suffix ? suffix.replace('_',' ').replace('-',' ') : 'front',
+    label: suffix ? suffix.replace('_',' ').replace('-',' ').trim() : 'front',
   }));
 
   const toggleFavorite = async () => {
@@ -586,6 +586,7 @@ export function ProductPage({ locale }: { locale: Locale }) {
               src={galleryImages[activeAngle].src}
               alt={product.name[locale]}
               loading="eager"
+              onError={() => setActiveAngle(0)}
             />
             <nav className="product-gallery__thumbs">
               {galleryImages.map((img, i) => (
@@ -595,7 +596,14 @@ export function ProductPage({ locale }: { locale: Locale }) {
                   onClick={() => setActiveAngle(i)}
                   aria-label={img.label}
                 >
-                  <img src={img.src} alt={img.label} loading="lazy" />
+                  <img
+                    src={img.src}
+                    alt={img.label}
+                    loading="lazy"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).parentElement!.style.display = 'none';
+                    }}
+                  />
                 </button>
               ))}
             </nav>
