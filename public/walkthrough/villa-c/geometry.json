@@ -1,0 +1,3279 @@
+{
+  "schemaVersion": "1.0",
+  "units": "metres",
+  "coordinateSystem": {
+    "handedness": "viewer right-handed x/y/z",
+    "origin": "地块临街左角 (0,0,0)",
+    "x": "临街面从左到右 0..10",
+    "y": "高程",
+    "z": "临街/道路为 z=0，向地块后侧增至 23",
+    "roomRectOrigin": "minimum x / minimum z corner",
+    "wallCoordinates": "wall centreline",
+    "openingOffset": "distance from (x1,z1) toward (x2,z2)",
+    "openingBottom": "relative to each wall.floorY",
+    "planOrientation": "p2–p5 图面左侧是道路；图面右侧是地块后侧；图面上侧是临街视角的左侧",
+    "mirror": "文件已经是 End Mirror；不可再次镜像",
+    "certainty": "written=纸面文字确认；approximate=按图近似/暂定；unverified=待核验"
+  },
+  "plot": {
+    "x": 0,
+    "z": 0,
+    "width": 10.0,
+    "depth": 23.0,
+    "certainty": "written",
+    "sourcePages": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "notes": [
+      "23000 × 10000 mm 是轴网/地块范围，不是建筑面积。前后各立面及部分墙体有中心线、面线差。"
+    ]
+  },
+  "evidence": {
+    "source": "C_E(1).pdf",
+    "building": "VILLA - C - END MIRROR",
+    "architectureDate": "FEB. 2025",
+    "architectureRevision": "00",
+    "sheetLabel": "AS-BUILT",
+    "notSiteVerified": true,
+    "pages": [
+      {
+        "page": 2,
+        "title": "GROUND FLOOR PLAN",
+        "drawing": "MUR-AB-TH-C-E-AR-03-002 MI",
+        "floorY": 0.15
+      },
+      {
+        "page": 3,
+        "title": "FIRST FLOOR PLAN-END",
+        "drawing": "MUR-AB-TH-C-E-AR-03-003 MI",
+        "floorY": 3.45
+      },
+      {
+        "page": 4,
+        "title": "SECOND FLOOR PLAN-END",
+        "drawing": "MUR-AB-TH-C-E-AR-03-004 MI",
+        "floorY": 6.75
+      },
+      {
+        "page": 5,
+        "title": "ROOF FLOOR PLAN-END",
+        "drawing": "MUR-AB-TH-C-E-AR-03-005 MI",
+        "floorY": 10.15
+      },
+      {
+        "page": 6,
+        "title": "FRONT / SIDE ELEVATIONS"
+      },
+      {
+        "page": 7,
+        "title": "SECTIONS A / B"
+      }
+    ],
+    "wallTypes": {
+      "A": {
+        "thickness": 0.25,
+        "description": "保温夹芯板（60/100/90）"
+      },
+      "B": {
+        "thickness": 0.17,
+        "description": "承重板"
+      },
+      "C": {
+        "thickness": 0.1,
+        "description": "非承重板"
+      },
+      "D": {
+        "thickness": 0.12,
+        "description": "女儿墙"
+      },
+      "E": {
+        "thickness": 0.12,
+        "description": "承重板"
+      }
+    },
+    "floorLevelsCertainty": "written",
+    "heightNotes": [
+      "层高 GF→FF=3.30 m；FF→SF=3.30 m；SF→ROOF=3.40 m。不是房间净高。",
+      "p7 净高：GF Majlis 3.05 m、Living/Dining 2.70 m、后卧室/楼梯邻区 2.87 m；FF 卧室约 2.77 m、Family Living 2.70 m；SF 卧室/楼梯邻区 2.92 m。未明示的房间净高沿邻区暂定。",
+      "全高墙段按结构楼层到下一板底近似，不代表完成面吊顶净高；viewer 可按 room.clearHeight 另做吊顶。"
+    ],
+    "versionConflicts": [
+      "2022 HVAC 的 GF Majlis 2.87 m 与建筑 p7 的 3.05 m 不一致；SF 2.87 m 与建筑 2.92 m 不一致，优先 2025 建筑但待版本协调。",
+      "给排水 p30 屋面 +10.10 与建筑 +10.15 不一致，不把两者自动合并。",
+      "结构 p37–39 是 2Plex (2B–2C) 基础范围，不能视作本单户完整结构复原依据。"
+    ]
+  },
+  "grid": {
+    "zAxes": {
+      "A": 0.125,
+      "B": 3.725,
+      "C": 9.475,
+      "D": 11.3,
+      "E": 14.8,
+      "F": 16.5,
+      "G": 17.8,
+      "H": 20.65,
+      "J": 23.0
+    },
+    "xAxes": {
+      "1": 1.3,
+      "2": 5.65,
+      "3": 10.0
+    },
+    "certainty": "written",
+    "notes": [
+      "z 链来自 p3–p5 的 125 / 3600 / 5750 / 1825 / 3500 / 1700 / 1300 / 2850 / 2350 mm。",
+      "x 轴 1/2/3 按 1300 / 4350 / 4350 mm 链；房间坐标是墙面净矩形近似，不能直接当轴网坐标。"
+    ]
+  },
+  "levels": [
+    {
+      "id": "GF",
+      "label": "一层",
+      "floorY": 0.15,
+      "sourcePage": 2,
+      "rooms": [
+        {
+          "id": "gf-parking",
+          "label": "前院车位",
+          "x": 0.25,
+          "z": 0.25,
+          "width": 4.0,
+          "depth": 3.35,
+          "floorY": 0.15,
+          "clearHeight": 2.7,
+          "type": "garage",
+          "covered": false,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "车位在临街左侧；前院大部露天，局部位于上层挑出的房间下。此矩形只是首版车行地面。"
+          ]
+        },
+        {
+          "id": "gf-car-side",
+          "label": "车位侧通道",
+          "x": 0.25,
+          "z": 3.6,
+          "width": 2.525,
+          "depth": 4.55,
+          "floorY": 0.15,
+          "clearHeight": 2.7,
+          "type": "outdoor",
+          "covered": false,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "gf-front-path",
+          "label": "步行入口通道",
+          "x": 4.375,
+          "z": 0.25,
+          "width": 1.15,
+          "depth": 3.35,
+          "floorY": 0.15,
+          "clearHeight": 2.7,
+          "type": "outdoor",
+          "covered": false,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "街道经步行门向内直行，进入门厅后转向右侧 Majlis。入口门和前院轮廓待复核。"
+          ]
+        },
+        {
+          "id": "gf-softscape",
+          "label": "入口绿化庭院",
+          "x": 5.775,
+          "z": 0.25,
+          "width": 2.1,
+          "depth": 3.35,
+          "floorY": 0.15,
+          "clearHeight": 2.7,
+          "type": "outdoor",
+          "covered": false,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "gf-driver",
+          "label": "司机房",
+          "x": 8.015,
+          "z": 0.25,
+          "width": 1.9,
+          "depth": 1.95,
+          "floorY": 0.15,
+          "clearHeight": 2.7,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p2 标注 1900 × 1950 mm；房间近前立面右侧，坐标仍为近似。"
+          ]
+        },
+        {
+          "id": "gf-driver-bath",
+          "label": "司机卫生间",
+          "x": 8.815,
+          "z": 2.3,
+          "width": 1.1,
+          "depth": 1.38,
+          "floorY": 0.15,
+          "clearHeight": 2.4,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p2 标注 1100 × 1380 mm，入口方向按符号近似。"
+          ]
+        },
+        {
+          "id": "gf-entrance",
+          "label": "入口门厅",
+          "x": 4.525,
+          "z": 3.85,
+          "width": 1.1,
+          "depth": 1.9,
+          "floorY": 0.15,
+          "clearHeight": 2.7,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "gf-powder-wash",
+          "label": "客卫前室",
+          "x": 2.875,
+          "z": 3.85,
+          "width": 1.35,
+          "depth": 1.9,
+          "floorY": 0.15,
+          "clearHeight": 2.4,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "gf-powder",
+          "label": "客用卫生间",
+          "x": 3.025,
+          "z": 5.875,
+          "width": 1.2,
+          "depth": 2.0,
+          "floorY": 0.15,
+          "clearHeight": 2.4,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "gf-pantry",
+          "label": "茶水间",
+          "x": 4.325,
+          "z": 5.875,
+          "width": 1.2,
+          "depth": 2.0,
+          "floorY": 0.15,
+          "clearHeight": 2.4,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "gf-court-buffer",
+          "label": "庭院前通道",
+          "x": 0.25,
+          "z": 8.0,
+          "width": 5.275,
+          "depth": 1.475,
+          "floorY": 0.15,
+          "clearHeight": 2.7,
+          "type": "outdoor",
+          "covered": false,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "GF 庭院总长度标注 8225 mm，比上层主庭院洞口更长；前缘通道约从 z=8.15 开始。"
+          ]
+        },
+        {
+          "id": "gf-courtyard",
+          "label": "露天庭院",
+          "x": 0.25,
+          "z": 9.475,
+          "width": 5.275,
+          "depth": 7.025,
+          "floorY": 0.15,
+          "clearHeight": 2.7,
+          "type": "outdoor",
+          "covered": false,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "主庭院与 FF/SF 的 Courtyard Below 对齐；首版不安装拟设电梯。"
+          ]
+        },
+        {
+          "id": "gf-majlis",
+          "label": "Majlis 会客厅",
+          "x": 5.775,
+          "z": 3.85,
+          "width": 4.14,
+          "depth": 5.59,
+          "floorY": 0.15,
+          "clearHeight": 3.05,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p2 标注主条带宽 4140 mm、会客厅深 5590 mm；与后方起居餐厅连通，不新增实墙隔断。"
+          ]
+        },
+        {
+          "id": "gf-living",
+          "label": "起居 / 餐厅",
+          "x": 5.775,
+          "z": 9.44,
+          "width": 4.14,
+          "depth": 5.36,
+          "floorY": 0.15,
+          "clearHeight": 2.7,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p2 会客厅 + 起居餐厅合计长约 11090 mm；两区之间开放。"
+          ]
+        },
+        {
+          "id": "gf-stair-hall",
+          "label": "楼梯侧通道",
+          "x": 5.775,
+          "z": 14.8,
+          "width": 1.35,
+          "depth": 4.775,
+          "floorY": 0.15,
+          "clearHeight": 2.87,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "gf-stair",
+          "label": "楼梯",
+          "x": 7.15,
+          "z": 14.8,
+          "width": 2.7,
+          "depth": 2.95,
+          "floorY": 0.15,
+          "clearHeight": 2.87,
+          "type": "stair",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "楼梯边界按平面近似；生成楼板时必须挖除这个矩形并交由 stair 对象生成踏步。"
+          ]
+        },
+        {
+          "id": "gf-kitchen",
+          "label": "厨房",
+          "x": 1.425,
+          "z": 16.625,
+          "width": 4.2,
+          "depth": 3.9,
+          "floorY": 0.15,
+          "clearHeight": 2.6,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p2 标注 4200 × 3900 mm；具体台柜不在本套建筑图范围内。"
+          ]
+        },
+        {
+          "id": "gf-back-court",
+          "label": "后部露天庭院",
+          "x": 0.25,
+          "z": 20.775,
+          "width": 5.275,
+          "depth": 2.1,
+          "floorY": 0.15,
+          "clearHeight": 2.7,
+          "type": "outdoor",
+          "covered": false,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "GF 厨房后侧露天空间，FF/SF 对应 Courtyard Below，不能在上层补成房间。"
+          ]
+        },
+        {
+          "id": "gf-bath4",
+          "label": "卫生间 4",
+          "x": 7.185,
+          "z": 17.905,
+          "width": 2.69,
+          "depth": 1.7,
+          "floorY": 0.15,
+          "clearHeight": 2.4,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "gf-bedroom",
+          "label": "一层后卧室",
+          "x": 5.775,
+          "z": 19.625,
+          "width": 4.14,
+          "depth": 3.25,
+          "floorY": 0.15,
+          "clearHeight": 2.87,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p2 卧室长标 3315 mm，本原型约化到地块后边界内；待核验墙中心线与净尺寸。"
+          ]
+        }
+      ],
+      "walls": [
+        {
+          "id": "gf-front-boundary",
+          "x1": 0.125,
+          "z1": 0.125,
+          "x2": 9.915,
+          "z2": 0.125,
+          "floorY": 0.15,
+          "height": 3.05,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.325,
+              "width": 2.7,
+              "bottom": 0,
+              "height": 2.7,
+              "type": "vehicle_gate",
+              "certainty": "approximate",
+              "notes": [
+                "图上门位约 x=.25–3.15；邻近 4170 标注与此首版横向开口不直接对应，门净宽待复核。"
+              ]
+            },
+            {
+              "offset": 4.225,
+              "width": 1.35,
+              "bottom": 0,
+              "height": 2.3,
+              "type": "gate",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-left-boundary",
+          "x1": 0.125,
+          "z1": 0.125,
+          "x2": 0.125,
+          "z2": 22.875,
+          "floorY": 0.15,
+          "height": 3.05,
+          "thickness": 0.25,
+          "openings": [],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-right-boundary",
+          "x1": 9.915,
+          "z1": 0.125,
+          "x2": 9.915,
+          "z2": 22.875,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.17,
+          "openings": [
+            {
+              "offset": 0.8,
+              "width": 1.1,
+              "bottom": 0.8,
+              "height": 1.2,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            },
+            {
+              "offset": 20.275,
+              "width": 1.6,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-back-boundary",
+          "x1": 0.125,
+          "z1": 22.875,
+          "x2": 9.915,
+          "z2": 22.875,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 6.05,
+              "width": 1.6,
+              "bottom": 0.9,
+              "height": 1.4,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-driver-top",
+          "x1": 7.93,
+          "z1": 0.125,
+          "x2": 7.93,
+          "z2": 2.225,
+          "floorY": 0.15,
+          "height": 2.85,
+          "thickness": 0.17,
+          "openings": [
+            {
+              "offset": 0.4,
+              "width": 0.85,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-driver-back",
+          "x1": 7.93,
+          "z1": 2.225,
+          "x2": 9.915,
+          "z2": 2.225,
+          "floorY": 0.15,
+          "height": 2.85,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 1.035,
+              "width": 0.8,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-driver-bath-side",
+          "x1": 8.73,
+          "z1": 2.225,
+          "x2": 8.73,
+          "z2": 3.725,
+          "floorY": 0.15,
+          "height": 2.85,
+          "thickness": 0.1,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-main-front",
+          "x1": 5.65,
+          "z1": 3.725,
+          "x2": 9.915,
+          "z2": 3.725,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.95,
+              "width": 1.9,
+              "bottom": 0,
+              "height": 2.3,
+              "type": "glazed_door",
+              "certainty": "approximate",
+              "notes": [
+                "p2 前庭与 Majlis 之间 SF03 店面玻璃；1.9 m 暂定，主步行路径仍经过门厅。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-entry-front",
+          "x1": 4.4,
+          "z1": 3.725,
+          "x2": 5.65,
+          "z2": 3.725,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.1,
+              "width": 1.05,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-entry-side",
+          "x1": 4.4,
+          "z1": 3.725,
+          "x2": 4.4,
+          "z2": 5.8,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.17,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-entry-to-majlis",
+          "x1": 5.65,
+          "z1": 3.725,
+          "x2": 5.65,
+          "z2": 8.15,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.17,
+          "openings": [
+            {
+              "offset": 0.425,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            },
+            {
+              "offset": 2.525,
+              "width": 0.85,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-pantry-front",
+          "x1": 4.275,
+          "z1": 5.8,
+          "x2": 5.65,
+          "z2": 5.8,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 0.3,
+              "width": 0.85,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-pantry-left",
+          "x1": 4.275,
+          "z1": 5.8,
+          "x2": 4.275,
+          "z2": 8.15,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-powder-front",
+          "x1": 2.95,
+          "z1": 5.8,
+          "x2": 4.275,
+          "z2": 5.8,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.23,
+              "width": 0.85,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-powder-side",
+          "x1": 2.95,
+          "z1": 5.8,
+          "x2": 2.95,
+          "z2": 8.15,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-powder-back",
+          "x1": 2.95,
+          "z1": 8.15,
+          "x2": 5.65,
+          "z2": 8.15,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-court-to-living",
+          "x1": 5.65,
+          "z1": 8.15,
+          "x2": 5.65,
+          "z2": 16.5,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.35,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            },
+            {
+              "offset": 3.325,
+              "width": 3.195,
+              "bottom": 0,
+              "height": 2.4,
+              "type": "glazed_door",
+              "certainty": "approximate",
+              "notes": [
+                "p2 SF02 长度 3195 mm；窗扇构造与是否可开启未查得完整表，原型作为可穿行的玻璃入口。"
+              ]
+            },
+            {
+              "offset": 6.975,
+              "width": 1.1,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "glazed_door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-kitchen-front",
+          "x1": 1.3,
+          "z1": 16.5,
+          "x2": 5.65,
+          "z2": 16.5,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.725,
+              "width": 2.9,
+              "bottom": 0,
+              "height": 2.3,
+              "type": "glazed_door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-kitchen-left",
+          "x1": 1.3,
+          "z1": 16.5,
+          "x2": 1.3,
+          "z2": 20.65,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 1.05,
+              "width": 1.2,
+              "bottom": 0.9,
+              "height": 1.4,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-kitchen-hall",
+          "x1": 5.65,
+          "z1": 16.5,
+          "x2": 5.65,
+          "z2": 20.65,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.75,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-kitchen-back",
+          "x1": 1.3,
+          "z1": 20.65,
+          "x2": 5.65,
+          "z2": 20.65,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 2.8,
+              "width": 1.3,
+              "bottom": 0,
+              "height": 2.3,
+              "type": "glazed_door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-stair-hall-wall",
+          "x1": 7.125,
+          "z1": 14.8,
+          "x2": 7.125,
+          "z2": 17.8,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 0.1,
+              "width": 1.1,
+              "bottom": 0,
+              "height": 2.5,
+              "type": "passage",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-stair-back",
+          "x1": 6.975,
+          "z1": 17.8,
+          "x2": 9.915,
+          "z2": 17.8,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-bath4-side",
+          "x1": 7.125,
+          "z1": 17.8,
+          "x2": 7.125,
+          "z2": 19.575,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 0.275,
+              "width": 0.85,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-rear-bedroom-front",
+          "x1": 5.65,
+          "z1": 19.575,
+          "x2": 9.915,
+          "z2": 19.575,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.17,
+          "openings": [
+            {
+              "offset": 0.35,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "gf-rear-bedroom-court",
+          "x1": 5.65,
+          "z1": 20.65,
+          "x2": 5.65,
+          "z2": 22.875,
+          "floorY": 0.15,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.2,
+              "width": 1.3,
+              "bottom": 0,
+              "height": 2.3,
+              "type": "glazed_door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FF",
+      "label": "二层",
+      "floorY": 3.45,
+      "sourcePage": 3,
+      "rooms": [
+        {
+          "id": "ff-master",
+          "label": "主卧",
+          "x": 5.775,
+          "z": 3.275,
+          "width": 4.14,
+          "depth": 4.445,
+          "floorY": 3.45,
+          "clearHeight": 2.77,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p3 标注 4140 × 4445 mm；正立面相对 B 轴向街道突出约 .7 m，首版前缘 z=3.15。"
+          ]
+        },
+        {
+          "id": "ff-dresser",
+          "label": "主卧更衣室",
+          "x": 7.635,
+          "z": 7.845,
+          "width": 2.24,
+          "depth": 1.7,
+          "floorY": 3.45,
+          "clearHeight": 2.77,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "ff-master-entry",
+          "label": "主卧入口走道",
+          "x": 5.775,
+          "z": 7.845,
+          "width": 1.735,
+          "depth": 1.55,
+          "floorY": 3.45,
+          "clearHeight": 2.7,
+          "type": "hall",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "ff-master-bath",
+          "label": "主卧卫生间",
+          "x": 7.185,
+          "z": 9.575,
+          "width": 2.69,
+          "depth": 1.7,
+          "floorY": 3.45,
+          "clearHeight": 2.4,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom2",
+          "label": "卧室 2",
+          "x": 1.425,
+          "z": 3.85,
+          "width": 4.18,
+          "depth": 3.795,
+          "floorY": 3.45,
+          "clearHeight": 2.77,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p3 标注 4180 × 3795 mm。"
+          ]
+        },
+        {
+          "id": "ff-bath1",
+          "label": "卫生间 1",
+          "x": 1.425,
+          "z": 7.77,
+          "width": 2.8,
+          "depth": 1.605,
+          "floorY": 3.45,
+          "clearHeight": 2.4,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom2-entry",
+          "label": "卧室 2 入口",
+          "x": 4.325,
+          "z": 7.77,
+          "width": 1.2,
+          "depth": 1.605,
+          "floorY": 3.45,
+          "clearHeight": 2.7,
+          "type": "hall",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "ff-family-living",
+          "label": "家庭起居厅",
+          "x": 5.775,
+          "z": 11.4,
+          "width": 4.14,
+          "depth": 3.4,
+          "floorY": 3.45,
+          "clearHeight": 2.7,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p3 家庭起居厅是带主卧浴室凹口的大空间；首版拆成矩形厅和走道。"
+          ]
+        },
+        {
+          "id": "ff-front-corridor",
+          "label": "前部公共走道",
+          "x": 5.775,
+          "z": 9.395,
+          "width": 1.2,
+          "depth": 2.005,
+          "floorY": 3.45,
+          "clearHeight": 2.7,
+          "type": "hall",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "ff-stair-hall",
+          "label": "后部公共走道",
+          "x": 5.775,
+          "z": 14.8,
+          "width": 1.35,
+          "depth": 4.775,
+          "floorY": 3.45,
+          "clearHeight": 2.77,
+          "type": "hall",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "ff-stair",
+          "label": "楼梯",
+          "x": 7.15,
+          "z": 14.8,
+          "width": 2.7,
+          "depth": 2.95,
+          "floorY": 3.45,
+          "clearHeight": 2.77,
+          "type": "stair",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom3",
+          "label": "卧室 3",
+          "x": 1.425,
+          "z": 16.625,
+          "width": 4.18,
+          "depth": 3.9,
+          "floorY": 3.45,
+          "clearHeight": 2.77,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "ff-bath2",
+          "label": "卫生间 2",
+          "x": 7.185,
+          "z": 17.925,
+          "width": 2.64,
+          "depth": 1.65,
+          "floorY": 3.45,
+          "clearHeight": 2.4,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom4",
+          "label": "卧室 4",
+          "x": 5.775,
+          "z": 19.655,
+          "width": 4.14,
+          "depth": 3.22,
+          "floorY": 3.45,
+          "clearHeight": 2.77,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p3 标注卧室 4 深 3320 mm；原页右侧被标题栏裁切，后缘坐标暂定。"
+          ]
+        },
+        {
+          "id": "ff-front-terrace",
+          "label": "主卧前露台",
+          "x": 7.775,
+          "z": 0.25,
+          "width": 2.07,
+          "depth": 2.88,
+          "floorY": 3.45,
+          "clearHeight": 2.7,
+          "type": "terrace",
+          "covered": false,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p3 露台标注 2070 × 2880 mm；图上 +3.42 为露台完成面局部标高，首版统一到 FF +3.45。"
+          ]
+        }
+      ],
+      "walls": [
+        {
+          "id": "ff-main-front",
+          "x1": 5.65,
+          "z1": 3.15,
+          "x2": 9.915,
+          "z2": 3.15,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 2.125,
+              "width": 1.9,
+              "bottom": 0,
+              "height": 2.35,
+              "type": "glazed_door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-right-outer",
+          "x1": 9.915,
+          "z1": 3.15,
+          "x2": 9.915,
+          "z2": 22.875,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.17,
+          "openings": [
+            {
+              "offset": 1.0,
+              "width": 1.9,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            },
+            {
+              "offset": 9.25,
+              "width": 1.8,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            },
+            {
+              "offset": 17.375,
+              "width": 1.6,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-back-outer",
+          "x1": 5.65,
+          "z1": 22.875,
+          "x2": 9.915,
+          "z2": 22.875,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 1.0,
+              "width": 1.7,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom2-front",
+          "x1": 1.3,
+          "z1": 3.725,
+          "x2": 5.65,
+          "z2": 3.725,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 2.9,
+              "width": 1.3,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom2-left",
+          "x1": 1.3,
+          "z1": 3.725,
+          "x2": 1.3,
+          "z2": 9.475,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 1.0,
+              "width": 1.8,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            },
+            {
+              "offset": 4.15,
+              "width": 0.65,
+              "bottom": 1.4,
+              "height": 0.8,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-front-wing-court",
+          "x1": 1.3,
+          "z1": 9.475,
+          "x2": 5.65,
+          "z2": 9.475,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 3.0,
+              "width": 0.65,
+              "bottom": 1.4,
+              "height": 0.8,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-divider-front",
+          "x1": 5.65,
+          "z1": 3.725,
+          "x2": 5.65,
+          "z2": 9.475,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.17,
+          "openings": [
+            {
+              "offset": 4.45,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom2-bath",
+          "x1": 1.3,
+          "z1": 7.695,
+          "x2": 4.275,
+          "z2": 7.695,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 2.0,
+              "width": 0.85,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-bath1-side",
+          "x1": 4.275,
+          "z1": 7.695,
+          "x2": 4.275,
+          "z2": 9.475,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom2-entry",
+          "x1": 4.275,
+          "z1": 7.695,
+          "x2": 5.65,
+          "z2": 7.695,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 0.275,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-master-rear",
+          "x1": 5.65,
+          "z1": 7.77,
+          "x2": 9.915,
+          "z2": 7.77,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 0.35,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            },
+            {
+              "offset": 2.25,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-dresser-left",
+          "x1": 7.55,
+          "z1": 7.77,
+          "x2": 7.55,
+          "z2": 9.475,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-dresser-rear",
+          "x1": 6.975,
+          "z1": 9.475,
+          "x2": 9.915,
+          "z2": 9.475,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-master-bath-left",
+          "x1": 7.125,
+          "z1": 9.475,
+          "x2": 7.125,
+          "z2": 11.35,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 0.3,
+              "width": 0.85,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-master-bath-rear",
+          "x1": 6.975,
+          "z1": 11.35,
+          "x2": 9.915,
+          "z2": 11.35,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-court-main-wall",
+          "x1": 5.65,
+          "z1": 9.475,
+          "x2": 5.65,
+          "z2": 16.5,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 1.825,
+              "width": 3.115,
+              "bottom": 0.5,
+              "height": 1.9,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "p3 朝庭院 SF 标签面宽 3115 mm；首版窗台 .5 m 与高 1.9 m 暂定。"
+              ]
+            },
+            {
+              "offset": 5.625,
+              "width": 1.1,
+              "bottom": 0,
+              "height": 2.3,
+              "type": "glazed_door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom3-court",
+          "x1": 1.3,
+          "z1": 16.5,
+          "x2": 5.65,
+          "z2": 16.5,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 1.5,
+              "width": 1.4,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom3-left",
+          "x1": 1.3,
+          "z1": 16.5,
+          "x2": 1.3,
+          "z2": 20.65,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 1.0,
+              "width": 1.6,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom3-rear",
+          "x1": 1.3,
+          "z1": 20.65,
+          "x2": 5.65,
+          "z2": 20.65,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 2.6,
+              "width": 1.3,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom3-hall",
+          "x1": 5.65,
+          "z1": 16.5,
+          "x2": 5.65,
+          "z2": 20.65,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.17,
+          "openings": [
+            {
+              "offset": 0.65,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-bedroom4-court",
+          "x1": 5.65,
+          "z1": 20.65,
+          "x2": 5.65,
+          "z2": 22.875,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.25,
+              "width": 1.3,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-stair-hall-wall",
+          "x1": 7.125,
+          "z1": 14.8,
+          "x2": 7.125,
+          "z2": 17.8,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 0.1,
+              "width": 1.1,
+              "bottom": 0,
+              "height": 2.5,
+              "type": "passage",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-stair-back",
+          "x1": 6.975,
+          "z1": 17.8,
+          "x2": 9.915,
+          "z2": 17.8,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-bath2-side",
+          "x1": 7.125,
+          "z1": 17.8,
+          "x2": 7.125,
+          "z2": 19.575,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 0.275,
+              "width": 0.85,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-rear-bedroom-front",
+          "x1": 5.65,
+          "z1": 19.575,
+          "x2": 9.915,
+          "z2": 19.575,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.17,
+          "openings": [
+            {
+              "offset": 0.35,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-terrace-front",
+          "x1": 7.65,
+          "z1": 0.125,
+          "x2": 9.915,
+          "z2": 0.125,
+          "floorY": 3.45,
+          "height": 0.97,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "glass_guard",
+          "certainty": "approximate",
+          "notes": [
+            "p3 T.O.G.P +4.42；相对 FF +3.45 高 .97 m。"
+          ]
+        },
+        {
+          "id": "ff-terrace-left",
+          "x1": 7.65,
+          "z1": 0.125,
+          "x2": 7.65,
+          "z2": 3.15,
+          "floorY": 3.45,
+          "height": 0.97,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "glass_guard",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-terrace-right",
+          "x1": 9.915,
+          "z1": 0.125,
+          "x2": 9.915,
+          "z2": 3.15,
+          "floorY": 3.45,
+          "height": 0.97,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "glass_guard",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "ff-front-step",
+          "x1": 5.65,
+          "z1": 3.15,
+          "x2": 5.65,
+          "z2": 3.725,
+          "floorY": 3.45,
+          "height": 3.15,
+          "thickness": 0.25,
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "connects the two front-wall planes at axis C so the massing has no open gap (PDF p3/p4: front walls at 1300 and 1300+575)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SF",
+      "label": "三层",
+      "floorY": 6.75,
+      "sourcePage": 4,
+      "rooms": [
+        {
+          "id": "sf-front-left-terrace",
+          "label": "前部左侧露天平台",
+          "x": 1.425,
+          "z": 3.85,
+          "width": 4.18,
+          "depth": 5.5,
+          "floorY": 6.75,
+          "clearHeight": 2.7,
+          "type": "terrace",
+          "covered": false,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p4 上层前翼退台，尺寸标注 5760 × 4230 mm；边墙与净地面差值未逐段复核。"
+          ]
+        },
+        {
+          "id": "sf-front-main-terrace",
+          "label": "前部主露天平台",
+          "x": 5.775,
+          "z": 3.275,
+          "width": 4.14,
+          "depth": 8.025,
+          "floorY": 6.75,
+          "clearHeight": 2.7,
+          "type": "terrace",
+          "covered": false,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p5 前部露天主条带长 8040 mm、宽 4295 mm；原型用净地面矩形约化。"
+          ]
+        },
+        {
+          "id": "sf-front-hall",
+          "label": "女佣房前走道",
+          "x": 5.775,
+          "z": 11.425,
+          "width": 1.2,
+          "depth": 3.375,
+          "floorY": 6.75,
+          "clearHeight": 2.92,
+          "type": "hall",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "sf-maid",
+          "label": "女佣房",
+          "x": 7.185,
+          "z": 11.425,
+          "width": 2.69,
+          "depth": 1.99,
+          "floorY": 6.75,
+          "clearHeight": 2.92,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p4 标注 2840 × 1990 mm。"
+          ]
+        },
+        {
+          "id": "sf-maid-bath",
+          "label": "女佣卫生间",
+          "x": 7.635,
+          "z": 13.515,
+          "width": 2.19,
+          "depth": 1.25,
+          "floorY": 6.75,
+          "clearHeight": 2.92,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p4 标注 2190 × 1250 mm；未将洁具加入碰撞尺寸。"
+          ]
+        },
+        {
+          "id": "sf-maid-storage",
+          "label": "楼梯前储物走道",
+          "x": 7.125,
+          "z": 13.515,
+          "width": 0.41,
+          "depth": 1.25,
+          "floorY": 6.75,
+          "clearHeight": 2.92,
+          "type": "hall",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "sf-stair-hall",
+          "label": "楼梯侧走道",
+          "x": 5.775,
+          "z": 14.8,
+          "width": 1.35,
+          "depth": 4.775,
+          "floorY": 6.75,
+          "clearHeight": 2.92,
+          "type": "hall",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "sf-stair",
+          "label": "楼梯",
+          "x": 7.15,
+          "z": 14.8,
+          "width": 2.7,
+          "depth": 2.95,
+          "floorY": 6.75,
+          "clearHeight": 2.92,
+          "type": "stair",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "sf-rear-terrace",
+          "label": "后部露天平台",
+          "x": 1.425,
+          "z": 16.625,
+          "width": 4.18,
+          "depth": 3.9,
+          "floorY": 6.75,
+          "clearHeight": 2.7,
+          "type": "terrace",
+          "covered": false,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p4 后翼是 Outdoor Area，不是第三层卧室；尺寸标注 4160 × 4230 mm。"
+          ]
+        },
+        {
+          "id": "sf-bath3",
+          "label": "卫生间 3",
+          "x": 7.185,
+          "z": 17.925,
+          "width": 2.69,
+          "depth": 1.6,
+          "floorY": 6.75,
+          "clearHeight": 2.4,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "房间位置按建筑平面与轴网近似重建，待原 CAD 和现场复尺核验。"
+          ]
+        },
+        {
+          "id": "sf-bedroom5",
+          "label": "卧室 5",
+          "x": 5.775,
+          "z": 19.655,
+          "width": 4.14,
+          "depth": 3.22,
+          "floorY": 6.75,
+          "clearHeight": 2.92,
+          "type": "room",
+          "covered": true,
+          "walkable": true,
+          "certainty": "approximate",
+          "notes": [
+            "p4 标注 4140 × 3415 mm；右侧图像被标题栏裁切，深度暂约化到 z=22.875。"
+          ]
+        }
+      ],
+      "walls": [
+        {
+          "id": "sf-room-front",
+          "x1": 5.65,
+          "z1": 11.3,
+          "x2": 9.915,
+          "z2": 11.3,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.3,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-right-outer",
+          "x1": 9.915,
+          "z1": 11.3,
+          "x2": 9.915,
+          "z2": 22.875,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.17,
+          "openings": [
+            {
+              "offset": 0.25,
+              "width": 1.4,
+              "bottom": 0.9,
+              "height": 1.4,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            },
+            {
+              "offset": 2.5,
+              "width": 0.7,
+              "bottom": 1.4,
+              "height": 0.8,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            },
+            {
+              "offset": 9.5,
+              "width": 1.6,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-back-outer",
+          "x1": 5.65,
+          "z1": 22.875,
+          "x2": 9.915,
+          "z2": 22.875,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 1.1,
+              "width": 1.7,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-court-main-wall",
+          "x1": 5.65,
+          "z1": 11.3,
+          "x2": 5.65,
+          "z2": 16.5,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.05,
+              "width": 3.115,
+              "bottom": 0.5,
+              "height": 1.9,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            },
+            {
+              "offset": 3.8,
+              "width": 1.1,
+              "bottom": 0,
+              "height": 2.3,
+              "type": "glazed_door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-rear-terrace-hall",
+          "x1": 5.65,
+          "z1": 16.5,
+          "x2": 5.65,
+          "z2": 20.65,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.65,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            },
+            {
+              "offset": 1.8,
+              "width": 1.0,
+              "bottom": 0.8,
+              "height": 1.4,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-bedroom5-court",
+          "x1": 5.65,
+          "z1": 20.65,
+          "x2": 5.65,
+          "z2": 22.875,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.25,
+          "openings": [
+            {
+              "offset": 0.3,
+              "width": 1.3,
+              "bottom": 0.9,
+              "height": 1.5,
+              "type": "window",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "external",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-maid-side",
+          "x1": 7.125,
+          "z1": 11.3,
+          "x2": 7.125,
+          "z2": 13.465,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 0.5,
+              "width": 0.9,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-maid-bath-divider",
+          "x1": 6.975,
+          "z1": 13.465,
+          "x2": 9.915,
+          "z2": 13.465,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 0.75,
+              "width": 0.8,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-maid-bath-side",
+          "x1": 7.575,
+          "z1": 13.465,
+          "x2": 7.575,
+          "z2": 14.8,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.1,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-maid-bath-back",
+          "x1": 7.575,
+          "z1": 14.8,
+          "x2": 9.915,
+          "z2": 14.8,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.1,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-stair-hall-wall",
+          "x1": 7.125,
+          "z1": 14.8,
+          "x2": 7.125,
+          "z2": 17.8,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 0.1,
+              "width": 1.1,
+              "bottom": 0,
+              "height": 2.5,
+              "type": "passage",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-stair-back",
+          "x1": 6.975,
+          "z1": 17.8,
+          "x2": 9.915,
+          "z2": 17.8,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.1,
+          "openings": [],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-bath3-side",
+          "x1": 7.125,
+          "z1": 17.8,
+          "x2": 7.125,
+          "z2": 19.575,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.1,
+          "openings": [
+            {
+              "offset": 0.275,
+              "width": 0.85,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-rear-bedroom-front",
+          "x1": 5.65,
+          "z1": 19.575,
+          "x2": 9.915,
+          "z2": 19.575,
+          "floorY": 6.75,
+          "height": 3.25,
+          "thickness": 0.17,
+          "openings": [
+            {
+              "offset": 0.35,
+              "width": 1.0,
+              "bottom": 0,
+              "height": 2.15,
+              "type": "door",
+              "certainty": "approximate",
+              "notes": [
+                "开口位置按平面门窗符号近似；完整门窗表缺失，洞口高度暂定。"
+              ]
+            }
+          ],
+          "type": "internal",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-front-terrace-front",
+          "x1": 5.65,
+          "z1": 3.15,
+          "x2": 9.915,
+          "z2": 3.15,
+          "floorY": 6.75,
+          "height": 1.3,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-front-terrace-left-front",
+          "x1": 1.3,
+          "z1": 3.725,
+          "x2": 5.65,
+          "z2": 3.725,
+          "floorY": 6.75,
+          "height": 1.3,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-front-terrace-left",
+          "x1": 1.3,
+          "z1": 3.725,
+          "x2": 1.3,
+          "z2": 9.475,
+          "floorY": 6.75,
+          "height": 1.3,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-front-terrace-court",
+          "x1": 1.3,
+          "z1": 9.475,
+          "x2": 5.65,
+          "z2": 9.475,
+          "floorY": 6.75,
+          "height": 1.3,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-front-terrace-right",
+          "x1": 9.915,
+          "z1": 3.15,
+          "x2": 9.915,
+          "z2": 11.3,
+          "floorY": 6.75,
+          "height": 1.8,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "p4 主露台局部 T.O.P +8.55，与侧露台 +8.05 有退台差；此段高度 1.8 m 暂按局部高墙。"
+          ]
+        },
+        {
+          "id": "sf-terrace-court-side",
+          "x1": 5.65,
+          "z1": 9.475,
+          "x2": 5.65,
+          "z2": 11.3,
+          "floorY": 6.75,
+          "height": 1.8,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-rear-terrace-court",
+          "x1": 1.3,
+          "z1": 16.5,
+          "x2": 5.65,
+          "z2": 16.5,
+          "floorY": 6.75,
+          "height": 1.3,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-rear-terrace-left",
+          "x1": 1.3,
+          "z1": 16.5,
+          "x2": 1.3,
+          "z2": 20.65,
+          "floorY": 6.75,
+          "height": 1.3,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-rear-terrace-back",
+          "x1": 1.3,
+          "z1": 20.65,
+          "x2": 5.65,
+          "z2": 20.65,
+          "floorY": 6.75,
+          "height": 1.3,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "sf-front-step",
+          "x1": 5.65,
+          "z1": 3.15,
+          "x2": 5.65,
+          "z2": 3.725,
+          "floorY": 6.75,
+          "height": 1.3,
+          "thickness": 0.12,
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "connects the two front-wall planes at axis C so the massing has no open gap (PDF p3/p4: front walls at 1300 and 1300+575)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ROOF",
+      "label": "屋面",
+      "floorY": 10.15,
+      "sourcePage": 5,
+      "rooms": [
+        {
+          "id": "roof-main",
+          "label": "主屋面（观察）",
+          "x": 5.775,
+          "z": 11.425,
+          "width": 4.14,
+          "depth": 11.45,
+          "floorY": 10.15,
+          "clearHeight": 0,
+          "type": "roof",
+          "covered": false,
+          "walkable": false,
+          "certainty": "approximate",
+          "notes": [
+            "p5 仅主后条带为 +10.15 屋面；其前、左侧是 +6.75 的露台和庭院洞口。图纸未明确屋面楼梯通达，本原型屋面只作展示。"
+          ]
+        }
+      ],
+      "walls": [
+        {
+          "id": "roof-front",
+          "x1": 5.65,
+          "z1": 11.3,
+          "x2": 9.915,
+          "z2": 11.3,
+          "floorY": 10.15,
+          "height": 1.0,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "roof-court-side",
+          "x1": 5.65,
+          "z1": 11.3,
+          "x2": 5.65,
+          "z2": 22.875,
+          "floorY": 10.15,
+          "height": 1.0,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "roof-right",
+          "x1": 9.915,
+          "z1": 11.3,
+          "x2": 9.915,
+          "z2": 22.875,
+          "floorY": 10.15,
+          "height": 1.0,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        },
+        {
+          "id": "roof-back",
+          "x1": 5.65,
+          "z1": 22.875,
+          "x2": 9.915,
+          "z2": 22.875,
+          "floorY": 10.15,
+          "height": 1.0,
+          "thickness": 0.12,
+          "openings": [],
+          "type": "parapet",
+          "certainty": "approximate",
+          "notes": [
+            "墙中心线按轴网与平面轮廓近似；墙型厚度见 evidence.wallTypes，逐段墙型归属待核验。"
+          ]
+        }
+      ],
+      "walkable": false
+    }
+  ],
+  "courtyard": {
+    "id": "main-courtyard",
+    "label": "露天庭院",
+    "bounds": {
+      "x": 0.25,
+      "z": 9.475,
+      "width": 5.275,
+      "depth": 7.025
+    },
+    "groundFloorY": 0.15,
+    "openToSky": true,
+    "voidOnLevels": [
+      "FF",
+      "SF",
+      "ROOF"
+    ],
+    "certainty": "approximate",
+    "sourcePages": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "holes": [
+      {
+        "id": "main",
+        "x": 0.25,
+        "z": 9.475,
+        "width": 5.275,
+        "depth": 7.025
+      },
+      {
+        "id": "rear",
+        "x": 0.25,
+        "z": 20.65,
+        "width": 5.275,
+        "depth": 2.225
+      }
+    ],
+    "notes": [
+      "GF 庭院前通道额外向前延至约 z=8.15；上层主洞口从 C 轴约 z=9.475 开始。",
+      "上层后侧 Courtyard Below 必须同样留空；不得把整块 10×23 m 地板铺满。",
+      "拟设电梯位于主庭院靠后、靠起居厅一侧，仅占位展示，不建立安装完毕或可使用的电梯。"
+    ]
+  },
+  "terraces": [
+    {
+      "id": "ff-front",
+      "level": "FF",
+      "bounds": {
+        "x": 7.775,
+        "z": 0.25,
+        "width": 2.07,
+        "depth": 2.88
+      },
+      "floorY": 3.45,
+      "sourcePage": 3,
+      "certainty": "approximate"
+    },
+    {
+      "id": "sf-front-left",
+      "level": "SF",
+      "bounds": {
+        "x": 1.425,
+        "z": 3.85,
+        "width": 4.18,
+        "depth": 5.5
+      },
+      "floorY": 6.75,
+      "sourcePage": 4,
+      "certainty": "approximate"
+    },
+    {
+      "id": "sf-front-main",
+      "level": "SF",
+      "bounds": {
+        "x": 5.775,
+        "z": 3.275,
+        "width": 4.14,
+        "depth": 8.025
+      },
+      "floorY": 6.75,
+      "sourcePage": 4,
+      "certainty": "approximate"
+    },
+    {
+      "id": "sf-rear",
+      "level": "SF",
+      "bounds": {
+        "x": 1.425,
+        "z": 16.625,
+        "width": 4.18,
+        "depth": 3.9
+      },
+      "floorY": 6.75,
+      "sourcePage": 4,
+      "certainty": "approximate"
+    }
+  ],
+  "stair": {
+    "id": "main-stair",
+    "bounds": {
+      "x": 7.15,
+      "z": 14.8,
+      "width": 2.7,
+      "depth": 2.95
+    },
+    "levels": [
+      0.15,
+      3.45,
+      6.75
+    ],
+    "levelIds": [
+      "GF",
+      "FF",
+      "SF"
+    ],
+    "orientation": "double flight along +z then -z; entry and upper exit at front z=14.80",
+    "flightWidth": 1.1,
+    "landingDepth": 0.75,
+    "stepsPerStorey": 20,
+    "flightsPerStorey": 2,
+    "stepsPerFlight": 10,
+    "riser": 0.165,
+    "treadDepth": 0.22,
+    "entrancePoints": [
+      {
+        "level": "GF",
+        "x": 7.6,
+        "z": 14.65,
+        "y": 0.15
+      },
+      {
+        "level": "FF",
+        "x": 9.25,
+        "z": 14.65,
+        "y": 3.45
+      },
+      {
+        "level": "SF",
+        "x": 9.25,
+        "z": 14.65,
+        "y": 6.75
+      }
+    ],
+    "sourcePages": [
+      2,
+      3,
+      4
+    ],
+    "certainty": "approximate",
+    "notes": [
+      "定位按 E–G 轴之间楼梯区域近似。平面含转折踏步与踏步编号，未查得完整详图。",
+      "20 踏 / 两跑是本浏览器原型的明确暂定；不是已确认的施工楼梯。两层差均为 3.30 m，因此原型踢面 .165 m。",
+      "生成 FF 与 SF 楼板需挖除楼梯井；GF 可有底层地面。",
+      "SF 未确认继续上至主屋面的常规梯段，原型止于 +6.75。"
+    ]
+  },
+  "entrances": [
+    {
+      "id": "vehicle",
+      "label": "车行入口",
+      "x": 1.7,
+      "z": 0.125,
+      "floorY": 0.15,
+      "width": 2.9,
+      "wallId": "gf-front-boundary",
+      "certainty": "approximate"
+    },
+    {
+      "id": "pedestrian",
+      "label": "步行入口",
+      "x": 5.025,
+      "z": 0.125,
+      "floorY": 0.15,
+      "width": 1.35,
+      "wallId": "gf-front-boundary",
+      "certainty": "approximate"
+    },
+    {
+      "id": "main-door",
+      "label": "入户门",
+      "x": 5.0,
+      "z": 3.725,
+      "floorY": 0.15,
+      "width": 1.05,
+      "wallId": "gf-entry-front",
+      "certainty": "approximate"
+    }
+  ],
+  "proposedLift": {
+    "label": "拟设电梯位置（未安装）",
+    "bounds": {
+      "x": 4.0,
+      "z": 14.8,
+      "width": 1.525,
+      "depth": 1.7
+    },
+    "sourcePages": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "installed": false,
+    "walkable": false,
+    "certainty": "approximate",
+    "notes": [
+      "图上 Lift Location Proposal；不生成可运行电梯或推定其真实井道尺寸。"
+    ]
+  },
+  "notes": [
+    "本文件用于首版可浏览的空间原型；已经按图纸建立大体房间关系，尚未现场复尺或达到施工复原精度。",
+    "同一 End Mirror 原图仅做坐标旋转，不再次镜像；所有楼层道路均在 z=0。",
+    "全部房间矩形以最小 x/z 起点定义；可以从中心生成导航标签，但路径必须经过门洞而不是直接穿墙。",
+    "房间尺寸有文字标注时优先录入，净矩形以保守边界约化；p3–p5 右/下部分裁切，原 CAD / 补全页到手后应重校坐标。",
+    "GF 前门通道 → 门厅 → Majlis → 起居餐厅 → 楼梯，是明确的首版入户和上楼路径。",
+    "门窗净宽、窗台、门洞高及部分开门方向缺少完整表；除被明确说明的文字尺寸，其余均暂定。",
+    "GF/SF 卧室纵向净深与图面裁切、轴网及后墙面线有差；首版不越出 10×23 m 地块，误差集中在后端净深和局部墙偏移。",
+    "墙中心线段只负责空间阻挡，不等同预制板节点；.25/.17/.10/.12 m 厚度在图例确认，逐段归属仍有近似。",
+    "开口 type window 不作为行走门洞；type door/gate/glazed_door/passage 为可穿行。门扇状态由 viewer 控制，不能仅靠删墙通行。",
+    "拟设电梯不承诺存在；家具、厨房柜体、衣柜与固定软装都是另加示意，不在当前建筑图范围。",
+    "ROOF 主屋面 +10.15 与 SF 露台 +6.75 要分开；未确认常规屋面通路，首版只从屋外观察屋面。",
+    "待 viewer 检查：道路步行入口、所有房门可达、楼梯踏步和头部空间、庭院/楼梯洞口、碰撞不过墙、各层高度、手机操作与帧率。"
+  ]
+}

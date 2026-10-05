@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+<link rel="icon" href="data:,">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#ecebe3" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" href="/pwa/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="MLWK" />
+    <link rel="stylesheet" href="/pwa/shell.css" />
+    <script type="module" src="/pwa/shell.js"></script>
+    <title>Villa C · MLWK</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./mlwk-entry.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three.module.js",
+          "three/addons/": "./vendor/addons/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="scene" data-i18n-attr="aria-label:canvas.label"></canvas>
+
+    <header class="topbar">
+      <div class="brand" data-i18n-attr="aria-label:brand.label">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 28 32" fill="none"><path d="M4 28V5h13v7h7v16H4Z" stroke="currentColor" stroke-width="1.5"/><path d="M11 5v23M17 12v16M4 20h20" stroke="currentColor" stroke-width="1.5"/></svg>
+        </span>
+        <div><h1>Villa C</h1><p>MURCIA <span>•</span> RIYADH</p></div>
+      </div>
+      <div class="top-actions">
+        <button id="chromeToggle" class="quiet-button chrome-toggle" type="button" aria-label="Hide controls" aria-pressed="false">
+          <svg class="hide-controls-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8M9.5 5.5A11 11 0 0 1 12 5c5.5 0 9 7 9 7a17 17 0 0 1-3 3.8M6.2 6.2A17 17 0 0 0 3 12s3.5 7 9 7a11 11 0 0 0 5.8-1.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="show-controls-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12s3.5-7 9-7 9 7 9 7-3.5 7-9 7-9-7-9-7Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span id="chromeToggleLabel">Hide controls</span>
+        </button>
+        <a id="mlwkBack" class="quiet-button mlwk-back" href="/en/" aria-label="Back to MLWK"><span aria-hidden="true">←</span> MLWK</a>
+        <span id="status" role="status" aria-live="polite" data-i18n="status.loading"></span>
+        <button id="resetView" class="quiet-button" type="button" data-i18n-attr="aria-label:action.reset">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 6a6 6 0 1 1-1 6M5 2v4H1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span data-i18n="action.reset.short"></span>
+        </button>
+        <div class="segmented lang-switch" role="group" data-i18n-attr="aria-label:language.label">
+          <button type="button" data-lang="ar" aria-pressed="true">AR</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+        </div>
+      </div>
+    </header>
+
+    <p id="notice" class="notice" data-i18n="notice"></p>
+
+    <aside class="explore-dock" data-i18n-attr="aria-label:dock.label">
+      <div class="dock-section scope-section">
+        <span class="section-label">VIEW</span>
+        <div class="segmented preview-switch" data-i18n-attr="aria-label:scope.label">
+          <button type="button" data-scope="exterior" data-view="street" class="active" aria-pressed="true" data-i18n="scope.exterior"></button>
+          <button type="button" data-scope="interior" data-view="living" aria-pressed="false" data-i18n="scope.interior"></button>
+          <button type="button" data-scope="whole" data-view="aerial" aria-pressed="false" data-i18n="scope.whole"></button>
+        </div>
+      </div>
+
+      <nav class="room-nav" data-i18n-attr="aria-label:nav.rooms">
+        <button type="button" data-view="street" class="room-button active" aria-pressed="true"><span class="room-index">01</span><span data-i18n="view.street"></span><span class="room-arrow" aria-hidden="true">↗</span></button>
+        <button type="button" data-view="entrance" class="room-button" aria-pressed="false"><span class="room-index">02</span><span data-i18n="view.entrance"></span><span class="room-arrow" aria-hidden="true">↗</span></button>
+        <button type="button" data-view="living" class="room-button" aria-pressed="false"><span class="room-index">03</span><span data-i18n="view.living"></span><span class="room-arrow" aria-hidden="true">↗</span></button>
+        <button type="button" data-view="courtyard" class="room-button" aria-pressed="false"><span class="room-index">04</span><span data-i18n="view.courtyard"></span><span class="room-arrow" aria-hidden="true">↗</span></button>
+        <button type="button" data-view="stairs" class="room-button" aria-pressed="false"><span class="room-index">05</span><span data-i18n="view.stairs"></span><span class="room-arrow" aria-hidden="true">↗</span></button>
+        <button type="button" data-view="first" class="room-button" aria-pressed="false"><span class="room-index">06</span><span data-i18n="view.first"></span><span class="room-arrow" aria-hidden="true">↗</span></button>
+        <button type="button" data-view="second" class="room-button" aria-pressed="false"><span class="room-index">07</span><span data-i18n="view.second"></span><span class="room-arrow" aria-hidden="true">↗</span></button>
+        <button type="button" data-view="aerial" class="room-button" aria-pressed="false"><span class="room-index">08</span><span data-i18n="view.aerial"></span><span class="room-arrow" aria-hidden="true">↗</span></button>
+      </nav>
+
+      <div class="dock-section style-section">
+        <span class="section-label">STYLE</span>
+        <div class="material-switch" data-i18n-attr="aria-label:style.label">
+          <button type="button" data-style="modern" aria-pressed="false"><span class="swatch swatch-modern" aria-hidden="true"></span><span data-i18n="style.modern"></span></button>
+          <button type="button" data-style="luxury" aria-pressed="false"><span class="swatch swatch-luxury" aria-hidden="true"></span><span data-i18n="style.luxury"></span></button>
+          <button type="button" data-style="gulf" class="active" aria-pressed="true"><span class="swatch swatch-gulf" aria-hidden="true"></span><span data-i18n="style.gulf"></span></button>
+        </div>
+        <button type="button" id="furnishToggle" class="furnish-toggle" aria-pressed="true" data-i18n="furnish.on"></button>
+      </div>
+    </aside>
+
+    <footer class="control-bar" data-i18n-attr="aria-label:controls.label">
+      <div class="segmented mode-switch" data-i18n-attr="aria-label:mode.label">
+        <button type="button" data-mode="orbit" class="active" aria-pressed="true" data-i18n="mode.orbit"></button>
+        <button type="button" data-mode="walk" aria-pressed="false" data-i18n="mode.walk"></button>
+        <button type="button" data-mode="free" aria-pressed="false" data-i18n="mode.free"></button>
+      </div>
+      <span class="control-divider" aria-hidden="true"></span>
+      <div class="floor-switch" data-i18n-attr="aria-label:floor.label">
+        <button type="button" data-floor="all" class="active" aria-pressed="true" data-i18n="floor.all"></button>
+        <button type="button" data-floor="0" aria-pressed="false" data-i18n="floor.0"></button>
+        <button type="button" data-floor="1" aria-pressed="false" data-i18n="floor.1"></button>
+        <button type="button" data-floor="2" aria-pressed="false" data-i18n="floor.2"></button>
+      </div>
+      <button id="wholeHouse" class="quiet-button" type="button" data-i18n="view.whole"></button>
+      <button id="autoTour" class="quiet-button" type="button" data-i18n="tour.start"></button>
+      <button id="startWalk" class="walk-button" type="button"><span data-i18n="walk.start"></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </footer>
+
+    <details class="help-panel">
+      <summary data-i18n-attr="aria-label:help.label">?</summary>
+      <div class="help-content">
+        <p><strong data-i18n="help.look"></strong><span data-i18n="help.look.value"></span></p>
+        <p><strong data-i18n="help.move"></strong><span data-i18n="help.move.value"></span></p>
+        <p><strong data-i18n="help.steps"></strong><span data-i18n="help.steps.value"></span></p>
+        <p><strong data-i18n="help.release"></strong><span>Esc</span></p>
+        <p class="help-hint" data-i18n="help.hint"></p>
+        <p><a id="modelCredits" href="./credits.html" target="_blank" rel="noopener">Credits</a></p>
+        <p class="touch-help" data-i18n="help.touch"></p>
+      </div>
+    </details>
+
+    <aside class="map-panel" data-i18n-attr="aria-label:map.label">
+      <div class="map-caption"><span>PLAN</span><span class="north-label" data-i18n="map.street"></span></div>
+      <canvas id="minimap" width="320" height="360" data-i18n-attr="aria-label:map.floor"></canvas>
+      <div class="map-caption map-caption-3d"><span>3D</span></div>
+      <canvas id="miniview" width="320" height="300" aria-label="3D position"></canvas>
+      <div class="map-coords" id="coords" aria-live="off"><span data-k="x"></span><span data-k="y"></span><span data-k="z"></span></div>
+    </aside>
+
+    <div class="touch-controls" data-i18n-attr="aria-label:touch.label">
+      <button id="touchUp" class="touch-up" type="button" data-i18n-attr="aria-label:touch.up">↑</button>
+      <button id="touchLeft" class="touch-left" type="button" data-i18n-attr="aria-label:touch.left">←</button>
+      <span class="touch-center" aria-hidden="true"></span>
+      <button id="touchRight" class="touch-right" type="button" data-i18n-attr="aria-label:touch.right">→</button>
+      <button id="touchDown" class="touch-down" type="button" data-i18n-attr="aria-label:touch.down">↓</button>
+    </div>
+    <div id="lookpad" class="lookpad" role="group" data-i18n-attr="aria-label:lookpad.label"><span aria-hidden="true">↔</span></div>
+
+    <div class="reticle" aria-hidden="true"></div>
+
+    <div id="loading" class="loading-screen" role="status" aria-live="polite">
+      <div class="loading-card"><span class="loading-symbol" aria-hidden="true"></span><strong>Villa C</strong><span data-i18n="loading.build"></span></div>
+    </div>
+    <script type="module" src="./mlwk-entry.js"></script>
+    <script type="module" src="./scene.js"></script>
+  </body>
+</html>

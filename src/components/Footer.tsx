@@ -2,6 +2,8 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getCopy, type Locale } from "../content";
 import { getStoreCopy } from "../store/storeCopy";
+import { walkthroughLabels, walkthroughUrl } from "../walkthrough";
+import { installLabels } from "../pwa";
 
 export default function Footer({ locale }: { locale: Locale }) {
   const copy = getCopy(locale);
@@ -20,6 +22,7 @@ export default function Footer({ locale }: { locale: Locale }) {
         </div>
         <div>
           <Link to={`/${locale}/collections`}>{copy.nav.collections}</Link>
+          <a href={walkthroughUrl(locale)}>{walkthroughLabels[locale]}</a>
           <Link to={`/${locale}/shop`}>{store.shop}</Link>
           <Link to={`/${locale}/solutions`}>{copy.nav.solutions}</Link>
           <Link to={`/${locale}/capabilities`}>{copy.nav.capabilities}</Link>
@@ -32,6 +35,9 @@ export default function Footer({ locale }: { locale: Locale }) {
           <Link to={`/${locale}/returns`}>Returns</Link>
         </div>
         <div className="footer-note">
+          <button type="button" className="pwa-footer-install" data-pwa-install>
+            {installLabels[locale]}
+          </button>
           <span>Global project enquiries</span>
           <span>English · العربية · 中文 · Deutsch · Français</span>
         </div>

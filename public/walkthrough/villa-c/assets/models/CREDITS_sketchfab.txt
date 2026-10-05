@@ -1,0 +1,3 @@
+sofa_modern: "Modern  Sofa" by 3dimentionalben (CC Attribution) https://sketchfab.com/3d-models/modern-sofa-ac92f6e97eaa43c4ad6cb8f7c65ac43f
+sofa_sectional: "Couch Complete Set" by Studio 23 (CC Attribution) https://sketchfab.com/3d-models/couch-complete-set-7806c2e5146f471c98a561fc245f07c6
+bed_double: "Game Ready - Double Bed" by Allan-Jay Branscombe (CC Attribution) https://sketchfab.com/3d-models/game-ready-double-bed-eeafb24592f249f08f9576c2511272d8

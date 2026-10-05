@@ -1,0 +1,178 @@
+{
+ "asphalt_01": {
+  "w": 2.08,
+  "h": 2.08
+ },
+ "beige_wall_001": {
+  "w": 3.0,
+  "h": 3.0
+ },
+ "concrete_pavement_02": {
+  "w": 1.8,
+  "h": 1.8
+ },
+ "concrete_wall_008": {
+  "w": 2.71,
+  "h": 2.71
+ },
+ "concrete_wall_009": {
+  "w": 1.805,
+  "h": 1.805
+ },
+ "dense_sand": {
+  "w": 1.8,
+  "h": 1.8
+ },
+ "granite_tile_03": {
+  "w": 1.802,
+  "h": 1.802
+ },
+ "granite_tile_04": {
+  "w": 2.0,
+  "h": 2.0
+ },
+ "gravelly_sand": {
+  "w": 2.48,
+  "h": 2.48
+ },
+ "herringbone_parquet": {
+  "w": 3.4,
+  "h": 3.4
+ },
+ "interior_tiles": {
+  "w": 1.9,
+  "h": 1.9
+ },
+ "kitchen_wood": {
+  "w": 0.6,
+  "h": 0.6
+ },
+ "laminate_floor_02": {
+  "w": 1.7,
+  "h": 1.7
+ },
+ "leather_white": {
+  "w": 0.3,
+  "h": 0.3
+ },
+ "long_white_tiles": {
+  "w": 1.27,
+  "h": 1.27
+ },
+ "marble_01": {
+  "w": 1.5,
+  "h": 1.5
+ },
+ "metal_plate_02": {
+  "w": 2.0,
+  "h": 2.0
+ },
+ "oak_veneer_01": {
+  "w": 1.83,
+  "h": 1.83
+ },
+ "oak_veneer_03": {
+  "w": 1.0,
+  "h": 1.0
+ },
+ "painted_metal_shutter": {
+  "w": 2.0,
+  "h": 2.0
+ },
+ "patio_tiles": {
+  "w": 2.15,
+  "h": 2.15
+ },
+ "pavement_04": {
+  "w": 3.1,
+  "h": 3.1
+ },
+ "plastered_wall_02": {
+  "w": 2.23,
+  "h": 2.23
+ },
+ "plastered_wall_04": {
+  "w": 3.2,
+  "h": 3.2
+ },
+ "rough_linen": {
+  "w": 0.271,
+  "h": 0.271
+ },
+ "sparse_grass": {
+  "w": 2.0,
+  "h": 2.0
+ },
+ "terrazzo_tiles": {
+  "w": 2.0,
+  "h": 2.0
+ },
+ "walnut_veneer": {
+  "w": 1.8,
+  "h": 1.8
+ },
+ "white_oak_veneer": {
+  "w": 0.5,
+  "h": 0.5
+ },
+ "white_stucco": {
+  "w": 1.998,
+  "h": 1.998
+ },
+ "wood_floor": {
+  "w": 1.7,
+  "h": 1.7
+ },
+ "wool_boucle": {
+  "w": 0.315,
+  "h": 0.39
+ },
+ "velour_velvet": {
+  "w": 0.284,
+  "h": 0.273
+ },
+ "crepe_satin": {
+  "w": 0.263,
+  "h": 0.268
+ },
+ "black_walnut_veneer_01": {
+  "w": 1.0,
+  "h": 1.0
+ },
+ "smoked_walnut_veneer": {
+  "w": 1.0,
+  "h": 1.0
+ },
+ "natural_walnut_veneer": {
+  "w": 1.0,
+  "h": 1.0
+ },
+ "marble_tiles": {
+  "w": 2.0,
+  "h": 2.0
+ },
+ "white_sandstone_bricks": {
+  "w": 2.0,
+  "h": 2.0
+ },
+ "clay_plaster": {
+  "w": 2.0,
+  "h": 2.0
+ },
+ "grey_plaster_02": {
+  "w": 1.0,
+  "h": 1.0
+ },
+ "white_plaster_02": {
+  "w": 1.0,
+  "h": 1.0
+ },
+ "diagonal_parquet": {
+  "w": 2.36,
+  "h": 2.36
+ },
+ "brown_leather": {
+  "w": 0.4,
+  "h": 0.4
+ }
+}

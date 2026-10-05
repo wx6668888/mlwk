@@ -1,0 +1,11 @@
+Model Information:
+* title:	Game Ready - Double Bed
+* source:	https://sketchfab.com/3d-models/game-ready-double-bed-eeafb24592f249f08f9576c2511272d8
+* author:	Allan-Jay Branscombe (https://sketchfab.com/AllanJayBranscombe)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Game Ready - Double Bed" (https://sketchfab.com/3d-models/game-ready-double-bed-eeafb24592f249f08f9576c2511272d8) by Allan-Jay Branscombe (https://sketchfab.com/AllanJayBranscombe) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

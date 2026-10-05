@@ -9,3 +9,16 @@
 
 /media/*
   Cache-Control: public, max-age=604800
+
+/walkthrough/villa-c/assets/*
+  Cache-Control: public, max-age=86400
+
+/walkthrough/villa-c/vendor/*
+  Cache-Control: public, max-age=86400
+
+/sw.js
+  Cache-Control: no-cache
+  Service-Worker-Allowed: /
+
+/pwa/*
+  Cache-Control: public, max-age=0, must-revalidate

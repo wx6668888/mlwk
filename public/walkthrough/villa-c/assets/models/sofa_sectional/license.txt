@@ -1,0 +1,11 @@
+Model Information:
+* title:	Couch Complete Set
+* source:	https://sketchfab.com/3d-models/couch-complete-set-7806c2e5146f471c98a561fc245f07c6
+* author:	Studio 23 (https://sketchfab.com/studio23)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Couch Complete Set" (https://sketchfab.com/3d-models/couch-complete-set-7806c2e5146f471c98a561fc245f07c6) by Studio 23 (https://sketchfab.com/studio23) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

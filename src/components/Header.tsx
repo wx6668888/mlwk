@@ -1,6 +1,7 @@
 import {
   ArrowUpRight,
   ChevronDown,
+  Download,
   Globe2,
   Menu,
   ShoppingBag,
@@ -19,6 +20,8 @@ import {
 import { useAuth } from "../auth/AuthContext";
 import { useStore } from "../store/StoreContext";
 import { getStoreCopy } from "../store/storeCopy";
+import { walkthroughLabels, walkthroughUrl } from "../walkthrough";
+import { installLabels } from "../pwa";
 
 type HeaderProps = {
   locale: Locale;
@@ -41,6 +44,7 @@ export default function Header({ locale }: HeaderProps) {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
   const pathSegments = location.pathname.split("/").filter(Boolean);
   const section = pathSegments[1] ?? "";
@@ -51,6 +55,7 @@ export default function Header({ locale }: HeaderProps) {
 
   const nav = [
     ["collections", copy.nav.collections],
+    ["walkthrough", walkthroughLabels[locale]],
     ["designer", studioLabels[locale]],
     ["shop", storeCopy.shop],
     ["solutions", copy.nav.solutions],
@@ -63,6 +68,13 @@ export default function Header({ locale }: HeaderProps) {
     setMenuOpen(false);
     setLangOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const close = (event: MouseEvent) => {
@@ -80,7 +92,7 @@ export default function Header({ locale }: HeaderProps) {
 
   return (
     <header
-      className={`site-header ${hasMediaBackdrop ? "site-header--overlay" : ""}`}
+      className={`site-header ${hasMediaBackdrop ? "site-header--overlay" : ""} ${scrolled ? "site-header--scrolled" : ""}`}
     >
       <div className="header-shell">
         <Link className="brand" to={`/${locale}/`} aria-label="MLWK home">
@@ -90,13 +102,26 @@ export default function Header({ locale }: HeaderProps) {
 
         <nav className="desktop-nav" aria-label="Primary navigation">
           {nav.map(([path, label]) => (
-            <NavLink key={path} to={`/${locale}/${path}`}>
+            <NavLink
+              key={path}
+              to={path === "walkthrough" ? walkthroughUrl(locale) : `/${locale}/${path}`}
+              reloadDocument={path === "walkthrough"}
+            >
               {label}
             </NavLink>
           ))}
         </nav>
 
         <div className="header-actions">
+          <button
+            type="button"
+            className="header-icon-link pwa-install-button"
+            data-pwa-install
+            aria-label={installLabels[locale]}
+            title={installLabels[locale]}
+          >
+            <Download size={18} />
+          </button>
           <div className="language" ref={langRef}>
             <button
               type="button"
@@ -201,7 +226,10 @@ export default function Header({ locale }: HeaderProps) {
                   ease: "easeOut",
                 }}
               >
-                <NavLink to={`/${locale}/${path}`}>
+                <NavLink
+                  to={path === "walkthrough" ? walkthroughUrl(locale) : `/${locale}/${path}`}
+                  reloadDocument={path === "walkthrough"}
+                >
                   {label}
                   <ArrowUpRight size={18} />
                 </NavLink>
