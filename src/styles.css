@@ -8299,3 +8299,11 @@ html[dir="rtl"] .faq-list details p {
     line-height: 1.8;
   }
 }
+
+
+@media (min-width: 901px) and (max-width: 1280px) {
+  .page-intro__text {
+    max-width: 320px;
+    justify-self: end;
+  }
+}
