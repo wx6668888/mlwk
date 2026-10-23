@@ -41,7 +41,7 @@ export default function Footer({ locale }: { locale: Locale }) {
           </button>
           <span>Foshan, Guangdong, China</span>
           <a href="mailto:kai@cirmano.com">kai@cirmano.com</a>
-          <a href="https://wa.me/861866384092" target="_blank" rel="noreferrer">WhatsApp · +86 186 6638 4092</a>
+          <a href="https://wa.me/8618666384092" target="_blank" rel="noreferrer">WhatsApp · +86 186 6638 4092</a>
           <span>Project enquiries</span>
           <span>English · العربية · 中文 · Deutsch · Français</span>
         </div>
