@@ -109,7 +109,7 @@ export const storeCopy = {
   zh: {
     shop: "标品商城",
     shopTitle: "为空间精选的每一件物品",
-    shopIntro: "五金、成品家具、织物与家居摆件，每件都以 MLWK 木作项目一贯的材质标准为选择依据。",
+    shopIntro: "五金、成品家具、织物与家居摆件，每件都以 CIRMANO 木作项目一贯的材质标准为选择依据。",
     preview: "演示商品 · Sandbox 测试结账",
     search: "搜索商品",
     all: "全部",
@@ -203,7 +203,7 @@ export const storeCopy = {
   ar: {
     shop: "المتجر",
     shopTitle: "قطع لمساحات مدروسة",
-    shopIntro: "كتالوج تجريبي من المقابض والتجهيزات والإكسسوارات الداخلية بنفس عناية مشاريع MLWK.",
+    shopIntro: "كتالوج تجريبي من المقابض والتجهيزات والإكسسوارات الداخلية بنفس عناية مشاريع CIRMANO.",
     preview: "كتالوج تجريبي · دفع Sandbox",
     search: "بحث عن المنتجات",
     all: "الكل",
