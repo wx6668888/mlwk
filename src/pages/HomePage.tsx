@@ -1,4 +1,4 @@
-import { ArrowUpRight, FileText, Layers3 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   collections,
@@ -7,22 +7,7 @@ import {
 } from "../content";
 import CinematicMedia from "../components/CinematicMedia";
 import Reveal from "../components/Reveal";
-
-const heroTitleLines: Record<Locale, [string, string]> = {
-  en: ["Made", "As One"],
-  zh: ["一体成就", "完整空间"],
-  ar: ["صُنعت", "ككلّ واحد"],
-  de: ["Aus einem", "Guss"],
-  fr: ["Pensé", "comme un tout"],
-};
-
-const mobileHeroIntro: Record<Locale, string> = {
-  en: "Integrated whole-home customization for villas and premium homes.",
-  zh: "为别墅与高端住宅提供一体化全屋定制。",
-  ar: "تخصيص متكامل للمنازل والفلل الراقية.",
-  de: "Integrierte Raumkonzepte für Villen und hochwertige Wohnhäuser.",
-  fr: "Un aménagement intégré pour villas et résidences haut de gamme.",
-};
+import VillaRevealHero from "../components/VillaRevealHero";
 
 const manufacturingProof: Record<Locale, Array<[string, string]>> = {
   en: [
@@ -54,66 +39,11 @@ const manufacturingProof: Record<Locale, Array<[string, string]>> = {
 
 export default function HomePage({ locale }: { locale: Locale }) {
   const copy = getCopy(locale);
-  const [firstTitleLine, secondTitleLine] = heroTitleLines[locale];
+
 
   return (
     <>
-      <section className="hero">
-        <img
-          className="hero-film"
-          src="/media/cirmano-project-p175.jpg"
-          alt=""
-          aria-hidden="true"
-          fetchPriority="high"
-        />
-        <div className="hero-shade" />
-        <div className="hero-content">
-          <Reveal className="hero-copy">
-            <span className="hero-badge">
-              <Layers3 size={16} />
-              {copy.home.badge}
-            </span>
-            <h1
-              className={`hero-title hero-title--${locale}`}
-              aria-label={copy.home.title}
-            >
-              <span className="hero-title-rotator" aria-hidden="true">
-                <span>{firstTitleLine}</span>
-                <span>{secondTitleLine}</span>
-              </span>
-              <span className="hero-title-static">{copy.home.title}</span>
-            </h1>
-            <p className="hero-intro hero-intro--desktop">{copy.home.intro}</p>
-            <p className="hero-intro hero-intro--mobile">
-              {mobileHeroIntro[locale]}
-            </p>
-          </Reveal>
-
-          <div className="hero-proof">
-            <strong>
-              Foshan
-            </strong>
-            <span>Guangdong, China</span>
-            <Link to={`/${locale}/projects`}>
-              {copy.nav.projects}
-              <ArrowUpRight size={16} />
-            </Link>
-          </div>
-
-          <div className="hero-corner">
-            <Link to={`/${locale}/resources`}>
-              <span className="hero-corner__icon">
-                <FileText size={22} />
-              </span>
-              <span>
-                <strong>Catalogues</strong>
-                <small>{copy.common.explore}</small>
-              </span>
-              <ArrowUpRight size={18} />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <VillaRevealHero locale={locale} />
 
       {/* Material ticker */}
       <div className="material-ticker" aria-hidden="true">
