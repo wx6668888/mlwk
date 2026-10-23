@@ -50,7 +50,7 @@ export const onRequestPost: PagesFunction = async (context) => {
       {
         headers: {
           Accept: "application/json",
-          "User-Agent": "MLWK-Global-Site/1.0 (admin@mlwk.space)",
+          "User-Agent": "CIRMANO-Global-Site/1.0 (kai@cirmano.com)",
         },
       },
     );
