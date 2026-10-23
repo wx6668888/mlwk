@@ -1,10 +1,10 @@
 const languages = new Set(["en", "ar", "zh", "de", "fr"]);
 const copy = {
-  en: { title: "Install MLWK", desktop: "In Chrome or Edge, choose Install app from the browser menu or address bar.", ios: "On iPhone or iPad, open in Safari, tap Share, then Add to Home Screen.", close: "Close", update: "A new version of MLWK is ready.", refresh: "Refresh to update", later: "Later", offline: "You are offline" },
-  zh: { title: "安装 MLWK", desktop: "Chrome 或 Edge：点击地址栏的安装图标，或在浏览器菜单中选择“安装应用”。", ios: "iPhone 或 iPad：用 Safari 打开，点“分享”，再选“添加到主屏幕”。", close: "关闭", update: "MLWK 有新版本可用。", refresh: "刷新更新", later: "稍后", offline: "当前离线" },
-  ar: { title: "تثبيت MLWK", desktop: "في Chrome أو Edge، اختر تثبيت التطبيق من قائمة المتصفح أو شريط العنوان.", ios: "على iPhone أو iPad، افتح في Safari واضغط مشاركة ثم إضافة إلى الشاشة الرئيسية.", close: "إغلاق", update: "يتوفر إصدار جديد من MLWK.", refresh: "تحديث الآن", later: "لاحقاً", offline: "أنت غير متصل بالإنترنت" },
-  de: { title: "MLWK installieren", desktop: "In Chrome oder Edge: App installieren im Browsermenü oder in der Adressleiste wählen.", ios: "Auf iPhone oder iPad: in Safari öffnen, Teilen und Zum Home-Bildschirm wählen.", close: "Schließen", update: "Eine neue MLWK-Version ist verfügbar.", refresh: "Aktualisieren", later: "Später", offline: "Sie sind offline" },
-  fr: { title: "Installer MLWK", desktop: "Dans Chrome ou Edge, choisissez Installer l’application dans le menu ou la barre d’adresse.", ios: "Sur iPhone ou iPad, ouvrez Safari, touchez Partager puis Sur l’écran d’accueil.", close: "Fermer", update: "Une nouvelle version de MLWK est disponible.", refresh: "Actualiser", later: "Plus tard", offline: "Vous êtes hors ligne" },
+  en: { title: "Install CIRMANO", desktop: "In Chrome or Edge, choose Install app from the browser menu or address bar.", ios: "On iPhone or iPad, open in Safari, tap Share, then Add to Home Screen.", close: "Close", update: "A new version of CIRMANO is ready.", refresh: "Refresh to update", later: "Later", offline: "You are offline" },
+  zh: { title: "安装 CIRMANO", desktop: "Chrome 或 Edge：点击地址栏的安装图标，或在浏览器菜单中选择“安装应用”。", ios: "iPhone 或 iPad：用 Safari 打开，点“分享”，再选“添加到主屏幕”。", close: "关闭", update: "CIRMANO 有新版本可用。", refresh: "刷新更新", later: "稍后", offline: "当前离线" },
+  ar: { title: "تثبيت CIRMANO", desktop: "في Chrome أو Edge، اختر تثبيت التطبيق من قائمة المتصفح أو شريط العنوان.", ios: "على iPhone أو iPad، افتح في Safari واضغط مشاركة ثم إضافة إلى الشاشة الرئيسية.", close: "إغلاق", update: "يتوفر إصدار جديد من CIRMANO.", refresh: "تحديث الآن", later: "لاحقاً", offline: "أنت غير متصل بالإنترنت" },
+  de: { title: "CIRMANO installieren", desktop: "In Chrome oder Edge: App installieren im Browsermenü oder in der Adressleiste wählen.", ios: "Auf iPhone oder iPad: in Safari öffnen, Teilen und Zum Home-Bildschirm wählen.", close: "Schließen", update: "Eine neue CIRMANO-Version ist verfügbar.", refresh: "Aktualisieren", later: "Später", offline: "Sie sind offline" },
+  fr: { title: "Installer CIRMANO", desktop: "Dans Chrome ou Edge, choisissez Installer l’application dans le menu ou la barre d’adresse.", ios: "Sur iPhone ou iPad, ouvrez Safari, touchez Partager puis Sur l’écran d’accueil.", close: "Fermer", update: "Une nouvelle version de CIRMANO est disponible.", refresh: "Actualiser", later: "Plus tard", offline: "Vous êtes hors ligne" },
 };
 let installPrompt;
 let registration;
@@ -60,7 +60,7 @@ function showHelp() {
   }
   dialog.replaceChildren();
   const icon = element("img");
-  icon.src = "/pwa/icon-192.png";
+  icon.src = "/pwa/cirmano-icon-256.png";
   icon.alt = "";
   const title = element("h2", text().title);
   title.id = "pwa-install-title";
@@ -123,5 +123,5 @@ if ("serviceWorker" in navigator && window.isSecureContext) {
         if (worker.state === "installed" && navigator.serviceWorker.controller) showUpdate();
       });
     });
-  }).catch((error) => console.warn("MLWK app shell registration failed", error));
+  }).catch((error) => console.warn("CIRMANO app shell registration failed", error));
 }
