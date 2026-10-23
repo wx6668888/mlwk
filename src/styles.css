@@ -8282,3 +8282,20 @@ html[dir="rtl"] .faq-list details p {
     height: calc(100dvh - 20px);
   }
 }
+
+@media (min-width: 901px) and (max-width: 1280px) {
+  .page-intro__inner {
+    grid-template-columns: minmax(92px, 0.34fr) minmax(0, 1.25fr) minmax(0, 0.78fr);
+    gap: clamp(24px, 3vw, 36px);
+  }
+
+  .page-intro h1 {
+    font-size: clamp(52px, 5.2vw, 66px);
+  }
+
+  .page-intro__text {
+    min-width: 0;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+}
