@@ -313,8 +313,6 @@ export const copy = {
     nav: { collections: "المنتجات", solutions: "نطاق المشروع", projects: "المشاريع", capabilities: "القدرات", company: "الشركة", quote: "أرسل مخططاتك" },
     common: { explore: "استكشف", viewAll: "عرض الكل", learnMore: "اعرف المزيد", concept: "اتجاه تصميمي", back: "عودة", openMenu: "فتح القائمة", closeMenu: "إغلاق القائمة", language: "اللغة" },
     home: {
-      badge: "أعمال خشبية صُممت لتنتمي",
-      title: "مصنوعة للمساحات التي تبقى في الذاكرة",
       badge: "تخصيص متكامل للمنازل",
       title: "صُنع ككلّ واحد",
       intro: "تخصيص متكامل للفلل والمساكن الراقية من فوشان، الصين. مطابخ وخزائن وأبواب داخلية وألواح جدارية بلغة تصميم واحدة.",
@@ -363,8 +361,6 @@ export const copy = {
     nav: { collections: "Produkte", solutions: "Projektumfang", projects: "Projekte", capabilities: "Kompetenzen", company: "Unternehmen", quote: "Pläne senden" },
     common: { explore: "Entdecken", viewAll: "Alle ansehen", learnMore: "Mehr erfahren", concept: "Designrichtung", back: "Zurück", openMenu: "Menü öffnen", closeMenu: "Menü schließen", language: "Sprache" },
     home: {
-      badge: "Millwork, das zum Raum gehört",
-      title: "Für Räume, die in Erinnerung bleiben",
       badge: "Integrierte Maßanfertigung für das ganze Zuhause",
       title: "Aus einem Guss",
       intro: "Integrierte Maßanfertigung für Villen und hochwertige Wohnhäuser aus Foshan, China. Küchen, Schränke, Innentüren und Wandpaneele in einer gemeinsamen Gestaltungssprache.",
@@ -413,8 +409,6 @@ export const copy = {
     nav: { collections: "Produits", solutions: "Périmètre du projet", projects: "Projets", capabilities: "Savoir-faire", company: "Entreprise", quote: "Envoyer vos plans" },
     common: { explore: "Explorer", viewAll: "Tout voir", learnMore: "En savoir plus", concept: "Direction créative", back: "Retour", openMenu: "Ouvrir le menu", closeMenu: "Fermer le menu", language: "Langue" },
     home: {
-      badge: "Une menuiserie faite pour appartenir au lieu",
-      title: "Pour les pièces dont on se souvient",
       badge: "Aménagement intégré de toute la maison",
       title: "Pensé comme un tout",
       intro: "Aménagement intégré pour villas et résidences haut de gamme, depuis Foshan en Chine. Cuisines, dressings, portes intérieures et panneaux muraux dans un même langage de conception.",
