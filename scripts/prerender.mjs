@@ -68,38 +68,45 @@ const noIndexSections = new Set([
   "order",
   "admin",
 ]);
+const siteUrl = "https://cirmano.com";
 
 const titles = {
-  "": "Crafted Interiors, Delivered Worldwide",
-  collections: "Made-to-order Millwork Collections",
-  solutions: "Project Solutions",
+  "": "Made As One — Integrated Whole-Home Customization",
+  collections: "Whole-Home Products",
+  solutions: "Project Scope",
   projects: "Verified Projects",
   capabilities: "Millwork Capabilities",
-  company: "About MLWK",
+  company: "About CIRMANO",
   designer: "3D Design Studio",
-  resources: "Millwork Resources",
-  quote: "Send Your Drawings",
-  shop: "MLWK Standard Objects",
+  resources: "CIRMANO Resources",
+  quote: "Discuss Your Project",
+  shop: "CIRMANO Objects",
   privacy: "Privacy",
   terms: "Terms",
   shipping: "Shipping and Duties",
   returns: "Returns and Refunds",
 };
 
+const detailTitles = {
+  "solutions/residential": "Villas and Premium Homes",
+  "solutions/hospitality": "Whole-Home Systems",
+  "solutions/commercial": "Project-Specific Scope",
+};
+
 function metadata(route) {
   const section = route.split("/")[0];
   const detail = route.split("/")[1];
-  const name = detail
+  const name = detailTitles[route] ?? (detail
     ? detail
         .split("-")
         .map((part) => part[0].toUpperCase() + part.slice(1))
         .join(" ")
-    : titles[section] ?? "Architectural Millwork";
+    : titles[section] ?? "Integrated Whole-Home Customization");
   return {
-    title: `${name} — MLWK`,
+    title: `${name} — CIRMANO`,
     description: detail
-      ? `${name} by MLWK, developed with considered materials, precise detailing and international project delivery in mind.`
-      : "Made-to-order architectural millwork and custom cabinetry, developed from project drawings and prepared for international delivery.",
+      ? `${name} by CIRMANO, developed with considered materials, precise detailing and the whole home in mind.`
+      : "CIRMANO brings kitchens, wardrobes, interior doors and wall panels together through a shared design language. Made as one in Foshan, China.",
   };
 }
 
@@ -108,7 +115,7 @@ const sitemap = [];
 for (const locale of locales) {
   for (const route of baseRoutes) {
     const urlPath = `/${locale}/${route}${route ? "/" : ""}`;
-    const canonical = `https://mlwk.space${urlPath}`;
+    const canonical = `${siteUrl}${urlPath}`;
     const meta = metadata(route);
     const robots = noIndexSections.has(route.split("/")[0])
       ? "noindex, nofollow"
@@ -116,7 +123,7 @@ for (const locale of locales) {
     const alternates = locales
       .map(
         (item) =>
-          `<link rel="alternate" hreflang="${item}" href="https://mlwk.space/${item}/${route}${route ? "/" : ""}" />`,
+          `<link rel="alternate" hreflang="${item}" href="${siteUrl}/${item}/${route}${route ? "/" : ""}" />`,
       )
       .join("\n    ");
     const html = template
@@ -125,11 +132,11 @@ for (const locale of locales) {
         `<html lang="${locale}" dir="${locale === "ar" ? "rtl" : "ltr"}">`,
       )
       .replace("<!--app-html-->", render(urlPath))
-      .replaceAll("__MLWK_TITLE__", meta.title)
-      .replaceAll("__MLWK_DESCRIPTION__", meta.description)
-      .replaceAll("__MLWK_ROBOTS__", robots)
-      .replaceAll("__MLWK_CANONICAL__", canonical)
-      .replace("<!--mlwk-hreflang-->", alternates);
+      .replaceAll("__CIRMANO_TITLE__", meta.title)
+      .replaceAll("__CIRMANO_DESCRIPTION__", meta.description)
+      .replaceAll("__CIRMANO_ROBOTS__", robots)
+      .replaceAll("__CIRMANO_CANONICAL__", canonical)
+      .replace("<!--cirmano-hreflang-->", alternates);
     const target = join(dist, locale, route, "index.html");
     await mkdir(dirname(target), { recursive: true });
     await writeFile(target, html);
@@ -148,14 +155,14 @@ await writeFile(join(dist, "sitemap.xml"), sitemapXml);
 
 const rootHtml = template
   .replace("<!--app-html-->", render("/en/"))
-  .replaceAll("__MLWK_TITLE__", "MLWK — Millwork, Made to Order")
+  .replaceAll("__CIRMANO_TITLE__", "CIRMANO — Made As One")
   .replaceAll(
-    "__MLWK_DESCRIPTION__",
-    "Made-to-order architectural millwork and custom cabinetry for global projects.",
+    "__CIRMANO_DESCRIPTION__",
+    "Integrated whole-home customization for villas and premium homes. Made as one in Foshan, China.",
   )
-  .replaceAll("__MLWK_ROBOTS__", "index, follow")
-  .replaceAll("__MLWK_CANONICAL__", "https://mlwk.space/en/")
-  .replace("<!--mlwk-hreflang-->", "");
+  .replaceAll("__CIRMANO_ROBOTS__", "index, follow")
+  .replaceAll("__CIRMANO_CANONICAL__", `${siteUrl}/en/`)
+  .replace("<!--cirmano-hreflang-->", "");
 await writeFile(join(dist, "index.html"), rootHtml);
 
 console.log(`Prerendered ${locales.length * baseRoutes.length} localized routes.`);

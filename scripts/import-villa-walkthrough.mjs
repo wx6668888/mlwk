@@ -23,10 +23,10 @@ let html = await readFile(join(source, "index.html"), "utf8");
 const exportButton = /<button id="exportModel"[^>]*><\/button>/;
 if (!exportButton.test(html)) throw new Error("The source viewer's toolbar has changed; review the import adapter.");
 html = html
-  .replace("<title>Villa C · Murcia</title>", "<title>Villa C · MLWK</title>")
-  .replace('<meta name="theme-color" content="#ecebe3" />', '<meta name="theme-color" content="#ecebe3" />\n    <link rel="manifest" href="/site.webmanifest" />\n    <link rel="apple-touch-icon" href="/pwa/apple-touch-icon.png" />\n    <meta name="apple-mobile-web-app-capable" content="yes" />\n    <meta name="apple-mobile-web-app-title" content="MLWK" />\n    <link rel="stylesheet" href="/pwa/shell.css" />\n    <script type="module" src="/pwa/shell.js"></script>')
+  .replace("<title>Villa C · Murcia</title>", "<title>Villa C · CIRMANO</title>")
+  .replace('<meta name="theme-color" content="#ecebe3" />', '<meta name="theme-color" content="#101012" />\n    <link rel="manifest" href="/site.webmanifest" />\n    <link rel="apple-touch-icon" href="/pwa/cirmano-apple-touch-icon.png" />\n    <meta name="apple-mobile-web-app-capable" content="yes" />\n    <meta name="apple-mobile-web-app-title" content="CIRMANO" />\n    <link rel="stylesheet" href="/pwa/shell.css" />\n    <script type="module" src="/pwa/shell.js"></script>')
   .replace('<link rel="stylesheet" href="./style.css" />', '<link rel="stylesheet" href="./style.css" />\n    <link rel="stylesheet" href="./mlwk-entry.css" />')
-  .replace(exportButton, '<a id="mlwkBack" class="quiet-button mlwk-back" href="/en/" aria-label="Back to MLWK"><span aria-hidden="true">←</span> MLWK</a>')
+  .replace(exportButton, '<a id="mlwkBack" class="quiet-button mlwk-back" href="/en/" aria-label="Back to CIRMANO"><span aria-hidden="true">←</span> CIRMANO</a>')
   .replace('<div class="top-actions">', `<div class="top-actions">\n        ${chromeToggle}`)
   .replace('<p class="help-hint" data-i18n="help.hint"></p>', '<p class="help-hint" data-i18n="help.hint"></p>\n        <p><a id="modelCredits" href="./credits.html" target="_blank" rel="noopener">Credits</a></p>')
   .replace('<script type="module" src="./scene.js"></script>', '<script type="module" src="./mlwk-entry.js"></script>\n    <script type="module" src="./scene.js"></script>');

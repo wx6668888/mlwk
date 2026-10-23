@@ -22,4 +22,4 @@ if (!worker.includes("__MLWK_PWA_VERSION__") || !worker.includes("const APP_SHEL
 }
 worker = worker.replace("__MLWK_PWA_VERSION__", version).replace("const APP_SHELL = []; // build:app-shell", `const APP_SHELL = ${JSON.stringify(assets)};`);
 await writeFile(join(dist, "sw.js"), worker);
-console.log(`Prepared MLWK PWA ${version}: ${assets.length} app shell assets; 3D files are network-only.`);
+console.log(`Prepared CIRMANO PWA ${version}: ${assets.length} app shell assets; 3D files are network-only.`);
