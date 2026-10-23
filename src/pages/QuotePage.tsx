@@ -226,7 +226,7 @@ export default function QuotePage({ locale }: { locale: Locale }) {
 
       if (isLocalPreview) {
         await new Promise((resolve) => window.setTimeout(resolve, 900));
-        setProjectCode(`MLWK-PREVIEW-${Date.now().toString().slice(-5)}`);
+        setProjectCode(`CIRMANO-PREVIEW-${Date.now().toString().slice(-5)}`);
       } else {
         const response = await fetch("/api/inquiries", {
           method: "POST",
@@ -425,9 +425,9 @@ export default function QuotePage({ locale }: { locale: Locale }) {
                 <option value="" disabled>
                   —
                 </option>
-                <option value="residential">Luxury Residential</option>
-                <option value="hospitality">Hospitality</option>
-                <option value="commercial">Commercial</option>
+                <option value="residential">Villas &amp; premium homes</option>
+                <option value="hospitality">Whole-home customization</option>
+                <option value="commercial">Project-specific product scope</option>
               </select>
             </label>
             <label>

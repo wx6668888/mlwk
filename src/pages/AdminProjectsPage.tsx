@@ -155,7 +155,7 @@ export default function AdminProjectsPage({ locale }: { locale: Locale }) {
     <section className="admin-projects-page">
       <header>
         <div>
-          <small>MLWK Operations</small>
+          <small>CIRMANO Operations</small>
           <h1>Project updates</h1>
         </div>
         <button type="button" onClick={() => void load()} aria-label="Refresh">

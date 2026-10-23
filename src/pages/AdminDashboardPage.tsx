@@ -257,7 +257,7 @@ export default function AdminDashboardPage({ locale }: { locale: Locale }) {
     <section className="admin-dashboard">
       <header className="admin-dashboard__header">
         <div>
-          <small>MLWK Operations</small>
+          <small>CIRMANO Operations</small>
           <h1>{TAB_LABELS[locale][tab]}</h1>
         </div>
         <button

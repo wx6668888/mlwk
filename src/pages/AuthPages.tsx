@@ -55,9 +55,9 @@ function CheckIcon() {
 }
 
 const SLIDE_IMAGES = [
-  "/media/kitchens.png",
-  "/media/wall-panels.png",
-  "/media/bespoke-built-ins.png",
+  "/media/cirmano-project-dining-p234.webp",
+  "/media/cirmano-project-p175.jpg",
+  "/media/cirmano-project-study-p115.webp",
 ];
 
 export function LoginPage({ locale }: { locale: Locale }) {
@@ -198,7 +198,7 @@ export function LoginPage({ locale }: { locale: Locale }) {
         {/* ── Left: visual ── */}
         <div className="login-visual">
           <div className="login-visual-header">
-            <span className="login-visual-logo">MLWK</span>
+            <span className="login-visual-logo">CIRMANO</span>
             <Link to={`/${locale}/`} className="login-visual-back">
               <ArrowRight size={14} />
               <span>{copy.backToSite}</span>
@@ -235,7 +235,7 @@ export function LoginPage({ locale }: { locale: Locale }) {
                 <ArrowRight size={18} />
               </div>
               <span>
-                <strong>MLWK</strong>
+                <strong>CIRMANO</strong>
                 <small>{copy.backToSite}</small>
               </span>
             </Link>

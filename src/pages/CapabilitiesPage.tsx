@@ -1,6 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import MediaFilm from "../components/MediaFilm";
 import PageIntro from "../components/PageIntro";
 import Reveal from "../components/Reveal";
 import { getCopy, type Locale } from "../content";
@@ -14,29 +13,29 @@ const details: Record<
   }
 > = {
   en: {
-    media: "Material and wall panel development",
-    material: ["Material control", "One approved sample becomes the reference.", "Grain direction, sheen, color, edge detail and hardware are coordinated before production. Verified factory and inspection media will be added as it becomes available."],
-    support: ["Installation boundary", "Prepared here. Installed with local teams.", "MLWK supplies labeling, packing schedules, installation drawings, video references and remote guidance. Site installation remains with the client or appointed local contractor unless separately agreed in writing."],
+    media: "HOMAG manufacturing equipment at the Foshan workshop",
+    material: ["Manufacturing details", "Equipment supports the coordinated whole.", "Brand materials show HOMAG equipment. Laser edgebanding is used for specified compatible components; selected cabinetry is inspected and trial-assembled before dispatch. Exact process scope is confirmed by project."],
+    support: ["Project responsibilities", "Defined before production.", "The written project scope confirms product supply, packaging, installation responsibilities and any local coordination before work proceeds."],
   },
   zh: {
-    media: "材料与墙板深化",
-    material: ["材料控制", "一块确认样，成为全程标准。", "木纹方向、光泽、颜色、封边细节与五金在生产前统一确认。真实工厂与质检影像将在核验后逐步补充。"],
-    support: ["安装边界", "在这里准备，由当地团队完成安装。", "MLWK 提供编号、包装清单、安装图纸、视频参考与远程指导。除非另有书面约定，现场安装由客户或指定的当地承包商负责。"],
+    media: "佛山工厂的HOMAG制造设备",
+    material: ["制造细节", "设备支持整体协同。", "品牌资料展示了HOMAG设备。激光封边用于指定兼容部件；选定柜体在出货前进行检查与试装。具体工艺范围按项目确认。"],
+    support: ["项目责任", "生产前逐项明确。", "书面项目范围会在工作开始前确认产品供货、包装、安装责任及当地协调事项。"],
   },
   ar: {
-    media: "تطوير المواد وكسوات الجدران",
-    material: ["ضبط المواد", "العينة المعتمدة تصبح المرجع.", "يتم تنسيق اتجاه العروق واللمعان واللون والحواف والتجهيزات قبل الإنتاج، مع إضافة مواد المصنع والفحص الموثقة عند توفرها."],
-    support: ["حدود التركيب", "نجهز هنا، ويركب الفريق المحلي.", "توفر MLWK الترقيم وجداول التعبئة ورسومات التركيب والمراجع المصورة والإرشاد عن بعد. يبقى التركيب الميداني مسؤولية العميل أو المقاول المحلي ما لم يُتفق كتابياً."],
+    media: "معدات HOMAG للتصنيع في ورشة فوشان",
+    material: ["تفاصيل التصنيع", "تدعم المعدات العمل المتكامل.", "تعرض مواد العلامة معدات HOMAG. يُستخدم تلبيس الحواف بالليزر لمكونات متوافقة محددة؛ وتُفحص بعض الخزائن وتُجرّب قبل الشحن. يُؤكد نطاق العملية لكل مشروع."],
+    support: ["مسؤوليات المشروع", "تُحدد قبل الإنتاج.", "يؤكد نطاق المشروع المكتوب توريد المنتجات والتعبئة ومسؤوليات التركيب وأي تنسيق محلي قبل بدء العمل."],
   },
   de: {
-    media: "Material- und Wandpaneelentwicklung",
-    material: ["Materialkontrolle", "Ein freigegebenes Muster wird zur Referenz.", "Maserung, Glanz, Farbe, Kanten und Beschläge werden vor der Produktion abgestimmt. Verifizierte Werks- und Prüfaufnahmen werden ergänzt, sobald sie vorliegen."],
-    support: ["Montagegrenze", "Hier vorbereitet. Mit lokalen Teams montiert.", "MLWK liefert Kennzeichnung, Packlisten, Montagezeichnungen, Videoreferenzen und Fernunterstützung. Die Montage vor Ort bleibt beim Kunden oder lokalen Auftragnehmer, sofern nichts anderes schriftlich vereinbart ist."],
+    media: "HOMAG-Fertigungsanlage in der Werkstatt in Foshan",
+    material: ["Fertigungsdetails", "Anlagen unterstützen das abgestimmte Ganze.", "Die Markenunterlagen zeigen HOMAG-Anlagen. Laserbekantung wird für bestimmte kompatible Bauteile eingesetzt; ausgewählte Schränke werden vor dem Versand geprüft und probemontiert. Der genaue Prozessumfang wird projektbezogen bestätigt."],
+    support: ["Projektverantwortung", "Vor der Fertigung festgelegt.", "Der schriftliche Projektumfang bestätigt vor Arbeitsbeginn Produktlieferung, Verpackung, Montageverantwortung und eine etwaige lokale Koordination."],
   },
   fr: {
-    media: "Développement des matériaux et panneaux muraux",
-    material: ["Maîtrise des matériaux", "Un échantillon approuvé devient la référence.", "Le fil, la brillance, la couleur, les chants et les quincailleries sont coordonnés avant production. Les médias d'usine et de contrôle vérifiés seront ajoutés lorsqu'ils seront disponibles."],
-    support: ["Limite de pose", "Préparé ici. Installé avec les équipes locales.", "MLWK fournit repérage, plans de colisage, plans de pose, références vidéo et assistance à distance. La pose sur site reste à la charge du client ou de l'entreprise locale, sauf accord écrit distinct."],
+    media: "Équipement HOMAG dans l'atelier de Foshan",
+    material: ["Détails de fabrication", "Les équipements soutiennent un ensemble coordonné.", "Les documents de marque montrent des équipements HOMAG. Le placage laser est utilisé pour certains composants compatibles ; certains meubles sont contrôlés et montés à blanc avant expédition. Le périmètre précis est confirmé par projet."],
+    support: ["Responsabilités du projet", "Définies avant fabrication.", "Le périmètre écrit confirme la fourniture, l'emballage, les responsabilités de pose et toute coordination locale avant le début des travaux."],
   },
 };
 
@@ -50,10 +49,11 @@ export default function CapabilitiesPage({ locale }: { locale: Locale }) {
       <PageIntro eyebrow={eyebrow} title={title} text={text} />
       <section className="capability-film section">
         <Reveal className="capability-film__media">
-          <MediaFilm
-            src="/media/wall-panels-generated.mp4"
-            poster="/media/wall-panels.png"
-            label={detail.media}
+          <img
+            className="capability-factory-image"
+            src="/media/cirmano-factory-m07.webp"
+            alt={detail.media}
+            loading="lazy"
           />
         </Reveal>
         <Reveal className="capability-film__copy">

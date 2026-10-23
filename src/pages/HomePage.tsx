@@ -5,25 +5,51 @@ import {
   getCopy,
   type Locale,
 } from "../content";
-import MediaFilm from "../components/MediaFilm";
 import CinematicMedia from "../components/CinematicMedia";
-import CountUp from "../components/CountUp";
 import Reveal from "../components/Reveal";
 
 const heroTitleLines: Record<Locale, [string, string]> = {
-  en: ["Made for the rooms", "people remember"],
-  zh: ["为值得被记住的", "空间而作"],
-  ar: ["مصنوعة للمساحات", "التي تبقى في الذاكرة"],
-  de: ["Für Räume,", "die in Erinnerung bleiben"],
-  fr: ["Pour les pièces", "dont on se souvient"],
+  en: ["Made", "As One"],
+  zh: ["一体成就", "完整空间"],
+  ar: ["صُنعت", "ككلّ واحد"],
+  de: ["Aus einem", "Guss"],
+  fr: ["Pensé", "comme un tout"],
 };
 
 const mobileHeroIntro: Record<Locale, string> = {
-  en: "Cabinetry and architectural millwork, shaped from drawing to final grain.",
-  zh: "从图纸到木纹，让柜体与建筑木作成为空间的一部分。",
-  ar: "خزائن وأعمال خشبية معمارية، من المخطط حتى آخر تفصيلة.",
-  de: "Möbel und Innenausbau, vom Plan bis zum letzten Furnierbild.",
-  fr: "Mobilier et menuiserie architecturale, du plan au dernier veinage.",
+  en: "Integrated whole-home customization for villas and premium homes.",
+  zh: "为别墅与高端住宅提供一体化全屋定制。",
+  ar: "تخصيص متكامل للمنازل والفلل الراقية.",
+  de: "Integrierte Raumkonzepte für Villen und hochwertige Wohnhäuser.",
+  fr: "Un aménagement intégré pour villas et résidences haut de gamme.",
+};
+
+const manufacturingProof: Record<Locale, Array<[string, string]>> = {
+  en: [
+    ["Panel processing", "Foshan manufacturing brings panel processing together with coordinated cabinetry systems."],
+    ["Edge finishing", "Careful edge finishing supports the details of each approved project package."],
+    ["Inspection & trial assembly", "Selected cabinetry is inspected and trial-assembled before dispatch; scope is confirmed by project."],
+  ],
+  zh: [
+    ["板件加工", "佛山制造环节结合板件加工与协同深化的柜体系统。"],
+    ["饰面封边", "细致的封边处理服务于每个已确认项目的具体细节。"],
+    ["检查与试装", "部分柜体在出货前检查并试装；具体范围按项目确认。"],
+  ],
+  ar: [
+    ["معالجة الألواح", "يجمع التصنيع في فوشان بين معالجة الألواح وأنظمة الخزائن المتناسقة."],
+    ["تشطيب الحواف", "يدعم تشطيب الحواف بعناية تفاصيل كل حزمة مشروع معتمدة."],
+    ["الفحص والتجميع التجريبي", "تُفحص بعض الخزائن وتُجرّب قبل الشحن؛ ويُؤكد النطاق لكل مشروع."],
+  ],
+  de: [
+    ["Plattenbearbeitung", "Die Fertigung in Foshan verbindet Plattenbearbeitung mit abgestimmten Schranksystemen."],
+    ["Kantenbearbeitung", "Sorgfältige Kantenbearbeitung unterstützt die Details jedes freigegebenen Projektpakets."],
+    ["Prüfung und Probemontage", "Ausgewählte Schränke werden vor dem Versand geprüft und probemontiert; der Umfang wird projektbezogen bestätigt."],
+  ],
+  fr: [
+    ["Usinage des panneaux", "La fabrication à Foshan associe l’usinage des panneaux à des systèmes de mobilier coordonnés."],
+    ["Finition des chants", "Une finition soignée des chants accompagne les détails du dossier de projet approuvé."],
+    ["Contrôle et montage à blanc", "Certains meubles sont contrôlés et montés à blanc avant expédition ; le périmètre est confirmé pour chaque projet."],
+  ],
 };
 
 export default function HomePage({ locale }: { locale: Locale }) {
@@ -33,17 +59,12 @@ export default function HomePage({ locale }: { locale: Locale }) {
   return (
     <>
       <section className="hero">
-        <MediaFilm
-          sources={[
-            {
-              src: "/media/hero-lifestyle-film.mp4",
-              type: "video/mp4",
-            },
-          ]}
-          poster="/media/hero-barefoot-poster.webp"
-          label="MLWK architectural millwork interior — lifestyle film"
+        <img
           className="hero-film"
-          eager
+          src="/media/cirmano-project-p175.jpg"
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
         />
         <div className="hero-shade" />
         <div className="hero-content">
@@ -70,13 +91,9 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
           <div className="hero-proof">
             <strong>
-              <CountUp
-                end={500}
-                prefix={locale === "ar" ? "+" : ""}
-                suffix={locale === "ar" ? "" : "+"}
-              />
+              Foshan
             </strong>
-            <span>{copy.home.proofLabel}</span>
+            <span>Guangdong, China</span>
             <Link to={`/${locale}/projects`}>
               {copy.nav.projects}
               <ArrowUpRight size={16} />
@@ -181,34 +198,28 @@ export default function HomePage({ locale }: { locale: Locale }) {
           <p>{copy.home.directionText}</p>
         </Reveal>
         <Reveal className="direction-film">
-          <MediaFilm
-            src="/media/kitchen-generated.mp4"
-            poster="/media/kitchens.png"
-            label="MLWK custom kitchen design direction"
+          <img
+            src="/media/cirmano-project-p179.jpg"
+            alt="Living room cabinetry and wall panels in a completed Guangzhou residence"
+            loading="lazy"
           />
           <Link
             className="floating-link"
-            to={`/${locale}/collections/kitchens`}
+            to={`/${locale}/projects`}
           >
-            {collections[0].name[locale]}
+            {copy.nav.projects}
             <ArrowUpRight size={18} />
           </Link>
         </Reveal>
       </section>
 
       <section className="regional-band">
-        <div>
-          <span>Europe</span>
-          <p>Drawing control and material coordination for architects and contractors. Veneer matching, tolerance specs and compliant packaging handled as standard.</p>
-        </div>
-        <div>
-          <span>North America</span>
-          <p>Shop drawing packages aligned to US and Canadian site conditions. Phased delivery and installer support from first submittal to punch list.</p>
-        </div>
-        <div>
-          <span>Middle East</span>
-          <p>Villa, palace and hospitality interiors where bespoke detail defines the project. Arabic-speaking coordination and luxury-grade finish experience.</p>
-        </div>
+        {manufacturingProof[locale].map(([label, text]) => (
+          <div key={label}>
+            <span>{label}</span>
+            <p>{text}</p>
+          </div>
+        ))}
       </section>
       {/* Final CTA */}
       <section className="final-cta section">

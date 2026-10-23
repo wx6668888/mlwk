@@ -109,7 +109,7 @@ const labels: Record<
     title: "3D Design Studio",
     project: "Untitled room",
     room: "Room",
-    systems: "MLWK systems",
+    systems: "CIRMANO systems",
     finishes: "Finish",
     width: "Width",
     depth: "Depth",
@@ -140,7 +140,7 @@ const labels: Record<
     title: "3D 绌洪棿璁捐",
     project: "鏈懡鍚嶇┖闂",
     room: "绌洪棿",
-    systems: "MLWK 绯荤粺",
+    systems: "CIRMANO 绯荤粺",
     finishes: "楗伴潰",
     width: "瀹藉害",
     depth: "杩涙繁",
@@ -171,7 +171,7 @@ const labels: Record<
     title: "丕爻鬲賵丿賷賵 丕賱鬲氐賲賷賲 孬賱丕孬賷 丕賱兀亘毓丕丿",
     project: "睾乇賮丞 亘賱丕 丕爻賲",
     room: "丕賱賲爻丕丨丞",
-    systems: "兀賳馗賲丞 MLWK",
+    systems: "兀賳馗賲丞 CIRMANO",
     finishes: "丕賱鬲卮胤賷亘",
     width: "丕賱毓乇囟",
     depth: "丕賱毓賲賯",
@@ -202,7 +202,7 @@ const labels: Record<
     title: "3D Design Studio",
     project: "Unbenannter Raum",
     room: "Raum",
-    systems: "MLWK Systeme",
+    systems: "CIRMANO Systeme",
     finishes: "Oberfl盲che",
     width: "Breite",
     depth: "Tiefe",
@@ -233,7 +233,7 @@ const labels: Record<
     title: "Studio de conception 3D",
     project: "Pi猫ce sans titre",
     room: "Pi猫ce",
-    systems: "Syst猫mes MLWK",
+    systems: "Syst猫mes CIRMANO",
     finishes: "Finition",
     width: "Largeur",
     depth: "Profondeur",
@@ -744,9 +744,9 @@ export default function DesignerPage({ locale }: { locale: Locale }) {
     <section className="designer-page">
       <h1 className="visually-hidden">{copy.title}</h1>
       <header className="designer-toolbar">
-        <Link to={`/${locale}/`} aria-label="Back to MLWK">
+        <Link to={`/${locale}/`} aria-label="Back to CIRMANO">
           <ChevronLeft size={19} />
-          <strong>MLWK</strong>
+          <strong>CIRMANO</strong>
         </Link>
         <div>
           <small>{copy.title}</small>

@@ -17,8 +17,8 @@ const projectDetails: Record<
 > = {
   en: {
     publishing: "Publishing standard",
-    title: "Real projects will carry real context.",
-    text: "The manufacturing team has completed more than 500 custom projects. International case studies will be added after photography, scope and permissions are verified.",
+    title: "One completed home, shown with context.",
+    text: "Project photography from one completed Guangzhou residence. Product supply and installation scope should be confirmed for each published case detail.",
     action: "Discuss a current project",
     standards: [
       ["Verified photography", "Project imagery is published only when its source and status are clear."],
@@ -28,8 +28,8 @@ const projectDetails: Record<
   },
   zh: {
     publishing: "发布标准",
-    title: "真实项目，必须带有真实语境。",
-    text: "制造团队累计完成超过 500 个定制项目。国际项目案例将在照片、范围与发布授权全部核验后陆续加入。",
+    title: "一处完工住宅，呈现真实语境。",
+    text: "本组实拍来自广州一处完工住宅。公开每项产品的供货与施工范围前，仍需逐项确认。",
     action: "沟通当前项目",
     standards: [
       ["核验影像", "只有来源与项目状态清晰的影像才会作为案例发布。"],
@@ -39,8 +39,8 @@ const projectDetails: Record<
   },
   ar: {
     publishing: "معيار النشر",
-    title: "المشاريع الحقيقية تأتي بسياق حقيقي.",
-    text: "أنجز فريق التصنيع أكثر من 500 مشروع مخصص. وستضاف دراسات الحالات الدولية بعد التحقق من الصور والنطاق والتصاريح.",
+    title: "مسكن مكتمل واحد بسياقه الحقيقي.",
+    text: "صور من مسكن مكتمل واحد في قوانغتشو. ينبغي تأكيد نطاق توريد المنتجات والتركيب لكل تفصيل منشور.",
     action: "ناقش مشروعاً حالياً",
     standards: [
       ["صور موثقة", "لا تنشر صور المشروع إلا عندما يكون مصدرها وحالتها واضحين."],
@@ -50,8 +50,8 @@ const projectDetails: Record<
   },
   de: {
     publishing: "Publikationsstandard",
-    title: "Echte Projekte brauchen echten Kontext.",
-    text: "Das Fertigungsteam hat mehr als 500 Maßprojekte abgeschlossen. Internationale Fallstudien folgen nach Prüfung von Fotografie, Umfang und Freigaben.",
+    title: "Ein fertiges Zuhause, im echten Kontext.",
+    text: "Projektfotografien aus einem fertiggestellten Wohnhaus in Guangzhou. Liefer- und Montageumfang sind für jedes veröffentlichte Detail zu bestätigen.",
     action: "Aktuelles Projekt besprechen",
     standards: [
       ["Verifizierte Fotografie", "Projektbilder werden nur mit eindeutigem Ursprung und Status veröffentlicht."],
@@ -61,8 +61,8 @@ const projectDetails: Record<
   },
   fr: {
     publishing: "Norme de publication",
-    title: "Les vrais projets méritent un vrai contexte.",
-    text: "L'équipe de fabrication a réalisé plus de 500 projets sur mesure. Les études de cas internationales seront ajoutées après vérification des images, du périmètre et des autorisations.",
+    title: "Une résidence achevée, avec son contexte.",
+    text: "Photographies d'une résidence achevée à Guangzhou. Le périmètre de fourniture et de pose est à confirmer pour chaque détail publié.",
     action: "Échanger sur un projet",
     standards: [
       ["Photographies vérifiées", "Les images ne sont publiées que lorsque leur source et leur statut sont clairs."],
@@ -84,7 +84,7 @@ export default function ProjectsPage({ locale }: { locale: Locale }) {
       <section className="project-placeholder section">
         <Reveal className="project-placeholder__visual">
           <CinematicMedia
-            image="/media/bespoke-built-ins.png"
+            image="/media/cirmano-project-p175.jpg"
             label={copy.pages.projects[1]}
           />
         </Reveal>

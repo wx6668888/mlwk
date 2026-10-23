@@ -672,7 +672,7 @@ export function ProductPage({ locale }: { locale: Locale }) {
           {/* Product Story */}
           <div className="product-story">
             <h2>About this piece</h2>
-            <p>{product.description[locale]} Every MLWK furniture piece is made to order in our manufacturing facility. Solid timber is selected, machined, hand-sanded and finished by craftspeople who work on architectural millwork projects — the same precision, brought to a smaller scale.</p>
+            <p>{product.description[locale]} Every CIRMANO furniture piece is made to order in our manufacturing facility. Solid timber is selected, machined, hand-sanded and finished by craftspeople who work on architectural millwork projects — the same precision, brought to a smaller scale.</p>
             <p>Each order includes a digital production update at key stages: timber selection, machining, finishing, quality check, and dispatch.</p>
           </div>
 
