@@ -44,6 +44,18 @@ export default function CinematicMedia({
     return () => media.removeEventListener("change", update);
   }, [playbackRate]);
 
+  if (image.startsWith("/media/cirmano-")) {
+    return (
+      <img
+        className={`cinematic-media ${className}`.trim()}
+        src={image}
+        alt={label}
+        loading={eager ? "eager" : "lazy"}
+        fetchPriority={eager ? "high" : "auto"}
+      />
+    );
+  }
+
   return (
     <video
       ref={ref}

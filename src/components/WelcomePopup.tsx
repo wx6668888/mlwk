@@ -10,37 +10,37 @@ const copy: Record<
   { eyebrow: string; headline: string; body: string; cta: string; dismiss: string }
 > = {
   en: {
-    eyebrow: "Made-to-order architectural millwork",
-    headline: "Where drawing becomes room.",
-    body: "From the first line on paper to the final grain match on site — MLWK manufactures custom cabinetry and architectural millwork for projects across Europe, North America and the Middle East.",
-    cta: "Send your drawings",
+    eyebrow: "Integrated whole-home customization",
+    headline: "Made As One.",
+    body: "CIRMANO brings kitchens, wardrobes, interior doors and wall panels together through a shared design language. Made in Foshan, China for villas and premium homes.",
+    cta: "Discuss your project",
     dismiss: "Explore first",
   },
   zh: {
-    eyebrow: "定制建筑木作制造商",
-    headline: "从图纸，到你记得住的空间。",
-    body: "从第一笔线稿到现场最后一道木纹——MLWK 为欧洲、北美与中东的项目提供定制柜体与建筑木作制造服务。",
-    cta: "上传图纸询价",
+    eyebrow: "一体化全屋定制",
+    headline: "Made As One · 一体成就完整空间",
+    body: "CIRMANO立足中国佛山，以统一的设计语言连接橱柜、衣柜、室内门和墙板，专注别墅与高端住宅。",
+    cta: "沟通你的项目",
     dismiss: "先浏览网站",
   },
   ar: {
     eyebrow: "تصنيع أعمال خشبية معمارية حسب الطلب",
     headline: "من الرسم إلى الغرفة.",
-    body: "من أول خط على الورق إلى آخر تطابق في عروق الخشب — تصنع MLWK خزائن مخصصة وأعمالاً خشبية معمارية لمشاريع في أوروبا وأمريكا الشمالية والشرق الأوسط.",
+    body: "تجمع CIRMANO المطابخ والخزائن والأبواب الداخلية وألواح الجدران ضمن لغة تصميم واحدة للمنازل والفلل الراقية.",
     cta: "أرسل مخططاتك",
     dismiss: "تصفح أولاً",
   },
   de: {
     eyebrow: "Auftragsbasierter architektonischer Innenausbau",
     headline: "Wo die Zeichnung zum Raum wird.",
-    body: "Von der ersten Bleistiftlinie bis zum letzten Furnierbild vor Ort — MLWK fertigt individuelle Möbel und Innenausbau für Projekte in Europa, Nordamerika und dem Nahen Osten.",
+    body: "CIRMANO verbindet Küchen, Schränke, Innentüren und Wandpaneele durch eine gemeinsame Gestaltungssprache für Villen und hochwertige Wohnhäuser.",
     cta: "Pläne senden",
     dismiss: "Zuerst erkunden",
   },
   fr: {
     eyebrow: "Menuiserie architecturale sur mesure",
     headline: "Du trait au lieu.",
-    body: "Du premier trait de crayon au dernier raccord de veinage sur site — MLWK fabrique mobilier et menuiserie architecturale pour des projets en Europe, en Amérique du Nord et au Moyen-Orient.",
+    body: "CIRMANO réunit cuisines, dressings, portes intérieures et panneaux muraux dans un langage commun pour villas et résidences haut de gamme.",
     cta: "Envoyer vos plans",
     dismiss: "Explorer d'abord",
   },
@@ -80,9 +80,9 @@ export default function WelcomePopup({ locale }: { locale: Locale }) {
 
         {/* Left: image panel */}
         <div className="welcome-visual">
-          <img src="/media/bespoke-built-ins.png" alt="" />
+          <img src="/media/cirmano-project-p175.jpg" alt="" />
           <div className="welcome-visual-shade" />
-          <span className="welcome-visual-label">MLWK</span>
+          <span className="welcome-visual-label">CIRMANO · Made As One</span>
         </div>
 
         {/* Right: copy panel */}
