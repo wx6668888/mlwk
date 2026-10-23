@@ -60,7 +60,7 @@ export default function QuotePage({ locale }: { locale: Locale }) {
   const [emailError, setEmailError] = useState("");
   const [emailChecking, setEmailChecking] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER as string | undefined;
+  const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER as string | undefined) || "8618666384092";
   const isLocalPreview =
     typeof window !== "undefined" &&
     ["127.0.0.1", "localhost"].includes(window.location.hostname);
