@@ -5,7 +5,7 @@ const MAX_ENTRIES = 64;
 // Cloudflare serves offline.html at /offline; precache the canonical, unredirected URL.
 const OFFLINE_URL = "/offline";
 const APP_SHELL = []; // build:app-shell
-const SHELL = [OFFLINE_URL, "/pwa/offline.js", "/pwa/shell.js", "/pwa/shell.css", "/pwa/icon-192.png", "/pwa/icon-512.png", "/pwa/apple-touch-icon.png", "/site.webmanifest", ...["en", "ar", "zh", "de", "fr"].map((lang) => `/${lang}/`), ...APP_SHELL];
+const SHELL = [OFFLINE_URL, "/pwa/offline.js", "/pwa/shell.js", "/pwa/shell.css", "/pwa/cirmano-icon-256.png", "/pwa/cirmano-icon-512.png", "/pwa/cirmano-apple-touch-icon.png", "/site.webmanifest", ...["en", "ar", "zh", "de", "fr"].map((lang) => `/${lang}/`), ...APP_SHELL];
 const SHELL_URLS = new Set(SHELL.map((path) => new URL(path, self.location.origin).href));
 
 self.addEventListener("install", (event) => {
@@ -67,7 +67,7 @@ self.addEventListener("fetch", (event) => {
       } catch {
         const cache = await caches.open(CACHE);
         const previous = publicPage(url.pathname) && !url.search ? await cache.match(key) : null;
-        return previous || await cache.match(OFFLINE_URL) || new Response("MLWK needs a connection to open this page.", { status: 503 });
+        return previous || await cache.match(OFFLINE_URL) || new Response("CIRMANO needs a connection to open this page.", { status: 503 });
       }
     })());
     return;

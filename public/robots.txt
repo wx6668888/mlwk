@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mlwk.space/sitemap.xml
+Sitemap: https://cirmano.com/sitemap.xml
