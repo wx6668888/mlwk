@@ -20,8 +20,8 @@ const projectDetails: Record<
 > = {
   en: {
     publishing: "Publishing standard",
-    title: "One completed home, shown with context.",
-    text: "Project photography from one completed Guangzhou residence. Product supply and installation scope should be confirmed for each published case detail.",
+    title: "Clear scope behind every finished space.",
+    text: "Photographs show completed interiors; supply, installation and local coordination are confirmed and stated for each project.",
     action: "Discuss a current project",
     galleryTitle: "A closer look at the rooms",
     galleryNote: "These selected photographs all belong to the same Guangzhou residence. They show different rooms and joinery details; product supply and installation scope is confirmed individually for each project.",
@@ -41,8 +41,8 @@ const projectDetails: Record<
   },
   zh: {
     publishing: "发布标准",
-    title: "一处完工住宅，呈现真实语境。",
-    text: "本组实拍来自广州一处完工住宅。公开每项产品的供货与施工范围前，仍需逐项确认。",
+    title: "从空间细节，读懂项目边界。",
+    text: "照片呈现已完工住宅的真实场景；产品供货、安装与现场协同范围，均按项目逐项说明。",
     action: "沟通当前项目",
     galleryTitle: "走近空间细节",
     galleryNote: "以下精选照片均来自广州同一处完工住宅，呈现不同房间与定制木作细节；每个项目的产品供货与安装范围均单独确认。",
@@ -62,8 +62,8 @@ const projectDetails: Record<
   },
   ar: {
     publishing: "معيار النشر",
-    title: "مسكن مكتمل واحد بسياقه الحقيقي.",
-    text: "صور من مسكن مكتمل واحد في قوانغتشو. ينبغي تأكيد نطاق توريد المنتجات والتركيب لكل تفصيل منشور.",
+    title: "نطاق واضح خلف كل مساحة مكتملة.",
+    text: "تعرض الصور مساحات مكتملة؛ ويُحدد نطاق توريد المنتجات والتركيب والتنسيق المحلي ويُذكر لكل مشروع.",
     action: "ناقش مشروعاً حالياً",
     galleryTitle: "نظرة أقرب إلى المساحات",
     galleryNote: "تنتمي هذه الصور المختارة إلى المسكن نفسه في قوانغتشو، وتعرض غرفاً وتفاصيل نجارة مختلفة. يُؤكد نطاق التوريد والتركيب لكل مشروع على حدة.",
@@ -83,8 +83,8 @@ const projectDetails: Record<
   },
   de: {
     publishing: "Publikationsstandard",
-    title: "Ein fertiges Zuhause, im echten Kontext.",
-    text: "Projektfotografien aus einem fertiggestellten Wohnhaus in Guangzhou. Liefer- und Montageumfang sind für jedes veröffentlichte Detail zu bestätigen.",
+    title: "Klarer Umfang für jeden Raum.",
+    text: "Die Fotografien zeigen fertiggestellte Wohnräume; Lieferumfang, Montage und lokale Abstimmung werden für jedes Projekt bestätigt und ausgewiesen.",
     action: "Aktuelles Projekt besprechen",
     galleryTitle: "Räume im Detail",
     galleryNote: "Diese ausgewählten Fotografien stammen alle aus demselben Wohnhaus in Guangzhou. Sie zeigen verschiedene Räume und Einbaudetails; Liefer- und Montageumfang werden für jedes Projekt einzeln bestätigt.",
@@ -104,8 +104,8 @@ const projectDetails: Record<
   },
   fr: {
     publishing: "Norme de publication",
-    title: "Une résidence achevée, avec son contexte.",
-    text: "Photographies d'une résidence achevée à Guangzhou. Le périmètre de fourniture et de pose est à confirmer pour chaque détail publié.",
+    title: "Un périmètre clair pour chaque espace achevé.",
+    text: "Les photographies montrent des espaces résidentiels terminés ; la fourniture, la pose et la coordination locale sont confirmées et précisées pour chaque projet.",
     action: "Échanger sur un projet",
     galleryTitle: "Les pièces de plus près",
     galleryNote: "Ces photographies sélectionnées proviennent toutes de la même résidence à Guangzhou. Elles présentent différentes pièces et menuiseries ; le périmètre de fourniture et de pose est confirmé pour chaque projet.",
