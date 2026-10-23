@@ -140,7 +140,7 @@ function LocaleLayout() {
                           : routeName === "admin"
                             ? utilityTitles[locale].admin
                             : page?.[1] ?? copy.home.title);
-    document.title = `${title} — MLWK`;
+    document.title = `${title} — CIRMANO`;
   }, [
     copy,
     locale,
