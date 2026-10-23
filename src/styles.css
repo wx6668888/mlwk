@@ -8307,3 +8307,17 @@ html[dir="rtl"] .faq-list details p {
     justify-self: end;
   }
 }
+@media (min-width: 901px) and (max-width: 1280px) {
+  .page-intro__inner {
+    grid-template-columns: minmax(90px, 0.35fr) minmax(0, 1.65fr);
+    column-gap: clamp(20px, 3vw, 38px);
+    row-gap: 22px;
+  }
+  .page-intro__text {
+    grid-column: 2;
+    max-width: 620px;
+    justify-self: start;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+}
