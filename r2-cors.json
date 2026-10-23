@@ -1,6 +1,6 @@
 [
   {
-    "AllowedOrigins": ["https://mlwk.space", "https://www.mlwk.space"],
+    "AllowedOrigins": ["https://cirmano.com", "https://www.cirmano.com", "https://mlwk.space", "https://www.mlwk.space"],
     "AllowedMethods": ["PUT"],
     "AllowedHeaders": ["Content-Type"],
     "ExposeHeaders": ["ETag"],

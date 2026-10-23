@@ -95,9 +95,9 @@ export default function Header({ locale }: HeaderProps) {
       className={`site-header ${hasMediaBackdrop ? "site-header--overlay" : ""} ${scrolled ? "site-header--scrolled" : ""}`}
     >
       <div className="header-shell">
-        <Link className="brand" to={`/${locale}/`} aria-label="MLWK home">
-          MLWK
-          <span>Millwork</span>
+        <Link className="brand" to={`/${locale}/`} aria-label={locale === "zh" ? "CIRMANO 西尔曼首页" : "CIRMANO home"}>
+          <img className="brand-mark--ink" src="/cirmano-wordmark-ink.svg" alt="" />
+          <img className="brand-mark--bone" src="/cirmano-wordmark-bone.svg" alt="" />
         </Link>
 
         <nav className="desktop-nav" aria-label="Primary navigation">

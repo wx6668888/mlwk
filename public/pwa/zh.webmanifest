@@ -1,7 +1,7 @@
 {
   "id": "/",
-  "name": "MLWK 家装与别墅漫游",
-  "short_name": "MLWK",
+  "name": "CIRMANO — Made As One",
+  "short_name": "CIRMANO",
   "lang": "zh",
   "dir": "ltr",
   "start_url": "/zh/",
@@ -10,26 +10,20 @@
   "display_override": [
     "standalone"
   ],
-  "background_color": "#f1f2ed",
-  "theme_color": "#171813",
+  "background_color": "#F3EFE8",
+  "theme_color": "#101012",
   "icons": [
     {
-      "src": "/pwa/icon-192.png",
-      "sizes": "192x192",
+      "src": "/pwa/cirmano-icon-256.png",
+      "sizes": "256x256",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/pwa/icon-512.png",
+      "src": "/pwa/cirmano-icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
-    },
-    {
-      "src": "/pwa/icon-maskable-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
     }
   ]
 }

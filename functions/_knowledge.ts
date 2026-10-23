@@ -8,66 +8,66 @@ export type KnowledgeEntry = {
 export const knowledgeBase: KnowledgeEntry[] = [
   {
     id: "brand",
-    title: "MLWK and its role",
-    keywords: ["mlwk", "millwork", "brand", "company", "品牌", "公司", "من", "entreprise"],
+    title: "CIRMANO and its role",
+    keywords: ["cirmano", "brand", "company", "品牌", "公司", "entreprise"],
     content:
-      "MLWK comes from the abbreviation for millwork used in architectural drawings. Its promise is 'Millwork, Made to Order.' MLWK is a manufacturing and project-development partner for made-to-order cabinetry and architectural millwork, serving project clients in Europe, North America and the Middle East.",
+      "CIRMANO is a whole-home customization brand based in Foshan, Guangdong, China. Its line is 'Made As One' and its descriptor is 'Integrated Whole-Home Customization'. CIRMANO focuses on villas and premium homes.",
   },
   {
-    id: "collections",
-    title: "Product collections",
-    keywords: ["kitchen", "wardrobe", "vanity", "panel", "door", "built-in", "产品", "厨房", "衣柜", "باب", "مطابخ"],
+    id: "products",
+    title: "Core product scope",
+    keywords: ["kitchen", "wardrobe", "door", "wall panel", "cabinet", "产品", "厨房", "衣柜", "室内门", "墙板"],
     content:
-      "MLWK develops six coordinated systems: kitchens, wardrobes, vanities, wall panels, interior doors and bespoke built-ins. Dimensions, construction, materials, hardware and finishes are developed around the drawings and project conditions.",
+      "The core whole-home product categories are kitchens, wardrobes, interior doors and wall panels. Other items, including vanities, bespoke built-ins, aluminium and glass, are supplementary or project-specific and should be confirmed for each enquiry. Dimensions, construction, materials, hardware and finishes are developed around the approved project scope.",
   },
   {
-    id: "sectors",
-    title: "Project sectors",
-    keywords: ["villa", "residential", "hotel", "hospitality", "commercial", "住宅", "别墅", "酒店", "فندق", "فيلا"],
+    id: "positioning",
+    title: "Project fit",
+    keywords: ["villa", "residential", "premium home", "hotel", "hospitality", "commercial", "住宅", "别墅", "酒店", "商业"],
     content:
-      "MLWK is positioned for luxury residential, hospitality and selected commercial projects. Typical conversations involve architects, interior designers, contractors, developers and project owners who need one coordinated millwork package.",
+      "CIRMANO is positioned for villas and premium residences. Do not promise hospitality, commercial or other sectors as standard services. The team reviews each project enquiry to confirm whether its location, product scope, interfaces and delivery requirements are a fit.",
   },
   {
     id: "workflow",
     title: "Project workflow",
-    keywords: ["process", "workflow", "drawing", "sample", "production", "流程", "图纸", "打样", "مخطط", "عينة"],
+    keywords: ["process", "workflow", "drawing", "sample", "production", "流程", "图纸", "打样"],
     content:
-      "The working sequence is: review the drawings, scope, destination and programme; develop shop drawings and interfaces; confirm materials, finishes and critical samples; manufacture with staged quality checks; protect and label components by room or area; coordinate shipment and provide remote installation support.",
+      "The project workflow can include review of drawings, scope, destination and programme; development of shop drawings and interfaces; confirmation of materials, finishes and critical samples; manufacturing to the approved package; and project-specific packing, labels and installation information. Exact services and responsibilities are confirmed in writing for each project.",
+  },
+  {
+    id: "case",
+    title: "Published project photography",
+    keywords: ["project", "case study", "photo", "completed", "案例", "照片", "广州"],
+    content:
+      "The current brand materials show one completed residence in Guangzhou. Do not present it as multiple projects or claim that CIRMANO supplied or installed every product shown until the scope is confirmed. There is no verified 500-project statistic in the current brand materials.",
+  },
+  {
+    id: "manufacturing",
+    title: "Manufacturing information",
+    keywords: ["factory", "HOMAG", "edgebanding", "inspection", "试装", "工厂", "制造"],
+    content:
+      "Brand materials show HOMAG manufacturing equipment. Laser edgebanding applies only to specified compatible components. Selected cabinetry is inspected and trial-assembled before dispatch. Do not broaden these statements into claims about every component or every order.",
   },
   {
     id: "quote",
-    title: "Starting a quotation",
-    keywords: ["quote", "price", "cost", "budget", "询价", "价格", "预算", "عرض", "سعر", "devis"],
+    title: "Starting a project enquiry",
+    keywords: ["quote", "price", "cost", "budget", "询价", "价格", "预算", "devis"],
     content:
-      "A useful quotation starts with the available plans or sketches, project type and location, scope, approximate quantities, preferred materials or finish direction, target delivery window and budget context. The website accepts PDF, DWG, DXF, ZIP, JPG and PNG files, up to five files and 100 MB in total. Exact pricing requires a project review.",
+      "A useful enquiry includes available plans or sketches, project type and location, product scope, approximate quantities, preferred materials or finish direction, target timing and budget context. The website accepts PDF, DWG, DXF, ZIP, JPG and PNG files, up to five files and 100 MB in total. Exact pricing requires a project review.",
   },
   {
-    id: "delivery",
-    title: "International delivery and installation",
-    keywords: ["shipping", "delivery", "install", "export", "运输", "交付", "安装", "شحن", "تركيب"],
+    id: "contact",
+    title: "Contact CIRMANO",
+    keywords: ["contact", "email", "whatsapp", "address", "联系", "邮箱", "电话"],
     content:
-      "MLWK prepares components for international delivery with protective packing, clear labels and organization by room or area. Installation support is limited to numbered components, drawings, video guidance and remote coordination; local installation labor is not currently promised.",
-  },
-  {
-    id: "proof",
-    title: "Experience claim",
-    keywords: ["500", "project", "experience", "案例", "经验", "مشروع", "référence"],
-    content:
-      "The manufacturing team has completed more than 500 custom projects in total. This must never be described as 500 overseas deliveries. Completed international case studies are published only when they can be verified; generated imagery is labeled as design direction, not completed work.",
-  },
-  {
-    id: "languages",
-    title: "Languages and regions",
-    keywords: ["language", "english", "arabic", "chinese", "german", "french", "语言", "阿拉伯语", "لغة"],
-    content:
-      "The website supports English, Arabic, Chinese, German and French. Arabic uses a full right-to-left interface. Formal project communication availability should be confirmed by the human team when a project is qualified.",
+      "For project enquiries, contact kai@cirmano.com or use WhatsApp at +86 186 6638 4092. CIRMANO is based in Foshan, Guangdong, China. Confirm visit arrangements and the exact business address with the team before travel.",
   },
   {
     id: "verification",
-    title: "Facts requiring human confirmation",
-    keywords: ["moq", "capacity", "certificate", "lead time", "factory address", "认证", "产能", "交期", "起订", "شهادة"],
+    title: "Facts requiring confirmation",
+    keywords: ["moq", "capacity", "certificate", "lead time", "freight", "认证", "产能", "交期", "起订", "运费"],
     content:
-      "Do not invent or estimate certifications, factory capacity, MOQ, exact lead times, freight cost or commercial terms. These project-dependent details must be confirmed by the MLWK team after reviewing the drawings. A verified factory address is not yet published on the website; a human teammate can share official visit details during project qualification.",
+      "Do not invent or estimate certifications, factory capacity, MOQ, exact lead times, freight cost, installation responsibilities or commercial terms. The CIRMANO team must confirm these project-dependent details after reviewing the enquiry. Do not claim established delivery regions or completed overseas projects without evidence.",
   },
 ];
 

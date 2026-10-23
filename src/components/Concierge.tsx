@@ -27,7 +27,7 @@ const ui = {
     send: "Send message",
     quote: "Send Your Drawings",
     error: "I could not connect just now. You can still send your drawings for a direct review.",
-    prompts: ["Can MLWK support a villa?", "What should I send for a quote?"],
+    prompts: ["Can CIRMANO support a villa?", "What should I send for a quote?"],
   },
   zh: {
     label: "项目顾问",
@@ -64,7 +64,7 @@ const ui = {
     send: "Nachricht senden",
     quote: "Pläne senden",
     error: "Die Verbindung ist gerade nicht möglich. Sie können Ihre Pläne direkt zur Prüfung senden.",
-    prompts: ["Unterstützt MLWK Villenprojekte?", "Was wird für ein Angebot benötigt?"],
+    prompts: ["Unterstützt CIRMANO Villenprojekte?", "Was wird für ein Angebot benötigt?"],
   },
   fr: {
     label: "Concierge projet",
@@ -85,23 +85,23 @@ function localReply(locale: Locale, question: string) {
   const asksQuote = /quote|price|cost|devis|angebot|询价|报价|سعر|عرض/i.test(question);
   const replies: Record<Locale, [string, string]> = {
     en: [
-      "MLWK develops kitchens, wardrobes, vanities, wall panels, interior doors and built-ins as one coordinated millwork package. What type of space are you planning?",
+      "CIRMANO develops kitchens, wardrobes, vanities, wall panels, interior doors and built-ins as one coordinated millwork package. What type of space are you planning?",
       "For a useful review, send the available plans, project location, scope, approximate quantities, finish direction and target delivery window. Exact pricing follows a drawing review.",
     ],
     zh: [
-      "MLWK 可将厨房、衣柜、浴室柜、墙板、室内门与定制固定家具作为一套完整木作系统深化。你正在规划哪一类空间？",
+      "CIRMANO 可将厨房、衣柜、浴室柜、墙板、室内门与定制固定家具作为一套完整木作系统深化。你正在规划哪一类空间？",
       "建议提供现有图纸、项目地点、木作范围、预估数量、材质方向和期望交付时间。准确报价需要先审核图纸。",
     ],
     ar: [
-      "تطوّر MLWK المطابخ والخزائن ووحدات الحمام والجدران والأبواب والأثاث المدمج كحزمة واحدة. ما نوع المساحة التي تخطط لها؟",
+      "تطوّر CIRMANO المطابخ والخزائن ووحدات الحمام والجدران والأبواب والأثاث المدمج كحزمة واحدة. ما نوع المساحة التي تخطط لها؟",
       "للمراجعة نحتاج إلى المخططات المتاحة وموقع المشروع والنطاق والكميات التقريبية واتجاه التشطيب وموعد التسليم المطلوب.",
     ],
     de: [
-      "MLWK entwickelt Küchen, Schränke, Waschtische, Wandpaneele, Innentüren und Einbauten als abgestimmtes Gesamtpaket. Um welchen Raumtyp geht es?",
+      "CIRMANO entwickelt Küchen, Schränke, Waschtische, Wandpaneele, Innentüren und Einbauten als abgestimmtes Gesamtpaket. Um welchen Raumtyp geht es?",
       "Für eine fundierte Prüfung senden Sie Pläne, Projektort, Umfang, Mengen, Oberflächenrichtung und Zieltermin. Der genaue Preis folgt nach Planprüfung.",
     ],
     fr: [
-      "MLWK développe cuisines, dressings, meubles vasques, panneaux, portes et agencements comme un ensemble coordonné. Quel espace préparez-vous ?",
+      "CIRMANO développe cuisines, dressings, meubles vasques, panneaux, portes et agencements comme un ensemble coordonné. Quel espace préparez-vous ?",
       "Pour une étude utile, joignez les plans, le lieu, le périmètre, les quantités, l'orientation des finitions et le délai visé. Le prix précis suit l'analyse des plans.",
     ],
   };

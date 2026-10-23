@@ -8,34 +8,34 @@ const companyDetails: Record<
   Locale,
   {
     story: [string, string, string];
-    metrics: [string, string, string];
+    principles: [string, string, string, string];
     evidence: [string, string, string];
   }
 > = {
   en: {
-    story: ["The name", "Millwork, without the unnecessary letters.", "MLWK borrows the concise abbreviation used in architectural drawings. It signals what we make and how we prefer to work: directly, precisely and close to the project information."],
-    metrics: ["Custom projects completed", "Coordinated manufacturing partner", "Core millwork systems"],
-    evidence: ["Factory evidence", "Only original factory evidence.", "Equipment, teams, quality checks, packing and loading will be shown here only with original MLWK photography. Certification, capacity, lead-time and MOQ claims remain unpublished until the underlying records are ready."],
+    story: ["CIRMANO · Foshan, China", "Made As One.", "CIRMANO is a custom cabinetry manufacturer based in Foshan, China, specializing in integrated whole-home customization for villas and premium homes."],
+    principles: ["Craftsmanship", "System", "Aesthetics", "Coordination"],
+    evidence: ["Manufacturing", "The detail behind the finished space.", "Brand materials show HOMAG equipment and panel processing. Laser edgebanding is used for specified compatible components; selected cabinetry is inspected and trial-assembled before dispatch. Exact process scope is confirmed by project."],
   },
   zh: {
-    story: ["品牌名称", "Millwork，省去不必要的字母。", "MLWK 源自建筑图纸中对 Millwork 的简写。它说明我们制造什么，也说明我们的工作方式：直接、精确，并始终贴近项目资料。"],
-    metrics: ["累计完成定制项目", "一个协调制造伙伴", "六大核心木作系统"],
-    evidence: ["工厂证明", "只展示真实的工厂证据。", "设备、团队、质检、包装与装柜只使用 MLWK 原创影像。认证、产能、交期与 MOQ 在底层资料核验完成前不会发布。"],
+    story: ["CIRMANO / 西尔曼 · 中国佛山", "Made As One · 一体成就完整空间", "CIRMANO立足中国佛山，专注别墅与高端住宅的一体化全屋定制制造。我们连接橱柜、衣柜、室内门和墙板，通过材质、比例与细节的协调，让每一部分成为完整居所的一部分。"],
+    principles: ["匠艺", "系统", "美学", "协同"],
+    evidence: ["制造", "完工空间背后的细节。", "品牌资料展示了HOMAG设备与板件加工。激光封边用于指定兼容部件；选定柜体在出货前进行检查与试装。具体工艺范围按项目确认。"],
   },
   ar: {
-    story: ["الاسم", "Millwork من دون حروف غير ضرورية.", "MLWK هو الاختصار المستخدم في الرسومات المعمارية لأعمال النجارة الثابتة. ويعبر عن عملنا وطريقتنا: مباشرة ودقيقة ومرتبطة بمعلومات المشروع."],
-    metrics: ["مشاريع مخصصة مكتملة", "شريك تصنيع منسق", "أنظمة نجارة أساسية"],
-    evidence: ["دليل المصنع", "أدلة أصلية فقط من المصنع.", "لن تُعرض المعدات والفرق والفحص والتعبئة والتحميل إلا بصور MLWK الأصلية. ولا تُنشر ادعاءات الشهادات أو الطاقة أو المدة أو الحد الأدنى قبل توثيقها."],
+    story: ["CIRMANO · فوشان، الصين", "صُنع ككلّ واحد.", "CIRMANO مُصنّع للخزائن حسب الطلب في فوشان بالصين، متخصص في التخصيص المتكامل للمنازل والفلل والمساكن الراقية."],
+    principles: ["الحرفية", "النظام", "الجماليات", "التنسيق"],
+    evidence: ["التصنيع", "التفاصيل وراء المساحة المكتملة.", "تعرض مواد العلامة معدات HOMAG ومعالجة الألواح. يُستخدم تلبيس الحواف بالليزر لمكونات متوافقة محددة؛ وتُفحص بعض الخزائن وتُجرّب قبل الشحن. يُؤكد نطاق العملية لكل مشروع."],
   },
   de: {
-    story: ["Der Name", "Millwork, ohne unnötige Buchstaben.", "MLWK übernimmt die knappe Abkürzung aus Architekturzeichnungen. Sie beschreibt, was wir fertigen und wie wir arbeiten: direkt, präzise und nah an den Projektinformationen."],
-    metrics: ["Abgeschlossene Maßprojekte", "Koordinierter Fertigungspartner", "Zentrale Innenausbausysteme"],
-    evidence: ["Werksnachweise", "Nur originale Werksnachweise.", "Anlagen, Teams, Qualitätsprüfungen, Verpackung und Verladung werden ausschließlich mit originalen MLWK-Aufnahmen gezeigt. Angaben zu Zertifizierung, Kapazität, Lieferzeit und MOQ bleiben bis zur Prüfung unveröffentlicht."],
+    story: ["CIRMANO · Foshan, China", "Aus einem Guss.", "CIRMANO ist ein Hersteller maßgefertigter Schränke in Foshan, China, spezialisiert auf integrierte Raumkonzepte für Villen und hochwertige Wohnhäuser."],
+    principles: ["Handwerk", "System", "Ästhetik", "Abstimmung"],
+    evidence: ["Fertigung", "Die Details hinter dem fertigen Raum.", "Die Markenunterlagen zeigen HOMAG-Anlagen und Plattenbearbeitung. Laserbekantung wird für bestimmte kompatible Bauteile eingesetzt; ausgewählte Schränke werden vor dem Versand geprüft und probemontiert. Der Prozessumfang wird projektbezogen bestätigt."],
   },
   fr: {
-    story: ["Le nom", "Millwork, sans les lettres inutiles.", "MLWK reprend l'abréviation concise des plans d'architecture. Elle exprime ce que nous fabriquons et notre manière de travailler : directe, précise et proche des informations du projet."],
-    metrics: ["Projets sur mesure réalisés", "Partenaire de fabrication coordonné", "Systèmes de menuiserie essentiels"],
-    evidence: ["Preuves de fabrication", "Uniquement des preuves originales.", "Équipements, équipes, contrôles, emballage et chargement ne seront présentés qu'avec des images originales MLWK. Certifications, capacité, délais et MOQ restent non publiés avant vérification."],
+    story: ["CIRMANO · Foshan, Chine", "Pensé comme un tout.", "CIRMANO est un fabricant de mobilier sur mesure basé à Foshan, en Chine, spécialisé dans l’aménagement intégré de villas et de résidences haut de gamme."],
+    principles: ["Savoir-faire", "Système", "Esthétique", "Coordination"],
+    evidence: ["Fabrication", "Le détail derrière l’espace achevé.", "Les documents de marque montrent des équipements HOMAG et l'usinage des panneaux. Le placage laser est utilisé pour certains composants compatibles ; certains meubles sont contrôlés et montés à blanc avant expédition. Le périmètre du processus est confirmé par projet."],
   },
 };
 
@@ -43,15 +43,13 @@ export default function CompanyPage({ locale }: { locale: Locale }) {
   const copy = getCopy(locale);
   const detail = companyDetails[locale];
   const [eyebrow, title, text] = copy.pages.company;
+
   return (
     <>
       <PageIntro eyebrow={eyebrow} title={title} text={text} />
       <section className="name-story section">
         <Reveal className="name-story__mark">
-          <span>M</span>
-          <span>L</span>
-          <span>W</span>
-          <span>K</span>
+          <img src="/favicon.svg" alt="" />
         </Reveal>
         <Reveal className="name-story__copy">
           <p className="eyebrow">{detail.story[0]}</p>
@@ -59,19 +57,13 @@ export default function CompanyPage({ locale }: { locale: Locale }) {
           <p>{detail.story[2]}</p>
         </Reveal>
       </section>
-      <section className="company-proof section section--soft">
-        <Reveal>
-          <strong>500+</strong>
-          <span>{detail.metrics[0]}</span>
-        </Reveal>
-        <Reveal>
-          <strong>01</strong>
-          <span>{detail.metrics[1]}</span>
-        </Reveal>
-        <Reveal>
-          <strong>06</strong>
-          <span>{detail.metrics[2]}</span>
-        </Reveal>
+      <section className="company-proof section section--soft" aria-label="CIRMANO principles">
+        {detail.principles.map((principle, index) => (
+          <Reveal key={principle}>
+            <strong>{String(index + 1).padStart(2, "0")}</strong>
+            <span>{principle}</span>
+          </Reveal>
+        ))}
       </section>
       <section className="factory-policy section">
         <Reveal>
@@ -85,6 +77,16 @@ export default function CompanyPage({ locale }: { locale: Locale }) {
             <ArrowUpRight size={17} />
           </Link>
         </Reveal>
+      </section>
+      <section className="factory-gallery section" aria-label="CIRMANO manufacturing photography">
+        <figure>
+          <img src="/media/cirmano-factory-m07.webp" alt="HOMAG manufacturing equipment at the Foshan workshop" loading="lazy" />
+          <figcaption>Manufacturing equipment · Foshan</figcaption>
+        </figure>
+        <figure>
+          <img src="/media/cirmano-factory-f013.webp" alt="Edge finishing equipment in the CIRMANO workshop" loading="lazy" />
+          <figcaption>Edge finishing equipment</figcaption>
+        </figure>
       </section>
     </>
   );

@@ -4,7 +4,7 @@ const siteLanguage = siteLanguages.has(requested) ? requested : "en";
 const backLink = document.getElementById("mlwkBack");
 backLink.href = `/${siteLanguage}/`;
 
-const backLabels = { ar: "العودة إلى MLWK", en: "Back to MLWK", zh: "返回 MLWK" };
+const backLabels = { ar: "العودة إلى CIRMANO", en: "Back to CIRMANO", zh: "返回 CIRMANO" };
 const creditLabels = { ar: "مصادر النماذج", en: "Model credits", zh: "模型来源" };
 const controlLabels = {
   ar: ["إخفاء الأدوات", "إظهار الأدوات"],

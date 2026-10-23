@@ -2,7 +2,7 @@ import { currencyForCountry } from "../../../shared/storeCatalog";
 
 /**
  * Locale suggestion by country — maps common visitor countries
- * to the most relevant MLWK locale.
+ * to the most relevant CIRMANO locale.
  */
 const localeSuggestions: Record<string, string> = {
   AE: "ar", SA: "ar", QA: "ar", KW: "ar", BH: "ar", OM: "ar",

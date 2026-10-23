@@ -111,7 +111,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
     const id = crypto.randomUUID();
     const user = await requireUser(context.request, context.env);
-    const projectCode = `MLWK-${new Date().getUTCFullYear()}-${id
+    const projectCode = `CIRMANO-${new Date().getUTCFullYear()}-${id
       .replaceAll("-", "")
       .slice(0, 8)
       .toUpperCase()}`;
@@ -168,7 +168,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
             .join("")}</ul>`
         : "<p>No files attached.</p>";
       const html = `
-        <h1>New MLWK project enquiry</h1>
+        <h1>New CIRMANO project enquiry</h1>
         <p><strong>ID:</strong> ${escapeHtml(id)}</p>
         <p><strong>Project:</strong> ${escapeHtml(projectCode)}</p>
         <p><strong>Name:</strong> ${escapeHtml(inquiry.name)}</p>
@@ -194,7 +194,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
           from: context.env.INQUIRY_FROM_EMAIL,
           to: [context.env.INQUIRY_TO_EMAIL],
           reply_to: inquiry.email,
-          subject: `[MLWK] ${inquiry.projectType} enquiry from ${inquiry.company}`,
+          subject: `[CIRMANO] ${inquiry.projectType} enquiry from ${inquiry.company}`,
           html,
         }),
       });

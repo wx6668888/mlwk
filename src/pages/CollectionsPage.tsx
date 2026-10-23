@@ -84,7 +84,7 @@ export function CollectionDetailPage({
         <CinematicMedia image={item.image} label={item.name[locale]} eager />
         <div className="detail-hero__shade" />
         <div className="detail-hero__copy">
-          <p className="eyebrow">MLWK / {copy.nav.collections}</p>
+          <p className="eyebrow">CIRMANO / {copy.nav.collections}</p>
           <h1>{item.name[locale]}</h1>
           <p>{item.description[locale]}</p>
         </div>

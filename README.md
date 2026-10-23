@@ -1,7 +1,7 @@
-# MLWK Global Website
+# CIRMANO Website
 
-Production-oriented multilingual website for MLWK architectural millwork and
-custom cabinetry.
+Multilingual website for CIRMANO integrated whole-home customization, focused
+on villas and premium residences.
 
 ## Included
 
@@ -11,7 +11,7 @@ custom cabinetry.
 - 210 build-time prerendered routes with canonical and `hreflang` metadata
 - Six structured millwork collections and three project solution categories
 - Responsive 1080P-ready image and video-led interface
-- Five-language MLWK Project Concierge powered by DeepSeek
+- Five-language CIRMANO Project Concierge powered by DeepSeek
 - Curated server-side millwork knowledge base with fact-boundary rules
 - Project enquiry form with local preview mode
 - Five-language 12-SKU preview shop with cart, regional currency and shipping
@@ -37,8 +37,7 @@ npm run preview -- --host 127.0.0.1 --port 4174
 ## Private configuration
 
 Copy `.env.example` to `.dev.vars` and fill in the private values. Never commit
-`.dev.vars`. The current workspace already has a local ignored configuration
-for the Aliyun Model Studio account.
+`.dev.vars` or provider credentials.
 
 Set the public client variables when building the site:
 
@@ -76,8 +75,12 @@ Set these server-side in Cloudflare:
    `wrangler.toml`, and apply `schema.sql`.
 4. Add all private environment variables in the Cloudflare dashboard.
 5. Build with `npm run build` and deploy `dist`.
-6. Add `mlwk.space` and `www.mlwk.space` as custom domains. The registrar can
-   remain Alibaba Cloud; only DNS needs to point to Cloudflare.
+6. Add `cirmano.com` and `www.cirmano.com` as custom domains. Configure
+   `cirmano.com` as the primary host and redirect `www.cirmano.com` to it.
+   If the former `mlwk.space` domain is still owned, point it to a permanent
+   redirect to `https://cirmano.com` after the new host and certificates are
+   confirmed. DNS and redirects are configured in the hosting account, not by
+   this source tree.
 
 ## Authentication and payment
 
@@ -111,9 +114,20 @@ estimated remaining seconds.
 
 ## Content rules
 
-- `500+` means completed custom projects by the manufacturing team. It does
-  not claim 500 overseas deliveries.
-- Generated imagery is labeled as a design direction.
-- Completed project and factory media must be verified original material.
-- Certifications, capacity, MOQ, lead time, address, business email and
-  WhatsApp remain unpublished until supplied and verified.
+- The brand line is `Made As One`; the descriptor is `Integrated Whole-Home
+  Customization`.
+- The core focus is villas and premium homes, with kitchens, wardrobes,
+  interior doors and wall panels as the principal product categories.
+- The supplied project photographs show one completed Guangzhou residence;
+  confirm product supply and installation scope before making a project claim.
+- Do not publish unverified project counts, certifications, capacity, MOQ,
+  delivery dates, freight costs or broad regional service claims.
+- Manufacturing details must retain their stated scope: laser edgebanding is
+  for specified compatible components, and inspection/trial assembly applies
+  to selected cabinetry.
+- Keep checkout, PayPal, order, database and storage identifiers stable during
+  the brand transition. Update live host, OAuth, CORS and email-provider
+  settings separately in their respective service dashboards. Verify
+  `kai@cirmano.com` as a sender in Resend before using it in Cloudflare.
+- The R2 CORS list retains the old website origins for transition compatibility;
+  remove them only after the old host no longer serves uploads.

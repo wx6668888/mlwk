@@ -60,7 +60,7 @@ export default function QuotePage({ locale }: { locale: Locale }) {
   const [emailError, setEmailError] = useState("");
   const [emailChecking, setEmailChecking] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER as string | undefined;
+  const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER as string | undefined) || "8618666384092";
   const isLocalPreview =
     typeof window !== "undefined" &&
     ["127.0.0.1", "localhost"].includes(window.location.hostname);
@@ -226,7 +226,7 @@ export default function QuotePage({ locale }: { locale: Locale }) {
 
       if (isLocalPreview) {
         await new Promise((resolve) => window.setTimeout(resolve, 900));
-        setProjectCode(`MLWK-PREVIEW-${Date.now().toString().slice(-5)}`);
+        setProjectCode(`CIRMANO-PREVIEW-${Date.now().toString().slice(-5)}`);
       } else {
         const response = await fetch("/api/inquiries", {
           method: "POST",
@@ -425,9 +425,9 @@ export default function QuotePage({ locale }: { locale: Locale }) {
                 <option value="" disabled>
                   —
                 </option>
-                <option value="residential">Luxury Residential</option>
-                <option value="hospitality">Hospitality</option>
-                <option value="commercial">Commercial</option>
+                <option value="residential">Villas &amp; premium homes</option>
+                <option value="hospitality">Whole-home customization</option>
+                <option value="commercial">Project-specific product scope</option>
               </select>
             </label>
             <label>
