@@ -2,7 +2,7 @@
 
 The header and footer link to `/walkthrough/villa-c/`. This is a standalone static document; React, the existing room designer and backend APIs do not host or render its scene. The full page navigation also releases the scene's WebGL context when returning to the website.
 
-The imported scene comes from the latest local `E:\villa-platform` source. Its HTML toolbar is adapted with an MLWK return link, attribution link and hide-controls button. `mlwk-entry.js` and `mlwk-entry.css` handle website integration and mobile layout; `scene.js`, geometry, renderer, navigation, furniture and material files are copied unchanged. See `public/walkthrough/villa-c/source.json` for the source modification time and scene SHA-256.
+The imported scene comes from the latest local `E:\villa-platform` source. Its HTML toolbar is adapted with a CIRMANO return link, attribution link and hide-controls button. `mlwk-entry.js` and `mlwk-entry.css` handle website integration and mobile layout; `scene.js`, geometry, renderer, navigation, furniture and material files are copied unchanged. See `public/walkthrough/villa-c/source.json` for the source modification time and scene SHA-256.
 
 To refresh the scene after reviewing changes to the local source:
 
