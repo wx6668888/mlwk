@@ -1509,7 +1509,8 @@ p {
   padding: 42px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 14px;
   border-inline-end: 1px solid var(--line);
 }
 
@@ -1518,7 +1519,7 @@ p {
 }
 
 .company-proof strong {
-  font-size: 72px;
+  font-size: 56px;
   font-weight: 350;
 }
 
@@ -1529,8 +1530,8 @@ p {
 
 .factory-gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
 }
 
 .factory-gallery figure {
@@ -1548,6 +1549,119 @@ p {
   margin-top: 12px;
   color: #66635f;
   font-size: 12px;
+}
+
+.project-gallery__intro {
+  max-width: 700px;
+  margin-bottom: 34px;
+}
+
+.project-gallery__intro h2,
+.workshop-evidence__intro h2 {
+  margin-bottom: 18px;
+}
+
+.project-gallery__intro > p:last-child,
+.workshop-evidence__intro > p:last-child {
+  max-width: 640px;
+  color: #77746f;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.project-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px 18px;
+}
+
+.project-gallery__item figure,
+.workshop-evidence__grid figure {
+  margin: 0;
+}
+
+.project-gallery__item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--paper-bright);
+}
+
+.project-gallery__item:nth-child(6) img {
+  object-position: center 42%;
+}
+
+.project-gallery__item figcaption,
+.workshop-evidence__grid figcaption {
+  margin-top: 12px;
+  color: #66635f;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.workshop-evidence__intro {
+  max-width: 700px;
+  margin-bottom: 30px;
+}
+
+.workshop-evidence__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.workshop-evidence__grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--paper-bright);
+}
+
+.company-proof > div p {
+  max-width: 260px;
+  margin: 0;
+  color: #77746f;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .factory-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .company-proof {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .project-gallery__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 12px;
+  }
+
+  .workshop-evidence__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .factory-gallery,
+  .company-proof {
+    grid-template-columns: 1fr;
+  }
+
+  .company-proof > div {
+    min-height: 210px;
+    padding: 28px 22px;
+  }
+
+  .project-gallery__grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Resources */
@@ -8166,5 +8280,56 @@ html[dir="rtl"] .faq-list details p {
     margin: 10px;
     border-radius: 20px;
     height: calc(100dvh - 20px);
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1280px) {
+  .page-intro__inner {
+    grid-template-columns: minmax(92px, 0.34fr) minmax(0, 1.25fr) minmax(0, 0.78fr);
+    gap: clamp(24px, 3vw, 36px);
+  }
+
+  .page-intro h1 {
+    font-size: clamp(52px, 5.2vw, 66px);
+  }
+
+  .page-intro__text {
+    min-width: 0;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+}
+
+
+@media (min-width: 901px) and (max-width: 1280px) {
+  .page-intro__text {
+    max-width: 320px;
+    justify-self: end;
+  }
+}
+@media (min-width: 901px) and (max-width: 1280px) {
+  .page-intro__inner {
+    grid-template-columns: minmax(90px, 0.35fr) minmax(0, 1.65fr);
+    column-gap: clamp(20px, 3vw, 38px);
+    row-gap: 22px;
+  }
+  .page-intro__text {
+    grid-column: 2;
+    max-width: 620px;
+    justify-self: start;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+}
+@media (min-width: 901px) and (max-width: 1280px) {
+  .project-placeholder,
+  .capability-film,
+  .remote-support,
+  .factory-policy,
+  .name-story {
+    width: min(1080px, 100%);
+    margin-inline: auto;
+    gap: clamp(32px, 4vw, 52px);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   }
 }
