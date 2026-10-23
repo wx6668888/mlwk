@@ -8,7 +8,7 @@
   --villa-line: rgba(243, 239, 232, .3);
   position: relative;
   isolation: isolate;
-  height: calc(100svh - 28px);
+  height: min(92svh, calc(100vw * .5625));
   min-height: 620px;
   margin: 14px;
   overflow: hidden;
@@ -18,8 +18,12 @@
   touch-action: pan-y;
 }
 .villa-hero__image, .villa-hero__reveal, .villa-hero__shade, .villa-hero__halo { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.villa-hero__image { object-fit: cover; object-position: center; }
-.villa-hero__shell { filter: blur(2px); transform: scale(1.008); }
+.villa-hero__image { object-fit: contain; object-position: center; }
+.villa-hero__shell-backdrop, .villa-hero__scene::before { position: absolute; inset: -22px; content: ""; background-image: url("/media/cirmano-villa-night.webp"); background-position: center; background-size: cover; filter: blur(18px) brightness(.48); opacity: .76; transform: scale(1.035); }
+.villa-hero__shell { filter: blur(2px); }
+.villa-hero__scene { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 450ms ease; }
+.villa-hero__scene::before { background-image: var(--scene-image); filter: blur(20px) brightness(.5); }
+.villa-hero__scene[data-selected="true"] { opacity: 1; }
 .villa-hero__reveal {
   z-index: 1;
   opacity: 0;
@@ -27,8 +31,7 @@
   mask-image: radial-gradient(circle var(--reveal-radius) at var(--reveal-x) var(--reveal-y), #000 0%, #000 57%, rgba(0,0,0,.88) 68%, rgba(0,0,0,.35) 85%, transparent 100%);
   transition: opacity 320ms ease;
 }
-.villa-hero__finished { opacity: 0; transition: opacity 450ms ease; }
-.villa-hero__finished[data-selected="true"] { opacity: 1; }
+.villa-hero__finished { opacity: 1; }
 .villa-hero[data-revealing="true"] .villa-hero__reveal, .villa-hero[data-full="true"] .villa-hero__reveal { opacity: 1; }
 .villa-hero[data-full="true"] .villa-hero__reveal { -webkit-mask-image: none; mask-image: none; }
 .villa-hero__halo { z-index: 2; opacity: 0; background: radial-gradient(circle var(--reveal-radius) at var(--reveal-x) var(--reveal-y), transparent 53%, rgba(237,211,164,.08) 73%, rgba(237,211,164,.035) 86%, transparent 100%); transition: opacity 320ms ease; }
@@ -64,6 +67,10 @@
 .villa-hero__view button { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 17px; border: 1px solid var(--villa-line); border-radius: 3px; background: rgba(16,21,29,.25); color: var(--villa-ivory); font-size: 11px; transition: background 180ms; }
 .villa-hero__view button:hover { background: rgba(16,21,29,.55); }
 .villa-hero__view > span { color: var(--villa-muted); font-size: 9px; letter-spacing: .05em; }
+.villa-hero__corner { z-index: 5; bottom: 0; width: 306px; min-height: 130px; padding: 34px 25px 20px 40px; border-start-start-radius: 48px; }
+.villa-hero__corner::before, .villa-hero__corner::after { background: transparent; }
+.villa-hero__corner strong { font-size: 15px; }
+.villa-hero__corner small { font-size: 10px; }
 .villa-hero button:disabled { opacity: .4; cursor: wait; }
 .villa-hero :focus-visible { outline: 2px solid var(--villa-ivory); outline-offset: 5px; }
 .villa-hero__error { position: absolute; z-index: 5; bottom: 115px; inset-inline-start: 6%; font-size: 12px; }
@@ -98,6 +105,14 @@
   .villa-hero__view > span { max-width: 110px; font-size: 8px; line-height: 1.6; text-align: end; }
   .villa-hero__shade { background: linear-gradient(90deg, rgba(9,14,20,.5), transparent 90%), linear-gradient(0deg, rgba(9,14,20,.8), transparent 35%); }
   .villa-hero__error { bottom: 142px; }
+  .villa-hero__corner { width: 188px; min-height: 84px; padding: 18px 13px 11px 25px; border-start-start-radius: 34px; }
+  .villa-hero__corner a { grid-template-columns: 34px 1fr; gap: 8px; }
+  .villa-hero__corner .hero-corner__icon { width: 34px; height: 34px; }
+  .villa-hero__corner a > svg { display: none; }
+  .villa-hero__corner strong { font-size: 12px; }
+  .villa-hero__corner small { font-size: 9px; }
+  .villa-hero__view { position: absolute; inset-inline-end: 200px; bottom: 21px; }
+  .villa-hero__view > span { display: none; }
 }
 @media (max-height: 680px) and (min-width: 601px) {
   .villa-hero__body { top: 24%; }

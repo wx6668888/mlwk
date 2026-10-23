@@ -1,4 +1,4 @@
-import { ArrowUpRight, MoveUpRight, Sun, Moon } from "lucide-react";
+import { ArrowUpRight, FileText, MoveUpRight, Sun, Moon } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { Link } from "react-router-dom";
 import { type Locale } from "../content";
@@ -70,12 +70,15 @@ export default function VillaRevealHero({ locale }: { locale: Locale }) {
       onKeyDown={(event) => { if (event.key === "Escape") { setFull(false); hide(); } }}
       aria-labelledby="villa-hero-title"
     >
+      <div className="villa-hero__shell-backdrop" aria-hidden="true" />
       <img className="villa-hero__image villa-hero__shell" src="/media/cirmano-villa-night.webp" width="1672" height="941" alt={text.alt} {...{ fetchpriority: "high" }} />
       <div className="villa-hero__reveal" aria-hidden="true">
         {scenes.map((scene, index) => (
-          <img key={scene} className="villa-hero__image villa-hero__finished" data-selected={selected === index} src={`/media/cirmano-villa-${scene}.webp`} width="1672" height="941" alt="" decoding="async" {...{ fetchpriority: index === 0 ? "high" : "low" }}
-            onLoad={() => setLoaded((value) => value.map((item, i) => i === index ? true : item))}
-            onError={() => setFailed((value) => value.map((item, i) => i === index ? true : item))} />
+          <div key={scene} className="villa-hero__scene" data-selected={selected === index} style={{ "--scene-image": `url(/media/cirmano-villa-${scene}.webp)` } as React.CSSProperties}>
+            <img className="villa-hero__image villa-hero__finished" src={`/media/cirmano-villa-${scene}.webp`} width="1672" height="941" alt="" decoding="async" {...{ fetchpriority: index === 0 ? "high" : "low" }}
+              onLoad={() => setLoaded((value) => value.map((item, i) => i === index ? true : item))}
+              onError={() => setFailed((value) => value.map((item, i) => i === index ? true : item))} />
+          </div>
         ))}
       </div>
       <div className="villa-hero__halo" aria-hidden="true" />
@@ -101,6 +104,13 @@ export default function VillaRevealHero({ locale }: { locale: Locale }) {
           <button type="button" disabled={!ready} aria-pressed={full} onClick={() => { setFull((value) => !value); hide(); }}>{full ? <Moon size={16} aria-hidden="true" /> : <Sun size={16} aria-hidden="true" />}{full ? text.bare : text.full}<ArrowUpRight size={16} aria-hidden="true" /></button>
           <span>{text.concept}</span>
         </div>
+      </div>
+      <div className="hero-corner villa-hero__corner">
+        <Link to={`/${locale}/resources`}>
+          <span className="hero-corner__icon"><FileText size={22} aria-hidden="true" /></span>
+          <span><strong>Catalogues</strong><small>{locale === "zh" ? "浏览产品目录" : text.cta}</small></span>
+          <ArrowUpRight size={18} aria-hidden="true" />
+        </Link>
       </div>
       {failed[selected] && <p className="villa-hero__error" role="status">{text.error}</p>}
     </section>
