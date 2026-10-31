@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation, useParams } from "react-router-dom";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
+import GlobalNav from "./components/nav/GlobalNav";
 import Concierge from "./components/Concierge";
 import { AuthProvider } from "./auth/AuthContext";
 import {
@@ -46,7 +46,6 @@ import {
   LoginPage,
 } from "./pages/AuthPages";
 import { StoreProvider } from "./store/StoreContext";
-import WelcomePopup from "./components/WelcomePopup";
 import { getStoreCopy } from "./store/storeCopy";
 import { findProduct } from "../shared/storeCatalog";
 
@@ -157,10 +156,10 @@ function LocaleLayout() {
 
   return (
     <div className="site">
-      {!isDesigner && !isAuth && <Header locale={locale} />}
+      {!isDesigner && !isAuth && <GlobalNav locale={locale} />}
       <main>
         <Routes>
-          <Route index element={<><WelcomePopup locale={locale} /><HomePage locale={locale} /></>} />
+          <Route index element={<HomePage locale={locale} />} />
           <Route path="collections" element={<CollectionsPage locale={locale} />} />
           <Route
             path="collections/:slug"
@@ -172,6 +171,12 @@ function LocaleLayout() {
             element={<SolutionRoute locale={locale} />}
           />
           <Route path="projects" element={<ProjectsPage locale={locale} />} />
+          {/* Brand-pack IA. Temporary mapping onto existing pages until the dedicated pages land. */}
+          <Route path="products" element={<CollectionsPage locale={locale} />} />
+          <Route path="products/:slug" element={<ProductCategoryRoute locale={locale} />} />
+          <Route path="manufacturing" element={<CapabilitiesPage locale={locale} />} />
+          <Route path="about" element={<CompanyPage locale={locale} />} />
+          <Route path="contact" element={<QuotePage locale={locale} />} />
           <Route
             path="capabilities"
             element={<CapabilitiesPage locale={locale} />}
@@ -265,6 +270,19 @@ function LocaleLayout() {
 function CollectionRoute({ locale }: { locale: Locale }) {
   const { slug = "" } = useParams();
   return <CollectionDetailPage locale={locale} slug={slug} />;
+}
+
+const legacyCollection: Record<string, string> = {
+  kitchens: "kitchens",
+  "wardrobes-storage": "wardrobes",
+  "interior-doors": "interior-doors",
+  "wall-panels-woodwork": "wall-panels",
+};
+
+function ProductCategoryRoute({ locale }: { locale: Locale }) {
+  const { slug = "" } = useParams();
+  const legacy = legacyCollection[slug];
+  return legacy ? <CollectionDetailPage locale={locale} slug={legacy} /> : <CollectionsPage locale={locale} />;
 }
 
 function SolutionRoute({ locale }: { locale: Locale }) {

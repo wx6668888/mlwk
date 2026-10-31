@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CIRMANO · Design System v1</title>
+<script>document.documentElement.classList.add("js")</script>
+<link rel="stylesheet" href="../src/styles/tokens.css" />
+<style>
+  @font-face { font-family: "Manrope"; src: url("../public/fonts/Manrope-VF.ttf") format("truetype"); font-weight: 200 800; font-display: swap; }
+  * { box-sizing: border-box; }
+  html { background: var(--c-bone); }
+  body { margin: 0; color: var(--c-ink); font: var(--fw-regular) var(--fs-body)/var(--lh-body) var(--font-sans); -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(var(--grid-max), 100%); margin: 0 auto; padding: 0 var(--gutter); }
+  section.block { padding: var(--space-section-md) 0; }
+  section.block + section.block { padding-top: 0; }
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--col-gap); }
+  .muted { color: var(--c-whisper-text); }
+  .mt-5 { margin-top: var(--space-5); } .mt-7 { margin-top: var(--space-7); } .mt-8 { margin-top: var(--space-8); }
+  h1, h2, h3, p { margin: 0; }
+
+  /* ── global nav preview ── */
+  .gnav { position: sticky; top: 0; z-index: 20; height: var(--nav-h); background: var(--c-glass); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--c-line); }
+  .gnav__in { height: 100%; display: flex; align-items: center; gap: var(--space-6); }
+  .gnav__logo img { height: 16px; width: auto; }
+  .gnav__menu { display: flex; gap: 30px; margin: 0 auto; font-size: 13px; letter-spacing: 0.01em; }
+  .gnav__menu a { position: relative; padding: 17px 0; opacity: .86; transition: opacity var(--dur-ui) var(--ease); }
+  .gnav__menu a:hover, .gnav__menu a[aria-current] { opacity: 1; }
+  .gnav__menu a[aria-current]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 12px; height: 1px; background: var(--c-brass); }
+  .gnav__right { display: flex; align-items: center; gap: var(--space-4); font-size: 13px; }
+  .gnav .btn { min-height: 32px; padding: 0 14px; font-size: 13px; }
+  .flyout { position: absolute; left: 0; right: 0; top: 100%; background: var(--c-bone-bright); box-shadow: var(--shadow-flyout); border-bottom: 1px solid var(--c-line); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity var(--dur-ui) var(--ease), transform var(--dur-reveal) var(--ease), visibility 0s linear var(--dur-ui); }
+  .gnav:hover .flyout, .gnav.is-open .flyout { opacity: 1; visibility: visible; transform: none; transition-delay: var(--hover-intent), var(--hover-intent), 0s; }
+  .flyout__in { display: grid; grid-template-columns: 4fr 3fr 5fr; gap: var(--space-7); padding: var(--space-7) 0 var(--space-6); }
+  .flyout__col { opacity: 0; transform: translateY(-6px); transition: opacity var(--dur-reveal) var(--ease), transform var(--dur-reveal) var(--ease); transition-delay: calc(var(--hover-intent) + var(--c, 0) * var(--stagger-col)); }
+  .gnav:hover .flyout__col, .gnav.is-open .flyout__col { opacity: 1; transform: none; }
+  .flyout__label { color: var(--c-whisper-text); margin-bottom: var(--space-4); }
+  .flyout__big { display: grid; gap: 6px; }
+  .flyout__big a { display: flex; align-items: baseline; gap: 14px; font: var(--fw-medium) 24px/1.25 var(--font-sans); letter-spacing: var(--ls-title); }
+  .flyout__big a small { font-size: 11px; color: var(--c-brass-text); font-variant-numeric: tabular-nums; letter-spacing: .08em; }
+  .flyout__small { display: grid; gap: 10px; font-size: 14px; }
+  .flyout__preview { position: relative; aspect-ratio: 16/10; border-radius: var(--radius-sm); overflow: hidden; background: var(--c-bone); }
+  .flyout__preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity var(--dissolve) linear; }
+  .flyout__preview img.on { opacity: 1; }
+  .flyout__preview figcaption { position: absolute; left: 12px; bottom: 10px; font-size: 11px; color: var(--c-bone); text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+  .flyout__foot { display: flex; justify-content: space-between; padding: var(--space-4) 0 var(--space-5); border-top: 1px solid var(--c-line); font-size: 12px; color: var(--c-whisper-text); }
+  .flyout__foot a:hover { color: var(--c-ink); }
+  .veil { position: fixed; inset: var(--nav-h) 0 0; z-index: 10; background: var(--c-veil); backdrop-filter: blur(6px); opacity: 0; pointer-events: none; transition: opacity var(--dur-reveal) var(--ease); }
+  .gnav:hover ~ .veil { opacity: 1; transition-delay: var(--hover-intent); }
+
+  /* ── cover ── */
+  .cover { position: relative; min-height: 86vh; display: grid; align-items: end; color: var(--c-bone); overflow: hidden; }
+  .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(16,16,18,.62), rgba(16,16,18,0) 55%); }
+  .cover .wrap { position: relative; z-index: 1; padding-bottom: var(--space-8); }
+  .cover .tag { position: absolute; z-index: 1; right: var(--gutter); bottom: var(--space-6); font-size: 12px; opacity: .86; }
+
+  /* ── swatches ── */
+  .sw { grid-column: span 3; }
+  .sw__chip { aspect-ratio: 4/3; border-radius: var(--radius-sm); border: 1px solid var(--c-line); display: flex; align-items: flex-end; padding: 14px; font-size: 12px; }
+  .sw__meta { margin-top: 12px; display: grid; gap: 2px; font-size: 13px; }
+  .sw__meta b { font-weight: 500; }
+  .mat { grid-column: span 2; }
+  .mat .sw__chip { aspect-ratio: 1; }
+  .bar { height: 10px; display: flex; border-radius: 99px; overflow: hidden; }
+
+  /* ── type ── */
+  .type-row { display: grid; grid-template-columns: 180px 1fr; gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--c-line); }
+  .type-row .spec { font-size: 12px; color: var(--c-whisper-text); line-height: 1.6; }
+
+  /* ── cards ── */
+  .card { grid-column: span 4; position: relative; border-radius: var(--radius-card); overflow: hidden; aspect-ratio: 3/4; color: var(--c-bone); }
+  .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.0); transition: transform var(--dur-cinema) var(--ease); }
+  .card:hover img { transform: scale(1.04); }
+  .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(16,16,18,.66), rgba(16,16,18,0) 48%); }
+  .card__txt { position: absolute; z-index: 1; left: 24px; right: 24px; bottom: 24px; display: grid; gap: 6px; }
+  .card__txt small { font-size: 11px; letter-spacing: .08em; opacity: .8; font-variant-numeric: tabular-nums; }
+
+  /* ── motion demo ── */
+  .demo { grid-column: span 4; border: 1px solid var(--c-line); border-radius: var(--radius-card); background: var(--c-bone-bright); padding: var(--space-5); display: grid; gap: var(--space-4); align-content: start; }
+  .demo__stage { position: relative; height: 180px; border-radius: var(--radius-sm); background: var(--c-bone); overflow: hidden; display: grid; place-items: center; }
+  .demo__head { display: flex; justify-content: space-between; align-items: baseline; }
+  .demo button { font: inherit; font-size: 12px; border: 1px solid var(--c-line-strong); background: none; border-radius: 99px; padding: 4px 12px; cursor: pointer; }
+  .demo .rise-box { width: 60%; height: 64px; border-radius: 8px; background: var(--c-ink); }
+  .demo .stage-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .demo .pin-track { position: absolute; left: 16px; right: 16px; bottom: 16px; height: 2px; background: var(--c-line); }
+  .demo .pin-track i { display: block; height: 100%; width: var(--p, 0%); background: var(--c-brass); }
+  .demo .pin-cap { position: absolute; left: 16px; top: 16px; font-size: 12px; color: var(--c-bone); text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+  .demo input[type=range] { width: 100%; accent-color: var(--c-ink); }
+
+  .statement { font: var(--fw-medium) var(--fs-headline)/1.12 var(--font-sans); letter-spacing: var(--ls-headline); max-width: 18em; }
+
+  .rule { display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap); }
+  .rule > div { border-radius: var(--radius-sm); padding: var(--space-5); font-size: 14px; }
+  .do { background: var(--c-bone-bright); border: 1px solid var(--c-line); }
+  .dont { background: transparent; border: 1px dashed var(--c-line-strong); color: var(--c-whisper-text); }
+  .rule b { display: block; font-weight: 500; margin-bottom: 8px; color: var(--c-ink); }
+
+  .ink { background: var(--c-ink); color: var(--c-bone); }
+  .ink .section-head { border-color: var(--c-line-on-ink); }
+  .ink .section-head__page { color: var(--c-brass); }
+  .ink .muted { color: var(--c-whisper); }
+  .foot-social { display: flex; gap: var(--space-5); align-items: center; }
+  .foot-social a { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; opacity: .86; }
+  .foot-social a:hover { opacity: 1; }
+  @media (max-width: 900px) { .sw, .card, .demo { grid-column: span 12; } .mat { grid-column: span 6; } .gnav__menu { display: none; } .type-row { grid-template-columns: 1fr; } .flyout__in { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="gnav" id="gnav">
+  <div class="wrap gnav__in">
+    <a class="gnav__logo" href="#"><img src="../public/brand/CIRMANO_wordmark_EN_ink.svg" alt="CIRMANO" /></a>
+    <nav class="gnav__menu" aria-label="Primary">
+      <a href="#" aria-current="page">Products</a><a href="#">Manufacturing</a><a href="#">Projects</a><a href="#">About</a><a href="#">Contact</a>
+    </nav>
+    <div class="gnav__right"><span>EN</span><a class="btn btn--primary" href="#">Discuss Your Project</a></div>
+  </div>
+  <div class="flyout" role="region" aria-label="Products menu">
+    <div class="wrap">
+      <div class="flyout__in">
+        <div class="flyout__col" style="--c:0">
+          <p class="t-eyebrow flyout__label">Explore Products</p>
+          <div class="flyout__big">
+            <a href="#" data-img="../public/media/cirmano-project-dining-p234.webp" data-cap="Dining area · Guangzhou Residence"><small>01</small>Kitchens</a>
+            <a href="#" data-img="../public/media/cirmano-project-wardrobe-p092.webp" data-cap="Dressing room · Guangzhou Residence"><small>02</small>Wardrobes &amp; Storage</a>
+            <a href="#" data-img="../public/media/cirmano-project-door-detail-p066.webp" data-cap="Interior door · Guangzhou Residence"><small>03</small>Interior Doors</a>
+            <a href="#" data-img="../public/media/cirmano-project-p175.jpg" data-cap="Living room · Guangzhou Residence"><small>04</small>Wall Panels &amp; Woodwork</a>
+            <a href="#" data-img="../public/media/cirmano-project-p179.jpg" data-cap="Display cabinetry · Guangzhou Residence"><small>05</small>Aluminium &amp; Glass</a>
+          </div>
+        </div>
+        <div class="flyout__col" style="--c:1">
+          <p class="t-eyebrow flyout__label">More</p>
+          <div class="flyout__small"><a href="#">All products</a><a href="#">Catalogues</a><a href="#">Material samples</a><a href="#">Discuss your project</a></div>
+        </div>
+        <figure class="flyout__col flyout__preview" style="--c:2;margin:0" id="preview">
+          <img class="on" src="../public/media/cirmano-project-dining-p234.webp" alt="" />
+          <img src="../public/media/cirmano-project-dining-p234.webp" alt="" />
+          <figcaption id="previewCap">Dining area · Guangzhou Residence</figcaption>
+        </figure>
+      </div>
+      <div class="flyout__foot"><span>Foshan, China · <span class="t-num" id="clock">--:--</span> GMT+8</span><span class="foot-social"><a href="https://www.instagram.com/cirmanoofficial/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/cirmanoofficial" target="_blank" rel="noopener">Facebook</a></span></div>
+    </div>
+  </div>
+</header>
+<div class="veil" aria-hidden="true"></div>
+
+<section class="cover">
+  <img src="../public/media/cirmano-project-p179.jpg" alt="Living room with display cabinetry, Guangzhou Residence" />
+  <div class="wrap">
+    <p class="t-eyebrow" style="opacity:.86">CIRMANO / Design System v1</p>
+    <h1 class="t-hero mt-5"><span class="m-mask" data-reveal><span style="--i:0">Made As One</span></span></h1>
+    <p class="t-lead mt-5" style="max-width:30em;opacity:.9">Integrated Whole-Home Customization. Colour, type, layout and motion rules for cirmano.com, drawn from the 2026-10-23 brand pack.</p>
+  </div>
+  <span class="tag">Completed project · Guangzhou</span>
+</section>
+
+<!-- 01 COLOUR -->
+<section class="block"><div class="wrap">
+  <div class="section-head"><span class="section-head__label">CIRMANO / Colour</span><span class="section-head__page">01 / 06</span></div>
+  <h2 class="t-headline mt-7">Ink and Bone carry the page.<br /><span class="muted">Brass is only ever a point.</span></h2>
+  <div class="bar mt-7" title="Area ratio"><i style="flex:58;background:var(--c-bone);border:1px solid var(--c-line)"></i><i style="flex:37;background:var(--c-ink)"></i><i style="flex:3;background:var(--c-whisper)"></i><i style="flex:2;background:var(--c-brass)"></i></div>
+  <p class="t-caption mt-5">Area ratio: Bone 58 · Ink 37 · Whisper 3 · Brass ≤ 2–3</p>
+  <div class="grid mt-7">
+    <div class="sw"><div class="sw__chip" style="background:var(--c-ink);color:var(--c-bone)">Aa</div><div class="sw__meta"><b>Ink</b><span class="muted">#101012 · text, dark chapters</span></div></div>
+    <div class="sw"><div class="sw__chip" style="background:var(--c-bone)">Aa</div><div class="sw__meta"><b>Bone</b><span class="muted">#F3EFE8 · page ground</span></div></div>
+    <div class="sw"><div class="sw__chip" style="background:var(--c-brass);color:var(--c-ink)">Aa</div><div class="sw__meta"><b>Brass</b><span class="muted">#B08D57 · rules, focus, accents</span></div></div>
+    <div class="sw"><div class="sw__chip" style="background:var(--c-whisper);color:var(--c-bone)">Aa</div><div class="sw__meta"><b>Whisper</b><span class="muted">#8A8781 · large secondary, on Ink</span></div></div>
+  </div>
+  <div class="grid mt-7">
+    <div class="sw"><div class="sw__chip" style="background:var(--c-bone-bright)"><span style="color:var(--c-whisper-text)">Caption text 13px · 4.9:1</span></div><div class="sw__meta"><b>Whisper text</b><span class="muted">#6A6762 · small secondary text</span></div></div>
+    <div class="sw"><div class="sw__chip" style="background:var(--c-bone-bright)"><span style="color:var(--c-brass-text);letter-spacing:.08em">06 / 10 · 5.0:1</span></div><div class="sw__meta"><b>Brass text</b><span class="muted">#7E6236 · page numbers</span></div></div>
+    <div class="sw"><div class="sw__chip" style="background:var(--c-bone-bright)">Bone bright</div><div class="sw__meta"><b>Bone bright</b><span class="muted">#FBF9F5 · cards, flyouts</span></div></div>
+    <div class="sw"><div class="sw__chip" style="background:var(--c-bone);box-shadow:inset 0 -1px 0 var(--c-line-strong)">Lines 12 / 24%</div><div class="sw__meta"><b>Line</b><span class="muted">Ink 12% / 24%</span></div></div>
+  </div>
+  <h3 class="t-title mt-8">Materials <span class="muted">· 3D and illustration only</span></h3>
+  <div class="grid mt-5">
+    <div class="mat"><div class="sw__chip" style="background:var(--m-walnut)"></div><div class="sw__meta"><b>Walnut</b><span class="muted">Guidelines sample</span></div></div>
+    <div class="mat"><div class="sw__chip" style="background:var(--m-light-oak)"></div><div class="sw__meta"><b>Light oak</b><span class="muted">Guidelines sample</span></div></div>
+    <div class="mat"><div class="sw__chip" style="background:var(--m-travertine)"></div><div class="sw__meta"><b>Travertine</b><span class="muted">Guidelines sample</span></div></div>
+    <div class="mat"><div class="sw__chip" style="background:var(--m-smoked-oak)"></div><div class="sw__meta"><b>Smoked oak</b><span class="muted">P175 / P179</span></div></div>
+    <div class="mat"><div class="sw__chip" style="background:var(--m-white-lacquer)"></div><div class="sw__meta"><b>White lacquer</b><span class="muted">P164</span></div></div>
+    <div class="mat"><div class="sw__chip" style="background:linear-gradient(135deg,var(--m-bronze-glass),#6b5a49 60%,var(--m-bronze-trim))"></div><div class="sw__meta"><b>Bronze glass · trim</b><span class="muted">P180 / P183</span></div></div>
+  </div>
+</div></section>
+
+<!-- 02 TYPE -->
+<section class="block"><div class="wrap">
+  <div class="section-head"><span class="section-head__label">CIRMANO / Typography</span><span class="section-head__page">02 / 06</span></div>
+  <h2 class="t-headline mt-7">Manrope, two weights.<br /><span class="muted">Big, quiet, and tightly set.</span></h2>
+  <div class="mt-7">
+    <div class="type-row"><div class="spec">Hero<br />clamp 56–128 · 500<br />lh 1.02 · −0.035em</div><div class="t-hero">Made As One</div></div>
+    <div class="type-row"><div class="spec">Headline<br />clamp 40–80 · 500<br />lh 1.08 · −0.03em</div><div class="t-headline">The detail behind the finished space.</div></div>
+    <div class="type-row"><div class="spec">Title<br />22–28 · 500</div><div class="t-title">Wardrobes &amp; Storage</div></div>
+    <div class="type-row"><div class="spec">Lead<br />19–24 · 400</div><div class="t-lead" style="max-width:34em">Kitchens, wardrobes, interior doors and wall panels, brought together through a shared design language.</div></div>
+    <div class="type-row"><div class="spec">Body<br />17 · 400 · lh 1.55</div><div class="t-body" style="max-width:34em">CIRMANO is a custom cabinetry manufacturer based in Foshan, China, specializing in integrated whole-home customization for villas and premium homes.</div></div>
+    <div class="type-row"><div class="spec">Caption<br />13 · Whisper text</div><div class="t-caption">Living room · Guangzhou Residence. Includes AI-assisted motion from real project photography.</div></div>
+    <div class="type-row"><div class="spec">Eyebrow<br />12 · 500 · 0.16em</div><div class="t-eyebrow">CIRMANO / Manufacturing</div></div>
+    <div class="type-row" lang="zh"><div class="spec">中文 Headline<br />Noto Sans SC · 500<br />+0.02em</div><div class="t-headline">一体化全屋定制</div></div>
+  </div>
+</div></section>
+
+<!-- 03 LAYOUT -->
+<section class="block"><div class="wrap">
+  <div class="section-head"><span class="section-head__label">CIRMANO / Layout</span><span class="section-head__page">03 / 06</span></div>
+  <h2 class="t-headline mt-7">One idea per screen.</h2>
+  <p class="t-lead muted mt-5" style="max-width:34em">Every chapter opens with the brand-card motif: label left, page number right, a hairline, then one headline and one sentence.</p>
+  <div class="grid mt-7">
+    <a class="card" href="#"><img src="../public/media/cirmano-project-dining-p234.webp" alt="" /><div class="card__txt"><small>01</small><span class="t-title">Kitchens</span><span style="font-size:14px;opacity:.86">Made-to-measure cabinetry planned around your space.</span></div></a>
+    <a class="card" href="#"><img src="../public/media/cirmano-project-wardrobe-p092.webp" alt="" /><div class="card__txt"><small>02</small><span class="t-title">Wardrobes &amp; Storage</span><span style="font-size:14px;opacity:.86">Wardrobes, dressing rooms and integrated storage.</span></div></a>
+    <a class="card" href="#"><img src="../public/media/cirmano-project-door-detail-p066.webp" alt="" /><div class="card__txt"><small>03</small><span class="t-title">Interior Doors</span><span style="font-size:14px;opacity:.86">Doors that sit coherently with cabinetry and panels.</span></div></a>
+  </div>
+  <div class="mt-7" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+    <a class="btn btn--primary" href="#">Discuss Your Project</a>
+    <a class="btn btn--secondary" href="#">Explore Our Products</a>
+    <a class="link-arrow" href="#">Learn more</a>
+  </div>
+</div></section>
+
+<!-- 04 MOTION -->
+<section class="block"><div class="wrap">
+  <div class="section-head"><span class="section-head__label">CIRMANO / Motion</span><span class="section-head__page">04 / 06</span></div>
+  <h2 class="t-headline mt-7">One curve. Three durations.<br /><span class="muted">Six moves, nothing else.</span></h2>
+  <p class="t-caption mt-5">ease cubic-bezier(.16,1,.3,1) · 200 / 600 / 1200 ms · dissolve 600 ms (EDL v03)</p>
+  <div class="grid mt-7">
+    <div class="demo"><div class="demo__head"><b>1 · Rise</b><button data-replay="rise">Replay</button></div><div class="demo__stage"><div class="rise-box m-rise" id="rise"></div></div><span class="t-caption">24px · 600ms · copy, cards</span></div>
+    <div class="demo"><div class="demo__head"><b>2 · Mask line</b><button data-replay="mask">Replay</button></div><div class="demo__stage"><div id="mask" class="t-title" style="font-size:34px;line-height:1.1"><span class="m-mask"><span style="--i:0">Every material.</span></span><span class="m-mask"><span style="--i:1">Every detail.</span></span></div></div><span class="t-caption">80ms per line · headlines</span></div>
+    <div class="demo"><div class="demo__head"><b>3 · Ink fill</b><span class="t-caption">drag</span></div><div class="demo__stage" style="padding:20px;place-items:start"><p id="inkp" style="font:500 22px/1.3 var(--font-sans);letter-spacing:-.02em"></p></div><input type="range" min="0" max="100" value="45" id="inkr" aria-label="scroll progress" /></div>
+    <div class="demo"><div class="demo__head"><b>4 · Pin &amp; scrub</b><span class="t-caption">drag</span></div><div class="demo__stage"><img class="stage-img" src="../public/media/cirmano-project-p175.jpg" alt="" id="pinimg" style="transform-origin:60% 50%" /><span class="pin-cap" id="pincap">Wall panels</span><div class="pin-track"><i id="pinbar"></i></div></div><input type="range" min="0" max="100" value="20" id="pinr" aria-label="scroll progress" /></div>
+    <div class="demo"><div class="demo__head"><b>5 · Dissolve</b><button data-replay="dis">Next</button></div><div class="demo__stage"><img class="stage-img m-dissolve" src="../public/media/cirmano-project-p175.jpg" alt="" id="disA" /><img class="stage-img m-dissolve" src="../public/media/cirmano-project-p179.jpg" alt="" id="disB" style="opacity:0" /></div><span class="t-caption">600ms linear · media hand-offs</span></div>
+    <div class="demo"><div class="demo__head"><b>6 · Settle</b><button data-replay="settle">Replay</button></div><div class="demo__stage"><img class="stage-img m-settle" src="../public/media/cirmano-factory-m07.webp" alt="" id="settle" /></div><span class="t-caption">1.06 → 1 · 1200ms · first view of media</span></div>
+  </div>
+  <div class="rule mt-7">
+    <div class="do"><b>Use</b>One camera move per shot · slow · 3–5 s. Media enters once and settles. Hover states change colour or nudge 3px.</div>
+    <div class="dont"><b>Never</b>Bounce, spin, flip, parallax drift, typewriter, particles, cursor trails, anything over 1200 ms.</div>
+  </div>
+</div></section>
+
+<!-- 05 IMAGERY -->
+<section class="block"><div class="wrap">
+  <div class="section-head"><span class="section-head__label">CIRMANO / Imagery</span><span class="section-head__page">05 / 06</span></div>
+  <h2 class="t-headline mt-7">Real first.<br /><span class="muted">Every concept is labelled.</span></h2>
+  <div class="rule mt-7">
+    <div class="do"><b>Real photography</b>Captioned with the real space: “Living room · Guangzhou Residence”. One project, seven spaces, never split into invented cases.</div>
+    <div class="do"><b>AI-assisted motion (K-clips)</b>Only from real photos. Always captioned “Includes AI-assisted motion from real project photography”. K10, K12, K18 are not used.</div>
+    <div class="do"><b>3D &amp; drawing</b>Tagged “Design drawing” until it hands over to real footage. Engine: flat-to-3d © Samnang Aing, MIT.</div>
+    <div class="dont"><b>Do not write</b>Made in Italy · German-made · all products laser-edged · 100% trial assembly · unconfirmed figures, certifications, lead times.</div>
+  </div>
+</div></section>
+
+<!-- 06 FOOTER / SOCIAL -->
+<section class="block ink" style="padding:var(--space-section-md) 0"><div class="wrap">
+  <div class="section-head"><span class="section-head__label">CIRMANO / Contact</span><span class="section-head__page">06 / 06</span></div>
+  <h2 class="t-headline mt-7">Let’s discuss your project.</h2>
+  <p class="t-lead muted mt-5" style="max-width:30em">Share your floor plan, product requirements and material direction to start the conversation.</p>
+  <div class="mt-7" style="display:flex;gap:16px;flex-wrap:wrap">
+    <a class="btn btn--primary btn--on-ink" href="#">Send a Project Enquiry</a>
+    <a class="btn btn--secondary btn--on-ink" href="https://wa.me/8618666384092" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <div class="grid mt-8" style="padding-top:var(--space-6);border-top:1px solid var(--c-line-on-ink)">
+    <div style="grid-column:span 4"><img src="../public/brand/CIRMANO_horizontal_CNEN_bone.svg" alt="CIRMANO 西尔曼" style="width:240px;height:auto" /><p class="mt-5 muted" style="font-size:14px">Made As One<br />Integrated Whole-Home Customization</p></div>
+    <div style="grid-column:span 4;font-size:14px" class="muted">No. 10, Chendong Industrial Zone, Chendong Village, Shishan Town, Nanhai District, Foshan, Guangdong, China</div>
+    <div style="grid-column:span 4;font-size:14px;display:grid;gap:8px"><a href="mailto:kai@cirmano.com">kai@cirmano.com</a><a href="tel:+8618666384092">+86 186 6638 4092</a>
+      <div class="foot-social mt-5">
+        <a href="https://www.instagram.com/cirmanoofficial/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>Instagram</a>
+        <a href="https://www.facebook.com/cirmanoofficial" target="_blank" rel="noopener" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 21v-7h3l.5-4H14V8c0-1 .4-2 2-2h1.6V2.5A20 20 0 0 0 15 2.3c-2.6 0-4.4 1.6-4.4 4.5V10H8v4h2.6v7"/></svg>Facebook</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<script>
+  // reveal-on-enter for the cover headline
+  requestAnimationFrame(() => document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-in')));
+  // flyout preview dissolve
+  const imgs = document.querySelectorAll('#preview img'); let front = 0;
+  document.querySelectorAll('.flyout__big a').forEach(a => a.addEventListener('mouseenter', () => {
+    const back = imgs[1 - front]; if (imgs[front].getAttribute('src') === a.dataset.img) return;
+    back.src = a.dataset.img; back.classList.add('on'); imgs[front].classList.remove('on'); front = 1 - front;
+    document.getElementById('previewCap').textContent = a.dataset.cap;
+  }));
+  const tick = () => { document.getElementById('clock').textContent = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Shanghai', hour: '2-digit', minute: '2-digit' }).format(new Date()); };
+  tick(); setInterval(tick, 15000);
+  // demos
+  const replay = (el, cls = 'is-in') => { el.classList.remove(cls); void el.offsetWidth; setTimeout(() => el.classList.add(cls), 40); };
+  const mask = document.getElementById('mask'); const rise = document.getElementById('rise'); const settle = document.getElementById('settle');
+  replay(rise); replay(mask); replay(settle);
+  document.querySelectorAll('[data-replay]').forEach(b => b.addEventListener('click', () => {
+    const k = b.dataset.replay;
+    if (k === 'rise') replay(rise); if (k === 'mask') replay(mask); if (k === 'settle') replay(settle);
+    if (k === 'dis') { const a = document.getElementById('disA'), c = document.getElementById('disB'); const on = c.style.opacity === '1'; c.style.opacity = on ? '0' : '1'; a.style.opacity = on ? '1' : '0'; }
+  }));
+  const words = 'Kitchens, wardrobes, interior doors and wall panels, brought together through a shared design language.'.split(' ');
+  const inkp = document.getElementById('inkp'); inkp.innerHTML = words.map(w => `<span class="m-ink-word">${w}</span>`).join(' ');
+  const ink = v => inkp.querySelectorAll('span').forEach((s, i) => s.classList.toggle('is-on', i / words.length < v / 100));
+  const inkr = document.getElementById('inkr'); inkr.addEventListener('input', e => ink(+e.target.value)); ink(+inkr.value);
+  const caps = ['Wall panels', 'Display cabinetry', 'Interior doors'];
+  const pin = v => { document.getElementById('pinbar').style.setProperty('--p', v + '%'); document.getElementById('pinimg').style.transform = `scale(${1.12 - v * 0.0012}) translateX(${(v - 50) * -0.12}%)`; document.getElementById('pincap').textContent = caps[Math.min(2, Math.floor(v / 34))]; };
+  const pinr = document.getElementById('pinr'); pinr.addEventListener('input', e => pin(+e.target.value)); pin(+pinr.value);
+</script>
+</body>
+</html>

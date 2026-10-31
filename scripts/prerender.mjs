@@ -36,6 +36,11 @@ const baseRoutes = [
   ...collectionSlugs.map((slug) => `collections/${slug}`),
   "solutions",
   ...solutionSlugs.map((slug) => `solutions/${slug}`),
+  "products",
+  ...["kitchens", "wardrobes-storage", "interior-doors", "wall-panels-woodwork", "aluminium-glass"].map((slug) => `products/${slug}`),
+  "manufacturing",
+  "about",
+  "contact",
   "projects",
   "capabilities",
   "company",
@@ -73,6 +78,10 @@ const siteUrl = "https://cirmano.com";
 const titles = {
   "": "Made As One — Integrated Whole-Home Customization",
   collections: "Whole-Home Products",
+  products: "Products",
+  manufacturing: "Manufacturing",
+  about: "About CIRMANO",
+  contact: "Discuss Your Project",
   solutions: "Project Scope",
   projects: "Verified Projects",
   capabilities: "Millwork Capabilities",
@@ -88,6 +97,11 @@ const titles = {
 };
 
 const detailTitles = {
+  "products/kitchens": "Kitchens",
+  "products/wardrobes-storage": "Wardrobes & Storage",
+  "products/interior-doors": "Interior Doors",
+  "products/wall-panels-woodwork": "Wall Panels & Woodwork",
+  "products/aluminium-glass": "Aluminium & Glass",
   "solutions/residential": "Villas and Premium Homes",
   "solutions/hospitality": "Whole-Home Systems",
   "solutions/commercial": "Project-Specific Scope",

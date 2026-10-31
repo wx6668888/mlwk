@@ -1,0 +1,128 @@
+/* 01 · Drawing → Model → Made. Tokens: src/styles/tokens.css */
+
+/* Which hero shows: CSS first (no flash on phones), JS confirms via data-mode. */
+.mh3d { display: none; }
+@media (min-width: 900px) {
+  .mh[data-mode="3d"] .mh3d { display: block; }
+  .mh[data-mode="3d"] > .hh { display: none; }
+}
+
+.mh3d { position: relative; height: 420vh; background: var(--c-bone); color: var(--c-ink); }
+.mh3d__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.mh3d__canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity var(--dur-cinema) var(--ease); }
+.mh3d__canvas[data-ready] { opacity: 1; }
+.mh3d__leaders { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.mh3d__labels { position: absolute; inset: 0; pointer-events: none; }
+
+/* material code tags that ride with the walls */
+.mh3d .lab { position: absolute; left: 0; top: 0; white-space: nowrap; font: var(--fw-medium) 10px/1 var(--font-sans); letter-spacing: 0.1em; text-transform: uppercase; will-change: transform, opacity; }
+.mh3d .lab .no { display: inline-block; padding: 3px 7px; color: var(--c-bone); background: rgba(16, 16, 18, 0.9); border-inline-start: 2px solid var(--c-brass); font-variant-numeric: tabular-nums; }
+.mh3d .lab .nm { margin-inline-start: 6px; color: var(--c-ink); font-size: 11px; letter-spacing: 0.12em; }
+.mh3d .lab:not(.code) .no { background: var(--c-brass); color: var(--c-ink); border: 0; }
+.mh3d__leaders polyline { fill: none; stroke: var(--c-ink); stroke-width: 1; }
+.mh3d__leaders polyline.halo { stroke: var(--c-bone); stroke-width: 4; opacity: 0.9; }
+.mh3d__leaders circle.halo { fill: var(--c-bone); }
+.mh3d__leaders circle.dot { fill: var(--c-brass); }
+
+/* the film of the real room takes over at the end */
+.mh3d__film { position: absolute; inset: 0; background: var(--c-ink); pointer-events: none; }
+.mh3d__video { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: auto; }
+.mh3d__film::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(16, 16, 18, 0.42) 0%, rgba(16, 16, 18, 0) 18%),
+    linear-gradient(0deg, rgba(16, 16, 18, 0.7) 0%, rgba(16, 16, 18, 0.18) 40%, rgba(16, 16, 18, 0) 60%);
+}
+.mh3d__video .lv__toggle { bottom: 28px; inset-inline-end: var(--gutter); z-index: 2; }
+
+/* opening copy, on the paper, left of the sheet */
+.mh3d__copy {
+  position: absolute;
+  inset-inline-start: var(--gutter);
+  top: calc(var(--nav-h) + clamp(48px, 12vh, 120px));
+  max-width: min(44rem, 42vw);
+  will-change: opacity, transform;
+}
+.mh3d__kicker { margin: 0 0 var(--space-5); color: var(--c-whisper-text); }
+.mh3d__title { margin: 0; font-size: clamp(56px, 6vw, 112px); white-space: nowrap; }
+.mh3d__title .m-mask { width: max-content; }
+.mh3d__descriptor { margin: var(--space-5) 0 0; }
+.mh3d__lead { margin: var(--space-3) 0 0; max-width: 28em; font-size: var(--fs-body); line-height: var(--lh-body); color: var(--c-whisper-text); }
+.mh3d__hint { display: flex; align-items: center; gap: 12px; margin: var(--space-7) 0 0; font-size: 13px; color: var(--c-whisper-text); }
+.mh3d__hint i { position: relative; width: 1px; height: 36px; background: var(--c-line-strong); overflow: hidden; }
+.mh3d__hint i::after { content: ""; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--c-brass); animation: mh-hint 2.4s var(--ease) infinite; }
+@keyframes mh-hint { to { top: 100%; } }
+@media (prefers-reduced-motion: reduce) { .mh3d__hint i::after { animation: none; } }
+
+/* drawing title block, bottom-left, as on the brand cards */
+.mh3d__block {
+  position: absolute;
+  inset-inline-start: var(--gutter);
+  bottom: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  margin: 0;
+  border: 1px solid var(--c-ink);
+  background: rgba(243, 239, 232, 0.86);
+  font: var(--fw-medium) 10px/1.3 var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.mh3d__block div { display: grid; gap: 3px; padding: 7px 12px 8px; border-inline-start: 1px solid var(--c-ink); border-top: 1px solid var(--c-ink); }
+.mh3d__block div:nth-child(odd) { border-inline-start: 0; }
+.mh3d__block div:nth-child(-n + 2) { border-top: 0; }
+.mh3d__block dt { color: var(--c-whisper-text); font-size: 8.5px; }
+.mh3d__block dd { margin: 0; }
+
+/* progress: 01 Drawing · 02 Model · 03 Made */
+.mh3d__steps {
+  position: absolute;
+  inset-inline-end: var(--gutter);
+  bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  color: var(--c-whisper-text);
+  transition: color var(--dur-reveal) var(--ease), opacity var(--dur-reveal) var(--ease);
+}
+.mh3d__steps li { display: inline-flex; gap: 6px; transition: color var(--dur-reveal) var(--ease); }
+.mh3d__steps li span { font-variant-numeric: tabular-nums; color: inherit; opacity: 0.7; }
+.mh3d__steps li.is-on { color: var(--c-ink); }
+.mh3d__steps li.is-on span { color: var(--c-brass-text); opacity: 1; }
+.mh3d__steps .mh3d__bar { width: 96px; height: 1px; background: var(--c-line-strong); overflow: hidden; }
+.mh3d__bar i { display: block; width: 100%; height: 100%; background: var(--c-brass); transform-origin: left; }
+[dir="rtl"] .mh3d__bar i { transform-origin: right; }
+.mh3d__steps[data-dark] { color: rgba(243, 239, 232, 0.6); }
+.mh3d__steps[data-dark] li.is-on { color: var(--c-bone); }
+.mh3d__steps[data-dark] li.is-on span { color: var(--c-brass); }
+.mh3d__steps[data-dark] .mh3d__bar { background: var(--c-line-on-ink); }
+
+.mh3d__tag {
+  position: absolute;
+  inset-inline-end: var(--gutter);
+  top: calc(var(--nav-h) + 20px);
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  margin: 0;
+  font-size: 12px;
+  text-align: end;
+  color: var(--c-ink);
+}
+.mh3d__tag > span:first-child { padding: 4px 10px; border: 1px solid var(--c-line-strong); border-radius: var(--radius-pill); }
+.mh3d__tag[data-dark] { color: var(--c-bone); }
+.mh3d__tag[data-dark] > span:first-child { border-color: rgba(243, 239, 232, 0.4); }
+.mh3d__tag .ai-note { max-width: 22em; }
+
+/* closing copy over the film */
+.mh3d__final { position: absolute; inset-inline-start: var(--gutter); bottom: clamp(64px, 11vh, 112px); max-width: 40rem; color: var(--c-bone); transition: opacity var(--dur-reveal) linear; }
+.mh3d__final-title { margin: 0; }
+.mh3d__final-lead { margin: var(--space-3) 0 0; max-width: 30em; font-size: var(--fs-body); line-height: var(--lh-body); color: rgba(243, 239, 232, 0.82); }
+.mh3d__ctas { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }

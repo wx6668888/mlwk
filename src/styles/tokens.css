@@ -1,0 +1,167 @@
+/*
+ * CIRMANO design tokens.
+ * Source of truth: CIRMANO brand pack 2026-10-23 v01 (brand guidelines 01 Identity & colour)
+ * and docs/design-system.md. Change values here only, never inline in components.
+ */
+:root {
+  /* ── Brand colour (guidelines 01) ─────────────────────────── */
+  --c-ink: #101012;
+  --c-bone: #f3efe8;
+  --c-brass: #b08d57;
+  --c-whisper: #8a8781;
+
+  /* Text-safe variants (WCAG AA on Bone): brand hues darkened for small text only */
+  --c-whisper-text: #6a6762;   /* 4.9:1 on Bone; raw Whisper is 3.1:1 */
+  --c-brass-text: #7e6236;     /* 5.0:1 on Bone; raw Brass is 2.7:1 */
+
+  /* Derived, used sparingly */
+  --c-bone-bright: #fbf9f5;
+  --c-line: rgba(16, 16, 18, 0.12);
+  --c-line-strong: rgba(16, 16, 18, 0.24);
+  --c-line-on-ink: rgba(243, 239, 232, 0.16);
+  --c-veil: rgba(16, 16, 18, 0.28);          /* page dim behind flyout menus */
+  --c-glass: rgba(243, 239, 232, 0.85);      /* frosted global nav */
+  --c-glass-ink: rgba(16, 16, 18, 0.72);
+
+  /* ── Material palette (3D + illustration only, never UI) ──── */
+  --m-walnut: #5b3f2c;        /* guidelines material sample */
+  --m-light-oak: #c9a77c;     /* guidelines material sample */
+  --m-grey-stone: #7d7a74;    /* guidelines material sample */
+  --m-travertine: #d9cdb8;    /* guidelines material sample */
+  --m-smoked-oak: #3b3029;    /* P179 / P175 wall panels */
+  --m-white-lacquer: #ecebe7; /* P164 media wall */
+  --m-bronze-glass: #4a3f35;  /* P180 display cabinet */
+  --m-bronze-trim: #8c6a43;   /* P183 hardware */
+  --m-marble-floor: #e6e1d8;  /* project floors */
+
+  /* ── Type ─────────────────────────────────────────────────── */
+  --font-sans: "Manrope", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  --fs-hero: clamp(56px, 8vw, 128px);
+  --fs-headline: clamp(40px, 5vw, 80px);
+  --fs-title: clamp(22px, 2vw, 28px);
+  --fs-lead: clamp(19px, 1.5vw, 24px);
+  --fs-body: 17px;
+  --fs-caption: 13px;
+  --fs-eyebrow: 12px;
+
+  --lh-tight: 1.02;
+  --lh-heading: 1.08;
+  --lh-body: 1.55;
+
+  --ls-hero: -0.035em;
+  --ls-headline: -0.03em;
+  --ls-title: -0.015em;
+  --ls-eyebrow: 0.16em;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+
+  /* ── Layout ───────────────────────────────────────────────── */
+  --grid-max: 1440px;
+  --grid-cols: 12;
+  --gutter: clamp(20px, 4vw, 64px);
+  --col-gap: clamp(16px, 2vw, 24px);
+
+  --space-section-lg: clamp(96px, 12vw, 160px);
+  --space-section-md: clamp(72px, 9vw, 120px);
+  --space-section-sm: clamp(56px, 6vw, 80px);
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --nav-h: 52px;
+  --localnav-h: 52px;
+
+  --radius-card: 20px;
+  --radius-media: 20px;
+  --radius-pill: 999px;
+  --radius-sm: 8px;
+
+  /* ── Motion: one curve, three durations, six patterns ─────── */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-ui: 200ms;
+  --dur-reveal: 600ms;
+  --dur-cinema: 1200ms;
+  --dissolve: 600ms;          /* EDL v03 cross-dissolve */
+  --stagger-line: 80ms;       /* mask-line headline */
+  --stagger-col: 40ms;        /* flyout columns */
+  --rise-distance: 24px;
+  --settle-scale: 1.06;
+  --hover-intent: 120ms;
+
+  /* ── Elevation ────────────────────────────────────────────── */
+  --shadow-flyout: 0 24px 48px rgba(16, 16, 18, 0.08);
+  --shadow-card: 0 1px 0 var(--c-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-ui: 0ms;
+    --dur-reveal: 0ms;
+    --dur-cinema: 0ms;
+    --dissolve: 0ms;
+    --stagger-line: 0ms;
+    --stagger-col: 0ms;
+    --rise-distance: 0px;
+    --settle-scale: 1;
+  }
+}
+
+/* ── Type roles ─────────────────────────────────────────────── */
+.t-hero { font: var(--fw-medium) var(--fs-hero)/var(--lh-tight) var(--font-sans); letter-spacing: var(--ls-hero); }
+.t-headline { font: var(--fw-medium) var(--fs-headline)/var(--lh-heading) var(--font-sans); letter-spacing: var(--ls-headline); }
+.t-title { font: var(--fw-medium) var(--fs-title)/1.2 var(--font-sans); letter-spacing: var(--ls-title); }
+.t-lead { font: var(--fw-regular) var(--fs-lead)/1.45 var(--font-sans); }
+.t-body { font: var(--fw-regular) var(--fs-body)/var(--lh-body) var(--font-sans); }
+.t-caption { font: var(--fw-regular) var(--fs-caption)/1.45 var(--font-sans); color: var(--c-whisper-text); }
+.t-eyebrow { font: var(--fw-medium) var(--fs-eyebrow)/1.4 var(--font-sans); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; }
+.t-num { font-variant-numeric: tabular-nums; }
+
+/* Chinese never uses negative tracking or uppercase eyebrows */
+:lang(zh) .t-hero, :lang(zh) .t-headline, :lang(zh) .t-title { letter-spacing: 0.02em; }
+:lang(zh) .t-eyebrow { letter-spacing: 0.12em; }
+:lang(ar) .t-hero, :lang(ar) .t-headline, :lang(ar) .t-title, :lang(ar) .t-eyebrow { letter-spacing: 0; }
+
+/* ── Section head motif: CIRMANO / SECTION ······ 01 / 10 ───── */
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-5); padding-bottom: var(--space-4); border-bottom: 1px solid var(--c-line); }
+.section-head__label { font: var(--fw-medium) var(--fs-eyebrow)/1.4 var(--font-sans); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; }
+.section-head__page { font: var(--fw-medium) var(--fs-eyebrow)/1.4 var(--font-sans); letter-spacing: 0.08em; font-variant-numeric: tabular-nums; color: var(--c-brass-text); }
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 22px; border-radius: var(--radius-pill); font: var(--fw-medium) 15px/1 var(--font-sans); border: 1px solid transparent; transition: background-color var(--dur-ui) var(--ease), color var(--dur-ui) var(--ease), border-color var(--dur-ui) var(--ease); }
+.btn--primary { background: var(--c-ink); color: var(--c-bone); }
+.btn--primary:hover { background: #26262a; }
+.btn--secondary { border-color: var(--c-line-strong); color: var(--c-ink); }
+.btn--secondary:hover { border-color: var(--c-ink); }
+.btn--on-ink.btn--primary { background: var(--c-bone); color: var(--c-ink); }
+.btn--on-ink.btn--secondary { border-color: rgba(243, 239, 232, 0.5); color: var(--c-bone); }
+.btn--on-ink.btn--secondary:hover { border-color: var(--c-bone); }
+.link-arrow { display: inline-flex; align-items: center; gap: 6px; color: var(--c-ink); font: var(--fw-medium) var(--fs-body)/1 var(--font-sans); }
+.link-arrow::after { content: "›"; transition: transform var(--dur-ui) var(--ease); }
+.link-arrow:hover::after { transform: translateX(3px); }
+
+/* ── Motion patterns (classes toggled by src/components/motion) ──
+ * Hidden states apply only under html.js, so content stays visible without JS. */
+.js .m-rise { opacity: 0; transform: translateY(var(--rise-distance)); transition: opacity var(--dur-reveal) var(--ease), transform var(--dur-reveal) var(--ease); transition-delay: var(--delay, 0ms); }
+.js .m-rise.is-in { opacity: 1; transform: none; }
+.m-mask { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.m-mask > span { display: block; }
+.js .m-mask > span { transform: translateY(105%); transition: transform var(--dur-cinema) var(--ease); transition-delay: calc(var(--delay, 0ms) + var(--i, 0) * var(--stagger-line)); }
+.js .is-in .m-mask > span, .js .m-mask.is-in > span { transform: none; }
+.m-settle-wrap { overflow: hidden; }
+.js .m-settle { transform: scale(var(--settle-scale)); transition: transform var(--dur-cinema) var(--ease); }
+.js .m-settle.is-in, .js .is-in .m-settle { transform: none; }
+.m-dissolve { transition: opacity var(--dissolve) linear; }
+.js .m-ink-word { color: rgba(16, 16, 18, 0.2); transition: color var(--dur-ui) linear; }
+.js .m-ink-word.is-on { color: var(--c-ink); }
+
+/* AI disclosure tag required for every K-prefixed clip */
+.ai-note { font: var(--fw-regular) 11px/1.3 var(--font-sans); letter-spacing: 0.02em; color: inherit; opacity: 0.72; }
+
+:focus-visible { outline: 2px solid var(--c-brass); outline-offset: 3px; }

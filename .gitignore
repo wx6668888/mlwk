@@ -13,3 +13,4 @@ logo.png
 logo*.jpg
 .env
 .video-generation.pid
+.claude/
