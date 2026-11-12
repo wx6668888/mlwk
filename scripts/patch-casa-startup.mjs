@@ -1,11 +1,18 @@
 // Idempotent, guarded edits to the published Casa runtime. The readable startup
 // implementation is public/casa/startup.js; this script only installs its hooks.
-import { readFileSync, writeFileSync } from "node:fs";
+//
+// public/casa/ is gitignored (unlicensed Casa Serra preview material, see .gitignore),
+// so a CI build — which only has what the repository contains — has nothing to patch.
+// The Casa hero is not mounted on any live route (App.tsx renders ManufacturingPage at
+// the locale root), so a missing folder is a normal state, not a build failure.
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+const casaIndex = join(root, "public/casa/index.html");
 function patch(file, update) {
   const path = join(root, "public/casa", file);
+  if (!existsSync(path)) return;
   const source = readFileSync(path, "utf8");
   const next = update(source);
   if (next !== source) writeFileSync(path, next);
@@ -51,4 +58,8 @@ patch("scene.js", (s) => {
   s = replace(s, 'Qe.shadow.mapSize.set(4096,4096)', 'Qe.shadow.mapSize.set(window.CIRMANO_STARTUP.compat?2048:4096,window.CIRMANO_STARTUP.compat?2048:4096)');
   return s;
 });
-console.log("Casa: staged startup hooks installed");
+console.log(
+  existsSync(casaIndex)
+    ? "Casa: staged startup hooks installed"
+    : "Casa: public/casa absent (gitignored preview material) — startup hooks skipped",
+);
