@@ -4,8 +4,9 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNo
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { localeMeta, locales, type Locale } from "../../content";
 import { brand } from "../../site/brand";
-import { navCopy, navSections, productCategories, type NavSection } from "../../site/navigation";
+import { navCopy, navSections, type NavLink, type NavSection } from "../../site/navigation";
 import { useNavTone } from "../../site/navTone";
+import { useNavAutoHide } from "../../site/navVisibility";
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "./SocialIcons";
 import "./GlobalNav.css";
 
@@ -41,6 +42,8 @@ export default function GlobalNav({ locale }: { locale: Locale }) {
   const location = useLocation();
   const navigate = useNavigate();
   const tone = useNavTone();
+  const autoHide = useNavAutoHide();
+  const [revealed, setRevealed] = useState(false);
   const reduce = useReducedMotion();
   const time = useLocalTime(brand.timeZone);
 
@@ -135,6 +138,32 @@ export default function GlobalNav({ locale }: { locale: Locale }) {
     navigate(segments.join("/") + location.search + location.hash);
   };
 
+  // Auto-hide (hero): reveal near the top edge with a pointer, or on scroll-up with touch.
+  useEffect(() => {
+    if (!autoHide) {
+      setRevealed(false);
+      return;
+    }
+    let lastY = window.scrollY;
+    const onMove = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse") return;
+      if (event.clientY < 72) setRevealed(true);
+      else if (event.clientY > 150 && !headerRef.current?.matches(":hover")) setRevealed(false);
+    };
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (window.matchMedia("(hover: none)").matches) setRevealed(y < lastY - 4);
+      lastY = y;
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [autoHide]);
+  const hidden = autoHide && !revealed && !open && !mobileOpen && !langOpen;
+
   const clear = isHome && !scrolled && !open && !mobileOpen && !langOpen;
   const surface = clear ? "clear" : "glass";
   const ink = clear && tone === "dark" ? "bone" : "ink";
@@ -144,6 +173,7 @@ export default function GlobalNav({ locale }: { locale: Locale }) {
       ref={headerRef}
       className="gn"
       data-surface={surface}
+      data-hidden={hidden || undefined}
       data-ink={ink}
       data-open={open ? "true" : undefined}
       data-mobile={mobileOpen ? "true" : undefined}
@@ -307,11 +337,14 @@ function FlyoutPanel({ section, locale, href, time, reduce, onHeight }: { sectio
     observer.observe(el);
     return () => observer.disconnect();
   }, [onHeight]);
-  const isProducts = section.id === "products";
-  const [preview, setPreview] = useState(isProducts ? { image: productCategories[0].image, caption: productCategories[0].caption } : section.preview);
+  const groups = section.groups;
+  const first = groups?.[0].items[0];
+  const [preview, setPreview] = useState(first?.image && first.caption ? { image: first.image, caption: first.caption } : section.preview);
+  const showPreview = (link: NavLink) => link.image && link.caption && setPreview({ image: link.image, caption: link.caption });
 
   const col = (index: number, children: ReactNode, className: string) => (
     <motion.div
+      key={index}
       className={className}
       initial={{ opacity: 0, y: reduce ? 0 : -8 }}
       animate={{ opacity: 1, y: 0 }}
@@ -324,50 +357,68 @@ function FlyoutPanel({ section, locale, href, time, reduce, onHeight }: { sectio
   return (
     <div className="gn__panel-in" ref={ref}>
       <div className="gn__cols">
-        {col(
-          0,
+        {groups ? (
+          groups.map((group, gi) =>
+            col(
+              gi,
+              <>
+                <p className="gn__label gn__label--group">
+                  <strong>{group.title[locale]}</strong>
+                </p>
+                <ul className="gn__big gn__big--stack">
+                  {group.items.map((link) => (
+                    <li key={link.label.en} onMouseEnter={() => showPreview(link)} onFocus={() => showPreview(link)}>
+                      <Link to={href(link.to)}>
+                        <span>{link.label[locale]}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </>,
+              "gn__col gn__col--group",
+            ),
+          )
+        ) : (
           <>
-            <p className="gn__label">{section.primaryLabel?.[locale]}</p>
-            <ul className="gn__big">
-              {section.primary?.map((link, index) => {
-                const category = isProducts ? productCategories[index] : undefined;
-                return (
-                  <li key={link.to}>
-                    <Link
-                      to={href(link.to)}
-                      onMouseEnter={() => category && setPreview({ image: category.image, caption: category.caption })}
-                      onFocus={() => category && setPreview({ image: category.image, caption: category.caption })}
-                    >
-                      {isProducts && <small>{category?.code}</small>}
-                      {link.label[locale]}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </>,
-          "gn__col gn__col--primary",
-        )}
-        {col(
-          1,
-          <>
-            <p className="gn__label">{section.secondaryLabel?.[locale]}</p>
-            <ul className="gn__small">
-              {section.id === "about" ? (
-                <>
-                  <li><a href={brand.social.instagram} target="_blank" rel="noopener noreferrer"><InstagramIcon size={16} />Instagram</a></li>
-                  <li><a href={brand.social.facebook} target="_blank" rel="noopener noreferrer"><FacebookIcon size={16} />Facebook</a></li>
-                </>
-              ) : (
-                section.secondary?.map((link) => (
-                  <li key={link.to + link.label.en}>
-                    <Link to={href(link.to)}>{link.label[locale]}</Link>
-                  </li>
-                ))
-              )}
-            </ul>
-          </>,
-          "gn__col",
+            {col(
+              0,
+              <>
+                <p className="gn__label">{section.primaryLabel?.[locale]}</p>
+                <ul className="gn__big">
+                  {section.primary?.map((link) => (
+                    <li key={link.to}>
+                      <Link to={href(link.to)}>{link.label[locale]}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </>,
+              "gn__col gn__col--primary",
+            )}
+            {col(
+              1,
+              <>
+                <p className="gn__label">{section.secondaryLabel?.[locale]}</p>
+                <ul className="gn__small">
+                  {section.secondary?.map((link) => (
+                    <li key={link.to + link.label.en}>
+                      {link.external ? (
+                        <a href={link.to} target="_blank" rel="noopener noreferrer">{link.label[locale]}</a>
+                      ) : (
+                        <Link to={href(link.to)}>{link.label[locale]}</Link>
+                      )}
+                    </li>
+                  ))}
+                  {section.id === "about" && (
+                    <>
+                      <li><a href={brand.social.instagram} target="_blank" rel="noopener noreferrer"><InstagramIcon size={16} />Instagram</a></li>
+                      <li><a href={brand.social.facebook} target="_blank" rel="noopener noreferrer"><FacebookIcon size={16} />Facebook</a></li>
+                    </>
+                  )}
+                </ul>
+              </>,
+              "gn__col",
+            )}
+          </>
         )}
         {preview &&
           col(
@@ -442,10 +493,16 @@ function MobileSheet({ locale, href, current, reduce }: { locale: Locale; href: 
                   transition={{ duration: reduce ? 0 : 0.6, ease: EASE }}
                 >
                   {section.primary?.map((link) => (
-                    <li key={link.to}>
+                    <li key={link.to + link.label.en}>
                       <Link to={href(link.to)}>{link.label[locale]}</Link>
                     </li>
                   ))}
+                  {section.id === "about" &&
+                    section.secondary?.map((link) => (
+                      <li key={link.label.en}>
+                        <a href={link.to} target="_blank" rel="noopener noreferrer">{link.label[locale]}</a>
+                      </li>
+                    ))}
                 </motion.ul>
               )}
             </AnimatePresence>

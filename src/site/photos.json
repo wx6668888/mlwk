@@ -1,0 +1,874 @@
+[
+ {
+  "id": "r109",
+  "group": "living",
+  "landscape": true,
+  "w": 4032,
+  "h": 3024,
+  "note": "客厅"
+ },
+ {
+  "id": "r116",
+  "group": "living",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "客厅"
+ },
+ {
+  "id": "r108",
+  "group": "living",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "客厅"
+ },
+ {
+  "id": "r110",
+  "group": "living",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "客厅"
+ },
+ {
+  "id": "r113",
+  "group": "living",
+  "landscape": true,
+  "w": 4032,
+  "h": 3024,
+  "note": "客厅"
+ },
+ {
+  "id": "r111",
+  "group": "living",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "客厅"
+ },
+ {
+  "id": "r112",
+  "group": "living",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "客厅"
+ },
+ {
+  "id": "r107",
+  "group": "living",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "客厅"
+ },
+ {
+  "id": "r114",
+  "group": "living",
+  "landscape": true,
+  "w": 1706,
+  "h": 1280,
+  "note": "客厅"
+ },
+ {
+  "id": "r004",
+  "group": "kitchen",
+  "landscape": true,
+  "w": 1896,
+  "h": 1280,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r087",
+  "group": "kitchen",
+  "landscape": true,
+  "w": 4032,
+  "h": 3024,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r002",
+  "group": "kitchen",
+  "landscape": true,
+  "w": 4032,
+  "h": 3024,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r103",
+  "group": "kitchen",
+  "landscape": true,
+  "w": 4032,
+  "h": 3024,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r080",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r097",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r081",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r088",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r071",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r084",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r082",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r074",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r078",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r006",
+  "group": "kitchen",
+  "landscape": true,
+  "w": 1896,
+  "h": 1280,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r096",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r098",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r099",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r092",
+  "group": "kitchen",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "厨房与餐厅"
+ },
+ {
+  "id": "r119",
+  "group": "tearoom",
+  "landscape": true,
+  "w": 4032,
+  "h": 3024,
+  "note": "茶室"
+ },
+ {
+  "id": "r120",
+  "group": "tearoom",
+  "landscape": true,
+  "w": 4032,
+  "h": 3024,
+  "note": "茶室"
+ },
+ {
+  "id": "r139",
+  "group": "tearoom",
+  "landscape": true,
+  "w": 1706,
+  "h": 1280,
+  "note": "茶室"
+ },
+ {
+  "id": "r141",
+  "group": "tearoom",
+  "landscape": false,
+  "w": 1280,
+  "h": 1706,
+  "note": "茶室"
+ },
+ {
+  "id": "r122",
+  "group": "tearoom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "茶室"
+ },
+ {
+  "id": "r126",
+  "group": "tearoom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "茶室"
+ },
+ {
+  "id": "r131",
+  "group": "tearoom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "茶室"
+ },
+ {
+  "id": "r136",
+  "group": "tearoom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "茶室"
+ },
+ {
+  "id": "r134",
+  "group": "tearoom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "茶室"
+ },
+ {
+  "id": "r129",
+  "group": "tearoom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "茶室"
+ },
+ {
+  "id": "r132",
+  "group": "tearoom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "茶室"
+ },
+ {
+  "id": "r135",
+  "group": "tearoom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "茶室"
+ },
+ {
+  "id": "r040",
+  "group": "bedroom",
+  "landscape": true,
+  "w": 4032,
+  "h": 3024,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r041",
+  "group": "bedroom",
+  "landscape": true,
+  "w": 1706,
+  "h": 1280,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r021",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r022",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r027",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r026",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r043",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r034",
+  "group": "bedroom",
+  "landscape": true,
+  "w": 4032,
+  "h": 3024,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r035",
+  "group": "bedroom",
+  "landscape": true,
+  "w": 4032,
+  "h": 3024,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r030",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r037",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r024",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r025",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r044",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r031",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r038",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r023",
+  "group": "bedroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "主卧与衣帽间"
+ },
+ {
+  "id": "r057",
+  "group": "children",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "儿童房"
+ },
+ {
+  "id": "r054",
+  "group": "children",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "儿童房"
+ },
+ {
+  "id": "r051",
+  "group": "children",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "儿童房"
+ },
+ {
+  "id": "r049",
+  "group": "children",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "儿童房"
+ },
+ {
+  "id": "r056",
+  "group": "children",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "儿童房"
+ },
+ {
+  "id": "r053",
+  "group": "children",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "儿童房"
+ },
+ {
+  "id": "r052",
+  "group": "children",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "儿童房"
+ },
+ {
+  "id": "r050",
+  "group": "children",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "儿童房"
+ },
+ {
+  "id": "r068",
+  "group": "bathroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "卫生间"
+ },
+ {
+  "id": "r061",
+  "group": "bathroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "卫生间"
+ },
+ {
+  "id": "r067",
+  "group": "bathroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "卫生间"
+ },
+ {
+  "id": "r060",
+  "group": "bathroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "卫生间"
+ },
+ {
+  "id": "r063",
+  "group": "bathroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "卫生间"
+ },
+ {
+  "id": "r066",
+  "group": "bathroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "卫生间"
+ },
+ {
+  "id": "r064",
+  "group": "bathroom",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "卫生间"
+ },
+ {
+  "id": "r003",
+  "group": "entry",
+  "landscape": true,
+  "w": 4032,
+  "h": 3024,
+  "note": "玄关与过道"
+ },
+ {
+  "id": "r009",
+  "group": "entry",
+  "landscape": false,
+  "w": 1280,
+  "h": 1896,
+  "note": "玄关与过道"
+ },
+ {
+  "id": "r007",
+  "group": "entry",
+  "landscape": false,
+  "w": 1280,
+  "h": 1896,
+  "note": "玄关与过道"
+ },
+ {
+  "id": "r106",
+  "group": "entry",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "玄关与过道"
+ },
+ {
+  "id": "r115",
+  "group": "entry",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "玄关与过道"
+ },
+ {
+  "id": "r008",
+  "group": "entry",
+  "landscape": false,
+  "w": 1280,
+  "h": 1896,
+  "note": "玄关与过道"
+ },
+ {
+  "id": "r016",
+  "group": "entry",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "玄关与过道"
+ },
+ {
+  "id": "r015",
+  "group": "entry",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "玄关与过道"
+ },
+ {
+  "id": "r000",
+  "group": "entry",
+  "landscape": false,
+  "w": 1280,
+  "h": 1706,
+  "note": "玄关与过道"
+ },
+ {
+  "id": "r001",
+  "group": "entry",
+  "landscape": false,
+  "w": 1280,
+  "h": 1706,
+  "note": "玄关与过道"
+ },
+ {
+  "id": "r105",
+  "group": "entry",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "玄关与过道"
+ },
+ {
+  "id": "r018",
+  "group": "entry",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "玄关与过道"
+ },
+ {
+  "id": "f001",
+  "group": "factory",
+  "landscape": false,
+  "w": 3648,
+  "h": 4644,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f003",
+  "group": "factory",
+  "landscape": true,
+  "w": 5472,
+  "h": 3648,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f005",
+  "group": "factory",
+  "landscape": true,
+  "w": 5338,
+  "h": 3559,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f006",
+  "group": "factory",
+  "landscape": true,
+  "w": 5362,
+  "h": 3575,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f008",
+  "group": "factory",
+  "landscape": true,
+  "w": 5472,
+  "h": 3648,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f010",
+  "group": "factory",
+  "landscape": true,
+  "w": 5472,
+  "h": 3648,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f011",
+  "group": "factory",
+  "landscape": true,
+  "w": 5472,
+  "h": 3616,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f012",
+  "group": "factory",
+  "landscape": true,
+  "w": 5472,
+  "h": 3648,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f013",
+  "group": "factory",
+  "landscape": true,
+  "w": 5472,
+  "h": 3648,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f014",
+  "group": "factory",
+  "landscape": false,
+  "w": 3359,
+  "h": 5039,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f018",
+  "group": "factory",
+  "landscape": true,
+  "w": 5472,
+  "h": 3648,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f019",
+  "group": "factory",
+  "landscape": true,
+  "w": 5472,
+  "h": 3648,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f028",
+  "group": "factory",
+  "landscape": true,
+  "w": 5472,
+  "h": 3648,
+  "note": "设备与车间"
+ },
+ {
+  "id": "f016",
+  "group": "team",
+  "landscape": true,
+  "w": 5472,
+  "h": 3648,
+  "note": "团队工作场景"
+ },
+ {
+  "id": "f023",
+  "group": "team",
+  "landscape": true,
+  "w": 5472,
+  "h": 3648,
+  "note": "团队工作场景"
+ },
+ {
+  "id": "f027",
+  "group": "team",
+  "landscape": true,
+  "w": 5472,
+  "h": 3648,
+  "note": "团队工作场景"
+ },
+ {
+  "id": "m01",
+  "group": "craft",
+  "landscape": false,
+  "w": 3524,
+  "h": 3605,
+  "note": "Made_As_One"
+ },
+ {
+  "id": "m02",
+  "group": "craft",
+  "landscape": false,
+  "w": 3024,
+  "h": 4032,
+  "note": "Factory_direct"
+ },
+ {
+  "id": "m03",
+  "group": "craft",
+  "landscape": false,
+  "w": 2922,
+  "h": 4120,
+  "note": "Premium_Residential"
+ },
+ {
+  "id": "m04",
+  "group": "craft",
+  "landscape": true,
+  "w": 5076,
+  "h": 3288,
+  "note": "Support"
+ },
+ {
+  "id": "m05",
+  "group": "craft",
+  "landscape": false,
+  "w": 3648,
+  "h": 5472,
+  "note": "Integrated_Systems"
+ },
+ {
+  "id": "m06",
+  "group": "craft",
+  "landscape": false,
+  "w": 3379,
+  "h": 5152,
+  "note": "Italian_Style"
+ },
+ {
+  "id": "m07",
+  "group": "craft",
+  "landscape": true,
+  "w": 5358,
+  "h": 3572,
+  "note": "HOMAG"
+ },
+ {
+  "id": "m08",
+  "group": "craft",
+  "landscape": true,
+  "w": 5472,
+  "h": 3648,
+  "note": "Manufacturing_Scale"
+ },
+ {
+  "id": "x-cut",
+  "group": "process",
+  "landscape": false,
+  "w": 600,
+  "h": 1080,
+  "note": "开料"
+ },
+ {
+  "id": "x-drill",
+  "group": "process",
+  "landscape": false,
+  "w": 600,
+  "h": 1080,
+  "note": "打孔"
+ }
+]

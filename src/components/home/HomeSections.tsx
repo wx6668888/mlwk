@@ -25,19 +25,19 @@ export function HomeHero({ locale, t }: P) {
       <div className="hh__media">
         <img
           className="hh__img"
-          src={photo("p179", 1600)}
-          srcSet={photoSrcSet("p179", true)}
+          src={photo("r109", 1600)}
+          srcSet={photoSrcSet("r109", true)}
           sizes="100vw"
           alt=""
           width={1600}
-          height={900}
+          height={1200}
           {...{ fetchpriority: "high" }}
         />
         <LoopVideo
           className="hh__video"
-          src="/media/video/k01-p179-hero-1920.mp4"
-          srcSmall="/media/video/k01-p179-hero-960.mp4"
-          poster={photo("p179", 1600)}
+          src="/media/video/res-living-1920.mp4"
+          srcSmall="/media/video/res-living-960.mp4"
+          poster="/media/video/res-living-1920.webp"
           label={t.hero.videoLabel}
           pauseLabel={t.pause}
           playLabel={t.play}
@@ -135,20 +135,79 @@ export function ProductRail({ locale, t }: P) {
 }
 
 /* 04 · One language (pin & scrub) */
+// Positions on the 16:9 crop of R119 (tea room): flush cabinets, lit oak shelving, oak tea table.
 const hotspots = [
-  { x: 11, y: 52 },
-  { x: 26, y: 33 },
-  { x: 43, y: 42 },
+  { x: 62, y: 45 },
+  { x: 34, y: 50 },
+  { x: 24, y: 90 },
 ];
-export function OneLanguage({ t }: P) {
+// Camera path through R119: wide → close-up on each hotspot (with a short hold) → back to wide.
+// spot -1 = the whole room. Scale is the zoom on the photograph.
+const cameraKeys: { at: number; spot: number; s: number }[] = [
+  { at: 0, spot: -1, s: 1.06 },
+  { at: 0.14, spot: 0, s: 2.35 },
+  { at: 0.28, spot: 0, s: 2.45 },
+  { at: 0.42, spot: 1, s: 2.3 },
+  { at: 0.56, spot: 1, s: 2.4 },
+  { at: 0.7, spot: 2, s: 2.25 },
+  { at: 0.84, spot: 2, s: 2.35 },
+  { at: 1, spot: -1, s: 1 },
+];
+const smooth = (x: number) => x * x * x * (x * (x * 6 - 15) + 10);
+
+export function OneLanguage({ t, locale }: P) {
   const [ref, progress] = useScrollProgress<HTMLElement>({ mode: "pin" });
+  const frame = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ w: 0, h: 0, sw: 0, sh: 0 });
   const steps = t.language.steps;
-  const active = Math.min(steps.length - 1, Math.floor(progress * steps.length * 0.999));
+  const active = progress < 0.35 ? 0 : progress < 0.63 ? 1 : 2;
+  const rtl = localeMeta[locale].dir === "rtl";
+
+  useEffect(() => {
+    const el = frame.current;
+    const stage = el?.parentElement;
+    if (!el || !stage) return;
+    const measure = () => setSize({ w: el.offsetWidth, h: el.offsetHeight, sw: stage.offsetWidth, sh: stage.offsetHeight });
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(stage);
+    return () => ro.disconnect();
+  }, []);
+
+  // Where the camera is at this scroll position: zoom s and offset (tx, ty) from the stage centre.
+  const camera = (() => {
+    const { w, h, sw, sh } = size;
+    if (!w) return { s: 1, tx: 0, ty: 0 };
+    const pose = (k: { spot: number; s: number }) => {
+      if (k.spot < 0) return { s: k.s, tx: 0, ty: 0 };
+      const dx = (hotspots[k.spot].x / 100 - 0.5) * w;
+      const dy = (hotspots[k.spot].y / 100 - 0.5) * h;
+      // Close-ups sit in the open half of the stage, away from the copy column.
+      const targetX = (rtl ? 0.18 : -0.18) * sw;
+      let tx = targetX - k.s * dx;
+      let ty = -k.s * dy;
+      const mx = Math.max(0, (k.s * w - sw) / 2), my = Math.max(0, (k.s * h - sh) / 2);
+      tx = Math.min(mx, Math.max(-mx, tx));
+      ty = Math.min(my, Math.max(-my, ty));
+      return { s: k.s, tx, ty };
+    };
+    let i = 0;
+    while (i < cameraKeys.length - 2 && progress > cameraKeys[i + 1].at) i++;
+    const a = cameraKeys[i], b = cameraKeys[i + 1];
+    const u = smooth(Math.min(1, Math.max(0, (progress - a.at) / (b.at - a.at))));
+    const pa = pose(a), pb = pose(b);
+    return { s: pa.s + (pb.s - pa.s) * u, tx: pa.tx + (pb.tx - pa.tx) * u, ty: pa.ty + (pb.ty - pa.ty) * u };
+  })();
+
   return (
     <section className="ol" ref={ref} aria-labelledby="ol-title" style={{ "--p": progress } as CSSProperties}>
       <div className="ol__stage">
-        <div className="ol__frame">
-          <img src={photo("p175", 1600)} srcSet={photoSrcSet("p175", true)} sizes="120vw" alt={t.language.imageAlt} loading="lazy" width={1600} height={900} />
+        <div
+          ref={frame}
+          className="ol__frame"
+          style={{ transform: `translate(-50%, -50%) translate(${camera.tx.toFixed(1)}px, ${camera.ty.toFixed(1)}px) scale(${camera.s.toFixed(4)})`, "--s": camera.s.toFixed(4) } as CSSProperties}
+        >
+          <img src={photo("r119", 2400)} srcSet={photoSrcSet("r119", true)} sizes="240vw" alt={t.language.imageAlt} loading="lazy" width={2400} height={1800} />
           {hotspots.map((h, i) => (
             <span key={i} className={`ol__spot ${i === active ? "is-active" : ""} ${i < active ? "is-past" : ""}`} style={{ left: `${h.x}%`, top: `${h.y}%` }} aria-hidden="true">
               <i />
@@ -181,12 +240,8 @@ export function OneLanguage({ t }: P) {
 }
 
 /* 05 · The detail */
-const detailClips = [
-  { src: "/media/video/k05-p184-curve.mp4", poster: "/media/video/k05-p184-curve.webp" },
-  { src: "/media/video/k16-p230-texture.mp4", poster: "/media/video/k16-p230-texture.webp" },
-  { src: "/media/video/k07-p183-hardware.mp4", poster: "/media/video/k07-p183-hardware.webp" },
-  { src: "/media/video/k06-p180-glass.mp4", poster: "/media/video/k06-p180-glass.webp" },
-];
+// Slow camera moves over Guangzhou Residence close-ups (scripts/make_residence_clips.py): wardrobe line, oak grain, door lever, glass-front tall cabinet.
+const detailClips = ["res-detail-line", "res-detail-oak", "res-detail-handle", "res-detail-glass"];
 export function DetailGrid({ t }: P) {
   return (
     <section className="hs hs--detail" aria-labelledby="hd-title">
@@ -198,14 +253,13 @@ export function DetailGrid({ t }: P) {
         <ul className="detail">
           {t.detail.items.map((item, i) => (
             <Rise as="li" key={item.no} delay={i * 80} className="detail__item">
-              <LoopVideo className="detail__media" src={detailClips[i].src} poster={detailClips[i].poster} label={item.title} pauseLabel={t.pause} playLabel={t.play} />
+              <LoopVideo className="detail__media" src={`/media/video/${detailClips[i]}.mp4`} poster={`/media/video/${detailClips[i]}.webp`} label={item.title} pauseLabel={t.pause} playLabel={t.play} />
               <p className="detail__no">{item.no}</p>
               <h3 className="detail__title">{item.title}</h3>
               <p className="detail__text">{item.text}</p>
             </Rise>
           ))}
         </ul>
-        <p className="t-caption hs__note">{t.aiNote}</p>
       </div>
     </section>
   );

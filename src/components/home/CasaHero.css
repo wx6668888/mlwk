@@ -1,0 +1,63 @@
+/* 01 · Casa Serra walkthrough hero + brand loader. Tokens: src/styles/tokens.css */
+
+.ch__track { position: relative; height: 100vh; height: 100svh; background: var(--c-bone); }
+.ch__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.ch__frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--c-bone);
+  pointer-events: none; /* the page scroll drives the tour; wheel and touch stay with the page */
+}
+
+/* ── Brand loader ─────────────────────────────────────────── */
+.bl {
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gutter);
+  background: var(--c-bone);
+  color: var(--c-ink);
+  font-family: var(--font-sans);
+  transition: opacity var(--dissolve) linear, visibility 0s linear var(--dissolve);
+}
+.js .bl { display: flex; }
+.bl[data-done] { opacity: 0; visibility: hidden; pointer-events: none; }
+.bl__in { width: min(420px, 100%); display: grid; justify-items: center; text-align: center; }
+.bl__brand { display: flex; align-items: center; gap: 18px; animation: bl-rise var(--dur-cinema) var(--ease) both; }
+.bl__symbol { width: 56px; height: auto; }
+.bl__logo { width: 240px; height: auto; }
+.bl__slogan { margin: var(--space-7) 0 0; font: var(--fw-medium) clamp(40px, 6vw, 64px)/1.04 var(--font-sans); letter-spacing: var(--ls-hero); }
+.bl__slogan .m-mask > span { animation: bl-mask var(--dur-cinema) var(--ease) 200ms both; }
+.bl__descriptor { margin: var(--space-3) 0 0; font-size: var(--fs-body); color: var(--c-whisper-text); animation: bl-rise var(--dur-cinema) var(--ease) 400ms both; }
+.bl__bar { position: relative; width: 100%; height: 1px; margin-top: var(--space-8); background: var(--c-line-strong); overflow: hidden; }
+.bl__bar i { position: absolute; inset: 0; background: var(--c-brass); transform-origin: left; transition: transform var(--dur-reveal) var(--ease); }
+[dir="rtl"] .bl__bar i { transform-origin: right; }
+.bl__meta { display: flex; justify-content: space-between; width: 100%; margin: var(--space-3) 0 0; font: var(--fw-medium) var(--fs-eyebrow)/1.4 var(--font-sans); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--c-whisper-text); }
+.bl__pct { color: var(--c-ink); font-variant-numeric: tabular-nums; letter-spacing: 0.08em; }
+.bl__retry { margin-top: var(--space-6); min-height: 44px; padding: 0 18px; border: 1px solid var(--c-line-strong); border-radius: var(--radius-pill); background: none; color: var(--c-ink); font: var(--fw-medium) 14px/1 var(--font-sans); }
+.bl__retry:hover { border-color: var(--c-ink); }
+.bl__meta { gap: 16px; text-align: start; }
+.bl__pct { flex-shrink: 0; }
+.bl[data-pending] .bl__bar i { width: 24%; transform: none !important; animation: bl-pending 1.8s ease-in-out infinite alternate; }
+@keyframes bl-pending { to { translate: 315% 0; } }
+.bl__place { position: absolute; bottom: calc(var(--space-6) + env(safe-area-inset-bottom)); margin: 0; font: var(--fw-medium) var(--fs-eyebrow)/1.4 var(--font-sans); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--c-whisper-text); }
+
+@keyframes bl-rise { from { opacity: 0; transform: translateY(var(--rise-distance)); } to { opacity: 1; transform: none; } }
+@keyframes bl-mask { from { transform: translateY(105%); } to { transform: none; } }
+
+@media (max-width: 640px) {
+  .bl__brand { flex-direction: column; gap: 14px; }
+  .bl__symbol { width: 44px; }
+  .bl__logo { width: 240px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bl__brand, .bl__descriptor, .bl__slogan .m-mask > span { animation: none; }
+  .bl[data-pending] .bl__bar i { animation: none; width: 100%; opacity: .4; }
+}
+

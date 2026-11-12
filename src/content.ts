@@ -23,7 +23,7 @@ export type CollectionItem = {
 export const collections: CollectionItem[] = [
   {
     slug: "kitchens",
-    image: "/media/cirmano-project-dining-p234.webp",
+    image: "/media/brand/r004-1600.webp",
     name: {
       en: "Kitchens",
       ar: "المطابخ",
@@ -48,7 +48,7 @@ export const collections: CollectionItem[] = [
   },
   {
     slug: "wardrobes",
-    image: "/media/cirmano-project-wardrobe-p092.webp",
+    image: "/media/brand/r022-1200.webp",
     name: {
       en: "Wardrobes",
       ar: "خزائن الملابس",
@@ -73,7 +73,7 @@ export const collections: CollectionItem[] = [
   },
   {
     slug: "vanities",
-    image: "/media/cirmano-project-vanity-p078.webp",
+    image: "/media/brand/r027-1200.webp",
     name: {
       en: "Supplementary Vanities",
       ar: "وحدات حمام تكميلية",
@@ -98,7 +98,7 @@ export const collections: CollectionItem[] = [
   },
   {
     slug: "wall-panels",
-    image: "/media/cirmano-project-p175.jpg",
+    image: "/media/brand/r109-1600.webp",
     name: {
       en: "Wall Panels",
       ar: "كسوات الجدران",
@@ -123,7 +123,7 @@ export const collections: CollectionItem[] = [
   },
   {
     slug: "interior-doors",
-    image: "/media/cirmano-project-door-detail-p066.webp",
+    image: "/media/brand/r016-1200.webp",
     name: {
       en: "Interior Doors",
       ar: "الأبواب الداخلية",
@@ -148,7 +148,7 @@ export const collections: CollectionItem[] = [
   },
   {
     slug: "bespoke-built-ins",
-    image: "/media/cirmano-project-study-p115.webp",
+    image: "/media/brand/r119-1600.webp",
     name: {
       en: "Other Built-ins · Project-Specific",
       ar: "تجهيزات أخرى حسب المشروع",
@@ -176,7 +176,7 @@ export const collections: CollectionItem[] = [
 export const solutions = [
   {
     slug: "residential",
-    image: "/media/cirmano-project-p175.jpg",
+    image: "/media/brand/r109-1600.webp",
     name: { en: "Villas & Premium Homes", ar: "الفلل والمنازل الراقية", zh: "别墅与高端住宅", de: "Villen und hochwertige Wohnhäuser", fr: "Villas et résidences haut de gamme" },
     description: {
       en: "Integrated whole-home customization for villas and premium residences, coordinated around the approved project scope.",
@@ -188,7 +188,7 @@ export const solutions = [
   },
   {
     slug: "hospitality",
-    image: "/media/cirmano-project-wardrobe-p092.webp",
+    image: "/media/brand/r022-1200.webp",
     name: { en: "Whole-Home Systems", ar: "أنظمة متكاملة للمنزل", zh: "一体化全屋系统", de: "Ganzheitliche Wohnsysteme", fr: "Systèmes pour toute la maison" },
     description: {
       en: "Kitchens, wardrobes, interior doors and wall panels developed to share materials, proportions and details.",
@@ -200,7 +200,7 @@ export const solutions = [
   },
   {
     slug: "commercial",
-    image: "/media/cirmano-project-door-detail-p066.webp",
+    image: "/media/brand/r016-1200.webp",
     name: { en: "Project-Specific Scope", ar: "نطاق خاص بالمشروع", zh: "按项目确认范围", de: "Projektspezifischer Umfang", fr: "Périmètre défini par projet" },
     description: {
       en: "Product supply, installation and project interfaces are reviewed and confirmed for each enquiry.",

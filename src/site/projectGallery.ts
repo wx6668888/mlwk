@@ -1,15 +1,15 @@
 // Guangzhou Residence photography by space. One completed project, never split into separate cases.
-// Ids are brand-pack photo ids (09_目录与核验/照片属性与用途.csv); files come from scripts/prepare_media.py.
+// Ids are r + the photo's number in the brand-pack project folder; files come from scripts/prepare_residence.py.
 export type GalleryPhoto = { id: string; landscape: boolean };
 
 export const projectGallery: Record<string, GalleryPhoto[]> = {
-  living: [{ id: "p179", landscape: true }, { id: "p180", landscape: false }, { id: "p183", landscape: false }],
-  dining: [{ id: "p234", landscape: true }, { id: "p230", landscape: false }, { id: "p243", landscape: false }],
-  entry: [{ id: "p208", landscape: true }, { id: "p206", landscape: false }, { id: "p216", landscape: false }],
-  bedroom: [{ id: "p108", landscape: true }, { id: "p092", landscape: false }, { id: "p099", landscape: false }],
-  study: [{ id: "p115", landscape: false }, { id: "p112", landscape: false }, { id: "p118", landscape: false }],
-  children: [{ id: "p122", landscape: true }, { id: "p148", landscape: false }, { id: "p131", landscape: false }],
-  balcony: [{ id: "p220", landscape: false }, { id: "p222", landscape: false }, { id: "p223", landscape: false }],
+  living: [{ id: "r109", landscape: true }, { id: "r116", landscape: false }, { id: "r111", landscape: false }],
+  kitchen: [{ id: "r004", landscape: true }, { id: "r080", landscape: false }, { id: "r081", landscape: false }],
+  tearoom: [{ id: "r120", landscape: true }, { id: "r141", landscape: false }, { id: "r131", landscape: false }],
+  bedroom: [{ id: "r040", landscape: true }, { id: "r021", landscape: false }, { id: "r027", landscape: false }],
+  children: [{ id: "r057", landscape: false }, { id: "r054", landscape: false }, { id: "r056", landscape: false }],
+  bathroom: [{ id: "r068", landscape: false }, { id: "r061", landscape: false }, { id: "r063", landscape: false }],
+  entry: [{ id: "r003", landscape: true }, { id: "r009", landscape: false }, { id: "r016", landscape: false }],
 };
 
 export const photo = (id: string, width: 800 | 1600 | 2400 = 800) => `/media/brand/${id}-${width}.webp`;

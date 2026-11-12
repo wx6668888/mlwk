@@ -80,7 +80,7 @@ export default function WelcomePopup({ locale }: { locale: Locale }) {
 
         {/* Left: image panel */}
         <div className="welcome-visual">
-          <img src="/media/cirmano-project-p175.jpg" alt="" />
+          <img src="/media/brand/r109-1600.webp" alt="" />
           <div className="welcome-visual-shade" />
           <span className="welcome-visual-label">CIRMANO · Made As One</span>
         </div>

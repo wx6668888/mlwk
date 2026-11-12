@@ -28,6 +28,17 @@ LOOPS = {
     "k16-p230-texture": (f"{KLING}/K16_P230_texture.mp4", 720, 28),
     "k07-p183-hardware": (f"{KLING}/K07_P183_hardware.mp4", 720, 28),
     "k06-p180-glass": (f"{KLING}/K06_P180_glass.mp4", 720, 28),
+    "k02-p175-reveal": (f"{KLING}/K02_P175_reveal.mp4", 1280, 27),
+    "k03-p234-dining": (f"{KLING}/K03_P234_dining.mp4", 1280, 27),
+    "k04-p235-island": (f"{KLING}/K04_P235_island.mp4", 1280, 27),
+    "k08-p249-window": (f"{KLING}/K08_P249_window.mp4", 1280, 27),
+    "k14-p236-reveal": (f"{KLING}/K14_P236_reveal.mp4", 1280, 27),
+    "k15-p239-sideboard": (f"{KLING}/K15_P239_sideboard.mp4", 1280, 27),
+    "k19-p156-media-wall": (f"{KLING}/K19_P156_media_wall.mp4", 1280, 27),
+    "factory-05": (f"{FACTORY}/Factory_05.mp4", 1280, 27),
+    "factory-09": (f"{FACTORY}/Factory_09.mp4", 1280, 27),
+    "factory-10": (f"{FACTORY}/Factory_10.mp4", 1280, 27),
+    "factory-11": (f"{FACTORY}/Factory_11.mp4", 1280, 27),
 }
 
 # Manufacturing film: real factory footage first, then two AI-assisted shots, 0.6 s dissolves (EDL v03).
@@ -69,10 +80,14 @@ def main() -> None:
 
     for name, (src, width, crf) in LOOPS.items():
         source = pack / src
+        if (OUT / f"{name}.mp4").exists():
+            continue
         run(["-i", str(source), "-an", "-vf", f"scale={width}:-2", *H264, "-crf", str(crf), str(OUT / f"{name}.mp4")])
         poster(source, name, width)
         report(name)
 
+    if (OUT / "manufacturing-film.mp4").exists() and all((OUT / f"{n}.mp4").exists() for n in REEL_FILES):
+        return
     # Manufacturing film with cross-dissolves, normalised to 1280x720 / 24 fps.
     sources = [pack / s for s in FILM]
     durations = [duration(s) for s in sources]

@@ -13,7 +13,7 @@
 .ft__brand img { width: 240px; height: auto; }
 .ft__brand p { margin: var(--space-5) 0 0; font-size: 15px; line-height: 1.5; }
 .ft__brand p span { color: var(--c-whisper); }
-.ft__cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
+.ft__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
 .ft__cols h2 {
   margin: 0 0 var(--space-4);
   font: var(--fw-medium) var(--fs-eyebrow)/1.4 var(--font-sans);
@@ -65,5 +65,6 @@
 }
 @media (max-width: 640px) {
   .ft__cols { grid-template-columns: 1fr 1fr; row-gap: var(--space-7); }
+  .ft__cols > :last-child { grid-column: 1 / -1; }
   .ft__social > span { flex-basis: 100%; }
 }

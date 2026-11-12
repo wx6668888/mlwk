@@ -16,6 +16,10 @@ const collectionSlugs = [
   "bespoke-built-ins",
 ];
 const solutionSlugs = ["residential", "hospitality", "commercial"];
+// Inspiration projects are internal-preview only: prerendered when VITE_INSPIRATION=1.
+const inspirationSlugs = process.env.VITE_INSPIRATION === "1"
+  ? JSON.parse(await readFile(join(root, "src", "site", "inspiration.json"), "utf8")).map((p) => p.slug)
+  : [];
 const productSlugs = [
   "linear-brass-pull",
   "loop-pull-pair",
@@ -38,7 +42,9 @@ const baseRoutes = [
   ...solutionSlugs.map((slug) => `solutions/${slug}`),
   "products",
   ...["kitchens", "wardrobes-storage", "interior-doors", "wall-panels-woodwork", "aluminium-glass"].map((slug) => `products/${slug}`),
+  ...inspirationSlugs.map((slug) => `projects/inspiration/${slug}`),
   "manufacturing",
+  "service",
   "about",
   "contact",
   "projects",
@@ -80,10 +86,11 @@ const titles = {
   collections: "Whole-Home Products",
   products: "Products",
   manufacturing: "Manufacturing",
+  service: "One-Stop Service",
   about: "About CIRMANO",
   contact: "Discuss Your Project",
   solutions: "Project Scope",
-  projects: "Verified Projects",
+  projects: "Guangzhou Residence",
   capabilities: "Millwork Capabilities",
   company: "About CIRMANO",
   designer: "3D Design Studio",

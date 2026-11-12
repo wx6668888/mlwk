@@ -14,3 +14,9 @@ logo*.jpg
 .env
 .video-generation.pid
 .claude/
+public/casa/vendor/
+
+# Preview-only material: third-party reference photos and the unlicensed Casa Serra walkthrough.
+# Keep out of the public repository; regenerate with scripts/prepare_inspiration.py / copy from ref/.
+public/media/inspiration/
+public/casa/

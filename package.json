@@ -5,16 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build:client": "vite build",
+    "build:client": "node scripts/prepare_casa.mjs && vite build",
     "build:ssr": "vite build --ssr src/entry-server.tsx --outDir dist-server",
     "prerender": "node scripts/prerender.mjs",
     "build": "npm run build:client && npm run build:ssr && npm run prerender && node scripts/prepare-pwa.mjs",
-    "postbuild": "node -e \"const fs=require('fs');const f='dist/media/hero-film-graded.mp4';if(fs.existsSync(f)){const mb=(fs.statSync(f).size/1e6).toFixed(1);fs.unlinkSync(f);console.log('Removed '+f+' ('+mb+'MB) to stay under 25MB Cloudflare Pages limit')}else{console.log('postbuild: no oversized files to remove')}\"",
+    "postbuild": "node scripts/postbuild.mjs",
     "preview": "vite preview",
     "test:pwa": "node --test scripts/pwa-cache.test.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "node --max-old-space-size=6144 node_modules/typescript/bin/tsc --noEmit",
+    "prepare:casa": "node scripts/prepare_casa.mjs"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@supabase/supabase-js": "^2.110.0",
     "aws4fetch": "^1.0.20",
     "camofox-browser": "^2.4.6",
@@ -33,6 +35,9 @@
     "@types/react-dom": "^18.3.5",
     "@types/three": "^0.181.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "gsap": "3.13.0",
+    "lenis": "1.1.14",
+    "three-casa": "npm:three@0.160.1",
     "typescript": "^5.7.2",
     "vite": "^5.4.11",
     "wrangler": "^4.23.0"

@@ -19,7 +19,12 @@ export const brand = {
   social: {
     instagram: "https://www.instagram.com/cirmanoofficial/",
     facebook: "https://www.facebook.com/cirmanoofficial",
+    // Individual reels are listed in src/site/reels.ts; these open the full Reels tab.
+    clientVisits: "https://www.facebook.com/cirmanoofficial/reels_tab",
+    factoryTour: "https://www.facebook.com/cirmanoofficial/reels_tab",
   },
+  // 360° showroom tour listed on the CIRMANO Facebook profile.
+  virtualTour: "https://yunjing720.com/index.php?s=tour%2Findex%2Findex&tid=ee70fe8401d34b5bbe70938a99b3cc72",
 } as const;
 
 // Company-reported figures (95% / 40,000+ m² / 180 staff) stay hidden until CIRMANO confirms them in writing.

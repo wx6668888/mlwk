@@ -20,9 +20,13 @@ import {
 import CompanyPage from "./pages/CompanyPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import DesignerPage from "./pages/DesignerPage";
-import HomePage from "./pages/HomePage";
 import LegalPage from "./pages/LegalPage";
-import ProjectsPage from "./pages/ProjectsPage";
+import { ProductDetailPage, ProductsOverviewPage } from "./pages/redesign/ProductsPages";
+import { InspirationProjectPage } from "./components/inspiration/Inspiration";
+import { AboutPage, ContactPage, ManufacturingPage, ProjectsRedesignPage, ServicePage } from "./pages/redesign/CompanyPages";
+import { inspirationEnabled } from "./site/features";
+import { pageCopy } from "./site/pageCopy";
+import { inspirationCopy, inspirationProjects } from "./site/inspiration";
 import QuotePage from "./pages/QuotePage";
 import ResourcesPage from "./pages/ResourcesPage";
 import {
@@ -112,7 +116,23 @@ function LocaleLayout() {
     const collection = collections.find((item) => item.slug === routeDetail);
     const solution = solutions.find((item) => item.slug === routeDetail);
     const product = routeName === "shop" ? findProduct(routeDetail) : undefined;
+    const inspiration =
+      routeName === "projects" && routeDetail === "inspiration"
+        ? inspirationProjects.find((item) => item.slug === pathParts[3])
+        : undefined;
+    const pc = pageCopy[locale];
+    const productPage = routeName === "products" ? pc.products.pages.find((item) => item.slug === routeDetail) : undefined;
+    const redesigned: Record<string, string> = {
+      products: productPage ? productPage.name : pc.products.title,
+      manufacturing: pc.manufacturing.title,
+      service: pc.service.title,
+      projects: pc.projects.title,
+      about: pc.about.title,
+      contact: pc.contact.title,
+    };
     const title =
+      (routeName in redesigned && !(routeName === "projects" && routeDetail) ? redesigned[routeName] : undefined) ??
+      (inspiration ? `${locale === "zh" ? inspiration.name : inspiration.en} · ${inspirationCopy[locale].title}` : undefined) ??
       collection?.name[locale] ??
       solution?.name[locale] ??
       product?.name[locale] ??
@@ -150,6 +170,7 @@ function LocaleLayout() {
     store.checkoutTitle,
     store.shopTitle,
     store.signIn,
+    location.pathname,
   ]);
 
   if (!isLocale(params.locale)) return <Navigate replace to="/en/" />;
@@ -159,7 +180,7 @@ function LocaleLayout() {
       {!isDesigner && !isAuth && <GlobalNav locale={locale} />}
       <main>
         <Routes>
-          <Route index element={<HomePage locale={locale} />} />
+          <Route index element={<ManufacturingPage locale={locale} />} />
           <Route path="collections" element={<CollectionsPage locale={locale} />} />
           <Route
             path="collections/:slug"
@@ -170,13 +191,15 @@ function LocaleLayout() {
             path="solutions/:slug"
             element={<SolutionRoute locale={locale} />}
           />
-          <Route path="projects" element={<ProjectsPage locale={locale} />} />
+          <Route path="projects" element={<ProjectsRedesignPage locale={locale} />} />
+          {inspirationEnabled && <Route path="projects/inspiration/:slug" element={<InspirationRoute locale={locale} />} />}
           {/* Brand-pack IA. Temporary mapping onto existing pages until the dedicated pages land. */}
-          <Route path="products" element={<CollectionsPage locale={locale} />} />
+          <Route path="products" element={<ProductsOverviewPage locale={locale} />} />
           <Route path="products/:slug" element={<ProductCategoryRoute locale={locale} />} />
-          <Route path="manufacturing" element={<CapabilitiesPage locale={locale} />} />
-          <Route path="about" element={<CompanyPage locale={locale} />} />
-          <Route path="contact" element={<QuotePage locale={locale} />} />
+          <Route path="manufacturing" element={<ManufacturingPage locale={locale} />} />
+          <Route path="service" element={<ServicePage locale={locale} />} />
+          <Route path="about" element={<AboutPage locale={locale} />} />
+          <Route path="contact" element={<ContactPage locale={locale} />} />
           <Route
             path="capabilities"
             element={<CapabilitiesPage locale={locale} />}
@@ -272,17 +295,14 @@ function CollectionRoute({ locale }: { locale: Locale }) {
   return <CollectionDetailPage locale={locale} slug={slug} />;
 }
 
-const legacyCollection: Record<string, string> = {
-  kitchens: "kitchens",
-  "wardrobes-storage": "wardrobes",
-  "interior-doors": "interior-doors",
-  "wall-panels-woodwork": "wall-panels",
-};
-
 function ProductCategoryRoute({ locale }: { locale: Locale }) {
   const { slug = "" } = useParams();
-  const legacy = legacyCollection[slug];
-  return legacy ? <CollectionDetailPage locale={locale} slug={legacy} /> : <CollectionsPage locale={locale} />;
+  return <ProductDetailPage locale={locale} slug={slug} />;
+}
+
+function InspirationRoute({ locale }: { locale: Locale }) {
+  const { slug = "" } = useParams();
+  return <InspirationProjectPage locale={locale} slug={slug} />;
 }
 
 function SolutionRoute({ locale }: { locale: Locale }) {
@@ -297,8 +317,18 @@ export default function App() {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [location.pathname]);
+    // Menu links such as /manufacturing#oem land on their section; plain page changes start at the top.
+    const id = decodeURIComponent(location.hash.slice(1));
+    const scrollTo = () => {
+      const target = id ? document.getElementById(id) : null;
+      if (target) target.scrollIntoView({ behavior: "auto", block: "start" });
+      else window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    };
+    scrollTo();
+    // Sections mount after the route renders, so try once more on the next frame.
+    const frame = window.requestAnimationFrame(scrollTo);
+    return () => window.cancelAnimationFrame(frame);
+  }, [location.pathname, location.hash]);
 
   return (
     <AuthProvider>

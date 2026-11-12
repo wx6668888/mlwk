@@ -26,12 +26,12 @@ const projectDetails: Record<
     galleryTitle: "A closer look at the rooms",
     galleryNote: "These selected photographs all belong to the same Guangzhou residence. They show different rooms and joinery details; product supply and installation scope is confirmed individually for each project.",
     gallery: [
-      ["/media/cirmano-project-dining-p234.webp", "Dining room", "Dining room cabinetry in a completed Guangzhou residence"],
-      ["/media/cirmano-project-entry-p208.webp", "Entry storage", "Integrated entry storage in a completed Guangzhou residence"],
-      ["/media/cirmano-project-wardrobe-p092.webp", "Wardrobe", "Wardrobe joinery in a completed Guangzhou residence"],
-      ["/media/cirmano-project-study-p115.webp", "Study", "Study cabinetry in a completed Guangzhou residence"],
-      ["/media/cirmano-project-vanity-p078.webp", "Vanity", "Vanity cabinetry in a completed Guangzhou residence"],
-      ["/media/cirmano-project-child-p148.webp", "Bedroom storage", "Bedroom storage in a completed Guangzhou residence"],
+      ["/media/brand/r004-1600.webp", "Dining room", "Dining room cabinetry in a completed Guangzhou residence"],
+      ["/media/brand/r003-1600.webp", "Entry storage", "Integrated entry storage in a completed Guangzhou residence"],
+      ["/media/brand/r022-1200.webp", "Wardrobe", "Wardrobe joinery in a completed Guangzhou residence"],
+      ["/media/brand/r119-1600.webp", "Study", "Study cabinetry in a completed Guangzhou residence"],
+      ["/media/brand/r027-1200.webp", "Vanity", "Vanity cabinetry in a completed Guangzhou residence"],
+      ["/media/brand/r057-1200.webp", "Bedroom storage", "Bedroom storage in a completed Guangzhou residence"],
     ],
     standards: [
       ["Verified photography", "Project imagery is published only when its source and status are clear."],
@@ -47,12 +47,12 @@ const projectDetails: Record<
     galleryTitle: "走近空间细节",
     galleryNote: "以下精选照片均来自广州同一处完工住宅，呈现不同房间与定制木作细节；每个项目的产品供货与安装范围均单独确认。",
     gallery: [
-      ["/media/cirmano-project-dining-p234.webp", "餐厅", "广州完工住宅中的餐厅柜体"],
-      ["/media/cirmano-project-entry-p208.webp", "玄关收纳", "广州完工住宅中的一体化玄关收纳"],
-      ["/media/cirmano-project-wardrobe-p092.webp", "衣柜", "广州完工住宅中的衣柜木作"],
-      ["/media/cirmano-project-study-p115.webp", "书房", "广州完工住宅中的书房柜体"],
-      ["/media/cirmano-project-vanity-p078.webp", "梳妆区", "广州完工住宅中的梳妆区柜体"],
-      ["/media/cirmano-project-child-p148.webp", "卧室收纳", "广州完工住宅中的卧室收纳"],
+      ["/media/brand/r004-1600.webp", "餐厅", "广州完工住宅中的餐厅柜体"],
+      ["/media/brand/r003-1600.webp", "玄关收纳", "广州完工住宅中的一体化玄关收纳"],
+      ["/media/brand/r022-1200.webp", "衣柜", "广州完工住宅中的衣柜木作"],
+      ["/media/brand/r119-1600.webp", "书房", "广州完工住宅中的书房柜体"],
+      ["/media/brand/r027-1200.webp", "梳妆区", "广州完工住宅中的梳妆区柜体"],
+      ["/media/brand/r057-1200.webp", "卧室收纳", "广州完工住宅中的卧室收纳"],
     ],
     standards: [
       ["核验影像", "只有来源与项目状态清晰的影像才会作为案例发布。"],
@@ -68,12 +68,12 @@ const projectDetails: Record<
     galleryTitle: "نظرة أقرب إلى المساحات",
     galleryNote: "تنتمي هذه الصور المختارة إلى المسكن نفسه في قوانغتشو، وتعرض غرفاً وتفاصيل نجارة مختلفة. يُؤكد نطاق التوريد والتركيب لكل مشروع على حدة.",
     gallery: [
-      ["/media/cirmano-project-dining-p234.webp", "غرفة الطعام", "خزائن غرفة الطعام في مسكن مكتمل في قوانغتشو"],
-      ["/media/cirmano-project-entry-p208.webp", "تخزين المدخل", "وحدات تخزين مدمجة عند المدخل في مسكن مكتمل في قوانغتشو"],
-      ["/media/cirmano-project-wardrobe-p092.webp", "خزانة الملابس", "نجارة خزانة الملابس في مسكن مكتمل في قوانغتشو"],
-      ["/media/cirmano-project-study-p115.webp", "غرفة الدراسة", "خزائن غرفة الدراسة في مسكن مكتمل في قوانغتشو"],
-      ["/media/cirmano-project-vanity-p078.webp", "منطقة الزينة", "خزانة منطقة الزينة في مسكن مكتمل في قوانغتشو"],
-      ["/media/cirmano-project-child-p148.webp", "تخزين غرفة النوم", "وحدات تخزين غرفة النوم في مسكن مكتمل في قوانغتشو"],
+      ["/media/brand/r004-1600.webp", "غرفة الطعام", "خزائن غرفة الطعام في مسكن مكتمل في قوانغتشو"],
+      ["/media/brand/r003-1600.webp", "تخزين المدخل", "وحدات تخزين مدمجة عند المدخل في مسكن مكتمل في قوانغتشو"],
+      ["/media/brand/r022-1200.webp", "خزانة الملابس", "نجارة خزانة الملابس في مسكن مكتمل في قوانغتشو"],
+      ["/media/brand/r119-1600.webp", "غرفة الدراسة", "خزائن غرفة الدراسة في مسكن مكتمل في قوانغتشو"],
+      ["/media/brand/r027-1200.webp", "منطقة الزينة", "خزانة منطقة الزينة في مسكن مكتمل في قوانغتشو"],
+      ["/media/brand/r057-1200.webp", "تخزين غرفة النوم", "وحدات تخزين غرفة النوم في مسكن مكتمل في قوانغتشو"],
     ],
     standards: [
       ["صور موثقة", "لا تنشر صور المشروع إلا عندما يكون مصدرها وحالتها واضحين."],
@@ -89,12 +89,12 @@ const projectDetails: Record<
     galleryTitle: "Räume im Detail",
     galleryNote: "Diese ausgewählten Fotografien stammen alle aus demselben Wohnhaus in Guangzhou. Sie zeigen verschiedene Räume und Einbaudetails; Liefer- und Montageumfang werden für jedes Projekt einzeln bestätigt.",
     gallery: [
-      ["/media/cirmano-project-dining-p234.webp", "Essbereich", "Einbauten im Essbereich eines fertiggestellten Wohnhauses in Guangzhou"],
-      ["/media/cirmano-project-entry-p208.webp", "Garderobe", "Integrierter Eingangsstauraum in einem fertiggestellten Wohnhaus in Guangzhou"],
-      ["/media/cirmano-project-wardrobe-p092.webp", "Kleiderschrank", "Schrankausbau in einem fertiggestellten Wohnhaus in Guangzhou"],
-      ["/media/cirmano-project-study-p115.webp", "Arbeitszimmer", "Einbauten im Arbeitszimmer eines fertiggestellten Wohnhauses in Guangzhou"],
-      ["/media/cirmano-project-vanity-p078.webp", "Frisiertisch", "Einbauten am Frisiertisch in einem fertiggestellten Wohnhaus in Guangzhou"],
-      ["/media/cirmano-project-child-p148.webp", "Schlafzimmerstauraum", "Stauraum im Schlafzimmer eines fertiggestellten Wohnhauses in Guangzhou"],
+      ["/media/brand/r004-1600.webp", "Essbereich", "Einbauten im Essbereich eines fertiggestellten Wohnhauses in Guangzhou"],
+      ["/media/brand/r003-1600.webp", "Garderobe", "Integrierter Eingangsstauraum in einem fertiggestellten Wohnhaus in Guangzhou"],
+      ["/media/brand/r022-1200.webp", "Kleiderschrank", "Schrankausbau in einem fertiggestellten Wohnhaus in Guangzhou"],
+      ["/media/brand/r119-1600.webp", "Arbeitszimmer", "Einbauten im Arbeitszimmer eines fertiggestellten Wohnhauses in Guangzhou"],
+      ["/media/brand/r027-1200.webp", "Frisiertisch", "Einbauten am Frisiertisch in einem fertiggestellten Wohnhaus in Guangzhou"],
+      ["/media/brand/r057-1200.webp", "Schlafzimmerstauraum", "Stauraum im Schlafzimmer eines fertiggestellten Wohnhauses in Guangzhou"],
     ],
     standards: [
       ["Verifizierte Fotografie", "Projektbilder werden nur mit eindeutigem Ursprung und Status veröffentlicht."],
@@ -110,12 +110,12 @@ const projectDetails: Record<
     galleryTitle: "Les pièces de plus près",
     galleryNote: "Ces photographies sélectionnées proviennent toutes de la même résidence à Guangzhou. Elles présentent différentes pièces et menuiseries ; le périmètre de fourniture et de pose est confirmé pour chaque projet.",
     gallery: [
-      ["/media/cirmano-project-dining-p234.webp", "Salle à manger", "Agencement de salle à manger dans une résidence achevée à Guangzhou"],
-      ["/media/cirmano-project-entry-p208.webp", "Rangements d'entrée", "Rangements intégrés à l'entrée d'une résidence achevée à Guangzhou"],
-      ["/media/cirmano-project-wardrobe-p092.webp", "Dressing", "Menuiserie de dressing dans une résidence achevée à Guangzhou"],
-      ["/media/cirmano-project-study-p115.webp", "Bureau", "Agencement de bureau dans une résidence achevée à Guangzhou"],
-      ["/media/cirmano-project-vanity-p078.webp", "Coiffeuse", "Agencement de coiffeuse dans une résidence achevée à Guangzhou"],
-      ["/media/cirmano-project-child-p148.webp", "Rangements de chambre", "Rangements de chambre dans une résidence achevée à Guangzhou"],
+      ["/media/brand/r004-1600.webp", "Salle à manger", "Agencement de salle à manger dans une résidence achevée à Guangzhou"],
+      ["/media/brand/r003-1600.webp", "Rangements d'entrée", "Rangements intégrés à l'entrée d'une résidence achevée à Guangzhou"],
+      ["/media/brand/r022-1200.webp", "Dressing", "Menuiserie de dressing dans une résidence achevée à Guangzhou"],
+      ["/media/brand/r119-1600.webp", "Bureau", "Agencement de bureau dans une résidence achevée à Guangzhou"],
+      ["/media/brand/r027-1200.webp", "Coiffeuse", "Agencement de coiffeuse dans une résidence achevée à Guangzhou"],
+      ["/media/brand/r057-1200.webp", "Rangements de chambre", "Rangements de chambre dans une résidence achevée à Guangzhou"],
     ],
     standards: [
       ["Photographies vérifiées", "Les images ne sont publiées que lorsque leur source et leur statut sont clairs."],
@@ -137,7 +137,7 @@ export default function ProjectsPage({ locale }: { locale: Locale }) {
       <section className="project-placeholder section">
         <Reveal className="project-placeholder__visual">
           <CinematicMedia
-            image="/media/cirmano-project-p175.jpg"
+            image="/media/brand/r109-1600.webp"
             label={copy.pages.projects[1]}
           />
         </Reveal>

@@ -14,7 +14,6 @@ export type HomeCopy = {
   unmute: string;
   mute: string;
   hero: { eyebrow: string; descriptor: string; lead: string; ctaProducts: string; ctaProject: string; tag: string; videoLabel: string };
-  stage: { kicker: string; hint: string; steps: [string, string, string]; drawingTag: string; block: [string, string][]; canvasLabel: string };
   statement: { label: string; text: string };
   products: { label: string; title: string; lead: string; learn: string; prev: string; next: string };
   language: { label: string; title: string; lead: string; steps: { name: string; text: string }[]; imageAlt: string; tag: string };
@@ -41,14 +40,6 @@ const en: HomeCopy = {
     tag: "Completed project · Guangzhou",
     videoLabel: "Slow camera move through the living room of the Guangzhou Residence",
   },
-  stage: {
-    kicker: "Developed elevations · Living room",
-    hint: "Scroll to fold the drawing into a room",
-    steps: ["Drawing", "Model", "Made"],
-    drawingTag: "Design drawing",
-    block: [["Project", "Guangzhou Residence"], ["Drawing", "Developed elevations"], ["Scale", "1 : 50"], ["Sheet", "L-01"]],
-    canvasLabel: "A design drawing of the living room folds into a three-dimensional room, then hands over to film of the finished space.",
-  },
   statement: {
     label: "Made As One",
     text: "We bring materials, proportions and details together to create a consistent design language throughout the home. From design development to manufacturing, each element is made to work as part of the whole.",
@@ -64,14 +55,14 @@ const en: HomeCopy = {
   language: {
     label: "One language",
     title: "Surfaces that speak to each other.",
-    lead: "In the Guangzhou Residence, panels, display cabinetry and glass share one palette of wood, bronze and light.",
+    lead: "In the Guangzhou Residence, flush white cabinetry, light oak and built-in light run through every room as one palette.",
     steps: [
-      { name: "Wall panels", text: "Dark wood panels set the rhythm of the room and frame what sits in front of them." },
-      { name: "Display cabinetry", text: "Glass-fronted cabinets continue the same lines, with light built into the shelves." },
-      { name: "Aluminium & glass", text: "Bronze-framed glass carries the palette up to the ceiling." },
+      { name: "Flush cabinetry", text: "Full-height doors close flush, so a whole wall of storage reads as one quiet white surface." },
+      { name: "Lit oak shelving", text: "An open oak bay with light built into each shelf breaks the white wall and holds the tea ware." },
+      { name: "Oak joinery", text: "The same light oak runs from the shelving to the tea table and the ceiling, joining furniture and architecture." },
     ],
-    imageAlt: "Living room of the Guangzhou Residence with dark wood wall panels and glass display cabinetry",
-    tag: "Living room · Guangzhou Residence",
+    imageAlt: "Tea room of the Guangzhou Residence with flush white cabinetry, lit oak shelving and an oak tea table",
+    tag: "Tea room · Guangzhou Residence",
   },
   detail: {
     label: "The detail",
@@ -98,7 +89,7 @@ const en: HomeCopy = {
   project: {
     label: "Project",
     title: "Guangzhou Residence",
-    lead: "Cabinetry, glass details and wall panels brought together within a finished home.",
+    lead: "Flush cabinetry, oak woodwork and hidden storage brought together within a finished home.",
     tag: "Completed project · Guangzhou",
     cta: "View the residence",
   },
@@ -143,14 +134,6 @@ const zh: HomeCopy = {
     tag: "完工项目 · 广州",
     videoLabel: "广州住宅客厅的缓慢推镜",
   },
-  stage: {
-    kicker: "立面展开图 · 客厅",
-    hint: "向下滚动，图纸折叠成空间",
-    steps: ["图纸", "模型", "成品"],
-    drawingTag: "设计图纸",
-    block: [["项目", "广州住宅"], ["图纸", "立面展开图"], ["比例", "1 : 50"], ["图号", "L-01"]],
-    canvasLabel: "客厅的设计图纸折叠成三维空间，随后切换为完工空间的影像。",
-  },
   statement: {
     label: "Made As One",
     text: "我们连接橱柜、衣柜、室内门和墙板，通过材质、比例与细节的协调，让每一部分成为完整居所的一部分。",
@@ -159,14 +142,14 @@ const zh: HomeCopy = {
   language: {
     label: "统一语言",
     title: "彼此呼应的每一个表面。",
-    lead: "在广州住宅中，墙板、展示柜与玻璃共享同一套木色、古铜与光线。",
+    lead: "在广州住宅中，平板白色柜体、浅橡木与内嵌灯光贯穿每个房间，共用一套语言。",
     steps: [
-      { name: "墙板", text: "深色木饰面墙板确立空间节奏，也为前方的一切留出框景。" },
-      { name: "展示柜", text: "玻璃门展示柜延续同样的线条，灯光内嵌于层板之中。" },
-      { name: "铝与玻璃", text: "古铜框玻璃将这套色调一直延伸到顶。" },
+      { name: "平板柜体", text: "通高柜门齐平闭合，一整面收纳墙读起来只是一个安静的白色平面。" },
+      { name: "灯光橡木格架", text: "开放的橡木格架内嵌层板灯光，在白墙中留出一处陈列茶器的位置。" },
+      { name: "橡木木作", text: "同一种浅橡木从格架延伸到茶桌与吊顶，让家具与建筑连成一体。" },
     ],
-    imageAlt: "广州住宅客厅：深色木饰面墙板与玻璃展示柜",
-    tag: "客厅 · 广州住宅",
+    imageAlt: "广州住宅茶室：白色平板柜体、带灯橡木格架与橡木茶桌",
+    tag: "茶室 · 广州住宅",
   },
   detail: {
     label: "细节",
@@ -190,7 +173,7 @@ const zh: HomeCopy = {
     cta: "走进制造",
     filmLabel: "佛山工厂的板件加工与封边",
   },
-  project: { label: "项目", title: "广州住宅", lead: "柜体、玻璃细节与墙板，在完工居所中融为一体。", tag: "完工项目 · 广州", cta: "查看完整项目" },
+  project: { label: "项目", title: "广州住宅", lead: "平板柜体、橡木木作与隐藏收纳，在完工居所中融为一体。", tag: "完工项目 · 广州", cta: "查看完整项目" },
   principles: {
     label: "原则",
     title: "以四个原则，回应一处完整居所。",
@@ -220,13 +203,12 @@ const de: HomeCopy = {
   unmute: "Ton an",
   mute: "Ton aus",
   hero: { ...en.hero, descriptor: "Ganzheitliche Raumkonzepte nach Maß", lead: "Küchen, Schränke, Innentüren und Wandpaneele, verbunden durch eine gemeinsame Designsprache.", ctaProducts: "Produkte entdecken", ctaProject: "Projekt besprechen", tag: "Fertiggestelltes Projekt · Guangzhou", videoLabel: "Langsame Kamerafahrt durch das Wohnzimmer der Residenz Guangzhou" },
-  stage: { kicker: "Abgewickelte Ansichten · Wohnzimmer", hint: "Scrollen, um die Zeichnung zum Raum zu falten", steps: ["Zeichnung", "Modell", "Gefertigt"], drawingTag: "Entwurfszeichnung", block: [["Projekt", "Residenz Guangzhou"], ["Zeichnung", "Abwicklung"], ["Maßstab", "1 : 50"], ["Blatt", "L-01"]], canvasLabel: "Eine Entwurfszeichnung des Wohnzimmers faltet sich zum Raum und geht in Filmaufnahmen des fertigen Raums über." },
   statement: { label: "Made As One", text: "Wir bringen Materialien, Proportionen und Details zusammen und schaffen eine durchgängige Designsprache für das ganze Zuhause. Von der Planung bis zur Fertigung ist jedes Element Teil des Ganzen." },
   products: { label: "Produkte", title: "Eine Sprache. Jeder Raum.", lead: "Fünf Produktfamilien, gemeinsam geplant für Villen und hochwertige Wohnungen.", learn: "Mehr erfahren", prev: "Zurück", next: "Weiter" },
-  language: { ...en.language, label: "Eine Sprache", title: "Flächen, die miteinander sprechen.", lead: "In der Residenz Guangzhou teilen Paneele, Vitrinen und Glas eine Palette aus Holz, Bronze und Licht.", steps: [{ name: "Wandpaneele", text: "Dunkle Holzpaneele geben dem Raum seinen Rhythmus." }, { name: "Vitrinen", text: "Glasvitrinen führen dieselben Linien fort, mit integriertem Licht." }, { name: "Aluminium & Glas", text: "Bronzegerahmtes Glas trägt die Palette bis zur Decke." }], imageAlt: "Wohnzimmer der Residenz Guangzhou mit dunklen Holzpaneelen und Glasvitrinen", tag: "Wohnzimmer · Residenz Guangzhou" },
+  language: { ...en.language, label: "Eine Sprache", title: "Flächen, die miteinander sprechen.", lead: "In der Residenz Guangzhou ziehen sich flächenbündige weiße Schränke, helle Eiche und eingebautes Licht als eine Palette durch alle Räume.", steps: [{ name: "Flächenbündige Schränke", text: "Raumhohe Türen schließen bündig, sodass eine ganze Stauraumwand als ruhige weiße Fläche wirkt." }, { name: "Beleuchtete Eichenregale", text: "Ein offenes Eichenfach mit Licht in jedem Boden unterbricht die weiße Wand und trägt das Teegeschirr." }, { name: "Eichen-Holzarbeiten", text: "Dieselbe helle Eiche läuft vom Regal über den Teetisch bis an die Decke und verbindet Möbel und Architektur." }], imageAlt: "Teeraum der Residenz Guangzhou mit weißen Schränken, beleuchteten Eichenregalen und Teetisch aus Eiche", tag: "Teeraum · Residenz Guangzhou" },
   detail: { label: "Das Detail", title: "Gemacht, um genau hinzusehen.", items: [{ no: "01 / Die Linie", title: "Hinter jeder Linie steht ein Prozess.", text: "Ausgewogene Proportionen beginnen in der Zeichnung und setzen sich in Bearbeitung, Montage und Oberfläche fort." }, { no: "02 / Das Material", title: "Material, bereits durchdacht.", text: "Ausgewählte vorbeschichtete Oberflächen in einer abgestimmten Palette." }, { no: "03 / Die Beschläge", title: "Still, bis man danach greift.", text: "Beschläge und Profile in derselben Materialsprache." }, { no: "04 / Das Glas", title: "Licht, Textur, Spiegelung.", text: "Glas- und Schrankdetails, gemeinsam gedacht." }] },
   manufacturing: { ...en.manufacturing, label: "Fertigung", title: "Das Detail hinter dem fertigen Raum.", lead: "Unsere Fertigung in Foshan verbindet Plattenbearbeitung, sorgfältige Kantenbearbeitung, Prüfung und Probemontage.", facts: [{ title: "HOMAG-Maschinen aus Deutschland", text: "HOMAG-Technik unterstützt die Fertigung unserer Schranksysteme." }, { title: "Laserkante", text: "Bei dafür vorgesehenen, kompatiblen Bauteilen." }, { title: "Prüfung & Probemontage", text: "Ausgewählte Schränke werden vor dem Versand geprüft und probemontiert." }], cta: "Einblick in die Fertigung", filmLabel: "Plattenbearbeitung und Kantenbearbeitung in Foshan" },
-  project: { label: "Projekt", title: "Residenz Guangzhou", lead: "Schränke, Glasdetails und Wandpaneele, vereint in einem fertigen Zuhause.", tag: "Fertiggestelltes Projekt · Guangzhou", cta: "Residenz ansehen" },
+  project: { label: "Projekt", title: "Residenz Guangzhou", lead: "Flächenbündige Schränke, Eichenholzarbeiten und verdeckter Stauraum, vereint in einem fertigen Zuhause.", tag: "Fertiggestelltes Projekt · Guangzhou", cta: "Residenz ansehen" },
   principles: { label: "Prinzipien", title: "Vier Prinzipien für ein vollständiges Zuhause.", items: [{ kicker: "Details", name: "Handwerk", text: "Ausgewählte Materialien und präzise Oberflächen, die Bestand haben." }, { kicker: "Integration", name: "System", text: "Schränke, Türen, Paneele und Holzarbeiten als ein System geplant." }, { kicker: "Design", name: "Ästhetik", text: "Internationales Design, geprägt von östlichen Wohnproportionen." }, { kicker: "Anpassung", name: "Global", text: "Gemeinsame Standards, angepasst an jeden lokalen Markt." }] },
   follow: { label: "Folgen", title: "Näher dran, auf Instagram.", lead: "Kurzfilme aus fertigen Räumen: Stauraum, Glas, Licht und Wandpaneele.", credit: "Musik: „Sleep“ von Scott Buckley, CC BY 4.0", reels: ["Durchdachter Stauraum", "Glasdetails", "Licht und Ausblick", "Wandpaneel im Detail"] },
   contact: { label: "Kontakt", title: "Lassen Sie uns über Ihr Projekt sprechen.", lead: "Senden Sie Grundriss, Produktwünsche und Materialrichtung, um das Gespräch zu beginnen.", enquiry: "Projektanfrage senden", whatsapp: "Per WhatsApp kontaktieren" },
@@ -240,13 +222,12 @@ const fr: HomeCopy = {
   unmute: "Activer le son",
   mute: "Couper le son",
   hero: { ...en.hero, descriptor: "Aménagement intégré sur mesure", lead: "Cuisines, dressings, portes intérieures et panneaux muraux, réunis par un même langage de design.", ctaProducts: "Découvrir nos produits", ctaProject: "Parler de votre projet", tag: "Projet réalisé · Guangzhou", videoLabel: "Lent travelling dans le salon de la Résidence Guangzhou" },
-  stage: { kicker: "Élévations développées · Salon", hint: "Faites défiler pour plier le dessin en pièce", steps: ["Dessin", "Maquette", "Réalisé"], drawingTag: "Dessin de conception", block: [["Projet", "Résidence Guangzhou"], ["Dessin", "Élévations développées"], ["Échelle", "1 : 50"], ["Planche", "L-01"]], canvasLabel: "Un dessin du salon se plie en une pièce en trois dimensions, puis laisse place au film de l’espace réalisé." },
   statement: { label: "Made As One", text: "Nous accordons matières, proportions et détails pour créer un langage cohérent dans toute la maison. De la conception à la fabrication, chaque élément fait partie de l’ensemble." },
   products: { label: "Produits", title: "Un langage. Chaque pièce.", lead: "Cinq familles de produits, pensées ensemble pour villas et résidences haut de gamme.", learn: "En savoir plus", prev: "Précédent", next: "Suivant" },
-  language: { ...en.language, label: "Un langage", title: "Des surfaces qui se répondent.", lead: "Dans la Résidence Guangzhou, panneaux, vitrines et verre partagent une même palette de bois, de bronze et de lumière.", steps: [{ name: "Panneaux muraux", text: "Des panneaux de bois sombre donnent son rythme à la pièce." }, { name: "Vitrines", text: "Les vitrines prolongent les mêmes lignes, avec un éclairage intégré." }, { name: "Aluminium & verre", text: "Le verre cerclé de bronze porte la palette jusqu’au plafond." }], imageAlt: "Salon de la Résidence Guangzhou avec panneaux de bois sombre et vitrines", tag: "Salon · Résidence Guangzhou" },
+  language: { ...en.language, label: "Un langage", title: "Des surfaces qui se répondent.", lead: "Dans la Résidence Guangzhou, meubles blancs affleurants, chêne clair et lumière intégrée forment une seule palette dans chaque pièce.", steps: [{ name: "Meubles affleurants", text: "Des portes toute hauteur ferment à fleur, et un mur entier de rangement se lit comme une surface blanche et calme." }, { name: "Étagères en chêne éclairées", text: "Une niche ouverte en chêne, éclairée à chaque tablette, rompt le mur blanc et accueille le service à thé." }, { name: "Menuiserie en chêne", text: "Le même chêne clair court des étagères à la table à thé et au plafond, reliant mobilier et architecture." }], imageAlt: "Salon de thé de la Résidence Guangzhou avec meubles blancs, étagères en chêne éclairées et table à thé en chêne", tag: "Salon de thé · Résidence Guangzhou" },
   detail: { label: "Le détail", title: "Fait pour être regardé de près.", items: [{ no: "01 / La ligne", title: "Chaque ligne a un processus derrière elle.", text: "Une proportion juste commence au dessin et se poursuit à l’usinage, au montage et à la finition." }, { no: "02 / La matière", title: "La matière, déjà pensée.", text: "Des surfaces préfinies sélectionnées, réunies en une palette cohérente." }, { no: "03 / La quincaillerie", title: "Discrète, jusqu’au geste.", text: "Quincaillerie et profils dans le même langage de matières." }, { no: "04 / Le verre", title: "Lumière, texture, reflet.", text: "Verre et mobilier, pensés ensemble." }] },
   manufacturing: { ...en.manufacturing, label: "Fabrication", title: "Le détail derrière l’espace fini.", lead: "À Foshan, notre fabrication réunit usinage des panneaux, finition soignée des chants, contrôle et montage à blanc.", facts: [{ title: "Équipement HOMAG allemand", text: "Les machines HOMAG accompagnent la fabrication de nos systèmes de mobilier." }, { title: "Placage laser des chants", text: "Sur les composants compatibles spécifiés." }, { title: "Contrôle & montage à blanc", text: "Certains meubles sont contrôlés et montés à blanc avant expédition." }], cta: "Découvrir la fabrication", filmLabel: "Usinage et finition des chants à l’atelier de Foshan" },
-  project: { label: "Projet", title: "Résidence Guangzhou", lead: "Mobilier, détails de verre et panneaux muraux réunis dans une maison achevée.", tag: "Projet réalisé · Guangzhou", cta: "Voir la résidence" },
+  project: { label: "Projet", title: "Résidence Guangzhou", lead: "Meubles affleurants, menuiserie en chêne et rangements dissimulés réunis dans une maison achevée.", tag: "Projet réalisé · Guangzhou", cta: "Voir la résidence" },
   principles: { label: "Principes", title: "Quatre principes pour une maison complète.", items: [{ kicker: "Détails", name: "Savoir-faire", text: "Des matières choisies et des finitions précises, faites pour durer." }, { kicker: "Intégration", name: "Système", text: "Mobilier, portes, panneaux et menuiserie pensés comme un seul système." }, { kicker: "Design", name: "Esthétique", text: "Un design international, aux proportions de l’habitat oriental." }, { kicker: "Adaptation", name: "Global", text: "Des standards communs, adaptés à chaque marché local." }] },
   follow: { label: "Suivre", title: "De plus près, sur Instagram.", lead: "Courts films d’espaces réalisés : rangements, verre, lumière et panneaux.", credit: "Musique : « Sleep » de Scott Buckley, CC BY 4.0", reels: ["Rangements pensés", "Détails de verre", "Lumière et vue", "Détail de panneau"] },
   contact: { label: "Contact", title: "Parlons de votre projet.", lead: "Partagez votre plan, vos besoins en produits et votre direction de matières pour commencer.", enquiry: "Envoyer une demande", whatsapp: "Nous écrire sur WhatsApp" },
@@ -260,13 +241,12 @@ const ar: HomeCopy = {
   unmute: "تشغيل الصوت",
   mute: "كتم الصوت",
   hero: { ...en.hero, descriptor: "تخصيص متكامل للمنزل", lead: "المطابخ وخزائن الملابس والأبواب الداخلية وألواح الجدران، تجمعها لغة تصميم واحدة.", ctaProducts: "استكشف منتجاتنا", ctaProject: "ناقش مشروعك", tag: "مشروع مكتمل · قوانغتشو", videoLabel: "حركة كاميرا بطيئة في غرفة معيشة مسكن قوانغتشو" },
-  stage: { kicker: "واجهات مفرودة · غرفة المعيشة", hint: "مرّر لطيّ الرسم إلى غرفة", steps: ["الرسم", "النموذج", "المُنجز"], drawingTag: "رسم تصميمي", block: [["المشروع", "مسكن قوانغتشو"], ["الرسم", "واجهات مفرودة"], ["المقياس", "1 : 50"], ["اللوحة", "L-01"]], canvasLabel: "رسم تصميمي لغرفة المعيشة ينطوي ليصبح غرفة ثلاثية الأبعاد، ثم ينتقل إلى تصوير المساحة المكتملة." },
   statement: { label: "Made As One", text: "نجمع المواد والنِّسب والتفاصيل لنخلق لغة تصميم متسقة في أرجاء المنزل. من تطوير التصميم إلى التصنيع، يُصنع كل عنصر ليكون جزءاً من الكل." },
   products: { label: "المنتجات", title: "لغة واحدة. كل غرفة.", lead: "خمس عائلات من المنتجات، مخططة معاً للفلل والمنازل الراقية.", learn: "اعرف المزيد", prev: "السابق", next: "التالي" },
-  language: { ...en.language, label: "لغة واحدة", title: "أسطح تتحاور فيما بينها.", lead: "في مسكن قوانغتشو، تتشارك الألواح وخزائن العرض والزجاج لوحة واحدة من الخشب والبرونز والضوء.", steps: [{ name: "ألواح الجدران", text: "ألواح خشبية داكنة تمنح الغرفة إيقاعها." }, { name: "خزائن العرض", text: "خزائن بواجهات زجاجية تكمل الخطوط نفسها مع إضاءة مدمجة." }, { name: "الألمنيوم والزجاج", text: "زجاج بإطار برونزي يحمل اللوحة حتى السقف." }], imageAlt: "غرفة معيشة مسكن قوانغتشو بألواح خشبية داكنة وخزائن عرض زجاجية", tag: "غرفة المعيشة · مسكن قوانغتشو" },
+  language: { ...en.language, label: "لغة واحدة", title: "أسطح تتحاور فيما بينها.", lead: "في مسكن قوانغتشو، تمتد الخزائن البيضاء المسطحة وخشب البلوط الفاتح والإضاءة المدمجة عبر كل غرفة كلوحة واحدة.", steps: [{ name: "خزائن مسطحة", text: "أبواب بكامل الارتفاع تُغلق على مستوى واحد، فيبدو جدار التخزين كله سطحًا أبيض هادئًا." }, { name: "رفوف بلوط مضاءة", text: "تجويف مفتوح من البلوط بإضاءة في كل رف يكسر الجدار الأبيض ويحمل أدوات الشاي." }, { name: "أعمال البلوط", text: "يمتد البلوط الفاتح نفسه من الرفوف إلى طاولة الشاي والسقف، فيربط الأثاث بالعمارة." }], imageAlt: "غرفة الشاي في مسكن قوانغتشو بخزائن بيضاء ورفوف بلوط مضاءة وطاولة شاي من البلوط", tag: "غرفة الشاي · مسكن قوانغتشو" },
   detail: { label: "التفاصيل", title: "صُنع ليُرى عن قرب.", items: [{ no: "01 / الخط", title: "وراء كل خط عملية.", text: "تبدأ النسبة المتوازنة من الرسم وتستمر في معالجة الألواح والتجميع والتشطيب." }, { no: "02 / المادة", title: "مادة مدروسة مسبقاً.", text: "أسطح مختارة جاهزة التشطيب ضمن لوحة متناسقة للمنزل." }, { no: "03 / الإكسسوارات", title: "هادئة حتى تمتد إليها يدك.", text: "إكسسوارات وحواف ضمن لغة المواد نفسها." }, { no: "04 / الزجاج", title: "ضوء وملمس وانعكاس.", text: "تفاصيل الزجاج والخزائن مدروسة معاً." }] },
   manufacturing: { ...en.manufacturing, label: "التصنيع", title: "التفاصيل وراء المساحة المكتملة.", lead: "يجمع التصنيع في فوشان بين معالجة الألواح وتشطيب الحواف بعناية والفحص والتجميع التجريبي.", facts: [{ title: "معدات HOMAG الألمانية", text: "تدعم معدات HOMAG العمل وراء أنظمة الخزائن لدينا." }, { title: "تشطيب الحواف بالليزر", text: "يُستخدم على المكونات المتوافقة المحددة." }, { title: "الفحص والتجميع التجريبي", text: "تُفحص خزائن مختارة وتُجمّع تجريبياً قبل الشحن." }], cta: "داخل التصنيع", filmLabel: "معالجة الألواح وتشطيب الحواف في ورشة فوشان" },
-  project: { label: "المشروع", title: "مسكن قوانغتشو", lead: "خزائن وتفاصيل زجاجية وألواح جدران تجتمع في منزل مكتمل.", tag: "مشروع مكتمل · قوانغتشو", cta: "شاهد المسكن" },
+  project: { label: "المشروع", title: "مسكن قوانغتشو", lead: "خزائن مسطحة وأعمال بلوط وتخزين مخفي تجتمع في منزل مكتمل.", tag: "مشروع مكتمل · قوانغتشو", cta: "شاهد المسكن" },
   principles: { label: "المبادئ", title: "أربعة مبادئ لمنزل متكامل.", items: [{ kicker: "التفاصيل", name: "الحِرفية", text: "مواد مختارة وتشطيب دقيق يدوم مع الزمن." }, { kicker: "التكامل", name: "النظام", text: "خزائن وأبواب وألواح وأعمال خشبية مخططة كنظام واحد." }, { kicker: "التصميم", name: "الجمال", text: "تصميم عالمي بنِسب السكن الشرقي." }, { kicker: "التكيّف", name: "عالمي", text: "معايير مشتركة تتكيف مع احتياجات كل سوق." }] },
   follow: { label: "تابعنا", title: "عن قرب، على إنستغرام.", lead: "أفلام قصيرة من مساحات مكتملة: التخزين والزجاج والضوء والألواح.", credit: "الموسيقى: «Sleep» لسكوت باكلي، CC BY 4.0", reels: ["تخزين مدروس", "تفاصيل الزجاج", "الضوء والإطلالة", "تفاصيل الألواح"] },
   contact: { label: "تواصل", title: "لنتحدث عن مشروعك.", lead: "شارك مخطط المنزل والمنتجات المطلوبة واتجاه المواد لنبدأ الحديث.", enquiry: "أرسل استفسار مشروع", whatsapp: "تواصل عبر واتساب" },

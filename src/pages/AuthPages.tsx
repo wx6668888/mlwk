@@ -55,9 +55,9 @@ function CheckIcon() {
 }
 
 const SLIDE_IMAGES = [
-  "/media/cirmano-project-dining-p234.webp",
-  "/media/cirmano-project-p175.jpg",
-  "/media/cirmano-project-study-p115.webp",
+  "/media/brand/r004-1600.webp",
+  "/media/brand/r109-1600.webp",
+  "/media/brand/r119-1600.webp",
 ];
 
 export function LoginPage({ locale }: { locale: Locale }) {

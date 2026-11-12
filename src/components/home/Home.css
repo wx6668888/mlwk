@@ -126,7 +126,7 @@
 .pcard__cap { position: absolute; z-index: 1; inset-inline-start: 24px; top: 20px; font-size: 11px; color: rgba(243, 239, 232, 0.78); }
 
 /* ── 04 One language ──────────────────────────────────────── */
-.ol { position: relative; height: 320vh; background: var(--c-ink); color: var(--c-bone); }
+.ol { position: relative; height: 440vh; background: var(--c-ink); color: var(--c-bone); }
 .ol__stage { position: sticky; top: 0; height: 100svh; overflow: hidden; }
 .ol__frame {
   position: absolute;
@@ -134,14 +134,13 @@
   top: 50%;
   width: max(100%, 177.78svh);
   aspect-ratio: 16 / 9;
-  transform: translate(-50%, -50%) scale(calc(1.16 - var(--p) * 0.16)) translateX(calc((0.5 - var(--p)) * 4%));
+  transform-origin: 50% 50%;
   will-change: transform;
 }
-[dir="rtl"] .ol__frame { left: auto; right: 50%; transform: translate(50%, -50%) scale(calc(1.16 - var(--p) * 0.16)) translateX(calc((0.5 - var(--p)) * 4%)); }
 .ol__frame img { width: 100%; height: 100%; object-fit: cover; }
 .ol__shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(16, 16, 18, 0) 34%, rgba(16, 16, 18, 0.72) 58%, rgba(16, 16, 18, 0.9) 100%); }
 [dir="rtl"] .ol__shade { transform: scaleX(-1); }
-.ol__spot { position: absolute; width: 0; height: 0; }
+.ol__spot { position: absolute; width: 0; height: 0; transform: scale(calc(1 / var(--s, 1))); }
 .ol__spot i {
   position: absolute;
   left: -8px;
@@ -296,6 +295,7 @@
   .ol { height: auto; }
   .ol__stage { position: relative; height: auto; overflow: visible; }
   .ol__frame { position: relative; left: auto; top: auto; width: 100%; transform: none !important; }
+  .ol__spot { transform: none; }
   .ol__shade, .ol__bar { display: none; }
   .ol__copy { position: relative; inset: auto; width: auto; transform: none; padding: var(--space-section-sm) var(--gutter); }
   .ol__steps li { opacity: 1; }

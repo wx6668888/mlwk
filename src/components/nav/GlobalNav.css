@@ -207,6 +207,11 @@
 }
 .gn__big a small { min-width: 18px; font-size: 11px; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; color: var(--c-brass-text); }
 .gn__big a:hover, .gn__big a:focus-visible { color: var(--c-ink); }
+.gn__cols:has(.gn__col--group) { grid-template-columns: 4fr 4fr 5fr; }
+.gn__label--group { display: grid; gap: 2px; }
+.gn__label--group strong { font-weight: var(--fw-medium); color: var(--c-ink); }
+.gn__big--stack a { display: grid; gap: 0; padding: 7px 0; font-size: 20px; }
+.gn__big--stack a small { min-width: 0; font-size: 13px; letter-spacing: 0; color: var(--c-whisper-text); }
 .gn__big:hover a:not(:hover) { color: var(--c-whisper-text); }
 .gn__small { display: grid; gap: 12px; font-size: 14px; }
 .gn__small a { display: inline-flex; align-items: center; gap: 8px; opacity: 0.86; }
@@ -300,3 +305,8 @@
 @media (min-width: 861px) {
   .gn__sheet { display: none; }
 }
+
+/* Auto-hide while a full-screen hero plays (see src/site/navVisibility.ts). */
+.gn { transition: transform var(--dur-reveal) var(--ease); }
+.gn[data-hidden] { transform: translateY(calc(-100% - 2px)); }
+.gn[data-hidden] .gn__veil { opacity: 0; pointer-events: none; }
