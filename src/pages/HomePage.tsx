@@ -11,7 +11,7 @@ import {
   ProjectSpaces,
   Statement,
 } from "../components/home/HomeSections";
-import CasaHero from "../components/home/CasaHero";
+import VillaRevealHero from "../components/VillaRevealHero";
 import { InspirationRail } from "../components/inspiration/Inspiration";
 import { inspirationEnabled } from "../site/features";
 import "../components/home/Home.css";
@@ -22,7 +22,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
   return (
     <div className="home">
-      <CasaHero locale={locale} t={t} />
+      <VillaRevealHero locale={locale} />
       <Statement locale={locale} t={t} />
       <ProductRail locale={locale} t={t} />
       <OneLanguage locale={locale} t={t} />

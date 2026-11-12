@@ -2,6 +2,7 @@ import { ArrowUpRight, FileText, MoveUpRight, Sun, Moon } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { Link } from "react-router-dom";
 import { type Locale } from "../content";
+import { setNavTone } from "../site/navTone";
 import "./VillaRevealHero.css";
 
 const scenes = ["travertine", "walnut", "pearl"] as const;
@@ -37,6 +38,12 @@ export default function VillaRevealHero({ locale }: { locale: Locale }) {
       media.removeEventListener("change", update);
       if (frame.current !== undefined) cancelAnimationFrame(frame.current);
     };
+  }, []);
+
+  // Dark night imagery sits behind the transparent home nav → bone (light) nav ink.
+  useEffect(() => {
+    setNavTone("dark");
+    return () => setNavTone(null);
   }, []);
 
   const hide = () => setActive(false);

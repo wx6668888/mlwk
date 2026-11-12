@@ -24,6 +24,7 @@ import LegalPage from "./pages/LegalPage";
 import { ProductDetailPage, ProductsOverviewPage } from "./pages/redesign/ProductsPages";
 import { InspirationProjectPage } from "./components/inspiration/Inspiration";
 import { AboutPage, ContactPage, ManufacturingPage, ProjectsRedesignPage, ServicePage } from "./pages/redesign/CompanyPages";
+import HomePage from "./pages/HomePage";
 import { inspirationEnabled } from "./site/features";
 import { pageCopy } from "./site/pageCopy";
 import { inspirationCopy, inspirationProjects } from "./site/inspiration";
@@ -180,7 +181,7 @@ function LocaleLayout() {
       {!isDesigner && !isAuth && <GlobalNav locale={locale} />}
       <main>
         <Routes>
-          <Route index element={<ManufacturingPage locale={locale} />} />
+          <Route index element={<HomePage locale={locale} />} />
           <Route path="collections" element={<CollectionsPage locale={locale} />} />
           <Route
             path="collections/:slug"
