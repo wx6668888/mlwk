@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CIRMANO · Made As One · Walkthrough</title>
+  <meta name="description" content="A CIRMANO design concept: a ground floor plan that becomes the house, room by room, as you walk through it." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#F3EFE8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <!-- Embedded on the home page (?embed=1): the site provides nav, loader and closing chapters. -->
+  <script>if (/[?&]embed=1\b/.test(location.search)) document.documentElement.classList.add("embed");</script>
+  <link rel="stylesheet" href="shared/fx-ui.css" />
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="publish.css" />
+  <link rel="stylesheet" href="cirmano.css" />
+</head>
+<body>
+  <canvas id="gl" aria-hidden="true"></canvas>
+
+  <div class="loader" id="loader">
+    <div class="loader__brand">
+      <img src="/brand/CIRMANO_horizontal_CNEN_ink.svg" alt="CIRMANO 西尔曼" width="240" height="108" />
+    </div>
+    <div class="loader__story" aria-live="polite">
+      <p>Made As One</p>
+      <p>Integrated Whole-Home Customization</p>
+      <p>Every room we make begins as a drawing.</p>
+    </div>
+    <div class="loader__bar"><span>Loading</span><i><b id="loadFill"></b></i><span id="loadPct">0%</span></div>
+    <p class="loader__note">Foshan, China<span> · best on a laptop</span></p>
+  </div>
+
+  <header class="topbar">
+    <a class="mark" href="/en/" target="_top" data-to="0" aria-label="CIRMANO"><img src="/brand/CIRMANO_wordmark_EN_ink.svg" alt="CIRMANO" width="89" height="20" /></a>
+    <a class="pill" href="/en/contact" target="_top">Discuss your project</a>
+  </header>
+
+  <section class="hero" id="hero" aria-label="CIRMANO concept house, ground floor plan">
+    <p class="hero__kicker">CIRMANO <span>·</span> <b class="k-long">Integrated Whole-Home Customization</b><span class="k-long">·</span> Design concept</p>
+    <h1 class="hero__title">
+      <span class="mask"><span>Made</span></span>
+      <span class="mask"><span>As</span></span>
+      <span class="mask"><span><em>One</em></span></span>
+    </h1>
+    <p class="hero__lede">Kitchens, wardrobes, interior doors and wall panels, brought together through a shared design language. Scroll, and walk into the drawing.</p>
+    <div class="titleblock" aria-hidden="true">
+      <div><span>Project</span><b>CIRMANO concept house</b></div>
+      <div><span>Drawing</span><b>Ground floor plan</b></div>
+      <div><span>Scale</span><b>1 : 200</b></div>
+      <div><span>Sheet</span><b>C-201</b></div>
+    </div>
+  </section>
+
+  <div class="spots" id="spots"></div>
+  <nav class="ruler" id="ruler" aria-label="Progress">
+    <div class="ruler__ticks" id="rulerTicks"></div>
+    <div class="ruler__now" id="rulerNow"><i></i></div>
+  </nav>
+  <p class="count" id="count"><b>00</b> / 07 rooms</p>
+  <div class="hint" id="hint">
+    <span class="hint__text" id="hintText">Scroll to walk in</span>
+    <i class="hint__line"><b id="hintFill"></b></i>
+  </div>
+  <div class="veil" id="veil" aria-hidden="true"></div>
+  <footer class="corner">
+    <a href="/en/products" target="_top">Products</a><span></span><a href="/en/projects" target="_top">Projects</a><span></span><a href="/en/contact" target="_top">Contact ›</a>
+  </footer>
+
+  <main class="track" id="track"></main>
+
+  <section class="finale" id="finale">
+    <div class="finale__inner">
+      <p class="eyebrow" data-rise>C-201 <span>·</span> design concept</p>
+      <h2 class="finale__title">
+        <span class="mask"><span data-line>Every home starts as a drawing.</span></span>
+        <span class="mask"><span data-line>Ours are <em>made as one.</em></span></span>
+      </h2>
+      <p class="finale__lede" data-rise>CIRMANO makes kitchens, wardrobes, interior doors and wall panels in Foshan, with one material language carried through the home, from the first drawing to the final fit.</p>
+      <div class="finale__cta" data-rise>
+        <a class="pill pill--solid" href="/en/contact" target="_top">Discuss your project</a>
+        <a class="link" href="/en/products" target="_top">Explore our products</a>
+      </div>
+    </div>
+    <p class="ghost" aria-hidden="true">CIRMANO</p>
+    <div class="finale__meta">
+      <span>Foshan, Guangdong, China</span>
+      <span>Integrated Whole-Home Customization</span>
+      <span>Design concept, drawn live in your browser</span>
+      <span>Materials: Poly Haven, CC0</span>
+    </div>
+    <p class="credit">Walkthrough based on <a href="https://github.com/Sam1983Aing/casa-serra" target="_blank" rel="noopener">Casa Serra</a> by Samnang Aing · preview</p>
+  </section>
+
+  <aside class="file" id="file" aria-hidden="true" aria-labelledby="fileTitle">
+    <button class="file__close" id="fileClose">Close ×</button>
+    <p class="file__no" id="fileNo"></p>
+    <h3 class="file__title" id="fileTitle"></h3>
+    <p class="file__time" id="fileTime"></p>
+    <p class="file__text" id="fileText"></p>
+    <ul class="file__facts" id="fileFacts"></ul>
+  </aside>
+  <div class="nogl" id="nogl" hidden><p>This walkthrough is drawn live in your browser and needs WebGL 2.</p></div>
+
+  <script src="startup.js?startup=2"></script>
+  <script src="capabilities.js?startup=2"></script>
+  <script src="vendor/three.min.js?startup=2"></script>
+  <script src="vendor/gsap.min.js?startup=2"></script>
+  <script src="vendor/ScrollTrigger.min.js?startup=2"></script>
+  <script src="vendor/lenis.min.js?startup=2"></script>
+  <script src="shared/fx-core.js?startup=2"></script>
+  <script src="shared/fx-post.js?startup=2"></script>
+  <script src="shared/fx-paint.js?startup=2"></script>
+  <script src="shared/fx-experience.js?startup=2"></script>
+  <script>if (window.LINTEL_GATE && !LINTEL_GATE.ok) FX.experience = function () {};</script>
+  <script src="staging.js?startup=2"></script>
+  <script src="hero-options.js?startup=2"></script>
+  <script src="light-options.js?startup=2"></script>
+  <script src="scene.js?startup=2"></script>
+  <script src="cirmano3d.js?startup=2"></script>
+  <script src="embed.js?startup=2"></script>
+</body>
+</html>

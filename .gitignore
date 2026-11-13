@@ -16,7 +16,9 @@ logo*.jpg
 .claude/
 public/casa/vendor/
 
-# Preview-only material: third-party reference photos and the unlicensed Casa Serra walkthrough.
-# Keep out of the public repository; regenerate with scripts/prepare_inspiration.py / copy from ref/.
+# Inspiration photos stay out of the repository (regenerate with scripts/prepare_inspiration.py).
+# public/casa/ (the Casa Serra walkthrough) is committed on purpose from 2026-11-12 so the
+# Cloudflare Pages build can ship it; it is third-party material with no licence, tracked
+# openly so it can be swapped for our own villa model. public/casa/vendor/ is rebuilt by
+# scripts/prepare_casa.mjs and stays ignored.
 public/media/inspiration/
-public/casa/

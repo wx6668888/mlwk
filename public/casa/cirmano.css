@@ -1,0 +1,46 @@
+/* CIRMANO layer over the walkthrough: brand loader, logo mark, embed mode.
+   Colours and type follow docs/design-system.md (Ink #101012, Bone #F3EFE8, Brass #B08D57, Manrope). */
+
+.loader__brand { display: flex; align-items: center; gap: 18px; margin: 0 0 34px; }
+.loader__brand img:last-child { width: 240px; height: auto; }
+.loader__story p:first-child { font-weight: 500; letter-spacing: -0.03em; font-size: clamp(34px, 4.2vw, 58px); line-height: 1.04; }
+.loader__story p:nth-child(2) { font-size: clamp(16px, 1.4vw, 20px); color: var(--fg-dim); }
+.loader__story p:nth-child(3) { font-size: clamp(14px, 1.1vw, 16px); color: var(--fg-dim); }
+.loader__bar b { background: var(--accent) !important; }
+.loader__note { letter-spacing: 0.16em; }
+
+.mark img { display: block; height: 18px; width: auto; }
+.wip { display: none !important; }
+
+/* Embedded in the home page: the site draws nav, loader, closing chapter and footer. */
+html.embed .topbar,
+html.embed .corner,
+html.embed .loader,
+html.embed .finale,
+html.embed .credit,
+html.embed .wip { display: none !important; }
+html.embed .hero__kicker { top: 96px; }
+html.embed .hero__title { top: 124px; }
+
+.hero__kicker .k-long { font-weight: inherit; margin: 0 6px 0 0; }
+.hero__kicker span.k-long { margin: 0 6px; }
+@media (max-width: 760px) { .hero__kicker .k-long { display: none; } }
+
+html.embed { scrollbar-width: none; }
+html.embed::-webkit-scrollbar, html.embed body::-webkit-scrollbar { display: none; width: 0; height: 0; }
+
+/* Scroll hint: larger, higher contrast, with a bouncing mouse cue. */
+.hint { gap: 14px; bottom: 6vh; }
+.hint__text {
+  font-size: 14px; font-weight: 700; letter-spacing: 0.22em;
+  padding: 11px 22px; border-radius: 999px;
+  background: rgba(20, 18, 16, 0.55); color: #F7F3EC;
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid rgba(247, 243, 236, 0.35);
+  text-shadow: none !important; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28) !important;
+}
+.hint__line { width: 24px; height: 40px; border: 2px solid currentColor; border-radius: 14px; background: rgba(20, 18, 16, 0.35); }
+.hint__line::before { display: none; }
+.hint__line b { inset: 7px auto auto 50%; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; transform: none; animation: hintWheel 1.6s cubic-bezier(.45,0,.2,1) infinite; }
+@keyframes hintWheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(14px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .hint__line b { animation: none; } }

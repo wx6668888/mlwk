@@ -1,0 +1,29 @@
+.fb { position: fixed; inset: 0; z-index: 80; display: flex; align-items: center; justify-content: center; overflow-y: auto;
+  background: var(--bg); color: var(--fg); padding: 28px var(--gutter); text-align: center; }
+.fb[hidden] { display: none; }
+.fb__in { width: min(880px, 100%); margin: auto; }
+.fb__place { margin: 0 0 22px; font: 500 11px/1.6 var(--label); letter-spacing: 0.3em; text-transform: uppercase; }
+.fb__frame { position: relative; aspect-ratio: 16 / 10; background: #e4dfd3; border: 1px solid var(--line); }
+.fb__still, .fb__clip { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.fb__clip[hidden] { display: none; }
+.fb__line { margin: 22px auto 0; max-width: 34em; font: 400 16px/1.5 var(--body); color: var(--fg-dim); }
+.fb__more { margin: 18px 0 0; min-height: 34px; }
+.fb__btn { display: inline-flex; align-items: center; height: 34px; padding: 0 16px; border: 1px solid var(--fg); border-radius: 999px; background: none; color: inherit; cursor: pointer;
+  font: 500 10.5px/1 var(--label); letter-spacing: 0.12em; text-transform: uppercase; }
+.fb__btn[hidden] { display: none; }
+.fb__btn:hover { background: var(--fg); color: var(--bg); }
+html.fb-on, html.fb-on body { overflow: hidden; }
+.loader__note { margin: 20px 0 0; font: 500 9.5px/1.6 var(--label); letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.55; }
+.loader__note span { display: none; }
+.wip { position: fixed; z-index: 30; top: 33px; right: calc(var(--gutter) + 178px); margin: 0; padding: 5px 9px 4px; border-radius: 3px; pointer-events: none;
+  background: rgba(243, 239, 232, 0.72); color: var(--fg);
+  font: 500 9px/1 var(--label); letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap; }
+body.is-loading .wip { visibility: hidden; }
+@media (max-width: 760px), (pointer: coarse) {
+  .loader__note span { display: inline; }
+}
+@media (max-width: 760px) {
+  .wip { top: 61px; left: var(--gutter); right: auto; }
+}
+.credit { position: relative; z-index: 2; margin: 14px 0 0; font: 400 10px/1.5 var(--label); letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-dim); }
+.credit a { border-bottom: 1px solid currentColor; }
