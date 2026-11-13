@@ -44,6 +44,7 @@ const baseRoutes = [
   ...["kitchens", "wardrobes-storage", "interior-doors", "wall-panels-woodwork", "aluminium-glass"].map((slug) => `products/${slug}`),
   ...inspirationSlugs.map((slug) => `projects/inspiration/${slug}`),
   "manufacturing",
+  "walkthrough",
   "service",
   "about",
   "contact",
@@ -71,6 +72,9 @@ const baseRoutes = [
   "returns",
 ];
 const noIndexSections = new Set([
+  // The 3D walkthrough is a hidden entry (cube icon beside the wordmark) and its scene is
+  // third-party material without a licence: keep it out of the index and out of the sitemap.
+  "walkthrough",
   "cart",
   "checkout",
   "login",
@@ -86,6 +90,7 @@ const titles = {
   collections: "Whole-Home Products",
   products: "Products",
   manufacturing: "Manufacturing",
+  walkthrough: "3D Walkthrough",
   service: "One-Stop Service",
   about: "About CIRMANO",
   contact: "Discuss Your Project",
@@ -136,7 +141,10 @@ const sitemap = [];
 for (const locale of locales) {
   for (const route of baseRoutes) {
     const urlPath = `/${locale}/${route}${route ? "/" : ""}`;
-    const canonical = `${siteUrl}${urlPath}`;
+    // The locale root IS the manufacturing landing page, so /{locale}/manufacturing is the
+    // same content. Canonicalise it to the root and leave only the root in the sitemap.
+    const landingAlias = route === "manufacturing";
+    const canonical = `${siteUrl}${landingAlias ? `/${locale}/` : urlPath}`;
     const meta = metadata(route);
     const robots = noIndexSections.has(route.split("/")[0])
       ? "noindex, nofollow"
@@ -144,7 +152,7 @@ for (const locale of locales) {
     const alternates = locales
       .map(
         (item) =>
-          `<link rel="alternate" hreflang="${item}" href="${siteUrl}/${item}/${route}${route ? "/" : ""}" />`,
+          `<link rel="alternate" hreflang="${item}" href="${siteUrl}${landingAlias ? `/${item}/` : `/${item}/${route}${route ? "/" : ""}`}" />`,
       )
       .join("\n    ");
     const html = template
@@ -161,7 +169,7 @@ for (const locale of locales) {
     const target = join(dist, locale, route, "index.html");
     await mkdir(dirname(target), { recursive: true });
     await writeFile(target, html);
-    if (robots === "index, follow") {
+    if (robots === "index, follow" && !landingAlias) {
       sitemap.push(`<url><loc>${canonical}</loc></url>`);
     }
   }

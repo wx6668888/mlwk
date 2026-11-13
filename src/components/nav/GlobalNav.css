@@ -41,11 +41,36 @@
   gap: var(--space-6);
 }
 
-.gn__logo { position: relative; display: inline-flex; justify-self: start; width: 71px; height: 16px; }
+.gn__brand { display: flex; align-items: center; gap: 12px; justify-self: start; }
+.gn__logo { position: relative; display: inline-flex; width: 71px; height: 16px; }
 .gn__logo img { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity var(--dur-reveal) var(--ease); }
 .gn__logo-bone { opacity: 0; }
 .gn[data-ink="bone"] .gn__logo-ink { opacity: 0; }
 .gn[data-ink="bone"] .gn__logo-bone { opacity: 1; }
+
+/* 3D walkthrough entry: quiet cube beside the wordmark, tooltip on hover/focus. */
+.gn__cube {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px;
+  color: inherit;
+  opacity: .5;
+  transition: opacity var(--dur-reveal) var(--ease), transform var(--dur-reveal) var(--ease);
+}
+.gn__cube:hover, .gn__cube:focus-visible { opacity: 1; transform: translateY(-1px); }
+.gn__cube::after {
+  content: attr(data-tip);
+  position: absolute; top: calc(100% + 10px); left: 50%;
+  padding: 6px 9px;
+  border-radius: 3px;
+  background: var(--c-ink);
+  color: var(--c-bone-bright);
+  font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
+  opacity: 0; pointer-events: none;
+  transform: translate(-50%, -4px);
+  transition: opacity 180ms var(--ease), transform 180ms var(--ease);
+}
+.gn__cube:hover::after, .gn__cube:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
 
 /* ── Primary menu ──────────────────────────────────────────── */
 .gn__menu ul { display: flex; gap: clamp(20px, 2.6vw, 40px); margin: 0; padding: 0; list-style: none; }

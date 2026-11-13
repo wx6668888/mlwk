@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Box } from "lucide-react";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { localeMeta, locales, type Locale } from "../../content";
@@ -13,6 +13,15 @@ import "./GlobalNav.css";
 const EASE = [0.16, 1, 0.3, 1] as const;
 const HOVER_INTENT = 120;
 const CLOSE_DELAY = 220;
+
+// Entry to the 3D walkthrough: a small cube beside the wordmark, never in the menu.
+const cubeLabel: Record<Locale, string> = {
+  en: "3D Walkthrough",
+  zh: "3D 参观",
+  ar: "جولة ثلاثية الأبعاد",
+  de: "3D-Rundgang",
+  fr: "Visite 3D",
+};
 
 function useLocalTime(timeZone: string) {
   const [time, setTime] = useState("");
@@ -182,10 +191,20 @@ export default function GlobalNav({ locale }: { locale: Locale }) {
     >
       <div className="gn__bar">
         <div className="gn__in">
-          <Link className="gn__logo" to={href("")} aria-label={navCopy.home[locale]}>
-            <img className="gn__logo-ink" src="/brand/CIRMANO_wordmark_EN_ink.svg" alt="" width="71" height="16" />
-            <img className="gn__logo-bone" src="/brand/CIRMANO_wordmark_EN_bone.svg" alt="" width="71" height="16" />
-          </Link>
+          <div className="gn__brand">
+            <Link className="gn__logo" to={href("")} aria-label={navCopy.home[locale]}>
+              <img className="gn__logo-ink" src="/brand/CIRMANO_wordmark_EN_ink.svg" alt="" width="71" height="16" />
+              <img className="gn__logo-bone" src="/brand/CIRMANO_wordmark_EN_bone.svg" alt="" width="71" height="16" />
+            </Link>
+            <Link
+              className="gn__cube"
+              to={href("walkthrough")}
+              aria-label={cubeLabel[locale]}
+              data-tip={cubeLabel[locale]}
+            >
+              <Box size={14} strokeWidth={1.5} aria-hidden="true" />
+            </Link>
+          </div>
 
           <nav className="gn__menu" aria-label="Primary">
             <ul>
