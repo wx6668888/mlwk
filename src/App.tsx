@@ -130,6 +130,8 @@ function LocaleLayout() {
       projects: pc.projects.title,
       about: pc.about.title,
       contact: pc.contact.title,
+      // Matches the prerendered title for the hidden 3D walkthrough page.
+      walkthrough: "3D Walkthrough",
     };
     const title =
       (routeName in redesigned && !(routeName === "projects" && routeDetail) ? redesigned[routeName] : undefined) ??
