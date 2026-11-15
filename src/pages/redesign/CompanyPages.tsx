@@ -90,13 +90,11 @@ export function ManufacturingPage({ locale }: { locale: Locale }) {
         eyebrow={t.eyebrow}
         title={t.title}
         lead={t.lead}
-        photo="m08"
+        photo="/media/mf/factory-tour-poster.webp"
         alt={t.heroAlt}
-        caption={zh(locale) ? "佛山工厂" : "Foshan workshop"}
         video={{
           youtubeId: "cvnHNFwOJdg",
           title: zh(locale) ? "CIRMANO 佛山工厂参观" : "Custom Cabinetry Factory Tour in Foshan, China | CIRMANO",
-          watchLabel: zh(locale) ? "在 YouTube 上观看" : "Watch on YouTube",
         }}
       />
 
@@ -173,8 +171,15 @@ export function ManufacturingPage({ locale }: { locale: Locale }) {
               {m.quality.bandPoints.map((p) => <li key={p}>✓ {p}</li>)}
             </ul>
           </div>
-          <figure className="mf-band__media mf-band__media--trial" role="img" aria-label={m.quality.bandTitle}>
-            <figcaption className="mf-band__tag">{zh(locale) ? "柜体连接件紧固" : "Tightening a cabinet connector"}</figcaption>
+          <figure className="mf-band__media mf-band__media--trial">
+            <img
+              src="/media/mf/trial-assembly-hall-1600.webp"
+              srcSet="/media/mf/trial-assembly-hall-800.webp 800w, /media/mf/trial-assembly-hall-1600.webp 1600w, /media/mf/trial-assembly-hall-2400.webp 2400w"
+              sizes="(max-width: 900px) 100vw, 45vw"
+              alt={m.quality.bandTitle}
+              loading="lazy"
+            />
+            <figcaption className="mf-band__tag">{zh(locale) ? "柜体试装" : "Trial assembly"}</figcaption>
           </figure>
         </div>
         <div className="mf-downloads">

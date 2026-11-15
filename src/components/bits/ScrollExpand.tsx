@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef } from 'react';
-import type { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties, ReactNode, Ref } from 'react';
 
 import './ScrollExpand.css';
 
@@ -43,6 +43,11 @@ export interface ScrollExpandProps {
   overlayScrim?: number;
   useWindowScroll?: boolean;
   enabled?: boolean;
+  /** When set, the frame becomes a link (new tab). clip-path also clips hit-testing, so only the visible frame is clickable. */
+  href?: string;
+  linkLabel?: string;
+  /** A centre overlay that stays visible through the whole expansion (e.g. a play badge). pointer-events: none. */
+  badge?: ReactNode;
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
@@ -67,6 +72,9 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
   overlayScrim = 0.45,
   useWindowScroll = false,
   enabled = true,
+  href = '',
+  linkLabel = '',
+  badge,
   children,
   className = '',
   style,
@@ -75,7 +83,7 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
   const rootRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
-  const frameRef = useRef<HTMLDivElement | null>(null);
+  const frameRef = useRef<HTMLElement | null>(null);
   const mediaRef = useRef<HTMLImageElement & HTMLVideoElement>(null);
   const titleRef = useRef<HTMLDivElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
@@ -243,6 +251,19 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
       <img ref={mediaRef} className="scroll-expand__media" src={src} alt={alt} draggable={false} />
     );
 
+  const frameInner = (
+    <>
+      {media}
+      <div ref={scrimRef} className="scroll-expand__scrim" />
+      {children ? (
+        <div ref={overlayRef} className="scroll-expand__overlay">
+          {children}
+        </div>
+      ) : null}
+      {badge ? <div className="scroll-expand__badge">{badge}</div> : null}
+    </>
+  );
+
   return (
     <div
       ref={rootRef}
@@ -252,15 +273,22 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
     >
       <div ref={trackRef} className="scroll-expand__track">
         <div ref={stageRef} className="scroll-expand__stage">
-          <div ref={frameRef} className="scroll-expand__frame">
-            {media}
-            <div ref={scrimRef} className="scroll-expand__scrim" />
-            {children ? (
-              <div ref={overlayRef} className="scroll-expand__overlay">
-                {children}
-              </div>
-            ) : null}
-          </div>
+          {href ? (
+            <a
+              ref={frameRef as unknown as Ref<HTMLAnchorElement>}
+              className="scroll-expand__frame scroll-expand__frame--link"
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={linkLabel || title || undefined}
+            >
+              {frameInner}
+            </a>
+          ) : (
+            <div ref={frameRef as Ref<HTMLDivElement>} className="scroll-expand__frame">
+              {frameInner}
+            </div>
+          )}
           {title ? (
             <div ref={titleRef} className="scroll-expand__title">
               {title}

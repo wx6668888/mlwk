@@ -36,6 +36,21 @@
   will-change: clip-path;
 }
 
+/* A linked frame: clip-path clips hit-testing too, so only the visible (unclipped) part responds. */
+.scroll-expand__frame--link {
+  display: block;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.scroll-expand__badge {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
 .scroll-expand__media {
   position: absolute;
   inset: 0;

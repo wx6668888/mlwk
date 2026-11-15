@@ -37,33 +37,6 @@ export function Headline({ text, tag = "h2", className = "" }: { text: string; t
 }
 
 /** Page opening: copy, then a photo that grows from a framed print to full bleed as you scroll (ScrollExpand). */
-/** Click-to-play YouTube video. Playing opens the video on youtube.com in a new tab: an embedded player
- *  cannot keep a YouTube sign-in (third-party cookies), so the login would not stick and playback would stall. */
-function HeroVideo({ youtubeId, title, poster, caption, watchLabel }: { youtubeId: string; title: string; poster: string; caption?: string; watchLabel?: string }) {
-  return (
-    <figure className="pk-hero__video-wrap">
-      <div className="pk-hero__video">
-        <button
-          type="button"
-          className="pk-hero__play"
-          onClick={() => window.open(`https://www.youtube.com/watch?v=${youtubeId}`, "_blank", "noopener,noreferrer")}
-          aria-label={`Play video: ${title}`}
-        >
-          <img src={poster} alt="" />
-          <span className="pk-hero__play-btn" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
-          </span>
-        </button>
-      </div>
-      {caption && <figcaption className="pk-hero__caption-line">{caption}</figcaption>}
-      {watchLabel && (
-        <a className="pk-hero__watch" href={`https://www.youtube.com/watch?v=${youtubeId}`} target="_blank" rel="noopener noreferrer">
-          {watchLabel}
-        </a>
-      )}
-    </figure>
-  );
-}
 
 export function PageHero({
   eyebrow,
@@ -81,8 +54,10 @@ export function PageHero({
   photo: Photo | string;
   alt: string;
   caption?: string;
-  /** When set, the hero shows this YouTube video (click to play) instead of the expanding photo. */
-  video?: { youtubeId: string; title: string; watchLabel?: string };
+  /** When set, the hero shows this YouTube video as a click-through poster: same expanding photo motion as
+   *  every other page, with a play badge; the whole expanding frame links to youtube.com in a new tab (an
+   *  embedded player cannot keep a YouTube sign-in, so playback would stall). */
+  video?: { youtubeId: string; title: string };
   children?: ReactNode;
 }) {
   return (
@@ -94,9 +69,30 @@ export function PageHero({
         {children}
       </div>
       {video ? (
-        <div className="pk-hero__media pk-hero__media--video">
-          <HeroVideo youtubeId={video.youtubeId} title={video.title} poster={src(photo, "l")} caption={caption} watchLabel={video.watchLabel} />
-        </div>
+        <ScrollExpand
+          className="pk-hero__media pk-hero__media--video"
+          src={src(photo, "l")}
+          alt={alt}
+          useWindowScroll
+          startWidth={62}
+          startHeight={64}
+          startRadius={20}
+          endRadius={0}
+          /* 0.66, not 1.15: this poster carries a baked-in "FACTORY TOUR" headline, so the framed
+             state must show the whole thumbnail (at 1.15 the clip window cut the title in half) and
+             then grow to full bleed. */
+          mediaZoom={0.66}
+          scrollDistance={0.9}
+          holdDistance={0.15}
+          overlayScrim={0.25}
+          href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+          linkLabel={video.title}
+          badge={
+            <span className="pk-hero__play-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
+            </span>
+          }
+        />
       ) : (
       <ScrollExpand
         className="pk-hero__media"
